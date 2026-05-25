@@ -242,28 +242,38 @@
     animation: fadeUp 0.8s ease 0.28s both; letter-spacing: 0.01em;
   }
 
-  /* ── HERO BOTONES ── */
+  /* ── HERO BOTONES BAND ── */
   .hero-actions {
-    margin-top: 3rem; display: flex; flex-direction: column;
-    gap: 0.7rem; max-width: 500px; width: 100%;
     animation: fadeUp 0.8s ease 0.44s both;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
   }
   .hero-btn {
     font-family: "Space Mono", monospace; font-size: 0.73rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; cursor: pointer; border: none;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 1.7rem;
-    transition: transform 0.18s, background 0.22s, color 0.22s, border-color 0.22s, box-shadow 0.22s;
+    padding: 1.4rem 2rem;
+    transition: transform 0.18s, background 0.22s, color 0.22s, box-shadow 0.22s;
     width: 100%; position: relative; overflow: hidden;
+    border-right: 1px solid var(--border);
   }
-  .hero-btn:hover { transform: translateX(7px); }
-  .hero-btn-primary { background: var(--paper); color: var(--ink); }
-  .hero-btn-primary:hover { background: var(--amber); box-shadow: 0 4px 28px rgba(212,160,23,0.22); }
-  .hero-btn-secondary { background: transparent; color: var(--paper); border: 1px solid var(--border-bright); }
-  .hero-btn-secondary:hover { border-color: rgba(240,236,224,0.45); background: rgba(240,236,224,0.05); }
-  .hero-btn-ghost { background: transparent; color: var(--muted); border: 1px solid rgba(122,112,96,0.28); }
-  .hero-btn-ghost:hover { color: var(--paper); border-color: rgba(240,236,224,0.28); }
+  .hero-btn:last-child { border-right: none; }
+  .hero-btn:hover { transform: translateX(5px); }
+  .hero-btn-primary {
+    background: rgba(240,236,224,0.22);
+    color: var(--paper);
+    border-right: 1px solid var(--border);
+    backdrop-filter: blur(4px);
+  }
+  .hero-btn-primary:hover { background: rgba(212,160,23,0.35); box-shadow: 0 4px 28px rgba(212,160,23,0.18); color: var(--paper); }
+  .hero-btn-secondary { background: transparent; color: var(--paper); }
+  .hero-btn-secondary:hover { background: rgba(240,236,224,0.04); }
+  .hero-btn-ghost { background: transparent; color: var(--muted); }
+  .hero-btn-ghost:hover { color: var(--paper); background: rgba(240,236,224,0.02); }
   .btn-arrow { font-size: 1rem; transition: transform 0.22s; flex-shrink: 0; }
   .hero-btn:hover .btn-arrow { transform: translateX(5px); }
   .btn-tag {
@@ -274,17 +284,22 @@
     border: 1px solid rgba(240,236,224,0.12);
   }
 
-  /* ── STATS ── */
-  .hero-stats {
-    margin-top: 4rem; display: grid;
+  /* ── STATS BAND ── */
+  .hero-stats-band {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0; animation: fadeUp 0.8s ease 0.6s both;
-    border-top: 1px solid var(--border); padding-top: 2.5rem; max-width: 660px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.8s ease 0.6s both;
   }
-  .stat-item { padding-right: 2rem; border-right: 1px solid var(--border); margin-right: 2rem; }
-  .stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .stat-item {
+    padding: 2.2rem 1.5rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
   .stat-num { font-family: "Bebas Neue", cursive; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--paper); line-height: 1; display: block; }
-  .stat-label { font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.35rem; line-height: 1.55; }
+  .stat-label { font-family: "Space Mono", monospace; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(180,170,155,0.85); display: block; margin-top: 0.35rem; line-height: 1.55; }
 
   /* ── TICKER ── */
   .ticker {
@@ -346,8 +361,8 @@
   .caso0-card-label { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); }
   .caso0-card-badge { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.2rem 0.6rem; }
   .caso0-card-body { padding: 2rem; }
-  .caso0-case-title { font-family: "Bebas Neue", cursive; font-size: 2rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem; color: var(--paper); }
-  .caso0-case-desc { font-size: 0.82rem; line-height: 1.75; color: rgba(240,236,224,0.5); margin-bottom: 1.5rem; }
+  .caso0-case-title { font-family: "Bebas Neue", cursive; font-size: 2.4rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem; color: var(--paper); }
+  .caso0-case-desc { font-size: 0.9rem; line-height: 1.75; color: rgba(240,236,224,0.58); margin-bottom: 1.5rem; }
   .teaser-media { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
   .teaser-link {
     display: flex; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem;
@@ -364,8 +379,8 @@
   .caso0-card-meta {
     display: flex; gap: 1.2rem; flex-wrap: wrap; padding: 1rem 2rem;
     border-top: 1px solid var(--border);
-    font-family: "Space Mono", monospace; font-size: 0.55rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,236,224,0.3);
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,236,224,0.48);
   }
 
   /* ── CÓMO FUNCIONA ── */
@@ -404,26 +419,58 @@
   .perfil-item:hover { padding-left: 0.4rem; }
   .perfil-item:last-child { border-bottom: none; }
   .perfil-icon { font-family: "Space Mono", monospace; font-size: 0.75rem; color: var(--red); flex-shrink: 0; margin-top: 0.2rem; }
-  .perfil-text { font-size: 0.88rem; line-height: 1.65; color: rgba(240,236,224,0.55); }
-  .perfil-text strong { color: var(--paper); font-size: 0.85rem; display: block; margin-bottom: 0.2rem; }
+  .perfil-text { font-size: 0.95rem; line-height: 1.65; color: rgba(240,236,224,0.55); }
+  .perfil-text strong { color: var(--paper); font-size: 0.93rem; display: block; margin-bottom: 0.2rem; }
 
   /* ── CTA BANNER ── */
   .cta-banner {
-    padding: 6rem 2.5rem; border-top: 1px solid var(--border);
+    padding: 6rem 2.5rem; border-top: 1px solid rgba(192,57,43,0.25);
     position: relative; overflow: hidden;
+    background: linear-gradient(135deg, rgba(120,20,14,0.28) 0%, rgba(80,12,8,0.38) 50%, rgba(50,8,5,0.42) 100%);
   }
   .cta-banner::before {
     content: ""; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 100% at 80% 50%, rgba(192,57,43,0.06) 0%, transparent 65%);
+    background:
+      radial-gradient(ellipse 70% 120% at 90% 50%, rgba(192,57,43,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 80% at 10% 50%, rgba(192,57,43,0.07) 0%, transparent 55%);
     pointer-events: none;
+  }
+  .cta-banner::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(192,57,43,0.03) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.2) 100%);
+    pointer-events: none;
+  }
+  /* Botones del CTA sobre fondo rojo — necesitan contraste */
+  .cta-banner .hero-btn-primary {
+    box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  }
+  .cta-banner .hero-btn-secondary {
+    border: 1px solid rgba(240,236,224,0.4) !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+    background: rgba(0,0,0,0.25);
+  }
+  .cta-banner .hero-btn-secondary:hover {
+    background: rgba(0,0,0,0.4);
+    border-color: rgba(240,236,224,0.65) !important;
+  }
+  .cta-banner .hero-btn-ghost {
+    border: 1px solid rgba(240,236,224,0.2) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.18);
+  }
+  .cta-banner .hero-btn-ghost:hover {
+    background: rgba(0,0,0,0.35);
+    border-color: rgba(240,236,224,0.4) !important;
+    color: var(--paper);
   }
   .cta-banner-inner {
     max-width: 1100px; margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2.5rem;
     position: relative; z-index: 1;
   }
-  .cta-banner-text h2 { font-family: "Bebas Neue", cursive; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 0.8rem; }
-  .cta-banner-text p { font-size: 0.9rem; color: rgba(240,236,224,0.5); max-width: 38ch; line-height: 1.75; }
+  .cta-banner-text h2 { font-family: "Bebas Neue", cursive; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 0.8rem; color: var(--paper); text-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+  .cta-banner-text p { font-size: 0.9rem; color: rgba(240,236,224,0.72); max-width: 38ch; line-height: 1.75; }
   .cta-banner-actions { display: flex; flex-direction: column; gap: 0.7rem; min-width: 260px; }
 
   /* ── SECTIONS ── */
@@ -597,7 +644,7 @@
   .footer-contact p { font-family: "Space Mono", monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.22); margin-bottom: 0.4rem; }
   .footer-contact a { font-family: "Courier Prime", monospace; font-size: 0.84rem; color: rgba(240,236,224,0.38); text-decoration: none; transition: color 0.2s; }
   .footer-contact a:hover { color: var(--amber); }
-  .footer-bottom { font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.13); line-height: 1.9; }
+  .footer-bottom { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.28); line-height: 1.9; }
 
   /* ── ANIMACIONES ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
@@ -615,7 +662,7 @@
 
   /* ── Desktop grande ── */
   @media (max-width: 1280px) {
-    .hero-stats { max-width: 580px; }
+    .hero-stats-band { /* full width, no changes needed */ }
   }
 
   /* ── Tablet landscape / PC pequeño ── */
@@ -625,8 +672,11 @@
     .step-item:nth-child(1),
     .step-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     .para-quien-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); max-width: 100%; gap: 1.5rem; }
-    .stat-item { padding-right: 1.5rem; margin-right: 0; }
+    .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
+    .hero-stats-band .stat-item:nth-child(1),
+    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .caso0-grid { grid-template-columns: 1fr; gap: 3rem; }
     .caso0-inline-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .caso0-inline-actions { flex-direction: row; min-width: 0; }
@@ -649,9 +699,14 @@
     .hero { padding: 6rem 1.25rem 3.5rem; min-height: auto; }
     h1 { font-size: clamp(3.8rem, 14vw, 6rem); }
     .hero-body { font-size: 0.95rem; max-width: 100%; }
-    .hero-actions { max-width: 100%; }
-    .hero-btn { padding: 1.1rem 1.3rem; font-size: 0.68rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; padding-top: 2rem; margin-top: 2.5rem; }
+    .hero-actions { grid-template-columns: 1fr; }
+    .hero-btn { padding: 1.1rem 1.3rem; font-size: 0.68rem; border-right: none !important; border-bottom: 1px solid var(--border); }
+    .hero-btn:last-child { border-bottom: none; }
+    .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
+    .hero-stats-band .stat-item:nth-child(1),
+    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .section { padding: 4rem 1.25rem; }
     .section-topbar { padding: 4rem 1.25rem 0; }
     .como-funciona,
@@ -687,11 +742,15 @@
     .hero-eyebrow { font-size: 0.6rem; gap: 0.6rem; }
     .hero-eyebrow::before { width: 1.5rem; }
     .hero-body { font-size: 0.9rem; line-height: 1.75; }
-    .hero-btn { padding: 1rem 1.1rem; font-size: 0.63rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding-top: 1.5rem; margin-top: 2rem; }
+    .hero-btn { padding: 1rem 1.1rem; font-size: 0.63rem; border-right: none !important; border-bottom: 1px solid var(--border); }
+    .hero-btn:last-child { border-bottom: none; }
+    .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
+    .hero-stats-band .stat-item:nth-child(1),
+    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .stat-num { font-size: 1.9rem; }
     .stat-label { font-size: 0.52rem; }
-    .stat-item { padding-right: 0; border-right: none; }
     .steps-grid { grid-template-columns: 1fr; }
     .step-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
     .step-item:last-child { border-bottom: none !important; }
@@ -765,27 +824,29 @@
       <h1>Investigá.<br><em>Descubrí.</em></h1>
       <div class="hero-divider"></div>
       <p class="hero-body">Archivos recuperados. Documentos clasificados. Pistas ocultas. Experiencias de investigación inmersiva digital para resolver solo o con otros — todo desde tu dispositivo, sin instalar nada.</p>
-
-      <div class="hero-actions">
-        <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
-          <span>Acceso gratuito al Caso #00</span><span class="btn-arrow">→</span>
-        </a>
-        <a href="#" class="hero-btn hero-btn-secondary" onclick="showSection('suscripcion'); return false;">
-          <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
-        </a>
-        <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('que-es'); return false;">
-          <span>¿Qué es Archivo Cero?</span><span class="btn-arrow">→</span>
-        </a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat-item"><span class="stat-num">60–90</span><span class="stat-label">Min por caso</span></div>
-        <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
-        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
-        <div class="stat-item"><span class="stat-num">BsAs</span><span class="stat-label">Desarrollado en Argentina</span></div>
-      </div>
     </div>
   </section>
+
+  <!-- BOTONES BANDA -->
+  <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <a href="#" class="hero-btn hero-btn-primary" onclick="showSection('suscripcion'); return false;">
+      <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
+    </a>
+    <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
+      <span>Acceso gratuito al Caso #00</span><span class="btn-arrow">→</span>
+    </a>
+    <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('que-es'); return false;">
+      <span>¿Qué es Archivo Cero?</span><span class="btn-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- STATS BAND -->
+  <div class="hero-stats-band">
+    <div class="stat-item"><span class="stat-num">60–90</span><span class="stat-label">Min por caso</span></div>
+    <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
+    <div class="stat-item"><span class="stat-num">BA</span><span class="stat-label">Desarrollado en Argentina</span></div>
+  </div>
 
   <!-- TICKER -->
   <div class="ticker" aria-hidden="true">
@@ -822,7 +883,7 @@
             <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:340px;">
               <span>Descargar el Caso #00</span><span class="btn-arrow">→</span>
             </a>
-            <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('suscripcion'); return false;" style="max-width:340px;">
+            <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('suscripcion'); return false;" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
               <span>Quiero la suscripción mensual</span><span class="btn-arrow">→</span>
             </a>
           </div>
