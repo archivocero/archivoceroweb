@@ -264,12 +264,12 @@
   .hero-btn:last-child { border-right: none; }
   .hero-btn:hover { transform: translateX(5px); }
   .hero-btn-primary {
-    background: rgba(240,236,224,0.22);
+    background: rgba(240,236,224,0.28);
     color: var(--paper);
     border-right: 1px solid var(--border);
     backdrop-filter: blur(4px);
   }
-  .hero-btn-primary:hover { background: rgba(212,160,23,0.35); box-shadow: 0 4px 28px rgba(212,160,23,0.18); color: var(--paper); }
+  .hero-btn-primary:hover { background: rgba(212,160,23,0.45); box-shadow: 0 4px 28px rgba(212,160,23,0.18); color: var(--paper); }
   .hero-btn-secondary { background: transparent; color: var(--paper); }
   .hero-btn-secondary:hover { background: rgba(240,236,224,0.04); }
   .hero-btn-ghost { background: transparent; color: var(--muted); }
@@ -495,13 +495,14 @@
   .btn-primary {
     font-family: "Space Mono", monospace; font-size: 0.72rem;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink); background: var(--paper);
+    color: var(--paper); background: rgba(240,236,224,0.28);
     padding: 0.95rem 1.8rem; text-decoration: none; border: none;
     cursor: pointer; display: inline-flex; align-items: center; gap: 0.7rem;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap;
+    backdrop-filter: blur(4px);
   }
   .btn-primary::after { content: "→"; }
-  .btn-primary:hover { background: var(--amber); transform: translateX(5px); box-shadow: 0 4px 24px rgba(212,160,23,0.2); }
+  .btn-primary:hover { background: rgba(212,160,23,0.45); transform: translateX(5px); box-shadow: 0 4px 24px rgba(212,160,23,0.2); }
   .btn-secondary {
     font-family: "Space Mono", monospace; font-size: 0.72rem;
     letter-spacing: 0.12em; text-transform: uppercase;
@@ -515,12 +516,13 @@
   .btn-block {
     font-family: "Space Mono", monospace; font-size: 0.75rem;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink); background: var(--paper);
+    color: var(--paper); background: rgba(240,236,224,0.28);
     padding: 1.2rem 1.7rem; text-decoration: none; border: none;
     cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%;
     transition: background 0.2s, transform 0.15s;
+    backdrop-filter: blur(4px);
   }
-  .btn-block:hover { background: var(--amber); transform: translateX(5px); }
+  .btn-block:hover { background: rgba(212,160,23,0.45); transform: translateX(5px); }
 
   /* ── QUÉ ES ── */
   .que-es-lead { font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.9; color: rgba(240,236,224,0.72); max-width: 58ch; margin-bottom: 4rem; }
@@ -845,7 +847,7 @@
     <div class="stat-item"><span class="stat-num">60–90</span><span class="stat-label">Min por caso</span></div>
     <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
     <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
-    <div class="stat-item"><span class="stat-num">BA</span><span class="stat-label">Desarrollado en Argentina</span></div>
+    <div class="stat-item"><span class="stat-num">BsAs</span><span class="stat-label">Desarrollado en Argentina</span></div>
   </div>
 
   <!-- TICKER -->
