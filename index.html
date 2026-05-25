@@ -10,15 +10,19 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #0e0c0a;
-    --paper: #f4f0e6;
-    --paper-dark: #e8e2d4;
+    --ink: #090806;
+    --ink-mid: #111009;
+    --paper: #f0ece0;
+    --paper-dim: rgba(240,236,224,0.65);
+    --paper-ghost: rgba(240,236,224,0.08);
     --red: #c0392b;
-    --red-dark: #922b21;
+    --red-glow: rgba(192,57,43,0.18);
+    --red-dim: rgba(192,57,43,0.4);
     --amber: #d4a017;
+    --amber-dim: rgba(212,160,23,0.35);
     --muted: #7a7060;
-    --stamp-green: #2e6b3e;
-    --border: rgba(244,240,230,0.1);
+    --border: rgba(240,236,224,0.09);
+    --border-bright: rgba(240,236,224,0.18);
   }
 
   html { scroll-behavior: smooth; }
@@ -26,980 +30,1053 @@
   body {
     background-color: var(--ink);
     color: var(--paper);
-    font-family: 'Courier Prime', monospace;
+    font-family: "Courier Prime", monospace;
     overflow-x: hidden;
   }
 
+  /* Grain overlay */
   body::before {
-    content: '';
+    content: "";
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 1000;
-    opacity: 0.4;
+    z-index: 9000;
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+  }
+
+  /* Vignette */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 8999;
   }
 
   /* ── NAV ── */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 3rem;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: rgba(9,8,6,0.92);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    background: rgba(14,12,10,0.96);
-    backdrop-filter: blur(10px);
+    transition: background 0.3s;
   }
-
   .nav-logo {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.5rem;
-    letter-spacing: 0.15em;
-    color: var(--paper);
-    text-decoration: none;
-    cursor: pointer;
+    font-family: "Bebas Neue", cursive;
+    font-size: 1.45rem; letter-spacing: 0.18em;
+    color: var(--paper); text-decoration: none; cursor: pointer;
   }
   .nav-logo span { color: var(--red); }
-
-  /* ── MENÚ HAMBURGUESA ── */
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
   .nav-cta {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    background: var(--paper);
-    padding: 0.5rem 1.2rem;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
+    font-family: "Space Mono", monospace;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); background: var(--paper);
+    padding: 0.5rem 1.3rem; text-decoration: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; display: inline-block; white-space: nowrap;
   }
-  .nav-cta:hover { background: var(--amber); }
-
+  .nav-cta:hover { background: var(--amber); transform: translateY(-1px); }
   .menu-toggle {
-    background: none;
-    border: 1px solid rgba(244,240,230,0.2);
-    cursor: pointer;
-    padding: 0.55rem 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.2s;
+    background: none; border: 1px solid rgba(240,236,224,0.18);
+    cursor: pointer; padding: 0.5rem 0.65rem;
+    display: flex; flex-direction: column; gap: 5px;
+    align-items: center; justify-content: center; transition: border-color 0.2s;
+    flex-shrink: 0;
   }
-  .menu-toggle:hover { border-color: rgba(244,240,230,0.5); }
-
+  .menu-toggle:hover { border-color: rgba(240,236,224,0.45); }
   .menu-toggle .bar {
-    display: block;
-    width: 20px;
-    height: 1.5px;
-    background: var(--paper);
-    transition: transform 0.3s, opacity 0.3s;
-    transform-origin: center;
+    display: block; width: 18px; height: 1.5px; background: var(--paper);
+    transition: transform 0.3s, opacity 0.3s; transform-origin: center;
   }
-
   .menu-toggle.active .bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
   .menu-toggle.active .bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ── DROPDOWN MENÚ ── */
+  /* ── DROPDOWN ── */
   .nav-dropdown {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 150;
-    background: rgba(14,12,10,0.98);
-    backdrop-filter: blur(16px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 6rem 3rem 3rem;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 400;
+    background: rgba(9,8,6,0.98); backdrop-filter: blur(20px);
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: flex-start; padding: 5rem 2.5rem 3rem;
     transform: translateY(-100%);
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.55s cubic-bezier(0.77,0,0.175,1);
     pointer-events: none;
   }
-
-  .nav-dropdown.open {
-    transform: translateY(0);
-    pointer-events: all;
-  }
-
+  .nav-dropdown.open { transform: translateY(0); pointer-events: all; }
   .dropdown-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem;
   }
-  .dropdown-label::before { content: '//'; color: rgba(244,240,230,0.15); }
-
-  .dropdown-nav {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    width: 100%;
-  }
-
-  .dropdown-nav li {
-    border-bottom: 1px solid rgba(244,240,230,0.07);
-    overflow: hidden;
-  }
-
-  .dropdown-nav li:first-child {
-    border-top: 1px solid rgba(244,240,230,0.07);
-  }
-
+  .dropdown-label::before { content: "//"; color: rgba(240,236,224,0.15); }
+  .dropdown-nav { list-style: none; width: 100%; }
+  .dropdown-nav li { border-bottom: 1px solid rgba(240,236,224,0.07); }
+  .dropdown-nav li:first-child { border-top: 1px solid rgba(240,236,224,0.07); }
   .dropdown-nav a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem 0;
-    text-decoration: none;
-    color: var(--paper);
-    transition: color 0.2s, padding-left 0.3s;
-    gap: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 0; text-decoration: none; color: var(--paper);
+    transition: color 0.2s, padding-left 0.3s; gap: 1rem;
   }
-
-  .dropdown-nav a:hover {
-    color: var(--amber);
-    padding-left: 1rem;
-  }
-
+  .dropdown-nav a:hover { color: var(--amber); padding-left: 0.8rem; }
   .nav-item-number {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    color: var(--red);
-    flex-shrink: 0;
-    opacity: 0.7;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; color: var(--red); flex-shrink: 0; opacity: 0.7;
   }
-
   .nav-item-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    letter-spacing: 0.05em;
-    line-height: 1;
-    flex: 1;
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    letter-spacing: 0.05em; line-height: 1; flex: 1;
   }
-
   .nav-item-arrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
-    color: rgba(244,240,230,0.25);
-    flex-shrink: 0;
-    transition: color 0.2s, transform 0.2s;
+    font-size: 0.85rem; color: rgba(240,236,224,0.25);
+    flex-shrink: 0; transition: color 0.2s, transform 0.2s;
   }
-
-  .dropdown-nav a:hover .nav-item-arrow {
-    color: var(--amber);
-    transform: translateX(6px);
-  }
-
+  .dropdown-nav a:hover .nav-item-arrow { color: var(--amber); transform: translateX(5px); }
   .dropdown-footer {
-    margin-top: auto;
-    padding-top: 2.5rem;
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
+    margin-top: 2rem; padding-top: 2rem;
+    border-top: 1px solid rgba(240,236,224,0.07);
+    display: flex; gap: 2rem; flex-wrap: wrap; width: 100%;
   }
-
   .dropdown-footer a {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
   }
   .dropdown-footer a:hover { color: var(--paper); }
 
-  /* ── SECCIONES: ocultas por defecto ── */
-  .page-section {
-    display: none;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
+  /* ── PAGE SECTIONS ── */
+  .page-section { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .page-section.visible { display: block; }
+  .page-section.animated { opacity: 1; transform: translateY(0); }
 
-  .page-section.visible {
-    display: block;
-  }
-
-  .page-section.animated {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── HERO ── */
+  /* ─────────────────────────────────
+     HERO — Cinematográfico
+  ───────────────────────────────── */
   .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 7rem 2.5rem 5rem;
+    position: relative; overflow: hidden;
   }
 
-  .hero-bg-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(12rem, 30vw, 26rem);
-    color: rgba(244,240,230,0.025);
-    letter-spacing: -0.02em;
-    white-space: nowrap;
+  /* Fondo con gradiente dramático */
+  .hero-backdrop {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 30%, rgba(192,57,43,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 15% 70%, rgba(212,160,23,0.04) 0%, transparent 60%),
+      linear-gradient(to bottom, rgba(9,8,6,0) 0%, rgba(9,8,6,0.6) 70%, rgba(9,8,6,1) 100%);
     pointer-events: none;
-    user-select: none;
   }
+
+  /* Líneas decorativas de fondo */
+  .hero-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: hidden; opacity: 0.07;
+  }
+  .hero-lines::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%; width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--paper) 30%, transparent 70%, transparent);
+  }
+  .hero-lines::after {
+    content: "";
+    position: absolute;
+    top: 38%; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--paper) 30%, var(--paper) 70%, transparent);
+  }
+
+  /* BG text dramático */
+  .hero-bg-text {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-48%, -52%);
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(10rem, 36vw, 32rem);
+    color: rgba(240,236,224,0.018);
+    letter-spacing: -0.01em; white-space: nowrap;
+    pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+
+  /* Número de caso — elemento editorial */
+  .hero-case-num {
+    position: absolute; top: 8rem; right: 2.5rem;
+    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(240,236,224,0.18);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    animation: fadeIn 1.2s ease 0.8s both;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
 
   .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;
+    animation: fadeUp 0.8s ease both;
   }
-  .hero-eyebrow::before { content: ''; display: inline-block; width: 2rem; height: 1px; background: var(--red); }
+  .hero-eyebrow::before { content: ""; display: inline-block; width: 2.5rem; height: 1px; background: var(--red); }
 
+  /* Título principal — cinematográfico */
   h1 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(5rem, 12vw, 10rem);
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    max-width: 14ch;
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(5rem, 15vw, 11.5rem);
+    line-height: 0.99; letter-spacing: 0.05em; max-width: 12ch;
+    animation: fadeUp 0.8s ease 0.12s both;
   }
   h1 em { font-style: normal; color: var(--red); display: block; }
+  h1 .title-stroke {
+    -webkit-text-stroke: 1px rgba(240,236,224,0.55);
+    color: transparent;
+  }
+
+  .hero-divider {
+    width: 3rem; height: 1px; background: var(--red);
+    margin: 2rem 0 1.5rem;
+    animation: expandWidth 0.6s ease 0.4s both;
+  }
 
   .hero-body {
-    margin-top: 2.5rem;
-    max-width: 44ch;
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: rgba(244,240,230,0.7);
+    max-width: 46ch;
+    font-size: 1.05rem; line-height: 1.85;
+    color: var(--paper-dim);
+    animation: fadeUp 0.8s ease 0.28s both;
+    letter-spacing: 0.01em;
   }
 
+  /* ── HERO BOTONES ── */
   .hero-actions {
-    margin-top: 3rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    margin-top: 3rem; display: flex; flex-direction: column;
+    gap: 0.7rem; max-width: 500px; width: 100%;
+    animation: fadeUp 0.8s ease 0.44s both;
+  }
+  .hero-btn {
+    font-family: "Space Mono", monospace; font-size: 0.73rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer; border: none;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.7rem;
+    transition: transform 0.18s, background 0.22s, color 0.22s, border-color 0.22s, box-shadow 0.22s;
+    width: 100%; position: relative; overflow: hidden;
+  }
+  .hero-btn::after {
+    content: ""; position: absolute;
+    inset: 0; opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hero-btn:hover { transform: translateX(7px); }
+  .hero-btn-primary {
+    background: var(--paper); color: var(--ink);
+    box-shadow: 0 0 0 0 rgba(240,236,224,0);
+  }
+  .hero-btn-primary::after { background: linear-gradient(90deg, var(--amber), transparent); }
+  .hero-btn-primary:hover { background: var(--amber); box-shadow: 0 4px 28px rgba(212,160,23,0.22); }
+  .hero-btn-secondary { background: transparent; color: var(--paper); border: 1px solid var(--border-bright); }
+  .hero-btn-secondary:hover { border-color: rgba(240,236,224,0.45); background: rgba(240,236,224,0.05); box-shadow: inset 0 0 24px rgba(240,236,224,0.03); }
+  .hero-btn-ghost { background: transparent; color: var(--muted); border: 1px solid rgba(122,112,96,0.28); }
+  .hero-btn-ghost:hover { color: var(--paper); border-color: rgba(240,236,224,0.28); }
+  .btn-arrow { font-size: 1rem; transition: transform 0.22s; flex-shrink: 0; }
+  .hero-btn:hover .btn-arrow { transform: translateX(5px); }
+  .btn-tag {
+    font-size: 0.52rem; letter-spacing: 0.15em; opacity: 0.45;
+    background: rgba(240,236,224,0.07); padding: 0.22rem 0.55rem;
+    margin-left: auto; margin-right: 0.9rem;
+    text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
+    border: 1px solid rgba(240,236,224,0.12);
   }
 
-  .btn-primary {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    background: var(--paper);
-    padding: 1rem 2.2rem;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    transition: background 0.2s, transform 0.15s;
+  /* ── STATS ── */
+  .hero-stats {
+    margin-top: 4rem; display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    animation: fadeUp 0.8s ease 0.6s both;
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem; max-width: 660px;
   }
-  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
-
-  .btn-secondary {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--paper);
-    background: transparent;
-    padding: 1rem 2.2rem;
-    text-decoration: none;
-    border: 1px solid rgba(244,240,230,0.25);
-    cursor: pointer;
-    display: inline-block;
-    transition: border-color 0.2s, transform 0.15s;
+  .stat-item {
+    padding-right: 2rem;
+    border-right: 1px solid var(--border);
+    margin-right: 2rem;
   }
-  .btn-secondary:hover { border-color: var(--paper); transform: translateY(-2px); }
+  .stat-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .stat-num {
+    font-family: "Bebas Neue", cursive; font-size: 2.4rem;
+    letter-spacing: 0.04em; color: var(--paper); line-height: 1; display: block;
+  }
+  .stat-label {
+    font-family: "Space Mono", monospace; font-size: 0.56rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); display: block; margin-top: 0.35rem; line-height: 1.55;
+  }
 
   /* ── TICKER ── */
   .ticker {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 0.9rem 0;
-    overflow: hidden;
-    background: rgba(192,57,43,0.06);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 0.9rem 0; overflow: hidden;
+    background: rgba(212,160,23,0.07);
+    position: relative;
   }
+  .ticker::before, .ticker::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 6rem; z-index: 2;
+  }
+  .ticker::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
+  .ticker::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
   .ticker-track {
-    display: flex;
-    gap: 4rem;
-    animation: ticker 24s linear infinite;
-    white-space: nowrap;
-    width: max-content;
+    display: flex; gap: 3.5rem;
+    animation: ticker 32s linear infinite;
+    white-space: nowrap; width: max-content;
   }
   .ticker-item {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    flex-shrink: 0;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,236,224,0.55); flex-shrink: 0;
   }
-  .ticker-item span { color: var(--red); margin-right: 0.5rem; }
+  .ticker-item span { color: var(--amber); margin-right: 0.5rem; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── SECTIONS GENERAL ── */
-  .section {
-    padding: 7rem 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  /* ─────────────────────────────────
+     CASO 0 LIBRE — Nuevo bloque
+  ───────────────────────────────── */
+  .caso0-section {
+    padding: 7rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-mid);
+    border-top: 1px solid var(--border);
   }
-
-  /* ── SECTION HEADER (top de cada sección al abrirla) ── */
-  .section-topbar {
-    padding: 5rem 3rem 0;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
+  .caso0-glow {
+    position: absolute;
+    top: -10rem; left: -8rem;
+    width: 50rem; height: 40rem;
+    background: radial-gradient(ellipse, rgba(192,57,43,0.07) 0%, transparent 65%);
+    pointer-events: none;
   }
-
-  .back-btn {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s;
-    padding: 0;
+  .caso0-inner {
+    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
   }
-  .back-btn:hover { color: var(--paper); }
-  .back-btn::before { content: '←'; font-size: 0.85rem; }
-
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .section-label::before { content: '//'; color: rgba(244,240,230,0.2); }
-
-  h2 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: clamp(3rem, 6vw, 5rem);
-    letter-spacing: 0.03em;
-    line-height: 1;
-    margin-bottom: 3rem;
-  }
-
-  /* ── QUÉ ES ── */
-  .que-es-grid {
+  .caso0-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    gap: 5rem;
+    align-items: center;
   }
-
-  .que-es-intro {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: rgba(244,240,230,0.8);
-    margin-bottom: 2rem;
+  .caso0-left {}
+  .caso0-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem;
   }
+  .caso0-eyebrow::before { content: "//"; color: rgba(240,236,224,0.2); }
+  .caso0-title {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 0.95; letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .caso0-title span { color: var(--red); }
+  .caso0-desc {
+    font-size: 0.95rem; line-height: 1.85;
+    color: var(--paper-dim);
+    margin-bottom: 2.5rem;
+  }
+  .caso0-actions { display: flex; flex-direction: column; gap: 0.7rem; }
 
-  .que-es-intro strong {
+  /* Card de teaser */
+  .caso0-card {
+    border: 1px solid rgba(192,57,43,0.25);
+    background: rgba(192,57,43,0.04);
+    position: relative; overflow: hidden;
+  }
+  .caso0-card-header {
+    padding: 1.5rem 2rem 1.2rem;
+    border-bottom: 1px solid rgba(192,57,43,0.15);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .caso0-card-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--red);
+  }
+  .caso0-card-badge {
+    font-family: "Space Mono", monospace; font-size: 0.52rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber); border: 1px solid var(--amber-dim);
+    padding: 0.2rem 0.6rem;
+  }
+  .caso0-card-body { padding: 2rem; }
+  .caso0-case-title {
+    font-family: "Bebas Neue", cursive; font-size: 2rem;
+    letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem;
     color: var(--paper);
-    font-weight: 700;
+  }
+  .caso0-case-desc {
+    font-size: 0.82rem; line-height: 1.75;
+    color: rgba(240,236,224,0.5);
+    margin-bottom: 1.5rem;
+  }
+  /* Teaser media links */
+  .teaser-media { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
+  .teaser-link {
+    display: flex; align-items: center; gap: 0.85rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--paper-dim);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .teaser-link:hover { border-color: rgba(240,236,224,0.3); color: var(--paper); background: rgba(240,236,224,0.04); }
+  .teaser-link-icon {
+    width: 2rem; height: 2rem; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+  }
+  .teaser-link-text { flex: 1; }
+  .teaser-link-arrow { color: var(--muted); transition: transform 0.2s; }
+  .teaser-link:hover .teaser-link-arrow { transform: translateX(3px); color: var(--paper); }
+  .caso0-card-meta {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--border);
+    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(240,236,224,0.3);
   }
 
-  .que-es-right { display: flex; flex-direction: column; gap: 2rem; }
-
-  .info-block {
-    border-left: 2px solid var(--red);
-    padding-left: 1.5rem;
+  /* ── CÓMO FUNCIONA ── */
+  .como-funciona {
+    padding: 7rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .como-funciona-inner { max-width: 1100px; margin: 0 auto; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 3.5rem;
+    border: 1px solid var(--border);
+  }
+  .step-item {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .step-item:hover { background: rgba(240,236,224,0.025); }
+  .step-item:last-child { border-right: none; }
+  .step-num {
+    font-family: "Bebas Neue", cursive;
+    font-size: 4rem; line-height: 1;
+    color: rgba(240,236,224,0.08); display: block; margin-bottom: 1.2rem;
+  }
+  .step-icon {
+    font-family: "Space Mono", monospace; font-size: 1.1rem;
+    color: var(--red); display: block; margin-bottom: 0.9rem;
+  }
+  .step-title {
+    font-family: "Bebas Neue", cursive; font-size: 1.35rem;
+    letter-spacing: 0.05em; color: var(--paper); display: block; margin-bottom: 0.6rem;
+  }
+  .step-desc {
+    font-size: 0.8rem; line-height: 1.75;
+    color: rgba(240,236,224,0.42);
   }
 
-  .info-block h3 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--paper);
-    margin-bottom: 1rem;
+  /* ── PARA QUIÉN ── */
+  .para-quien {
+    padding: 7rem 2.5rem;
+    border-top: 1px solid var(--border);
+    background: linear-gradient(to bottom, rgba(192,57,43,0.025) 0%, transparent 50%);
   }
+  .para-quien-inner { max-width: 1100px; margin: 0 auto; }
+  .para-quien-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3rem;
+    align-items: center;
+  }
+  .para-quien-text {
+    font-size: 1.05rem; line-height: 1.9;
+    color: rgba(240,236,224,0.68); margin-bottom: 1.5rem;
+  }
+  .para-quien-text strong { color: var(--paper); }
+  .perfil-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .perfil-item {
+    display: flex; align-items: flex-start; gap: 1.1rem;
+    padding: 1.3rem 0; border-bottom: 1px solid var(--border);
+    transition: padding-left 0.2s;
+  }
+  .perfil-item:hover { padding-left: 0.4rem; }
+  .perfil-item:last-child { border-bottom: none; }
+  .perfil-icon {
+    font-family: "Space Mono", monospace; font-size: 0.75rem;
+    color: var(--red); flex-shrink: 0; margin-top: 0.2rem;
+  }
+  .perfil-text { font-size: 0.88rem; line-height: 1.65; color: rgba(240,236,224,0.55); }
+  .perfil-text strong { color: var(--paper); font-size: 0.85rem; display: block; margin-bottom: 0.2rem; }
 
-  .info-block p {
-    font-size: 0.88rem;
-    line-height: 1.75;
-    color: rgba(244,240,230,0.6);
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    padding: 6rem 2.5rem;
+    border-top: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 80% 50%, rgba(192,57,43,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-banner-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .cta-banner-text h2 {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 0.95; letter-spacing: 0.02em;
     margin-bottom: 0.8rem;
   }
+  .cta-banner-text p {
+    font-size: 0.9rem; color: rgba(240,236,224,0.5); max-width: 38ch;
+    line-height: 1.75;
+  }
+  .cta-banner-actions { display: flex; flex-direction: column; gap: 0.7rem; min-width: 260px; }
 
-  .pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
+  /* ── SECTIONS ── */
+  .section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-topbar {
+    padding: 5rem 2.5rem 0; max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .back-btn {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s, transform 0.15s; padding: 0;
+  }
+  .back-btn:hover { color: var(--paper); transform: translateX(-3px); }
+  .section-label {
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: "//"; color: rgba(240,236,224,0.18); }
+  h2 {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    letter-spacing: 0.03em; line-height: 0.95; margin-bottom: 2.5rem;
   }
 
-  .pill {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.8rem;
-    border: 1px solid rgba(244,240,230,0.2);
-    color: rgba(244,240,230,0.55);
+  /* ── BOTONES GENERALES ── */
+  .btn-primary {
+    font-family: "Space Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); background: var(--paper);
+    padding: 0.95rem 1.8rem; text-decoration: none; border: none;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 0.7rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap;
   }
-
-  .duracion-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--amber);
-    border: 1px solid rgba(212,160,23,0.3);
-    padding: 0.4rem 0.9rem;
-    margin-top: 1rem;
+  .btn-primary::after { content: "→"; }
+  .btn-primary:hover { background: var(--amber); transform: translateX(5px); box-shadow: 0 4px 24px rgba(212,160,23,0.2); }
+  .btn-secondary {
+    font-family: "Space Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--paper); background: transparent;
+    padding: 0.95rem 1.8rem; text-decoration: none;
+    border: 1px solid var(--border-bright); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    transition: border-color 0.2s, transform 0.15s; white-space: nowrap;
   }
+  .btn-secondary:hover { border-color: rgba(240,236,224,0.5); transform: translateX(5px); }
+  .btn-block {
+    font-family: "Space Mono", monospace; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); background: var(--paper);
+    padding: 1.2rem 1.7rem; text-decoration: none; border: none;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; width: 100%;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-block:hover { background: var(--amber); transform: translateX(5px); }
 
-  .sobre-proyecto {
-    margin-top: 4rem;
-    padding: 2.5rem;
+  /* ── QUÉ ES ── */
+  .que-es-lead {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.9; color: rgba(240,236,224,0.72);
+    max-width: 58ch; margin-bottom: 4rem;
+  }
+  .que-es-lead strong { color: var(--paper); }
+  .features-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
     border: 1px solid var(--border);
-    background: rgba(244,240,230,0.02);
-    position: relative;
+    margin-bottom: 4rem;
   }
-
-  .sobre-proyecto::before {
-    content: 'SOBRE EL PROYECTO';
-    position: absolute;
-    top: -0.6rem;
-    left: 2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    background: var(--ink);
-    padding: 0 0.5rem;
-    color: var(--muted);
+  .feature-col {
+    padding: 2.5rem 2.2rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
   }
-
-  .sobre-proyecto p {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    color: rgba(244,240,230,0.65);
+  .feature-col:hover { background: rgba(240,236,224,0.02); }
+  .feature-col:last-child { border-right: none; }
+  .feature-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.3rem; display: block;
   }
-
-  .sobre-proyecto strong { color: var(--paper); }
-
-  .cta-links {
-    margin-top: 2.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .feature-col h3 {
+    font-family: "Bebas Neue", cursive; font-size: 1.55rem;
+    letter-spacing: 0.04em; color: var(--paper);
+    margin-bottom: 1.1rem; line-height: 1;
   }
+  .feature-col p {
+    font-size: 0.83rem; line-height: 1.8;
+    color: rgba(240,236,224,0.48); margin-bottom: 1.2rem;
+  }
+  .feature-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+  .ftag {
+    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(240,236,224,0.12);
+    color: rgba(240,236,224,0.38);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .ftag:hover { border-color: rgba(240,236,224,0.28); color: rgba(240,236,224,0.7); }
+  .duracion-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber); border: 1px solid var(--amber-dim);
+    padding: 0.45rem 1rem; margin-top: 1.2rem;
+  }
+  .sobre-banda {
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.8rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    background: rgba(240,236,224,0.015);
+    transition: background 0.3s;
+  }
+  .sobre-banda:hover { background: rgba(240,236,224,0.025); }
+  .sobre-banda-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+  .sobre-banda p {
+    font-size: 0.93rem; line-height: 1.88;
+    color: rgba(240,236,224,0.6);
+  }
+  .sobre-banda strong { color: var(--paper); }
+  .cta-links { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Caso 0 en sección Qué Es */
+  .caso0-inline {
+    margin: 4rem 0;
+    border: 1px solid rgba(192,57,43,0.25);
+    background: rgba(192,57,43,0.03);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .caso0-inline::before {
+    content: "CASO 0";
+    position: absolute; right: -0.5rem; top: -1.5rem;
+    font-family: "Bebas Neue", cursive; font-size: 7rem;
+    color: rgba(192,57,43,0.05); letter-spacing: 0.05em;
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .caso0-inline-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; }
+  .caso0-inline-title {
+    font-family: "Bebas Neue", cursive; font-size: 0.7rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--red);
+    margin-bottom: 0.7rem; display: block;
+  }
+  .caso0-inline h3 {
+    font-family: "Bebas Neue", cursive; font-size: 2rem;
+    letter-spacing: 0.03em; margin-bottom: 0.8rem; line-height: 1;
+  }
+  .caso0-inline p {
+    font-size: 0.85rem; line-height: 1.78;
+    color: rgba(240,236,224,0.52); margin-bottom: 0; max-width: 45ch;
+  }
+  .caso0-inline-actions { display: flex; flex-direction: column; gap: 0.6rem; min-width: 200px; }
 
   /* ── SUSCRIPCIÓN ── */
-  .suscripcion-bg {
-    background: rgba(244,240,230,0.02);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+  .suscripcion-bg { background: linear-gradient(to bottom, rgba(240,236,224,0.018) 0%, transparent 30%); border-top: 1px solid var(--border); }
+  .suscripcion-lead {
+    font-size: clamp(1rem, 2vw, 1.18rem);
+    line-height: 1.88; color: rgba(240,236,224,0.68);
+    max-width: 50ch; margin-bottom: 4rem;
   }
-
-  .suscripcion-grid {
+  .precio-hero {
+    border: 1px solid rgba(192,57,43,0.22);
+    padding: 3.5rem;
+    margin-bottom: 4rem;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    background: rgba(192,57,43,0.03);
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
   }
-
-  .precio-card {
-    border: 1px solid rgba(192,57,43,0.3);
-    padding: 2.5rem;
-    position: relative;
-    background: rgba(192,57,43,0.04);
+  .precio-hero:hover { border-color: rgba(192,57,43,0.38); }
+  .precio-hero::after {
+    content: "";
+    position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(to left, rgba(192,57,43,0.04), transparent);
+    pointer-events: none;
   }
-
-  .precio-card::before {
-    content: 'SUSCRIPCIÓN MENSUAL';
-    position: absolute;
-    top: -0.6rem;
-    left: 1.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    background: var(--ink);
-    padding: 0 0.5rem;
-    color: var(--red);
+  .precio-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--red); display: block; margin-bottom: 1.3rem;
   }
-
   .precio-valor {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 4rem;
-    line-height: 1;
-    color: var(--paper);
-    margin-bottom: 0.3rem;
+    font-family: "Bebas Neue", cursive; font-size: clamp(3rem, 6vw, 5.2rem);
+    line-height: 1; color: var(--paper); margin-bottom: 0.5rem;
   }
-
   .precio-valor span {
-    font-size: 1.5rem;
-    color: var(--muted);
-    font-family: 'Space Mono', monospace;
-    font-weight: normal;
+    font-size: 1.2rem; color: var(--muted);
+    font-family: "Space Mono", monospace; font-weight: normal;
   }
-
-  .precio-desc {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--amber);
-    margin-bottom: 2rem;
+  .precio-sub {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 2.5rem; display: block;
   }
-
   .precio-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    list-style: none; display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2.5rem;
   }
-
   .precio-features li {
-    font-size: 0.85rem;
-    color: rgba(244,240,230,0.65);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
+    font-size: 0.88rem; color: rgba(240,236,224,0.62);
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    padding-bottom: 1.1rem; border-bottom: 1px solid var(--border);
+  }
+  .precio-features li:last-child { border-bottom: none; padding-bottom: 0; }
+  .precio-features li::before { content: "→"; color: var(--red); flex-shrink: 0; margin-top: 0.05rem; }
+  .precio-nota {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.08em; color: var(--muted); margin-top: 1rem; line-height: 1.75;
   }
 
-  .precio-features li::before {
-    content: '→';
-    color: var(--red);
-    flex-shrink: 0;
+  /* Caso 0 en suscripción */
+  .suscripcion-caso0 {
+    border: 1px solid rgba(212,160,23,0.2);
+    background: rgba(212,160,23,0.03);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem; align-items: center;
   }
-
-  .suscripcion-info { display: flex; flex-direction: column; gap: 2rem; }
-
-  .info-row {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
+  .suscripcion-caso0-label {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.6rem; display: block;
   }
-  .info-row:last-child { border-bottom: none; }
-
-  .info-row h4 {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--paper);
-    margin-bottom: 0.6rem;
+  .suscripcion-caso0 h3 {
+    font-family: "Bebas Neue", cursive; font-size: 1.7rem;
+    letter-spacing: 0.03em; margin-bottom: 0.6rem; line-height: 1;
   }
-
-  .info-row p {
-    font-size: 0.85rem;
-    line-height: 1.75;
-    color: rgba(244,240,230,0.55);
+  .suscripcion-caso0 p {
+    font-size: 0.83rem; line-height: 1.75;
+    color: rgba(240,236,224,0.5);
+  }
+  .suscripcion-faqs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+  .sfaq-block {
+    padding: 2.2rem 2rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .sfaq-block:hover { background: rgba(240,236,224,0.02); }
+  .sfaq-block:last-child { border-right: none; }
+  .sfaq-block h4 {
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--paper); margin-bottom: 0.9rem;
+  }
+  .sfaq-block p {
+    font-size: 0.82rem; line-height: 1.78;
+    color: rgba(240,236,224,0.48);
   }
 
   /* ── CASOS ── */
-  .casos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
+  .casos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
   .caso-card {
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    background: rgba(14,12,10,0.6);
-    transition: border-color 0.3s, transform 0.2s;
+    border: 1px solid var(--border); padding: 2rem; position: relative;
+    overflow: hidden; background: rgba(14,12,10,0.5);
+    transition: border-color 0.3s, transform 0.22s, box-shadow 0.3s;
   }
-
   .caso-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(192,57,43,0.05) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s;
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(192,57,43,0.06) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
   }
-
-  .caso-card:hover { border-color: rgba(192,57,43,0.4); transform: translateY(-3px); }
+  .caso-card:hover { border-color: rgba(192,57,43,0.4); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .caso-card:hover::before { opacity: 1; }
-
   .caso-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid;
-    display: inline-block;
-    margin-bottom: 1.2rem;
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.28rem 0.7rem; border: 1px solid; display: inline-block; margin-bottom: 1.2rem;
   }
-
   .tag-rojo { color: var(--red); border-color: rgba(192,57,43,0.4); }
-  .tag-azul { color: #5dade2; border-color: rgba(93,173,226,0.4); }
-  .tag-ambar { color: var(--amber); border-color: rgba(212,160,23,0.4); }
-
-  .caso-card h3 {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.8rem;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
-    margin-bottom: 0.8rem;
-    color: var(--paper);
-  }
-
-  .caso-card p {
-    font-size: 0.83rem;
-    line-height: 1.7;
-    color: rgba(244,240,230,0.5);
-    margin-bottom: 1.5rem;
-  }
-
-  .caso-meta {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244,240,230,0.35);
-  }
-
+  .tag-ambar { color: var(--amber); border-color: var(--amber-dim); }
+  .caso-card h3 { font-family: "Bebas Neue", cursive; font-size: 1.75rem; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 0.8rem; color: var(--paper); }
+  .caso-card p { font-size: 0.82rem; line-height: 1.75; color: rgba(240,236,224,0.48); margin-bottom: 1.4rem; }
+  .caso-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.32); }
   .stamp {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    color: rgba(46,107,62,0.55);
-    border: 2px solid rgba(46,107,62,0.4);
-    padding: 0.2rem 0.6rem;
-    transform: rotate(-8deg);
+    position: absolute; bottom: 1.4rem; right: 1.4rem;
+    font-family: "Bebas Neue", cursive; font-size: 0.8rem; letter-spacing: 0.15em;
+    color: rgba(46,107,62,0.55); border: 2px solid rgba(46,107,62,0.4);
+    padding: 0.22rem 0.65rem; transform: rotate(-8deg);
   }
-
-  .stamp-pronto {
-    color: rgba(192,57,43,0.5);
-    border-color: rgba(192,57,43,0.4);
-  }
-
-  .caso-card-disabled {
-    opacity: 0.45;
-    pointer-events: none;
-  }
-
+  .stamp-pronto { color: rgba(192,57,43,0.5); border-color: rgba(192,57,43,0.4); }
+  .caso-card-disabled { opacity: 0.4; pointer-events: none; }
   .proximamente-banner {
-    margin-top: 3rem;
-    padding: 2rem;
-    border: 1px dashed rgba(244,240,230,0.15);
-    text-align: center;
+    margin-top: 2.5rem; padding: 1.8rem 2rem;
+    border: 1px dashed rgba(240,236,224,0.1); text-align: center;
+    background: rgba(240,236,224,0.01);
   }
-
   .proximamente-banner p {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
+    font-family: "Space Mono", monospace; font-size: 0.68rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
   }
-
   .proximamente-banner span { color: var(--amber); }
 
   /* ── FAQ ── */
-  .faq-list { display: flex; flex-direction: column; gap: 0; }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-  }
-
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--border); }
   .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 1.5rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    text-align: left;
-    gap: 1rem;
+    width: 100%; background: none; border: none; padding: 1.5rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; text-align: left; gap: 1rem; transition: padding-left 0.2s;
   }
-
-  .faq-question span {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.95rem;
-    color: var(--paper);
-    line-height: 1.5;
-  }
-
-  .faq-icon {
-    font-family: 'Space Mono', monospace;
-    font-size: 1.2rem;
-    color: var(--red);
-    flex-shrink: 0;
-    transition: transform 0.3s;
-  }
-
+  .faq-question:hover { padding-left: 0.5rem; }
+  .faq-question span { font-family: "Courier Prime", monospace; font-size: 0.93rem; color: var(--paper); line-height: 1.5; }
+  .faq-icon { font-family: "Space Mono", monospace; font-size: 1.1rem; color: var(--red); flex-shrink: 0; transition: transform 0.3s; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-  }
-
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-item.open .faq-answer { max-height: 400px; }
-
-  .faq-answer p {
-    font-size: 0.88rem;
-    line-height: 1.8;
-    color: rgba(244,240,230,0.55);
-    padding-bottom: 1.5rem;
-    padding-right: 2rem;
-  }
-
+  .faq-answer p { font-size: 0.86rem; line-height: 1.85; color: rgba(240,236,224,0.52); padding-bottom: 1.6rem; padding-right: 2rem; }
   .faq-contacto {
-    margin-top: 3rem;
-    padding: 2rem;
-    border: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    margin-top: 4rem; padding: 2.5rem;
+    background: rgba(192,57,43,0.04); border: 1px solid rgba(192,57,43,0.18);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
   }
-
-  .faq-contacto p {
-    font-size: 0.88rem;
-    color: rgba(244,240,230,0.55);
-    line-height: 1.6;
-  }
-
-  .faq-contacto a { color: var(--amber); text-decoration: none; }
-  .faq-contacto a:hover { text-decoration: underline; }
+  .faq-contacto-text p { font-size: 0.86rem; color: rgba(240,236,224,0.52); line-height: 1.65; }
+  .faq-contacto-text a { color: var(--amber); text-decoration: none; }
+  .faq-contacto-text a:hover { text-decoration: underline; }
 
   /* ── FOOTER ── */
-  footer {
-    background: #080705;
-    padding: 3rem;
-    border-top: 1px solid rgba(244,240,230,0.06);
-  }
-
+  footer { background: #060504; padding: 2.8rem; border-top: 1px solid rgba(240,236,224,0.06); }
   .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(244,240,230,0.06);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(240,236,224,0.06);
   }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.8rem;
-    letter-spacing: 0.15em;
-    color: rgba(244,240,230,0.4);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-  }
-  .footer-logo span { color: rgba(192,57,43,0.5); }
-
-  .footer-tagline {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,240,230,0.2);
-  }
-
-  .footer-contact {
-    text-align: right;
-  }
-
-  .footer-contact p {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244,240,230,0.25);
-    margin-bottom: 0.4rem;
-  }
-
-  .footer-contact a {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.85rem;
-    color: rgba(244,240,230,0.4);
-    text-decoration: none;
-  }
+  .footer-logo { font-family: "Bebas Neue", cursive; font-size: 1.6rem; letter-spacing: 0.16em; color: rgba(240,236,224,0.35); text-decoration: none; display: block; margin-bottom: 0.5rem; cursor: pointer; transition: color 0.2s; }
+  .footer-logo:hover { color: rgba(240,236,224,0.55); }
+  .footer-logo span { color: rgba(192,57,43,0.45); }
+  .footer-tagline { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,224,0.18); }
+  .footer-contact { text-align: right; }
+  .footer-contact p { font-family: "Space Mono", monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.22); margin-bottom: 0.4rem; }
+  .footer-contact a { font-family: "Courier Prime", monospace; font-size: 0.84rem; color: rgba(240,236,224,0.38); text-decoration: none; transition: color 0.2s; }
   .footer-contact a:hover { color: var(--amber); }
+  .footer-bottom { font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.13); line-height: 1.9; }
 
-  .footer-bottom {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244,240,230,0.15);
-    line-height: 1.8;
+  /* ── ANIMACIONES ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes expandWidth { from { width: 0; opacity: 0; } to { width: 3rem; opacity: 1; } }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+
+  /* ═══════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .step-item:nth-child(2) { border-right: none; }
+    .step-item:nth-child(1), .step-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .para-quien-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); max-width: 400px; gap: 1.5rem; }
+    .caso0-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .caso0-inline-inner { grid-template-columns: 1fr; gap: 1.5rem; }
   }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow { animation: fadeUp 0.7s ease both; }
-  h1 { animation: fadeUp 0.7s ease 0.15s both; }
-  .hero-body { animation: fadeUp 0.7s ease 0.3s both; }
-  .hero-actions { animation: fadeUp 0.7s ease 0.45s both; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 3rem; }
-    .section { padding: 5rem 1.5rem; }
-    .section-topbar { padding: 5rem 1.5rem 0; }
-    .que-es-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .suscripcion-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    footer { padding: 2rem 1.5rem; }
+  @media (max-width: 768px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .nav-cta { font-size: 0.6rem; padding: 0.45rem 0.9rem; }
+    .hero { padding: 6rem 1.25rem 3.5rem; min-height: auto; }
+    h1 { font-size: clamp(3.8rem, 14vw, 6rem); }
+    .hero-body { font-size: 0.95rem; max-width: 100%; }
+    .hero-actions { max-width: 100%; }
+    .hero-btn { padding: 1.1rem 1.3rem; font-size: 0.68rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); max-width: 100%; gap: 1.2rem; padding-top: 2rem; margin-top: 2.5rem; }
+    .section { padding: 4rem 1.25rem; }
+    .section-topbar { padding: 4rem 1.25rem 0; }
+    .como-funciona, .para-quien, .cta-banner, .caso0-section { padding: 4.5rem 1.25rem; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .cta-banner-inner { flex-direction: column; }
+    .cta-banner-actions { min-width: 0; width: 100%; }
+    footer { padding: 2rem 1.25rem; }
     .footer-contact { text-align: left; }
-    .nav-dropdown { padding: 5rem 1.5rem 2rem; }
-    .nav-item-title { font-size: clamp(1.8rem, 7vw, 3rem); }
+    .nav-dropdown { padding: 5rem 1.25rem 2rem; }
+    .nav-item-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+    .faq-contacto { flex-direction: column; align-items: flex-start; }
+    .precio-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+    .suscripcion-faqs { grid-template-columns: 1fr; }
+    .sfaq-block { border-right: none !important; border-bottom: 1px solid var(--border); }
+    .sfaq-block:last-child { border-bottom: none; }
+    .features-row { grid-template-columns: 1fr; }
+    .feature-col { border-right: none !important; border-bottom: 1px solid var(--border); }
+    .feature-col:last-child { border-bottom: none; }
+    .suscripcion-caso0 { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 0.85rem 1rem; }
+    .nav-cta { display: none; }
+    h1 { font-size: clamp(3.2rem, 16vw, 4.5rem); }
+    .hero-eyebrow { font-size: 0.6rem; }
+    .hero-body { font-size: 0.9rem; }
+    .hero-btn { padding: 1rem 1.1rem; font-size: 0.63rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .stat-num { font-size: 1.9rem; }
+    .stat-label { font-size: 0.52rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+    .step-item:last-child { border-bottom: none !important; }
+    h2 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+    .casos-grid { grid-template-columns: 1fr; }
+    .faq-question span { font-size: 0.86rem; }
+    .cta-links { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: space-between; }
+    .dropdown-nav a { padding: 1.1rem 0; }
+    .nav-item-title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+    footer { padding: 1.5rem 1rem; }
+    .ticker-item { font-size: 0.6rem; }
+    .caso0-section { padding: 4rem 1rem; }
+    .hero-case-num { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" onclick="showHero()" style="cursor:pointer;">Archivo<span>_</span>Cero</a>
+  <a class="nav-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
   <div class="nav-right">
     <a href="mailto:hola.archivocero@gmail.com" class="nav-cta">Suscribirme</a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
   </div>
 </nav>
 
-<!-- ══ MENÚ DESPLEGABLE ══ -->
+<!-- DROPDOWN -->
 <div class="nav-dropdown" id="navDropdown">
   <p class="dropdown-label">Navegación</p>
   <ul class="dropdown-nav">
-    <li>
-      <a href="#" onclick="showSection('que-es'); return false;">
-        <span class="nav-item-number">01</span>
-        <span class="nav-item-title">¿Qué es Archivo Cero?</span>
-        <span class="nav-item-arrow">→</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="showSection('suscripcion'); return false;">
-        <span class="nav-item-number">02</span>
-        <span class="nav-item-title">Quiero suscribirme</span>
-        <span class="nav-item-arrow">→</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="showSection('casos'); return false;">
-        <span class="nav-item-number">03</span>
-        <span class="nav-item-title">Casos individuales</span>
-        <span class="nav-item-arrow">→</span>
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="showSection('faq'); return false;">
-        <span class="nav-item-number">04</span>
-        <span class="nav-item-title">Preguntas frecuentes</span>
-        <span class="nav-item-arrow">→</span>
-      </a>
-    </li>
+    <li><a href="#" onclick="showSection('que-es'); return false;"><span class="nav-item-number">01</span><span class="nav-item-title">¿Qué es Archivo Cero?</span><span class="nav-item-arrow">→</span></a></li>
+    <li><a href="#" onclick="showSection('suscripcion'); return false;"><span class="nav-item-number">02</span><span class="nav-item-title">Quiero suscribirme</span><span class="nav-item-arrow">→</span></a></li>
+    <li><a href="#" onclick="showSection('casos'); return false;"><span class="nav-item-number">03</span><span class="nav-item-title">Casos individuales</span><span class="nav-item-arrow">→</span></a></li>
+    <li><a href="#" onclick="showSection('faq'); return false;"><span class="nav-item-number">04</span><span class="nav-item-title">Preguntas frecuentes</span><span class="nav-item-arrow">→</span></a></li>
   </ul>
   <div class="dropdown-footer">
     <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-    <a href="mailto:hola.archivocero@gmail.com">Instagram</a>
+    <a href="#">Instagram</a>
   </div>
 </div>
 
-<!-- ══ HERO (visible por defecto) ══ -->
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
 <div id="view-hero">
   <section class="hero">
-    <div class="hero-bg-text" aria-hidden="true">CASO</div>
-    <p class="hero-eyebrow">Casos digitales para resolver</p>
-    <h1>
-      Investigá.<br>
-      <em>Descubrí.</em>
-    </h1>
-    <p class="hero-body">
-      Archivos recuperados. Documentos clasificados. Pistas ocultas.
-      Experiencias de investigación inmersiva para resolver solo o con otros — todo desde tu dispositivo.
-    </p>
-    <div class="hero-actions">
-      <a href="#" onclick="showSection('suscripcion'); return false;" class="btn-primary">Quiero suscribirme</a>
-      <a href="#" onclick="showSection('que-es'); return false;" class="btn-secondary">¿Qué es Archivo Cero?</a>
+    <div class="hero-backdrop"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-bg-text" aria-hidden="true">CERO</div>
+    <span class="hero-case-num">EXPEDIENTE — CASO_00 · ACCESO ABIERTO</span>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Casos digitales para resolver</p>
+
+      <h1>Investigá.<br><em>Descubrí.</em></h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-body">Archivos recuperados. Documentos clasificados. Pistas ocultas. Experiencias de investigación inmersiva digital para resolver solo o con otros — todo desde tu dispositivo, sin instalar nada.</p>
+
+      <div class="hero-actions">
+        <a href="#" class="hero-btn hero-btn-primary" onclick="showCaso0Form(); return false;">
+          <span>Acceso gratuito al Caso #00</span><span class="btn-arrow">→</span>
+        </a>
+        <a href="#" class="hero-btn hero-btn-secondary" onclick="showSection('suscripcion'); return false;">
+          <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
+        </a>
+        <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('que-es'); return false;">
+          <span>¿Qué es Archivo Cero?</span><span class="btn-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num">90–120</span><span class="stat-label">Min por caso</span></div>
+        <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
+        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
+        <div class="stat-item"><span class="stat-num">BsAs</span><span class="stat-label">Desarrollado en Argentina</span></div>
+      </div>
     </div>
   </section>
 
+  <!-- TICKER -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item"><span>▸</span>Casos digitales</span>
-      <span class="ticker-item"><span>▸</span>90–120 minutos por caso</span>
+      <span class="ticker-item"><span>▸</span>60–90 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
       <span class="ticker-item"><span>▸</span>Sin instalación</span>
       <span class="ticker-item"><span>▸</span>Un nuevo caso por mes</span>
       <span class="ticker-item"><span>▸</span>Desarrollado en Argentina</span>
-      <span class="ticker-item"><span>▸</span>Narrativa digital interactiva</span>
+      <span class="ticker-item"><span>▸</span>Narrativa digital inmersiva</span>
+      <span class="ticker-item"><span>▸</span>Caso #00 gratis</span>
       <span class="ticker-item"><span>▸</span>Casos digitales</span>
       <span class="ticker-item"><span>▸</span>90–120 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
@@ -1007,388 +1084,454 @@
       <span class="ticker-item"><span>▸</span>Un nuevo caso por mes</span>
       <span class="ticker-item"><span>▸</span>Desarrollado en Argentina</span>
       <span class="ticker-item"><span>▸</span>Narrativa digital interactiva</span>
+      <span class="ticker-item"><span>▸</span>Caso 0 gratis</span>
     </div>
   </div>
+
+  <!-- ════════════════ CASO #00 GRATIS ════════════════ -->
+  <section class="caso0-section">
+    <div class="caso0-glow"></div>
+    <div class="caso0-inner">
+      <div class="caso0-grid">
+
+        <div class="caso0-left reveal">
+          <p class="caso0-eyebrow">Acceso gratuito</p>
+          <h2 class="caso0-title">Probá el<br><span>Caso #00</span><br>gratis.</h2>
+          <p class="caso0-desc">Antes de suscribirte, metete en la historia. El Caso #00 es tu entrada al universo de Archivo Cero: 30 minutos de investigación sin costo. Solo vos, el archivo, y la verdad que tenés que encontrar.</p>
+          <div class="caso0-actions">
+            <a href="#" class="hero-btn hero-btn-primary" onclick="showCaso0Form(); return false;" style="max-width:340px;">
+              <span>Descargar el Caso #00</span><span class="btn-arrow">→</span>
+            </a>
+            <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('suscripcion'); return false;" style="max-width:340px;">
+              <span>Quiero la suscripción mensual</span><span class="btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="caso0-card">
+            <div class="caso0-card-header">
+              <span class="caso0-card-label">Expediente #00</span>
+              <span class="caso0-card-badge">Acceso libre</span>
+            </div>
+            <div class="caso0-card-body">
+              <div class="caso0-case-title">El<br>Manuscrito</div>
+              <p class="caso0-case-desc">Un escritor recibe por correo un manuscrito que está firmado con su nombre, su número de matrícula de autor, su dedicatoria... pero él no lo escribió. El objetivo es descubrir quien mandó ese correo, cómo y por qué.</p>
+
+              <!-- Teaser media -->
+              <div class="teaser-media">
+                <a href="https://www.instagram.com/archivocero.pdf" target="_blank" class="teaser-link">
+                  <span class="teaser-link-icon">▶</span>
+                  <span class="teaser-link-text">Ver teaser en Instagram</span>
+                  <span class="teaser-link-arrow">→</span>
+                </a>
+                <a href="#" class="teaser-link" onclick="showCaso0Form(); return false;">
+                  <span class="teaser-link-icon">📁</span>
+                  <span class="teaser-link-text">Descargar el caso</span>
+                  <span class="teaser-link-arrow">→</span>
+                </a>
+              </div>
+            </div>
+            <div class="caso0-card-meta">
+              <span>⏱ 30–45 min</span>
+              <span>👤 Solo o en grupo</span>
+              <span>💻 Sin instalación</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL CASO 0 -->
+  <div id="caso0-modal" style="display:none; position:fixed; inset:0; z-index:600; background:rgba(9,8,6,0.92); backdrop-filter:blur(20px); display:none; align-items:center; justify-content:center; padding:2rem;">
+    <div style="max-width:480px; width:100%; border:1px solid rgba(192,57,43,0.35); background:rgba(14,12,10,0.98); padding:3rem; position:relative;">
+      <button onclick="hideCaso0Form()" style="position:absolute; top:1.2rem; right:1.2rem; background:none; border:none; cursor:pointer; font-family:'Space Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; color:var(--muted); text-transform:uppercase; transition:color 0.2s;" onmouseover="this.style.color='var(--paper)'" onmouseout="this.style.color='var(--muted)'">✕ Cerrar</button>
+      <p style="font-family:'Space Mono',monospace; font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--red); margin-bottom:1rem;">// Acceso gratuito</p>
+      <h3 style="font-family:'Bebas Neue',cursive; font-size:2.3rem; letter-spacing:0.04em; line-height:1; margin-bottom:0.6rem;">Descargar el Caso 0</h3>
+      <p style="font-size:0.82rem; line-height:1.75; color:rgba(240,236,224,0.5); margin-bottom:2.2rem;">Dejá tu mail y te enviamos el archivo de acceso. Sin spam. Sin cargos.</p>
+      <div style="display:flex; flex-direction:column; gap:0.8rem;">
+        <input type="text" placeholder="Tu nombre" id="caso0-nombre" style="background:rgba(240,236,224,0.05); border:1px solid rgba(240,236,224,0.15); color:var(--paper); font-family:'Courier Prime',monospace; font-size:0.88rem; padding:0.95rem 1.2rem; outline:none; transition:border-color 0.2s; width:100%;" onfocus="this.style.borderColor='rgba(240,236,224,0.4)'" onblur="this.style.borderColor='rgba(240,236,224,0.15)'" />
+        <input type="email" placeholder="Tu correo electrónico" id="caso0-email" style="background:rgba(240,236,224,0.05); border:1px solid rgba(240,236,224,0.15); color:var(--paper); font-family:'Courier Prime',monospace; font-size:0.88rem; padding:0.95rem 1.2rem; outline:none; transition:border-color 0.2s; width:100%;" onfocus="this.style.borderColor='rgba(240,236,224,0.4)'" onblur="this.style.borderColor='rgba(240,236,224,0.15)'" />
+        <a href="#" onclick="submitCaso0(event)" style="font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink); background:var(--paper); padding:1.1rem 1.6rem; text-decoration:none; display:flex; align-items:center; justify-content:space-between; transition:background 0.2s; margin-top:0.3rem;" onmouseover="this.style.background='var(--amber)'" onmouseout="this.style.background='var(--paper)'">
+          <span>Quiero el caso</span><span>→</span>
+        </a>
+      </div>
+      <p id="caso0-confirm" style="display:none; font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; color:var(--amber); margin-top:1.2rem; line-height:1.7;">✓ &nbsp;Perfecto. Revisá tu casilla — el archivo está en camino.</p>
+      <p style="font-family:'Space Mono',monospace; font-size:0.55rem; letter-spacing:0.08em; color:var(--muted); margin-top:1.2rem; line-height:1.7;">No compartimos tu información con terceros. Podés desuscribirte cuando quieras.</p>
+    </div>
+  </div>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="como-funciona">
+    <div class="como-funciona-inner">
+      <p class="section-label reveal">El proceso</p>
+      <h2 class="reveal">¿Cómo funciona?</h2>
+      <div class="steps-grid">
+        <div class="step-item reveal">
+          <span class="step-num">01</span>
+          <span class="step-icon">📁</span>
+          <span class="step-title">Te suscribís</span>
+          <p class="step-desc">Al suscribirte, recibís por mail el caso del mes en curso — tu punto de entrada a la investigación. Todo lo que necesitás está ahí. Mes a mes, un caso nuevo se desbloquea.</p>
+        </div>
+        <div class="step-item reveal reveal-delay-1">
+          <span class="step-num">02</span>
+          <span class="step-icon">🔍</span>
+          <span class="step-title">Explorás las pistas</span>
+          <p class="step-desc">Documentos, audios, imágenes y archivos. Cada elemento es parte de la historia. Nada está de más.</p>
+        </div>
+        <div class="step-item reveal reveal-delay-2">
+          <span class="step-num">03</span>
+          <span class="step-icon">🧩</span>
+          <span class="step-title">Conectás la información</span>
+          <p class="step-desc">A medida que vás leyendo la información: analizás, deducís y reconstruís lo ocurrido a tu ritmo.</p>
+        </div>
+        <div class="step-item reveal reveal-delay-3">
+          <span class="step-num">04</span>
+          <span class="step-icon">✓</span>
+          <span class="step-title">Llegás a la verdad (o no)</span>
+          <p class="step-desc">El sistema de validación te confirma si tu hipótesis es correcta. Sin spoilers, sin atajos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="para-quien">
+    <div class="para-quien-inner">
+      <div class="para-quien-grid">
+        <div class="para-quien-left reveal">
+          <p class="section-label">¿Para quién es?</p>
+          <h2>Para los que disfrutan pensar</h2>
+          <p class="para-quien-text">Archivo Cero es para quienes disfrutan los <strong>thrillers, los pódcasts de true crime, las historías de ciencia ficción</strong> y los juegos que te hacen usar la cabeza. No necesitás experiencia previa ni conocimientos especiales.</p>
+          <p class="para-quien-text">Podés resolverlo <strong>solo, en pareja o en grupo</strong>. Lo único que necesitás es ganas de investigar.</p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <ul class="perfil-list">
+            <li class="perfil-item"><span class="perfil-icon">→</span><div class="perfil-text"><strong>Fanáticos del true crime</strong>Escuchas un pódcast de crimen real y te quedás pensando en los casos.</div></li>
+            <li class="perfil-item"><span class="perfil-icon">→</span><div class="perfil-text"><strong>Amantes de los escape rooms</strong>Te gustan los puzzles y la lógica, pero preferís algo que podás hacer desde casa.</div></li>
+            <li class="perfil-item"><span class="perfil-icon">→</span><div class="perfil-text"><strong>Lectores de thrillers</strong>Disfrutás las narrativas de suspenso donde cada detalle importa.</div></li>
+            <li class="perfil-item"><span class="perfil-icon">→</span><div class="perfil-text"><strong>Grupos que buscan una actividad distinta</strong>Para un momento diferente con amigos, pareja o familia.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div class="cta-banner-text reveal">
+        <h2>Tu primer caso<br>te espera.</h2>
+        <p>Empezá gratis con el Caso #00 o suscribite para recibir nuevas investigaciones cada mes.</p>
+      </div>
+      <div class="cta-banner-actions reveal reveal-delay-1">
+        <a href="#" class="hero-btn hero-btn-primary" onclick="showCaso0Form(); return false;" style="max-width:100%;">
+          <span>Empezar por el Caso #00</span><span class="btn-arrow">→</span>
+        </a>
+        <a href="#" class="hero-btn hero-btn-secondary" onclick="showSection('suscripcion'); return false;" style="max-width:100%;">
+          <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
+        </a>
+        <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('faq'); return false;" style="max-width:100%;">
+          <span>Tengo preguntas</span><span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-top">
-      <div>
-        <a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
-        <p class="footer-tagline">Casos digitales para resolver</p>
-      </div>
-      <div class="footer-contact">
-        <p>Contacto</p>
-        <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-      </div>
+      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Casos digitales para resolver</p></div>
+      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">
-      © 2026 Archivo Cero. Todos los derechos reservados. Prohibida su reproducción o distribución sin autorización expresa.<br>
-      Producto digital descargable. Desarrollado en Argentina.
-    </p>
+    <p class="footer-bottom">© 2026 Archivo Cero® . Todos los derechos reservados. Prohibida su reproducción o distribución sin autorización expresa.<br>Producto digital descargable. Desarrollado en Buenos Aires, Argentina.</p>
   </footer>
 </div>
 
-<!-- ══ SECCIÓN: QUÉ ES ══ -->
+<!-- ════════════════════════════════
+     QUÉ ES
+════════════════════════════════ -->
 <div id="view-que-es" class="page-section">
-  <div class="section-topbar">
-    <button class="back-btn" onclick="showHero()">Volver al inicio</button>
-  </div>
+  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
   <section>
     <div class="section">
       <p class="section-label">El proyecto</p>
       <h2>¿Qué es Archivo Cero?</h2>
 
-      <div class="que-es-grid">
-        <div class="que-es-left">
-          <p class="que-es-intro">
-            Es una colección de <strong>casos digitales diseñados como experiencias de investigación inmersiva</strong>.
-            Es el acceso a archivos recuperados, organizados y puestos a disposición para que reconstruyas lo ocurrido.
-          </p>
+      <p class="que-es-lead">
+        Es una colección de <strong>casos digitales diseñados como experiencias de investigación inmersiva</strong>.
+        Accedés a archivos recuperados y organizados para que reconstruyas lo ocurrido — desde tu navegador, sin instalar nada. También podés imprimirlo, si así lo preferís.
+      </p>
 
-          <div class="info-block">
-            <h3>¿Cómo funciona?</h3>
-            <p>Cada caso comienza con un <strong style="color:var(--paper)">Archivo 0</strong> — introduce el contexto general de la investigación y explica cómo interactuar con los archivos. A partir de ahí, la experiencia se desarrolla de forma lógica y progresiva:</p>
-            <div class="pill-list">
-              <span class="pill">Explorás documentos</span>
-              <span class="pill">Escuchás audios</span>
-              <span class="pill">Conectás pistas</span>
-              <span class="pill">Desbloqueás información</span>
-              <span class="pill">Interpretás lo sucedido</span>
-            </div>
-            <p style="margin-top:1rem; font-size:0.85rem; color:rgba(244,240,230,0.5);">La investigación depende de tu capacidad de interpretación y análisis.</p>
-          </div>
-
-          <div class="duracion-badge">
-            ⏱ Duración estimada: 90 – 120 minutos por caso
+      <div class="features-row">
+        <div class="feature-col">
+          <span class="feature-eyebrow">El punto de partida</span>
+          <h3>Archivo 0</h3>
+          <p>Cada caso comienza con un Archivo 0 que introduce el contexto y explica cómo interactuar con el material. A partir de ahí, la experiencia avanza de forma lógica y progresiva.</p>
+          <div class="duracion-badge">⏱ 60 – 90 min por caso</div>
+        </div>
+        <div class="feature-col">
+          <span class="feature-eyebrow">La experiencia</span>
+          <h3>Investigación real</h3>
+          <p>No hay niveles ni puntajes. Explorás, conectás la información y deducís. La investigación depende de tu capacidad de interpretación y análisis. No hay tiempo límite.</p>
+          <div class="feature-tags">
+            <span class="ftag">Explorás documentos</span>
+            <span class="ftag">Escuchás audios</span>
+            <span class="ftag">Resolvés enigmas</span>
+            <span class="ftag">Desbloqueás info</span>
           </div>
         </div>
-
-        <div class="que-es-right">
-          <div class="info-block">
-            <h3>¿Qué incluye cada caso?</h3>
-            <div class="pill-list">
-              <span class="pill">Documentos digitales</span>
-              <span class="pill">Fotografías</span>
-              <span class="pill">Archivos protegidos</span>
-              <span class="pill">Audios originales</span>
-              <span class="pill">Sistemas de validación</span>
-              <span class="pill">Elementos web complementarios</span>
-            </div>
-            <p style="margin-top:1rem; font-size:0.82rem; color:rgba(244,240,230,0.45); line-height:1.7;">Parte del material puede imprimirse para mejorar la experiencia, aunque algunos elementos son exclusivamente digitales.</p>
-          </div>
-
-          <div class="sobre-proyecto">
-            <p>
-              Archivo Cero es un <strong>proyecto independiente de narrativa digital interactiva</strong> desarrollado en Buenos Aires, Argentina, llevado a cabo por <strong>Luciana y Pablo</strong>.
-            </p>
-            <p style="margin-top:0.8rem;">
-              Cada caso está diseñado con enfoque en su coherencia, realismo y experiencia inmersiva.
-            </p>
+        <div class="feature-col">
+          <span class="feature-eyebrow">El contenido</span>
+          <h3>Material incluido</h3>
+          <p>Cada caso puede incluir documentos, fotografías, audios originales, archivos protegidos, sistemas de validación y elementos web. Parte del material es imprimible por si preferís una experiencia más analógica.</p>
+          <div class="feature-tags">
+            <span class="ftag">Documentos</span>
+            <span class="ftag">Fotografías</span>
+            <span class="ftag">Audios</span>
+            <span class="ftag">Validación</span>
           </div>
         </div>
+      </div>
+
+      <!-- Caso 0 inline en Qué Es -->
+      <div class="caso0-inline">
+        <div class="caso0-inline-inner">
+          <div>
+            <span class="caso0-inline-title">Probalo antes de decidir</span>
+            <h3>El Caso #00 es gratis</h3>
+            <p>Antes de suscribirte, viví la experiencia completa. El Caso #00 está disponible sin costo — solo necesitás dejar tu mail para desbloquearlo.</p>
+          </div>
+          <div class="caso0-inline-actions">
+            <a href="#" class="btn-block" onclick="showCaso0Form(); return false;"><span>Acceder gratis</span><span>→</span></a>
+            <a href="#" class="btn-secondary" onclick="showSection('suscripcion'); return false;" style="justify-content:space-between;">Quiero suscribirme →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sobre-banda">
+        <span class="sobre-banda-label">Sobre el proyecto</span>
+        <p>Archivo Cero es un <strong>proyecto independiente de narrativa digital inmersiva</strong> desarrollado en Buenos Aires, Argentina, por <strong>Luciana</strong>. Cada caso está diseñado con enfoque en la cretividad, el suspenso y la ciencia ficción.</p>
       </div>
 
       <div class="cta-links">
         <a href="#" onclick="showSection('suscripcion'); return false;" class="btn-primary">Quiero suscribirme</a>
-        <a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos disponibles</a>
+        <a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales disponibles</a>
       </div>
     </div>
   </section>
-
   <footer>
     <div class="footer-top">
-      <div>
-        <a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
-        <p class="footer-tagline">Casos digitales para resolver</p>
-      </div>
-      <div class="footer-contact">
-        <p>Contacto</p>
-        <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-      </div>
+      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Casos digitales para resolver</p></div>
+      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">
-      © 2026 Archivo Cero. Todos los derechos reservados.<br>
-      Producto digital descargable. Desarrollado en Argentina.
-    </p>
+    <p class="footer-bottom">© 2026 Archivo Cero. Todos los derechos reservados. Desarrollado en Argentina.</p>
   </footer>
 </div>
 
-<!-- ══ SECCIÓN: SUSCRIPCIÓN ══ -->
+<!-- ════════════════════════════════
+     SUSCRIPCIÓN
+════════════════════════════════ -->
 <div id="view-suscripcion" class="page-section">
-  <div class="section-topbar">
-    <button class="back-btn" onclick="showHero()">Volver al inicio</button>
-  </div>
+  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
   <section class="suscripcion-bg" style="margin-top:1rem;">
     <div class="section">
       <p class="section-label">Acceso</p>
       <h2>Suscripción mensual</h2>
 
-      <div class="suscripcion-grid">
+      <p class="suscripcion-lead">Un nuevo caso cada mes. Accedé a investigaciones inéditas antes que nadie, a un precio promocional y formá parte de una colección en expansión.</p>
+
+      <!-- Caso 0 en suscripción -->
+      <div class="suscripcion-caso0">
         <div>
-          <div class="precio-card">
-            <p class="precio-desc">Valor promocional</p>
-            <div class="precio-valor">Mensual <span>/ ARS</span></div>
-            <p class="precio-desc" style="margin-bottom:1.5rem;">Un nuevo caso cada mes · Material exclusivo</p>
-            <ul class="precio-features">
-              <li>Un nuevo caso digital cada mes</li>
-              <li>Material adicional exclusivo para miembros</li>
-              <li>Acceso anticipado a nuevos lanzamientos</li>
-              <li>Duración estimada: 90–120 min por caso</li>
-            </ul>
-            <a href="mailto:hola.archivocero@gmail.com" class="btn-primary" style="width:100%; text-align:center; display:block;">Suscribirme ahora</a>
-          </div>
-
-          <p style="font-family:'Space Mono',monospace; font-size:0.62rem; letter-spacing:0.05em; color:var(--muted); margin-top:1rem; line-height:1.7;">
-            Renovación automática mensual. Podés cancelar en cualquier momento antes de la próxima fecha de cobro.
-          </p>
+          <span class="suscripcion-caso0-label">Antes de suscribirte</span>
+          <h3>Probá el Caso #00 gratis</h3>
+          <p>Si querés entender mejor de que se trata Archivo Cero: descargá el Caso #00 de forma gratuita, viví la experiencia completa, y después decidís.</p>
         </div>
-
-        <div class="suscripcion-info">
-          <div class="info-row">
-            <h4>¿Cuándo se cobra y cuándo llega el caso?</h4>
-            <p>El cobro se realiza el día 3 de cada mes. El nuevo caso se libera el día 7 y recibís las instrucciones de acceso y descarga por correo electrónico.</p>
-          </div>
-          <div class="info-row">
-            <h4>¿Suscripción o casos individuales?</h4>
-            <p>La suscripción te permite acceder a cada nuevo caso en el momento de su lanzamiento, a un valor promocional, junto con contenido exclusivo. Si preferís elegir investigaciones específicas o acceder a suscripciones anteriores, también podés adquirir casos individuales desde la sección Casos.</p>
-          </div>
-          <div class="info-row">
-            <h4>Un nuevo caso cada mes</h4>
-            <p>Cada día 5 del mes se incorpora una investigación inédita, junto con material adicional reservado para miembros activos. Accedé antes que nadie y formá parte de una colección en expansión.</p>
-          </div>
-          <div>
-            <a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales →</a>
-          </div>
+        <div>
+          <a href="#" class="btn-block" onclick="showCaso0Form(); return false;" style="width:auto; min-width:200px;"><span>Descargar gratis</span><span>→</span></a>
         </div>
       </div>
+
+      <!-- Tarjeta precio -->
+      <div class="precio-hero">
+        <div class="precio-left">
+          <span class="precio-eyebrow">Suscripción mensual</span>
+          <div class="precio-valor">9500<span>/ ARS</span></div>
+          <span class="precio-sub">Valor promocional · Cancelás cuando querés</span>
+          <a href="mailto:hola.archivocero@gmail.com" class="btn-block"><span>Suscribirme ahora</span><span>→</span></a>
+          <p class="precio-nota">Renovación automática el día 7 de cada mes.<br>Podés cancelar antes de la próxima fecha de cobro.</p>
+        </div>
+        <div class="precio-right">
+          <ul class="precio-features">
+            <li>Un nuevo caso digital cada mes</li>
+            <li>Material adicional exclusivo para miembros activos</li>
+            <li>Acceso anticipado a cada lanzamiento</li>
+            <li>El caso se libera el día 9 · Las instrucciones se envían por mail</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="suscripcion-faqs">
+        <div class="sfaq-block">
+          <h4>¿Cuándo se cobra?</h4>
+          <p>El cobro se realiza el día 7 de cada mes. El caso se libera el día 9 y recibís las instrucciones de acceso por correo electrónico.</p>
+        </div>
+        <div class="sfaq-block">
+          <h4>¿Suscripción o caso individual?</h4>
+          <p>La suscripción da acceso al lanzamiento exclusivo mensual y a un valor promocional. Los casos individuales estarán disponibles próximamente y corresponden a suscripciones anteriores o ediciones especiales.</p>
+        </div>
+        <div class="sfaq-block">
+          <h4>¿Cómo cancelo?</h4>
+          <p>Podés cancelar tu suscripción en cualquier momento antes de la próxima fecha de cobro, sin cargos adicionales ni compromisos.</p>
+        </div>
+      </div>
+
+      <div><a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales →</a></div>
     </div>
   </section>
-
   <footer>
     <div class="footer-top">
-      <div>
-        <a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
-        <p class="footer-tagline">Casos digitales para resolver</p>
-      </div>
-      <div class="footer-contact">
-        <p>Contacto</p>
-        <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-      </div>
+      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Casos digitales para resolver</p></div>
+      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">
-      © 2026 Archivo Cero. Todos los derechos reservados.<br>
-      Producto digital descargable. Desarrollado en Argentina.
-    </p>
+    <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Desarrollado en Argentina.</p>
   </footer>
 </div>
 
-<!-- ══ SECCIÓN: CASOS ══ -->
+<!-- ════════════════════════════════
+     CASOS
+════════════════════════════════ -->
 <div id="view-casos" class="page-section">
-  <div class="section-topbar">
-    <button class="back-btn" onclick="showHero()">Volver al inicio</button>
-  </div>
+  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
   <section>
     <div class="section">
       <p class="section-label">Expedientes</p>
       <h2>Casos individuales</h2>
-
       <div class="casos-grid">
         <div class="caso-card caso-card-disabled">
           <span class="caso-tag tag-rojo">Próximamente</span>
           <h3>Casos individuales</h3>
           <p>Próximamente podrás adquirir casos individuales sin necesidad de suscripción. Elegís la investigación que querés resolver y accedés de forma directa.</p>
-          <div class="caso-meta">
-            <span>⏱ 90–120 min</span>
-            <span>👤 Solo o grupal</span>
-          </div>
+          <div class="caso-meta"><span>⏱ 60–90 min</span><span>👤 Solo o en grupo</span></div>
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
-
         <div class="caso-card caso-card-disabled">
           <span class="caso-tag tag-ambar">En desarrollo</span>
-          <h3>Más casos en camino</h3>
-          <p>El equipo de Archivo Cero trabaja en nuevas investigaciones. Cada caso es diseñado con enfoque en coherencia, realismo y experiencia inmersiva.</p>
-          <div class="caso-meta">
-            <span>⏱ 90–120 min</span>
-            <span>👥 Ideal en equipo</span>
-          </div>
+          <h3>Casos especiales</h3>
+          <p>El equipo de Archivo Cero trabaja en nuevas investigaciones especiales. Cada caso está diseñado con enfoque en coherencia, realismo y experiencia inmersiva.</p>
+          <div class="caso-meta"><span>⏱ 60–90 min</span><span>👥 Ideal en equipo</span></div>
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
       </div>
-
       <div class="proximamente-banner">
-        <p><span>▸ PRÓXIMAMENTE</span> — Seguinos para enterarte del lanzamiento de los primeros casos individuales</p>
+        <p><span>▸ PRÓXIMAMENTE</span> — Seguinos para enterarte del lanzamiento de los próximos casos</p>
       </div>
     </div>
   </section>
-
   <footer>
     <div class="footer-top">
-      <div>
-        <a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
-        <p class="footer-tagline">Casos digitales para resolver</p>
-      </div>
-      <div class="footer-contact">
-        <p>Contacto</p>
-        <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-      </div>
+      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Casos digitales para resolver</p></div>
+      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">
-      © 2026 Archivo Cero. Todos los derechos reservados.<br>
-      Producto digital descargable. Desarrollado en Argentina.
-    </p>
+    <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Desarrollado en Argentina.</p>
   </footer>
 </div>
 
-<!-- ══ SECCIÓN: FAQ ══ -->
+<!-- ════════════════════════════════
+     FAQ
+════════════════════════════════ -->
 <div id="view-faq" class="page-section">
-  <div class="section-topbar">
-    <button class="back-btn" onclick="showHero()">Volver al inicio</button>
-  </div>
-  <section style="border-top: 1px solid var(--border); margin-top:1rem;">
+  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
+  <section style="border-top:1px solid var(--border); margin-top:1rem;">
     <div class="section">
       <p class="section-label">Preguntas frecuentes</p>
       <h2>FAQ</h2>
-
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Qué incluye lo que estoy comprando?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Cada caso incluye documentos digitales, fotografías, archivos protegidos, audios originales, sistemas de validación y elementos web complementarios. Todo está diseñado para vivirse como una experiencia de investigación real. Parte del material puede imprimirse, aunque algunos elementos son exclusivamente digitales.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Qué incluye lo que estoy comprando?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Cada caso puede incluir documentos digitales, fotografías, archivos protegidos, audios originales, sistemas de validación y elementos web complementarios. Todo está diseñado para vivirse como una experiencia de investigación real. Parte del material puede imprimirse, aunque algunos elementos son exclusivamente digitales.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Es un juego?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Es una experiencia de investigación inmersiva. Más que un juego tradicional, Archivo Cero es una narrativa digital interactiva donde vos reconstruís lo ocurrido a partir de archivos reales. No hay puntos ni niveles — hay interpretación, análisis y deducción.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Es un juego?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Es una experiencia de investigación inmersiva. Más que un juego tradicional, Archivo Cero es una narrativa digital donde vos reconstruís lo ocurrido a partir de archivos reales. No hay puntos, tiempo límite ni niveles — hay interpretación, análisis y deducción.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Necesito instalar algo?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>No. Toda la experiencia funciona desde tu navegador. Solo necesitás el acceso que recibís por correo electrónico al momento de pago.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Necesito instalar algo?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>No. Toda la experiencia funciona desde tu navegador con conexión a internét. Solo necesitás el acceso que recibís por correo electrónico.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Puedo imprimir el material?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Sí, parte del material puede imprimirse para mejorar la experiencia física de la investigación. Sin embargo, algunos elementos son exclusivamente digitales e interactivos, y no tienen versión imprimible.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Puedo imprimir el material?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Sí, parte del material puede imprimirse para mejorar la experiencia física de la investigación. Sin embargo, algunos elementos son exclusivamente digitales e interactivos, y no tienen versión imprimible.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Al adquirir la suscripción o un caso, recibo algo físico?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>No. Archivo Cero es un producto digital descargable. No se envía ningún objeto físico. Todo el acceso y los materiales son digitales y se entregan por correo electrónico.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Al adquirir la suscripción o un caso, recibo algo físico?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>No. Archivo Cero es un producto digital descargable. No se envía ningún objeto físico. Todo el acceso y los materiales son digitales y se entregan por correo electrónico.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Cómo funciona la suscripción mensual?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>La suscripción tiene renovación automática mensual. El cobro se realiza el día 3 de cada mes. El nuevo caso se libera el día 7 y recibís las instrucciones de acceso por correo electrónico. Podés cancelar en cualquier momento antes de la próxima fecha de cobro.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Cómo funciona la suscripción mensual?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>La suscripción se renueva automáticamente todos los meses. El cobro se realiza el día 7 y el nuevo caso se libera el día 9, momento en el que recibirás por correo electrónico las instrucciones de acceso. Podés cancelar tu suscripción en cualquier momento antes de la próxima fecha de cobro.
+
+Nota: si te suscribís antes del día 7, recibirás acceso al caso del mes en curso. Luego, el día 7 siguiente, se realizará automáticamente el cobro correspondiente al próximo caso, que será enviado el día 9.</p></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>¿Cómo accedo al caso individual después de pagar?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Una vez confirmado el pago, recibís un correo electrónico con las instrucciones de acceso y descarga del caso. Si tenés algún problema, podés escribirnos a hola.archivocero@gmail.com.</p>
-          </div>
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Cómo accedo al caso individual después de pagar?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Una vez confirmado el pago, recibís un correo electrónico con las instrucciones de acceso y descarga del caso. Esta validación puede demorar hasta 24 hs. Si tenés algún problema, podés escribirnos a hola.archivocero@gmail.com.</p></div>
         </div>
       </div>
-
       <div class="faq-contacto">
-        <p>¿Tenés otra pregunta?<br>
-          Escribinos a <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a> o contactanos por Instagram.
-        </p>
-        <a href="mailto:hola.archivocero@gmail.com" class="btn-secondary">Escribir un correo</a>
+        <div class="faq-contacto-text">
+          <p>¿Tenés otra pregunta?</p>
+          <p>Escribinos a <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a> o contactanos por Instagram.</p>
+        </div>
+        <a href="mailto:hola.archivocero@gmail.com" class="btn-block" style="width:auto; min-width:200px; flex-shrink:0;"><span>Escribir un correo</span><span>→</span></a>
       </div>
     </div>
   </section>
-
   <footer>
     <div class="footer-top">
-      <div>
-        <a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
-        <p class="footer-tagline">Casos digitales para resolver</p>
-      </div>
-      <div class="footer-contact">
-        <p>Contacto</p>
-        <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-      </div>
+      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Casos digitales para resolver</p></div>
+      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">
-      © 2026 Archivo Cero. Todos los derechos reservados.<br>
-      Producto digital descargable. Desarrollado en Argentina.
-    </p>
+    <p class="footer-bottom">© 2026 Archivo Cero. Todos los derechos reservados. Desarrollado en Argentina.</p>
   </footer>
 </div>
 
 <script>
-  const sections = ['que-es', 'suscripcion', 'casos', 'faq'];
+  const SECTIONS = ['que-es', 'suscripcion', 'casos', 'faq'];
 
+  /* ── NAV ── */
   function toggleMenu() {
-    const toggle = document.getElementById('menuToggle');
-    const dropdown = document.getElementById('navDropdown');
-    toggle.classList.toggle('active');
-    dropdown.classList.toggle('open');
+    document.getElementById('menuToggle').classList.toggle('active');
+    document.getElementById('navDropdown').classList.toggle('open');
   }
-
   function closeMenu() {
     document.getElementById('menuToggle').classList.remove('active');
     document.getElementById('navDropdown').classList.remove('open');
   }
-
   function showHero() {
     closeMenu();
+    hideCaso0Form();
     document.getElementById('view-hero').style.display = 'block';
-    sections.forEach(s => {
+    SECTIONS.forEach(s => {
       const el = document.getElementById('view-' + s);
       el.classList.remove('visible', 'animated');
       el.style.display = 'none';
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    initReveal();
   }
-
   function showSection(name) {
     closeMenu();
+    hideCaso0Form();
     document.getElementById('view-hero').style.display = 'none';
-    sections.forEach(s => {
+    SECTIONS.forEach(s => {
       const el = document.getElementById('view-' + s);
       if (s === name) {
-        el.classList.add('visible');
         el.style.display = 'block';
-        // Trigger animation
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            el.classList.add('animated');
-          });
-        });
+        el.classList.add('visible');
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('animated')));
       } else {
         el.classList.remove('visible', 'animated');
         el.style.display = 'none';
@@ -1397,6 +1540,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  /* ── FAQ ── */
   function toggleFaq(btn) {
     const item = btn.parentElement;
     const isOpen = item.classList.contains('open');
@@ -1404,11 +1548,57 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  // Cerrar menú con Escape
+  /* ── CASO 0 MODAL ── */
+  function showCaso0Form() {
+    const modal = document.getElementById('caso0-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.getElementById('caso0-confirm').style.display = 'none';
+  }
+  function hideCaso0Form() {
+    const modal = document.getElementById('caso0-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function submitCaso0(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('caso0-nombre').value.trim();
+    const email = document.getElementById('caso0-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('caso0-email').style.borderColor = 'rgba(192,57,43,0.7)';
+      return;
+    }
+    // Aquí conectar con Mailchimp, Brevo, etc.
+    document.getElementById('caso0-confirm').style.display = 'block';
+    document.getElementById('caso0-nombre').disabled = true;
+    document.getElementById('caso0-email').disabled = true;
+  }
+  document.getElementById('caso0-modal').addEventListener('click', function(e) {
+    if (e.target === this) hideCaso0Form();
+  });
+
+  /* ── SCROLL REVEAL ── */
+  function initReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('#view-hero .reveal').forEach(el => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  }
+  initReveal();
+
+  /* ── KEYBOARD ── */
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
+    if (e.key === 'Escape') { closeMenu(); hideCaso0Form(); }
   });
 </script>
-
 </body>
 </html>
