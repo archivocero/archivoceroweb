@@ -73,7 +73,7 @@
   .nav-right { display: flex; align-items: center; gap: 1rem; }
   .nav-cta {
     font-family: "Space Mono", monospace;
-    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink); background: var(--paper);
     padding: 0.5rem 1.3rem; text-decoration: none; cursor: pointer;
     transition: background 0.2s, transform 0.15s; display: inline-block; white-space: nowrap;
@@ -107,7 +107,7 @@
   }
   .nav-dropdown.open { transform: translateY(0); pointer-events: all; }
   .dropdown-label {
-    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    font-family: "Space Mono", monospace; font-size: 0.75rem;
     letter-spacing: 0.3em; text-transform: uppercase; color: var(--red);
     margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem;
   }
@@ -121,7 +121,7 @@
     transition: color 0.2s, padding-left 0.3s; gap: 1rem;
   }
   .dropdown-nav a:hover { color: var(--amber); padding-left: 0.8rem; }
-  .nav-item-number { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--red); flex-shrink: 0; opacity: 0.7; }
+  .nav-item-number { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.15em; color: var(--red); flex-shrink: 0; opacity: 1; }
   .nav-item-title { font-family: "Bebas Neue", cursive; font-size: clamp(1.8rem, 5vw, 3.2rem); letter-spacing: 0.05em; line-height: 1; flex: 1; }
   .nav-item-arrow { font-size: 0.85rem; color: rgba(240,236,224,0.25); flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
   .dropdown-nav a:hover .nav-item-arrow { color: var(--amber); transform: translateX(5px); }
@@ -204,9 +204,9 @@
 
   .hero-case-num {
     position: absolute; top: 8rem; right: 2.5rem;
-    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
     letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(240,236,224,0.18);
+    color: rgba(240,236,224,0.28);
     writing-mode: vertical-rl; text-orientation: mixed;
     animation: fadeIn 1.2s ease 0.8s both;
   }
@@ -264,7 +264,7 @@
   .hero-btn:last-child { border-right: none; }
   .hero-btn:hover { transform: translateX(5px); }
   .hero-btn-primary {
-    background: rgba(240,236,224,0.28);
+    background: rgba(240,236,224,0.42);
     color: var(--paper);
     border-right: 1px solid var(--border);
     backdrop-filter: blur(4px);
@@ -325,6 +325,18 @@
   }
   .ticker-item span { color: var(--amber); margin-right: 0.5rem; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes ticker-reverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .ticker-reverse .ticker-track { animation: ticker-reverse 38s linear infinite; }
+  .ticker-2 {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 0.75rem 0; overflow: hidden;
+    background: rgba(192,57,43,0.05); position: relative;
+  }
+  .ticker-2::before, .ticker-2::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 6rem; z-index: 2;
+  }
+  .ticker-2::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
+  .ticker-2::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
 
   /* ── CASO 0 SECTION ── */
   .caso0-section {
@@ -353,21 +365,54 @@
   .caso0-title span { color: var(--red); }
   .caso0-desc { font-size: 0.95rem; line-height: 1.85; color: var(--paper-dim); margin-bottom: 2.5rem; }
   .caso0-actions { display: flex; flex-direction: column; gap: 0.7rem; }
-  .caso0-card { border: 1px solid rgba(192,57,43,0.25); background: rgba(192,57,43,0.04); position: relative; overflow: hidden; }
+  .caso0-card {
+    border: 1px solid rgba(192,57,43,0.55);
+    background: linear-gradient(145deg, rgba(110,18,12,0.7) 0%, rgba(80,12,8,0.85) 50%, rgba(60,8,6,0.9) 100%);
+    position: relative; overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(192,57,43,0.2),
+      0 8px 40px rgba(0,0,0,0.55),
+      inset 0 1px 0 rgba(240,200,180,0.18),
+      inset 0 -1px 0 rgba(0,0,0,0.4),
+      inset 1px 0 0 rgba(240,200,180,0.09),
+      inset -1px 0 0 rgba(0,0,0,0.3);
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .caso0-card:hover {
+    border-color: rgba(192,57,43,0.75);
+    box-shadow:
+      0 0 0 1px rgba(192,57,43,0.3),
+      0 12px 50px rgba(0,0,0,0.65),
+      0 0 30px rgba(192,57,43,0.12),
+      inset 0 1px 0 rgba(240,200,180,0.22),
+      inset 0 -1px 0 rgba(0,0,0,0.4),
+      inset 1px 0 0 rgba(240,200,180,0.1),
+      inset -1px 0 0 rgba(0,0,0,0.3);
+  }
+  .caso0-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, rgba(212,160,23,0.8), rgba(192,57,43,0.6), transparent 70%);
+  }
+  .caso0-card::after {
+    content: ""; position: absolute; top: 0; right: 0; width: 35%; height: 100%;
+    background: linear-gradient(to left, rgba(192,57,43,0.08), transparent);
+    pointer-events: none;
+  }
   .caso0-card-header {
-    padding: 1.5rem 2rem 1.2rem; border-bottom: 1px solid rgba(192,57,43,0.15);
+    padding: 1.5rem 2rem 1.2rem; border-bottom: 1px solid rgba(192,57,43,0.22);
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    background: rgba(0,0,0,0.15);
   }
   .caso0-card-label { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); }
   .caso0-card-badge { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.2rem 0.6rem; }
   .caso0-card-body { padding: 2rem; }
   .caso0-case-title { font-family: "Bebas Neue", cursive; font-size: 2.4rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem; color: var(--paper); }
-  .caso0-case-desc { font-size: 0.9rem; line-height: 1.75; color: rgba(240,236,224,0.58); margin-bottom: 1.5rem; }
+  .caso0-case-desc { font-size: 0.98rem; line-height: 1.75; color: rgba(240,236,224,0.65); margin-bottom: 1.5rem; }
   .teaser-media { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
   .teaser-link {
     display: flex; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem;
-    border: 1px solid var(--border); text-decoration: none;
-    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    border: 1px solid rgba(240,236,224,0.28); text-decoration: none;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-dim);
     transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
@@ -378,7 +423,8 @@
   .teaser-link:hover .teaser-link-arrow { transform: translateX(3px); color: var(--paper); }
   .caso0-card-meta {
     display: flex; gap: 1.2rem; flex-wrap: wrap; padding: 1rem 2rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(192,57,43,0.2);
+    background: rgba(0,0,0,0.2);
     font-family: "Space Mono", monospace; font-size: 0.62rem;
     letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,236,224,0.48);
   }
@@ -388,18 +434,25 @@
   .como-funciona-inner { max-width: 1100px; margin: 0 auto; }
   .steps-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; margin-top: 3.5rem; border: 1px solid var(--border);
+    gap: 0; margin-top: 3.5rem; border: 1px solid rgba(212,160,23,0.28);
+    background: linear-gradient(135deg, rgba(212,160,23,0.04) 0%, rgba(192,57,43,0.03) 100%);
+    box-shadow: 0 0 0 1px rgba(212,160,23,0.1), inset 0 1px 0 rgba(212,160,23,0.08);
+    position: relative;
+  }
+  .steps-grid::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,160,23,0.04) 0%, transparent 70%);
   }
   .step-item {
-    padding: 2.5rem 2rem; border-right: 1px solid var(--border);
+    padding: 2.5rem 2rem; border-right: 1px solid rgba(212,160,23,0.15);
     position: relative; overflow: hidden; transition: background 0.3s;
   }
-  .step-item:hover { background: rgba(240,236,224,0.025); }
+  .step-item:hover { background: rgba(212,160,23,0.06); }
   .step-item:last-child { border-right: none; }
-  .step-num { font-family: "Bebas Neue", cursive; font-size: 4rem; line-height: 1; color: rgba(240,236,224,0.22); display: block; margin-bottom: 1.2rem; }
-  .step-icon { font-family: "Space Mono", monospace; font-size: 1.1rem; color: var(--red); display: block; margin-bottom: 0.9rem; }
-  .step-title { font-family: "Bebas Neue", cursive; font-size: 1.35rem; letter-spacing: 0.05em; color: var(--paper); display: block; margin-bottom: 0.6rem; }
-  .step-desc { font-size: 0.8rem; line-height: 1.75; color: rgba(240,236,224,0.42); }
+  .step-num { font-family: "Bebas Neue", cursive; font-size: 4rem; line-height: 1; color: rgba(212,160,23,0.55); display: block; margin-bottom: 1.2rem; }
+  .step-icon { font-family: "Space Mono", monospace; font-size: 1.1rem; color: var(--amber); display: block; margin-bottom: 0.9rem; }
+  .step-title { font-family: "Bebas Neue", cursive; font-size: 1.45rem; letter-spacing: 0.05em; color: var(--paper); display: block; margin-bottom: 0.6rem; }
+  .step-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(240,236,224,0.58); }
 
   /* ── PARA QUIÉN ── */
   .para-quien {
@@ -410,16 +463,16 @@
   .para-quien-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; align-items: center; }
   .para-quien-text { font-size: 1.05rem; line-height: 1.9; color: rgba(240,236,224,0.68); margin-bottom: 1.5rem; }
   .para-quien-text strong { color: var(--paper); }
-  .perfil-list { list-style: none; display: flex; flex-direction: column; }
+  .perfil-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .perfil-item {
     display: flex; align-items: flex-start; gap: 1.1rem;
-    padding: 1.3rem 0; border-bottom: 1px solid var(--border);
-    transition: padding-left 0.2s;
+    padding: 1.2rem 1.3rem; border: 1px solid rgba(240,236,224,0.12);
+    background: rgba(240,236,224,0.025);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
   }
-  .perfil-item:hover { padding-left: 0.4rem; }
-  .perfil-item:last-child { border-bottom: none; }
-  .perfil-icon { font-family: "Space Mono", monospace; font-size: 0.75rem; color: var(--red); flex-shrink: 0; margin-top: 0.2rem; }
-  .perfil-text { font-size: 0.95rem; line-height: 1.65; color: rgba(240,236,224,0.55); }
+  .perfil-item:hover { border-color: rgba(212,160,23,0.4); background: rgba(212,160,23,0.05); transform: translateX(4px); }
+  .perfil-icon { font-family: "Space Mono", monospace; font-size: 0.75rem; color: var(--amber); flex-shrink: 0; margin-top: 0.2rem; }
+  .perfil-text { font-size: 0.95rem; line-height: 1.65; color: rgba(240,236,224,0.62); }
   .perfil-text strong { color: var(--paper); font-size: 0.93rem; display: block; margin-bottom: 0.2rem; }
 
   /* ── CTA BANNER ── */
@@ -470,6 +523,7 @@
     position: relative; z-index: 1;
   }
   .cta-banner-text h2 { font-family: "Bebas Neue", cursive; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 0.8rem; color: var(--paper); text-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+  .cta-banner-text h2 .cta-title-yellow { color: var(--amber); }
   .cta-banner-text p { font-size: 0.9rem; color: rgba(240,236,224,0.72); max-width: 38ch; line-height: 1.75; }
   .cta-banner-actions { display: flex; flex-direction: column; gap: 0.7rem; min-width: 260px; }
 
@@ -485,7 +539,7 @@
   .back-btn:hover { color: var(--paper); transform: translateX(-3px); }
   .section-label {
     font-family: "Space Mono", monospace; font-size: 0.65rem;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--red);
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber);
     margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.8rem;
   }
   .section-label::before { content: "//"; color: rgba(240,236,224,0.18); }
@@ -495,7 +549,7 @@
   .btn-primary {
     font-family: "Space Mono", monospace; font-size: 0.72rem;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--paper); background: rgba(240,236,224,0.28);
+    color: var(--paper); background: rgba(240,236,224,0.42);
     padding: 0.95rem 1.8rem; text-decoration: none; border: none;
     cursor: pointer; display: inline-flex; align-items: center; gap: 0.7rem;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap;
@@ -516,7 +570,7 @@
   .btn-block {
     font-family: "Space Mono", monospace; font-size: 0.75rem;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--paper); background: rgba(240,236,224,0.28);
+    color: var(--paper); background: rgba(240,236,224,0.42);
     padding: 1.2rem 1.7rem; text-decoration: none; border: none;
     cursor: pointer; display: flex; align-items: center; justify-content: space-between; width: 100%;
     transition: background 0.2s, transform 0.15s;
@@ -527,24 +581,29 @@
   /* ── QUÉ ES ── */
   .que-es-lead { font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.9; color: rgba(240,236,224,0.72); max-width: 58ch; margin-bottom: 4rem; }
   .que-es-lead strong { color: var(--paper); }
-  .features-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); margin-bottom: 4rem; }
-  .feature-col { padding: 2.5rem 2.2rem; border-right: 1px solid var(--border); transition: background 0.3s; }
-  .feature-col:hover { background: rgba(240,236,224,0.02); }
+  .features-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(192,57,43,0.25); margin-bottom: 4rem; box-shadow: 0 0 0 1px rgba(192,57,43,0.08), 0 4px 32px rgba(0,0,0,0.3); }
+  .feature-col { padding: 2.5rem 2.2rem; border-right: 1px solid rgba(192,57,43,0.15); transition: background 0.3s; position: relative; }
+  .feature-col::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--red), transparent); opacity: 0; transition: opacity 0.3s; }
+  .feature-col:hover { background: rgba(192,57,43,0.04); }
+  .feature-col:hover::before { opacity: 1; }
   .feature-col:last-child { border-right: none; }
   .feature-eyebrow { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 1.3rem; display: block; }
   .feature-col h3 { font-family: "Bebas Neue", cursive; font-size: 1.55rem; letter-spacing: 0.04em; color: var(--paper); margin-bottom: 1.1rem; line-height: 1; }
-  .feature-col p { font-size: 0.83rem; line-height: 1.8; color: rgba(240,236,224,0.48); margin-bottom: 1.2rem; }
-  .feature-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
-  .ftag { font-family: "Space Mono", monospace; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.7rem; border: 1px solid rgba(240,236,224,0.12); color: rgba(240,236,224,0.38); transition: border-color 0.2s, color 0.2s; }
-  .ftag:hover { border-color: rgba(240,236,224,0.28); color: rgba(240,236,224,0.7); }
+  .feature-col p { font-size: 0.9rem; line-height: 1.85; color: rgba(240,236,224,0.58); margin-bottom: 1.2rem; }
+  .feature-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; justify-content: center; }
+  .ftag { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.32rem 0.75rem; border: 1px solid rgba(212,160,23,0.35); color: var(--amber); transition: border-color 0.2s, background 0.2s; }
+  .ftag:hover { border-color: rgba(212,160,23,0.6); background: rgba(212,160,23,0.06); }
   .duracion-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: "Space Mono", monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.45rem 1rem; margin-top: 1.2rem; }
   .sobre-banda {
-    border: 1px solid var(--border); padding: 2.5rem 2.8rem;
+    border: 1px solid rgba(120,20,14,0.45); padding: 2.5rem 2.8rem;
     display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center;
-    margin-bottom: 3.5rem; background: rgba(240,236,224,0.015); transition: background 0.3s;
+    margin-bottom: 3.5rem; 
+    background: linear-gradient(135deg, rgba(100,15,10,0.45) 0%, rgba(80,10,7,0.55) 100%);
+    border-left: 3px solid var(--red);
+    transition: background 0.3s;
   }
-  .sobre-banda:hover { background: rgba(240,236,224,0.025); }
-  .sobre-banda-label { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); }
+  .sobre-banda:hover { background: linear-gradient(135deg, rgba(120,20,14,0.55) 0%, rgba(90,12,8,0.65) 100%); }
+  .sobre-banda-label { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-weight: 700; }
   .sobre-banda p { font-size: 0.93rem; line-height: 1.88; color: rgba(240,236,224,0.6); }
   .sobre-banda strong { color: var(--paper); }
   .cta-links { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -567,12 +626,15 @@
   .suscripcion-bg { background: linear-gradient(to bottom, rgba(240,236,224,0.018) 0%, transparent 30%); border-top: 1px solid var(--border); }
   .suscripcion-lead { font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.88; color: rgba(240,236,224,0.68); max-width: 50ch; margin-bottom: 4rem; }
   .precio-hero {
-    border: 1px solid rgba(192,57,43,0.22); padding: 3.5rem; margin-bottom: 4rem;
+    border: 1px solid rgba(212,160,23,0.4); padding: 3.5rem; margin-bottom: 3rem;
     display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
-    background: rgba(192,57,43,0.03); position: relative; overflow: hidden; transition: border-color 0.3s;
+    background: linear-gradient(135deg, rgba(212,160,23,0.07) 0%, rgba(192,57,43,0.06) 100%); 
+    position: relative; overflow: hidden; transition: border-color 0.3s;
+    box-shadow: 0 0 0 1px rgba(212,160,23,0.12), 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,160,23,0.1);
   }
-  .precio-hero:hover { border-color: rgba(192,57,43,0.38); }
-  .precio-hero::after { content: ""; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(to left, rgba(192,57,43,0.04), transparent); pointer-events: none; }
+  .precio-hero:hover { border-color: rgba(212,160,23,0.65); }
+  .precio-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--amber), transparent 60%); }
+  .precio-hero::after { content: ""; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(to left, rgba(212,160,23,0.06), transparent); pointer-events: none; }
   .precio-eyebrow { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 1.3rem; }
   .precio-valor { font-family: "Bebas Neue", cursive; font-size: clamp(3rem, 6vw, 5.2rem); line-height: 1; color: var(--paper); margin-bottom: 0.5rem; }
   .precio-valor span { font-size: 1.2rem; color: var(--muted); font-family: "Space Mono", monospace; font-weight: normal; }
@@ -590,11 +652,13 @@
   .suscripcion-caso0-label { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.6rem; display: block; }
   .suscripcion-caso0 h3 { font-family: "Bebas Neue", cursive; font-size: 1.7rem; letter-spacing: 0.03em; margin-bottom: 0.6rem; line-height: 1; }
   .suscripcion-caso0 p { font-size: 0.83rem; line-height: 1.75; color: rgba(240,236,224,0.5); }
-  .suscripcion-faqs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); margin-bottom: 3rem; }
-  .sfaq-block { padding: 2.2rem 2rem; border-right: 1px solid var(--border); transition: background 0.3s; }
-  .sfaq-block:hover { background: rgba(240,236,224,0.02); }
+  .suscripcion-faqs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(240,236,224,0.12); margin-bottom: 3rem; background: rgba(240,236,224,0.01); }
+  .sfaq-block { padding: 2.2rem 2rem; border-right: 1px solid rgba(240,236,224,0.08); transition: background 0.3s; position: relative; }
+  .sfaq-block::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, var(--amber), transparent); opacity: 0; transition: opacity 0.3s; }
+  .sfaq-block:hover { background: rgba(212,160,23,0.04); }
+  .sfaq-block:hover::before { opacity: 1; }
   .sfaq-block:last-child { border-right: none; }
-  .sfaq-block h4 { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper); margin-bottom: 0.9rem; }
+  .sfaq-block h4 { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.9rem; }
   .sfaq-block p { font-size: 0.82rem; line-height: 1.78; color: rgba(240,236,224,0.48); }
 
   /* ── CASOS ── */
@@ -614,22 +678,78 @@
   .caso-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.32); }
   .stamp { position: absolute; bottom: 1.4rem; right: 1.4rem; font-family: "Bebas Neue", cursive; font-size: 0.8rem; letter-spacing: 0.15em; color: rgba(46,107,62,0.55); border: 2px solid rgba(46,107,62,0.4); padding: 0.22rem 0.65rem; transform: rotate(-8deg); }
   .stamp-pronto { color: rgba(192,57,43,0.5); border-color: rgba(192,57,43,0.4); }
-  .caso-card-disabled { opacity: 0.4; pointer-events: none; }
-  .proximamente-banner { margin-top: 2.5rem; padding: 1.8rem 2rem; border: 1px dashed rgba(240,236,224,0.1); text-align: center; background: rgba(240,236,224,0.01); }
-  .proximamente-banner p { font-family: "Space Mono", monospace; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
-  .proximamente-banner span { color: var(--amber); }
+  .caso-card-disabled { opacity: 0.55; pointer-events: auto; cursor: not-allowed; position: relative; }
+  .caso-card-disabled .proximamente-overlay {
+    position: absolute; inset: 0;
+    background: rgba(192,57,43,0);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.8rem;
+    opacity: 0;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .caso-card-disabled:hover .proximamente-overlay {
+    background: rgba(192,57,43,0.22);
+    opacity: 1;
+  }
+  .proximamente-overlay-text {
+    font-family: "Bebas Neue", cursive;
+    font-size: 2.2rem;
+    letter-spacing: 0.18em;
+    color: var(--paper);
+    text-shadow: 0 2px 20px rgba(192,57,43,0.6), 0 0 40px rgba(192,57,43,0.3);
+    transform: translateY(6px);
+    transition: transform 0.3s ease;
+  }
+  .caso-card-disabled:hover .proximamente-overlay-text { transform: translateY(0); }
+  .proximamente-overlay-sub {
+    font-family: "Space Mono", monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(240,236,224,0.7);
+    transform: translateY(6px);
+    transition: transform 0.35s ease 0.05s;
+  }
+  .caso-card-disabled:hover .proximamente-overlay-sub { transform: translateY(0); }
+  .proximamente-banner { 
+    margin-top: 2.5rem; overflow: hidden; position: relative;
+    border-top: 1px solid rgba(212,160,23,0.2);
+    border-bottom: 1px solid rgba(212,160,23,0.2);
+    background: rgba(212,160,23,0.04);
+    padding: 0;
+  }
+  .proximamente-banner::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); content: ""; position: absolute; top: 0; bottom: 0; width: 6rem; z-index: 2; }
+  .proximamente-banner::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); content: ""; position: absolute; top: 0; bottom: 0; width: 6rem; z-index: 2; }
+  .proximamente-banner-track {
+    display: flex; gap: 3.5rem; padding: 1rem 0;
+    animation: ticker 22s linear infinite;
+    white-space: nowrap; width: max-content;
+  }
+  .proximamente-banner-item {
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(240,236,224,0.55); flex-shrink: 0;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .proximamente-banner-item .pb-accent { color: var(--amber); }
 
   /* ── FAQ ── */
   .faq-list { display: flex; flex-direction: column; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-question { width: 100%; background: none; border: none; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; gap: 1rem; transition: padding-left 0.2s; }
+  .faq-item { border-bottom: 1px solid var(--border); transition: background 0.3s, border-color 0.3s; }
+  .faq-item.open { background: rgba(212,160,23,0.06); border-bottom-color: rgba(212,160,23,0.22); }
+  .faq-question { width: 100%; background: none; border: none; padding: 1.7rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; gap: 1rem; transition: padding-left 0.2s; }
   .faq-question:hover { padding-left: 0.5rem; }
-  .faq-question span { font-family: "Courier Prime", monospace; font-size: 0.93rem; color: var(--paper); line-height: 1.5; }
-  .faq-icon { font-family: "Space Mono", monospace; font-size: 1.1rem; color: var(--red); flex-shrink: 0; transition: transform 0.3s; }
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-item.open .faq-question { padding-left: 0.5rem; }
+  .faq-question span { font-family: "Courier Prime", monospace; font-size: 1.02rem; color: var(--paper); line-height: 1.5; }
+  .faq-item.open .faq-question > span:first-child { color: var(--amber); }
+  .faq-icon { font-family: "Space Mono", monospace; font-size: 1.2rem; color: var(--red); flex-shrink: 0; transition: transform 0.3s, color 0.3s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--amber); }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-item.open .faq-answer { max-height: 500px; }
-  .faq-answer p { font-size: 0.86rem; line-height: 1.85; color: rgba(240,236,224,0.52); padding-bottom: 1.6rem; padding-right: 2rem; }
+  .faq-answer p { font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.62); padding-bottom: 1.8rem; padding-right: 2rem; padding-left: 0.5rem; }
   .faq-contacto { margin-top: 4rem; padding: 2.5rem; background: rgba(192,57,43,0.04); border: 1px solid rgba(192,57,43,0.18); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
   .faq-contacto-text p { font-size: 0.86rem; color: rgba(240,236,224,0.52); line-height: 1.65; }
   .faq-contacto-text a { color: var(--amber); text-decoration: none; }
@@ -758,7 +878,7 @@
     .step-item:last-child { border-bottom: none !important; }
     h2 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
     .casos-grid { grid-template-columns: 1fr; }
-    .faq-question span { font-size: 0.86rem; }
+    .faq-question span { font-size: 0.92rem; }
     .cta-links { flex-direction: column; }
     .btn-primary,
     .btn-secondary { width: 100%; justify-content: space-between; }
@@ -790,7 +910,7 @@
 <nav>
   <a class="nav-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
   <div class="nav-right">
-    <a href="mailto:hola.archivocero@gmail.com" class="nav-cta">Suscribirme</a>
+    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="nav-cta">Suscribirme</a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -819,7 +939,7 @@
     <div class="hero-lines"></div>
     <div class="hero-lines-2"></div>
     <div class="hero-bg-text" aria-hidden="true">CERO</div>
-    <span class="hero-case-num">EXPEDIENTE — CASO_00 · ACCESO ABIERTO</span>
+    <span class="hero-case-num">ARCHIVO CERO · ACCESO AUTORIZADO</span>
 
     <div class="hero-content">
       <p class="hero-eyebrow">Casos digitales para resolver</p>
@@ -831,7 +951,7 @@
 
   <!-- BOTONES BANDA -->
   <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <a href="#" class="hero-btn hero-btn-primary" onclick="showSection('suscripcion'); return false;">
+    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
       <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
@@ -878,14 +998,14 @@
     <div class="caso0-inner">
       <div class="caso0-grid">
         <div class="caso0-left reveal">
-          <p class="caso0-eyebrow">Acceso gratuito</p>
+          <p class="caso0-eyebrow" style="color: var(--amber);">Acceso gratuito</p>
           <h2 class="caso0-title">Probá el<br><span>Caso #00</span><br>gratis.</h2>
           <p class="caso0-desc">Antes de suscribirte, metete en la historia. El Caso #00 es tu entrada al universo de Archivo Cero: 30 minutos de investigación sin costo. Solo vos, el archivo, y la verdad que tenés que encontrar.</p>
           <div class="caso0-actions">
             <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:340px;">
               <span>Descargar el Caso #00</span><span class="btn-arrow">→</span>
             </a>
-            <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('suscripcion'); return false;" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
+            <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-ghost" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
               <span>Quiero la suscripción mensual</span><span class="btn-arrow">→</span>
             </a>
           </div>
@@ -923,6 +1043,28 @@
       </div>
     </div>
   </section>
+
+  <!-- TICKER 2 — debajo del bloque Caso #00 -->
+  <div class="ticker-2 ticker-reverse" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><span>◂</span>Archivos clasificados</span>
+      <span class="ticker-item"><span>◂</span>Pistas ocultas</span>
+      <span class="ticker-item"><span>◂</span>Documentos reales</span>
+      <span class="ticker-item"><span>◂</span>Investigación inmersiva</span>
+      <span class="ticker-item"><span>◂</span>Descifrá la verdad</span>
+      <span class="ticker-item"><span>◂</span>Probalo gratis</span>
+      <span class="ticker-item"><span>◂</span>Audios originales</span>
+      <span class="ticker-item"><span>◂</span>Experiencia sin precedentes</span>
+      <span class="ticker-item"><span>◂</span>Archivos clasificados</span>
+      <span class="ticker-item"><span>◂</span>Pistas ocultas</span>
+      <span class="ticker-item"><span>◂</span>Documentos reales</span>
+      <span class="ticker-item"><span>◂</span>Investigación inmersiva</span>
+      <span class="ticker-item"><span>◂</span>Descifrá la verdad</span>
+      <span class="ticker-item"><span>◂</span>Probalo gratis</span>
+      <span class="ticker-item"><span>◂</span>Audios originales</span>
+      <span class="ticker-item"><span>◂</span>Experiencia sin precedentes</span>
+    </div>
+  </div>
 
   <!-- CÓMO FUNCIONA -->
   <section class="como-funciona">
@@ -984,14 +1126,14 @@
   <section class="cta-banner">
     <div class="cta-banner-inner">
       <div class="cta-banner-text reveal">
-        <h2>Tu primer caso<br>te espera.</h2>
+        <h2><span style="color:var(--paper)">Tu </span><span class="cta-title-yellow">primer caso</span><br><span style="color:var(--paper)">te espera.</span></h2>
         <p>Empezá gratis con el Caso #00 o suscribite para recibir nuevas investigaciones cada mes.</p>
       </div>
       <div class="cta-banner-actions reveal reveal-delay-1">
         <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:100%;">
           <span>Empezar por el Caso #00</span><span class="btn-arrow">→</span>
         </a>
-        <a href="#" class="hero-btn hero-btn-secondary" onclick="showSection('suscripcion'); return false;" style="max-width:100%;">
+        <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary" style="max-width:100%;">
           <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
         </a>
         <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('faq'); return false;" style="max-width:100%;">
@@ -1050,27 +1192,26 @@
         </div>
       </div>
 
-      <div class="caso0-inline">
-        <div class="caso0-inline-inner">
-          <div>
-            <span class="caso0-inline-title">Probalo antes de decidir</span>
-            <h3>El Caso #00 es gratis</h3>
-            <p>Antes de suscribirte, viví la experiencia completa. El Caso #00 está disponible sin costo.</p>
-          </div>
-          <div class="caso0-inline-actions">
-            <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="btn-block"><span>Acceder gratis</span><span>→</span></a>
-            <a href="#" class="btn-secondary" onclick="showSection('suscripcion'); return false;" style="justify-content:space-between;">Quiero suscribirme →</a>
-          </div>
-        </div>
-      </div>
-
       <div class="sobre-banda">
         <span class="sobre-banda-label">Sobre el proyecto</span>
         <p>Archivo Cero es un <strong>proyecto independiente de narrativa digital inmersiva</strong> desarrollado en Buenos Aires, Argentina, por <strong>Luciana</strong>. Cada caso está diseñado con enfoque en la creatividad, el suspenso y la ciencia ficción.</p>
       </div>
 
+      <div class="caso0-inline">
+        <div class="caso0-inline-inner">
+          <div>
+            <span class="caso0-inline-title">Archivo Cero</span>
+            <h3>No se explica, se experimenta</h3>
+            <p>El Caso #00 está disponible sin costo. Si querés entender de qué se trata, arrancá por acá — la experiencia completa, gratis.</p>
+          </div>
+          <div class="caso0-inline-actions">
+            <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="btn-block"><span>Acceder al Caso #00 gratis</span><span>→</span></a>
+          </div>
+        </div>
+      </div>
+
       <div class="cta-links">
-        <a href="#" onclick="showSection('suscripcion'); return false;" class="btn-primary">Quiero suscribirme</a>
+        <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="btn-primary">Suscribirme ahora</a>
         <a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales</a>
       </div>
     </div>
@@ -1093,23 +1234,12 @@
       <h2>Suscripción mensual</h2>
       <p class="suscripcion-lead">Un nuevo caso cada mes. Accedé a investigaciones inéditas antes que nadie, a un precio promocional y formá parte de una colección en expansión.</p>
 
-      <div class="suscripcion-caso0">
-        <div>
-          <span class="suscripcion-caso0-label">Antes de suscribirte</span>
-          <h3>Probá el Caso #00 gratis</h3>
-          <p>Descargá el Caso #00 de forma gratuita, viví la experiencia completa, y después decidís.</p>
-        </div>
-        <div>
-          <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="btn-block" style="width:auto; min-width:200px;"><span>Descargar gratis</span><span>→</span></a>
-        </div>
-      </div>
-
       <div class="precio-hero">
         <div class="precio-left">
           <span class="precio-eyebrow">Suscripción mensual</span>
           <div class="precio-valor">9500<span>/ ARS</span></div>
           <span class="precio-sub">Valor promocional · Cancelás cuando querés</span>
-          <a href="mailto:hola.archivocero@gmail.com" class="btn-block"><span>Suscribirme ahora</span><span>→</span></a>
+          <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="btn-block"><span>Suscribirme ahora</span><span>→</span></a>
           <p class="precio-nota">Renovación automática el día 7 de cada mes.<br>Podés cancelar antes de la próxima fecha de cobro.</p>
         </div>
         <div class="precio-right">
@@ -1137,6 +1267,17 @@
         </div>
       </div>
 
+      <div class="suscripcion-caso0">
+        <div>
+          <span class="suscripcion-caso0-label">¿Querés ver de qué se trata primero?</span>
+          <h3>Probá el Caso #00 gratis</h3>
+          <p>Descargá el Caso #00 de forma gratuita, viví la experiencia completa, y después decidís si querés suscribirte.</p>
+        </div>
+        <div>
+          <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="btn-block" style="width:auto; min-width:200px;"><span>Descargar gratis</span><span>→</span></a>
+        </div>
+      </div>
+
       <div><a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales →</a></div>
     </div>
   </section>
@@ -1158,6 +1299,10 @@
       <h2>Casos individuales</h2>
       <div class="casos-grid">
         <div class="caso-card caso-card-disabled">
+          <div class="proximamente-overlay">
+            <span class="proximamente-overlay-text">PRÓXIMAMENTE</span>
+            <span class="proximamente-overlay-sub">En preparación</span>
+          </div>
           <span class="caso-tag tag-rojo">Próximamente</span>
           <h3>Casos individuales</h3>
           <p>Próximamente podrás adquirir casos individuales sin necesidad de suscripción. Elegís la investigación que querés resolver y accedés de forma directa.</p>
@@ -1165,6 +1310,10 @@
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
         <div class="caso-card caso-card-disabled">
+          <div class="proximamente-overlay">
+            <span class="proximamente-overlay-text">PRÓXIMAMENTE</span>
+            <span class="proximamente-overlay-sub">En desarrollo</span>
+          </div>
           <span class="caso-tag tag-ambar">En desarrollo</span>
           <h3>Casos especiales</h3>
           <p>El equipo de Archivo Cero trabaja en nuevas investigaciones especiales. Cada caso está diseñado con enfoque en coherencia, realismo y experiencia inmersiva.</p>
@@ -1172,8 +1321,21 @@
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
       </div>
-      <div class="proximamente-banner">
-        <p><span>▸ PRÓXIMAMENTE</span> — Seguinos para enterarte del lanzamiento de los próximos casos</p>
+      <div class="proximamente-banner" aria-hidden="true">
+        <div class="proximamente-banner-track">
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Próximamente</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Seguinos para el lanzamiento</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos individuales en camino</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Sin suscripción</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Elegís el caso</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Acceso directo</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Próximamente</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Seguinos para el lanzamiento</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos individuales en camino</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Sin suscripción</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Elegís el caso</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Acceso directo</span>
+        </div>
       </div>
     </div>
   </section>
