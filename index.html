@@ -137,6 +137,83 @@
   }
   .dropdown-footer a:hover { color: var(--paper); }
 
+  /* ── ITEMS DESHABILITADOS EN NAV ── */
+  .dropdown-nav li.nav-item-disabled { position: relative; cursor: not-allowed; }
+  .dropdown-nav li.nav-item-disabled a {
+    cursor: not-allowed; color: rgba(240,236,224,0.28);
+    pointer-events: none; position: relative; overflow: hidden;
+  }
+  .dropdown-nav li.nav-item-disabled .nav-item-title { position: relative; transition: opacity 0.25s; }
+  .dropdown-nav li.nav-item-disabled .nav-item-number { opacity: 0.3; }
+  .dropdown-nav li.nav-item-disabled .nav-item-arrow { opacity: 0.15; }
+  .nav-prox-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center;
+    pointer-events: none; opacity: 0; transition: opacity 0.22s ease;
+  }
+  .nav-prox-overlay-text {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    letter-spacing: 0.08em; line-height: 1; color: var(--amber);
+    margin-left: calc(0.78rem + 1rem + 1.5ch);
+  }
+  .dropdown-nav li.nav-item-disabled:hover .nav-prox-overlay { opacity: 1; }
+  .dropdown-nav li.nav-item-disabled:hover a .nav-item-title { opacity: 0; }
+  .dropdown-nav li.nav-item-disabled:hover a .nav-item-number { opacity: 0.18; }
+
+  /* ── BOTONES DESHABILITADOS CON HOVER PRÓXIMAMENTE ── */
+  .btn-disabled {
+    position: relative; overflow: hidden;
+    cursor: not-allowed !important; pointer-events: all !important;
+    opacity: 0.42;
+    text-decoration: none;
+    display: inline-flex; align-items: center;
+  }
+  .btn-disabled::after { content: none !important; }
+  .btn-disabled .btn-prox-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--amber); background: rgba(11,9,7,0.88);
+    opacity: 0; transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .btn-disabled:hover { opacity: 1; transform: none !important; box-shadow: none !important; background: rgba(240,236,224,0.42) !important; }
+  .btn-disabled:hover .btn-prox-label { opacity: 1; }
+  /* variante para hero-btn */
+  .hero-btn-disabled {
+    position: relative; overflow: hidden;
+    cursor: not-allowed !important; pointer-events: all !important;
+    opacity: 0.38; text-decoration: none;
+  }
+  .hero-btn-disabled .btn-prox-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--amber); background: rgba(11,9,7,0.88);
+    opacity: 0; transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .hero-btn-disabled:hover { opacity: 1; transform: none !important; }
+  .hero-btn-disabled:hover .btn-prox-label { opacity: 1; }
+  /* variante para nav-cta */
+  .nav-cta-disabled {
+    position: relative; overflow: hidden;
+    cursor: not-allowed !important; opacity: 0.35;
+  }
+  .nav-cta-disabled .btn-prox-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--amber); background: rgba(11,9,7,0.92);
+    opacity: 0; transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .nav-cta-disabled:hover { opacity: 1; background: var(--paper) !important; transform: none !important; }
+  .nav-cta-disabled:hover .btn-prox-label { opacity: 1; }
+
   /* ── PAGE SECTIONS ── */
   .page-section { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .page-section.visible { display: block; }
@@ -910,7 +987,7 @@
 <nav>
   <a class="nav-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
   <div class="nav-right">
-    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="nav-cta">Suscribirme</a>
+    <a class="nav-cta nav-cta-disabled">Suscribirme<span class="btn-prox-label">Próximamente</span></a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -922,8 +999,14 @@
   <p class="dropdown-label">Navegación</p>
   <ul class="dropdown-nav">
     <li><a href="#" onclick="showSection('que-es'); return false;"><span class="nav-item-number">01</span><span class="nav-item-title">¿Qué es Archivo Cero?</span><span class="nav-item-arrow">→</span></a></li>
-    <li><a href="#" onclick="showSection('suscripcion'); return false;"><span class="nav-item-number">02</span><span class="nav-item-title">Quiero suscribirme</span><span class="nav-item-arrow">→</span></a></li>
-    <li><a href="#" onclick="showSection('casos'); return false;"><span class="nav-item-number">03</span><span class="nav-item-title">Casos individuales</span><span class="nav-item-arrow">→</span></a></li>
+    <li class="nav-item-disabled">
+      <a href="#" onclick="return false;"><span class="nav-item-number">02</span><span class="nav-item-title">Quiero suscribirme</span><span class="nav-item-arrow">→</span></a>
+      <div class="nav-prox-overlay"><span class="nav-prox-overlay-text">Próximamente</span></div>
+    </li>
+    <li class="nav-item-disabled">
+      <a href="#" onclick="return false;"><span class="nav-item-number">03</span><span class="nav-item-title">Casos individuales</span><span class="nav-item-arrow">→</span></a>
+      <div class="nav-prox-overlay"><span class="nav-prox-overlay-text">Próximamente</span></div>
+    </li>
     <li><a href="#" onclick="showSection('faq'); return false;"><span class="nav-item-number">04</span><span class="nav-item-title">Preguntas frecuentes</span><span class="nav-item-arrow">→</span></a></li>
   </ul>
   <div class="dropdown-footer">
@@ -951,8 +1034,9 @@
 
   <!-- BOTONES BANDA -->
   <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
+    <a class="hero-btn hero-btn-primary hero-btn-disabled">
       <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
+      <span class="btn-prox-label">Próximamente</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
       <span>Acceso gratuito al Caso #00</span><span class="btn-arrow">→</span>
@@ -1005,8 +1089,9 @@
             <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:340px;">
               <span>Descargar el Caso #00</span><span class="btn-arrow">→</span>
             </a>
-            <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-ghost" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
+            <a class="hero-btn hero-btn-ghost hero-btn-disabled" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
               <span>Quiero la suscripción mensual</span><span class="btn-arrow">→</span>
+              <span class="btn-prox-label">Próximamente</span>
             </a>
           </div>
         </div>
@@ -1133,8 +1218,9 @@
         <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:100%;">
           <span>Empezar por el Caso #00</span><span class="btn-arrow">→</span>
         </a>
-        <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary" style="max-width:100%;">
+        <a class="hero-btn hero-btn-secondary hero-btn-disabled" style="max-width:100%;">
           <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
+          <span class="btn-prox-label">Próximamente</span>
         </a>
         <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('faq'); return false;" style="max-width:100%;">
           <span>Tengo preguntas</span><span class="btn-arrow">→</span>
@@ -1210,10 +1296,6 @@
         </div>
       </div>
 
-      <div class="cta-links">
-        <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="btn-primary">Suscribirme ahora</a>
-        <a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos individuales</a>
-      </div>
     </div>
   </section>
   <footer>
