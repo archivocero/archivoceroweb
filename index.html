@@ -604,6 +604,125 @@
   .cta-banner-text p { font-size: 0.9rem; color: rgba(240,236,224,0.72); max-width: 38ch; line-height: 1.75; }
   .cta-banner-actions { display: flex; flex-direction: column; gap: 0.7rem; min-width: 260px; }
 
+  /* ── WAITLIST ── */
+  .waitlist-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(212,160,23,0.04) 0%, rgba(192,57,43,0.04) 100%);
+    padding: 5rem 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .waitlist-section::before {
+    content: "LISTA";
+    position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
+    font-family: "Bebas Neue", cursive; font-size: clamp(6rem, 18vw, 14rem);
+    color: rgba(212,160,23,0.04); letter-spacing: 0.05em;
+    pointer-events: none; user-select: none; line-height: 1; white-space: nowrap;
+  }
+  .waitlist-inner {
+    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .waitlist-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .waitlist-eyebrow::before { content: "//"; color: rgba(240,236,224,0.18); }
+  .waitlist-title {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    line-height: 0.97; letter-spacing: 0.03em; margin-bottom: 1.2rem;
+  }
+  .waitlist-title span { color: var(--amber); }
+  .waitlist-desc {
+    font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.58);
+    max-width: 42ch;
+  }
+  .waitlist-form-wrap { display: flex; flex-direction: column; gap: 1rem; }
+  .waitlist-form {
+    display: flex; flex-direction: column; gap: 0.7rem;
+  }
+  .waitlist-input-row { display: flex; gap: 0; }
+  .waitlist-input {
+    flex: 1;
+    font-family: "Courier Prime", monospace; font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    background: rgba(240,236,224,0.04);
+    border: 1px solid rgba(240,236,224,0.18);
+    border-right: none;
+    color: var(--paper);
+    padding: 0.9rem 1.2rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+  }
+  .waitlist-input::placeholder { color: rgba(240,236,224,0.28); }
+  .waitlist-input:focus {
+    border-color: rgba(212,160,23,0.55);
+    background: rgba(212,160,23,0.04);
+  }
+  .waitlist-submit {
+    font-family: "Space Mono", monospace; font-size: 0.68rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink); background: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 0.9rem 1.4rem;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+  .waitlist-submit:hover {
+    background: #e8b520;
+    transform: translateX(3px);
+    box-shadow: 0 4px 20px rgba(212,160,23,0.3);
+  }
+  .waitlist-submit:disabled {
+    opacity: 0.6; cursor: not-allowed; transform: none;
+  }
+  .waitlist-note {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.28); line-height: 1.7;
+  }
+  .waitlist-success {
+    display: none;
+    border: 1px solid rgba(74,222,128,0.35);
+    background: rgba(74,222,128,0.05);
+    padding: 1.2rem 1.5rem;
+    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #4ade80; line-height: 1.7;
+  }
+  .waitlist-success.visible { display: block; }
+  .waitlist-error {
+    display: none;
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red); margin-top: 0.3rem;
+  }
+  .waitlist-error.visible { display: block; }
+
+  /* ── INSTAGRAM ICON ── */
+  .nav-ig {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    border: 1px solid rgba(240,236,224,0.18);
+    color: var(--paper); text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .nav-ig:hover { border-color: rgba(240,236,224,0.5); background: rgba(240,236,224,0.05); }
+  .nav-ig svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .footer-ig {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-ig:hover { color: var(--paper); }
+  .footer-ig svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
   /* ── SECTIONS ── */
   .section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
   .section-topbar { padding: 5rem 2.5rem 0; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
@@ -983,10 +1102,237 @@
 </head>
 <body>
 
+<!-- ═══ SPLASH SCREEN ═══ -->
+<style>
+  /* ══════════════════════════════════
+     SPLASH — REDISEÑO COMPLETO
+  ══════════════════════════════════ */
+  #splash {
+    position: fixed; inset: 0; z-index: 99999;
+    background: #060403;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.75s ease;
+    overflow: hidden;
+  }
+  #splash.hiding { opacity: 0; pointer-events: none; }
+
+  /* ── GRILLA (igual que el landing) ── */
+  .splash-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(240,236,224,0.032) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,236,224,0.032) 1px, transparent 1px);
+    background-size: 72px 72px;
+    z-index: 0;
+  }
+
+  /* ── GLOW ROJIZO CENTRAL ── */
+  .splash-glow {
+    position: absolute; pointer-events: none; z-index: 0;
+    width: 100vw; height: 100vh;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 52%, rgba(140,20,12,0.38) 0%, rgba(90,8,5,0.18) 40%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(192,57,43,0.14) 0%, transparent 55%);
+  }
+
+  /* ── GRAIN ── */
+  #splash::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.042'/%3E%3C/svg%3E");
+    pointer-events: none; opacity: 0.5; mix-blend-mode: overlay; z-index: 1;
+  }
+
+  /* ── CORNER BRACKETS ── */
+  .splash-corner {
+    position: absolute; width: 28px; height: 28px; pointer-events: none; z-index: 2;
+  }
+  .splash-corner.tl { top: 1.5rem; left: 1.5rem; border-top: 1px solid rgba(240,236,224,0.18); border-left: 1px solid rgba(240,236,224,0.18); }
+  .splash-corner.tr { top: 1.5rem; right: 1.5rem; border-top: 1px solid rgba(240,236,224,0.18); border-right: 1px solid rgba(240,236,224,0.18); }
+  .splash-corner.bl { bottom: 1.5rem; left: 1.5rem; border-bottom: 1px solid rgba(240,236,224,0.18); border-left: 1px solid rgba(240,236,224,0.18); }
+  .splash-corner.br { bottom: 1.5rem; right: 1.5rem; border-bottom: 1px solid rgba(240,236,224,0.18); border-right: 1px solid rgba(240,236,224,0.18); }
+
+  /* ── COORDENADAS FLOTANTES EN LAS ESQUINAS ── */
+  .splash-coord {
+    position: absolute; z-index: 2; pointer-events: none;
+    font-family: "Space Mono", monospace;
+    font-size: 0.55rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(240,236,224,0.18);
+    opacity: 0; animation: splashFadeUp 0.6s ease 1.4s both;
+  }
+  .splash-coord-tl  { top: 2.4rem; left: 2.4rem; }
+  .splash-coord-tr  { top: 2.4rem; right: 2.4rem; text-align: right; }
+  .splash-coord-bl  { bottom: 2.4rem; left: 2.4rem; }
+  .splash-coord-br  { bottom: 2.4rem; right: 2.4rem; text-align: right; }
+
+  /* ── CONTENIDO CENTRAL ── */
+  .splash-inner {
+    position: relative; z-index: 3;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    gap: 0;
+  }
+
+  /* Status ENCIMA del título */
+  .splash-status {
+    font-family: "Space Mono", monospace;
+    font-size: clamp(0.58rem, 1.8vw, 0.72rem);
+    letter-spacing: 0.32em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.7rem;
+    margin-bottom: 1.1rem;
+    opacity: 0;
+    animation: splashFadeUp 0.7s ease 0.4s both;
+  }
+  .splash-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+  }
+  .splash-dot.inactive {
+    background: #c0392b;
+    box-shadow: 0 0 8px rgba(192,57,43,0.7);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  .splash-dot.active {
+    background: #4ade80;
+    box-shadow: 0 0 10px rgba(74,222,128,0.7);
+    animation: none;
+  }
+  .splash-status-text { transition: color 0.5s ease; }
+  .splash-status-text.inactive { color: rgba(192,57,43,0.85); }
+  .splash-status-text.active   { color: #4ade80; }
+
+  /* Título — un poco más chico que antes */
+  .splash-title {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    letter-spacing: 0.14em; color: #f0ece0; line-height: 1;
+    margin-bottom: 2.4rem;
+    opacity: 0; animation: splashFadeUp 0.9s ease 0.15s both;
+  }
+  .splash-title span { color: #c0392b; }
+
+  /* Área tipeada — una línea, frases que se alternan */
+  .splash-typed-area {
+    height: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.5rem;
+    min-width: 28ch;
+  }
+  .splash-typed-line {
+    font-family: "Courier Prime", monospace;
+    font-size: clamp(0.82rem, 2.4vw, 1rem);
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    white-space: nowrap; display: inline;
+  }
+  .splash-typed-line.line-auth { color: #ffffff; }
+  .splash-typed-line .cursor {
+    display: inline-block; width: 2px; height: 1em;
+    background: rgba(240,236,224,0.7); vertical-align: middle; margin-left: 1px;
+    animation: cursorBlink 0.7s step-end infinite;
+  }
+
+  /* Tap prompt */
+  .splash-tap {
+    font-family: "Space Mono", monospace;
+    font-size: clamp(0.58rem, 2vw, 0.68rem); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(240,236,224,0.32); margin-top: 0.9rem;
+    opacity: 0;
+    animation: splashFadeUp 0.7s ease 0.9s both, tapBlink 2s ease-in-out 1.8s infinite;
+    transition: opacity 0.4s ease;
+  }
+  .splash-tap.hidden { opacity: 0 !important; animation: none !important; }
+
+  /* Botón ingresar */
+  .splash-btn {
+    margin-top: 2.2rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #f0ece0; background: transparent;
+    border: 1px solid rgba(240,236,224,0.35);
+    padding: 0.95rem 2.4rem;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 0.8rem;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    opacity: 0; pointer-events: none;
+  }
+  .splash-btn.visible {
+    animation: splashFadeUp 0.6s ease both;
+    opacity: 1; pointer-events: all;
+  }
+  .splash-btn:hover {
+    background: rgba(240,236,224,0.06);
+    border-color: rgba(240,236,224,0.65);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 24px rgba(240,236,224,0.05);
+  }
+
+  /* Animaciones */
+  @keyframes splashFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
+  }
+  @keyframes tapBlink {
+    0%, 100% { opacity: 0.32; } 50% { opacity: 0.65; }
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0; }
+  }
+</style>
+
+<div id="splash" onclick="splashActivate()">
+
+  <!-- Fondo: grilla + glow rojizo correlato con landing -->
+  <div class="splash-grid"></div>
+  <div class="splash-glow"></div>
+
+  <!-- Coordenadas flotantes -->
+  <div class="splash-coord splash-coord-tl">34°38'12"S</div>
+  <div class="splash-coord splash-coord-tr">58°22'54"W</div>
+  <div class="splash-coord splash-coord-bl">ARCHIVO_CERO</div>
+  <div class="splash-coord splash-coord-br">ACCESO RESTRINGIDO</div>
+
+  <!-- Corner brackets -->
+  <div class="splash-corner tl"></div>
+  <div class="splash-corner tr"></div>
+  <div class="splash-corner bl"></div>
+  <div class="splash-corner br"></div>
+
+  <div class="splash-inner">
+
+    <!-- Status ARRIBA del título -->
+    <div class="splash-status">
+      <span class="splash-dot inactive" id="splashDot"></span>
+      <span class="splash-status-text inactive" id="splashStatusText">Sistema inactivo</span>
+    </div>
+
+    <!-- Título más chico -->
+    <div class="splash-title">Archivo<span>_</span>Cero</div>
+
+    <!-- Texto tipeado en una sola línea (las frases se alternan) -->
+    <div class="splash-typed-area" id="splashTypedArea"></div>
+
+    <p class="splash-tap" id="splashTap">Tocá para iniciar</p>
+
+    <button class="splash-btn" id="splashBtn" onclick="splashEnter(event)">
+      Ingresar &nbsp;→
+    </button>
+  </div>
+
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
   <div class="nav-right">
+    <a class="nav-ig" href="https://www.instagram.com/archivocero0" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+    </a>
     <a class="nav-cta nav-cta-disabled">Suscribirme<span class="btn-prox-label">Próximamente</span></a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
@@ -1011,7 +1357,7 @@
   </ul>
   <div class="dropdown-footer">
     <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-    <a href="#">Instagram</a>
+    <a href="https://www.instagram.com/archivocero0" target="_blank" rel="noopener">Instagram</a>
   </div>
 </div>
 
@@ -1106,9 +1452,9 @@
               <div class="caso0-case-title">El<br>Manuscrito</div>
               <p class="caso0-case-desc">Un escritor recibe por correo un manuscrito firmado con su nombre, su número de matrícula y su dedicatoria... pero él no lo escribió. El objetivo es descubrir quién mandó ese correo, cómo y por qué.</p>
               <div class="teaser-media">
-                <a href="https://www.instagram.com/archivocero0" target="_blank" class="teaser-link">
+                <a href="https://www.instagram.com/reel/DY2-7r-Jk0v/" target="_blank" rel="noopener" class="teaser-link">
                   <span class="teaser-link-icon">▶</span>
-                  <span class="teaser-link-text">Ver teaser en Instagram</span>
+                  <span class="teaser-link-text">Ver teaser del caso</span>
                   <span class="teaser-link-arrow">→</span>
                 </a>
                 <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="teaser-link">
@@ -1192,7 +1538,7 @@
         <div class="reveal">
           <p class="section-label">¿Para quién es?</p>
           <h2>Para los que disfrutan pensar</h2>
-          <p class="para-quien-text">Archivo Cero es para quienes disfrutan los <strong>thrillers, los podcasts de true crime, las historias de ciencia ficción</strong> y los juegos que te hacen usar la cabeza. No necesitás experiencia previa.</p>
+          <p class="para-quien-text">Archivo Cero es para quienes disfrutan los <strong>thrillers, los pódcasts de true crime, las historias de ciencia ficción</strong> y los juegos que te hacen usar la cabeza. No necesitás experiencia previa.</p>
           <p class="para-quien-text">Podés resolverlo <strong>solo, en pareja o en grupo</strong>. Lo único que necesitás es ganas de investigar.</p>
         </div>
         <div class="reveal reveal-delay-1">
@@ -1550,6 +1896,231 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMenu();
   });
+</script>
+
+<script>
+/* ══════════════════════════
+   SPLASH SCREEN LOGIC
+══════════════════════════ */
+
+// Web Audio API - generador de sonidos sin archivos externos
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+  return audioCtx;
+}
+
+function playTypeSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Sonido mecánico de máquina de escribir: impacto seco con ruido
+    const bufferSize = ctx.sampleRate * 0.06;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      // Ruido blanco con decay rápido — simula el impacto del tipo
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 6);
+    }
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+
+    // Filtro paso-banda para dar el timbre metálico característico
+    const bp = ctx.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = 1800 + Math.random() * 600;
+    bp.Q.value = 0.8;
+
+    // Segundo filtro para refuerzo de graves (click mecánico)
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowshelf';
+    lp.frequency.value = 300;
+    lp.gain.value = 10;
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.38, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.055);
+
+    source.connect(bp);
+    bp.connect(lp);
+    lp.connect(gain);
+    gain.connect(ctx.destination);
+    source.start(ctx.currentTime);
+    source.stop(ctx.currentTime + 0.06);
+
+    // Click de retorno de carro ocasional (cada ~15 teclas)
+    if (Math.random() < 0.07) {
+      setTimeout(() => {
+        try {
+          const ctx2 = getAudioCtx();
+          const osc = ctx2.createOscillator();
+          const g2 = ctx2.createGain();
+          osc.connect(g2); g2.connect(ctx2.destination);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(180, ctx2.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(80, ctx2.currentTime + 0.09);
+          g2.gain.setValueAtTime(0.08, ctx2.currentTime);
+          g2.gain.exponentialRampToValueAtTime(0.0001, ctx2.currentTime + 0.1);
+          osc.start(ctx2.currentTime); osc.stop(ctx2.currentTime + 0.11);
+        } catch(e) {}
+      }, 12);
+    }
+  } catch(e) {}
+}
+
+function playActivateSound() {
+  try {
+    const ctx = getAudioCtx();
+    // Bip de activación: tono ascendente
+    [0, 0.12, 0.24].forEach((delay, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      const freqs = [440, 554, 659];
+      osc.frequency.setValueAtTime(freqs[i], ctx.currentTime + delay);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime + delay);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + delay + 0.18);
+      osc.start(ctx.currentTime + delay);
+      osc.stop(ctx.currentTime + delay + 0.2);
+    });
+  } catch(e) {}
+}
+
+function playEnterSound() {
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(220, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.22);
+    gain.gain.setValueAtTime(0.18, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.4);
+  } catch(e) {}
+}
+
+// Tipeo animado con sonido
+function typeText(el, text, speed, onDone) {
+  el.textContent = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  el.appendChild(cursor);
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < text.length) {
+      const char = document.createTextNode(text[i]);
+      el.insertBefore(char, cursor);
+      playTypeSound();
+      i++;
+    } else {
+      clearInterval(interval);
+      cursor.remove();
+      if (onDone) onDone();
+    }
+  }, speed);
+}
+
+// Borrado animado (borra de derecha a izquierda)
+function eraseText(el, speed, onDone) {
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  el.appendChild(cursor);
+  const erase = setInterval(() => {
+    // Eliminar el nodo de texto antes del cursor
+    const prev = cursor.previousSibling;
+    if (prev && prev.nodeType === Node.TEXT_NODE && prev.textContent.length > 0) {
+      prev.textContent = prev.textContent.slice(0, -1);
+      if (prev.textContent.length === 0) prev.remove();
+      playTypeSound();
+    } else if (!prev || (prev.nodeType === Node.TEXT_NODE && prev.textContent.length === 0)) {
+      clearInterval(erase);
+      cursor.remove();
+      if (onDone) onDone();
+    }
+  }, speed);
+}
+
+let splashActivated = false;
+
+function splashActivate() {
+  if (splashActivated) return;
+  splashActivated = true;
+
+  playActivateSound();
+
+  const dot = document.getElementById('splashDot');
+  const statusText = document.getElementById('splashStatusText');
+  const tapPrompt = document.getElementById('splashTap');
+  const typedArea = document.getElementById('splashTypedArea');
+
+  // Ocultar "tocá para iniciar"
+  tapPrompt.classList.add('hidden');
+
+  // Cambiar status a activo
+  setTimeout(() => {
+    dot.classList.remove('inactive');
+    dot.classList.add('active');
+    statusText.classList.remove('inactive');
+    statusText.classList.add('active');
+    statusText.textContent = 'Sistema activo';
+  }, 300);
+
+  // Crear UNA sola línea para ambos mensajes
+  setTimeout(() => {
+    const line = document.createElement('div');
+    line.className = 'splash-typed-line line-auth';
+    typedArea.appendChild(line);
+
+    // 1. Tipear "Acceso autorizado."
+    typeText(line, 'Acceso autorizado.', 60, () => {
+      // 2. Pausa antes de borrar
+      setTimeout(() => {
+        // 3. Borrar "Acceso autorizado."
+        eraseText(line, 38, () => {
+          // 4. Pausa breve antes del segundo mensaje
+          setTimeout(() => {
+            // 5. Tipear "Bienvenido, investigador." en la misma línea
+            typeText(line, 'Bienvenido, investigador.', 52, () => {
+              // 6. Mostrar botón ingresar
+              setTimeout(() => {
+                const btn = document.getElementById('splashBtn');
+                btn.classList.add('visible');
+              }, 350);
+            });
+          }, 180);
+        });
+      }, 700);
+    });
+  }, 700);
+}
+
+function splashEnter(e) {
+  e.stopPropagation();
+  playEnterSound();
+  const splash = document.getElementById('splash');
+  setTimeout(() => {
+    splash.classList.add('hiding');
+    setTimeout(() => {
+      splash.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 750);
+  }, 80);
+}
+
+// Bloquear scroll mientras el splash está activo
+document.body.style.overflow = 'hidden';
+// Permitir scroll cuando se cierre
+document.getElementById('splash').addEventListener('transitionend', function() {
+  if (this.classList.contains('hiding')) document.body.style.overflow = '';
+});
 </script>
 </body>
 </html>
