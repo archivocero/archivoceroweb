@@ -1126,39 +1126,43 @@
      RESPONSIVE COMPLETO
   ═══════════════════════════════════ */
 
-  /* ── Desktop grande ── */
-  @media (max-width: 1280px) {
-    .hero-stats-band { /* full width, no changes needed */ }
+  /* ── Desktop grande (1280px+) ── */
+  @media (min-width: 1280px) {
+    .section, .section-topbar { padding-left: max(2.5rem, calc((100vw - 1100px) / 2)); padding-right: max(2.5rem, calc((100vw - 1100px) / 2)); }
+    nav { padding-left: max(2rem, calc((100vw - 1100px) / 2)); padding-right: max(2rem, calc((100vw - 1100px) / 2)); }
+    .hero { padding-left: max(2.5rem, calc((100vw - 1100px) / 2)); padding-right: max(2.5rem, calc((100vw - 1100px) / 2)); }
+    .como-funciona, .para-quien, .cta-banner, .caso0-section { padding-left: max(2.5rem, calc((100vw - 1100px) / 2)); padding-right: max(2.5rem, calc((100vw - 1100px) / 2)); }
+    footer { padding-left: max(2.5rem, calc((100vw - 1100px) / 2)); padding-right: max(2.5rem, calc((100vw - 1100px) / 2)); }
   }
 
-  /* ── Tablet landscape / PC pequeño ── */
+  /* ── Tablet landscape / PC pequeño (≤1024px) ── */
   @media (max-width: 1024px) {
     .steps-grid { grid-template-columns: repeat(2, 1fr); }
     .step-item:nth-child(2) { border-right: none; }
-    .step-item:nth-child(1),
-    .step-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .step-item:nth-child(1), .step-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     .para-quien-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
     .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
-    .hero-stats-band .stat-item:nth-child(1),
-    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(1), .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .caso0-grid { grid-template-columns: 1fr; gap: 3rem; }
     .caso0-inline-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .caso0-inline-actions { flex-direction: row; min-width: 0; }
     .features-row { grid-template-columns: 1fr 1fr; }
     .feature-col:nth-child(2) { border-right: none; }
-    .feature-col:nth-child(1),
-    .feature-col:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .feature-col:nth-child(1), .feature-col:nth-child(2) { border-bottom: 1px solid var(--border); }
     .suscripcion-faqs { grid-template-columns: 1fr 1fr; }
     .sfaq-block:nth-child(2) { border-right: none; }
-    .sfaq-block:nth-child(1),
-    .sfaq-block:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .sfaq-block:nth-child(1), .sfaq-block:nth-child(2) { border-bottom: 1px solid var(--border); }
     .sobre-banda { grid-template-columns: 1fr; gap: 1.5rem; }
     .sobre-banda-label { writing-mode: horizontal-tb; transform: none; }
+    .casos-grid { grid-template-columns: repeat(2, 1fr); }
+    .modal-inner { max-width: 90vw; }
+    .caso-especial-cover { margin: 0 -1.5rem 1.4rem; padding: 1.4rem 1.5rem; }
+    .caso0-card-body, .caso0-card-header, .caso0-card-meta { padding-left: 1.8rem; padding-right: 1.8rem; }
   }
 
-  /* ── Tablet portrait ── */
+  /* ── Tablet portrait (≤768px) ── */
   @media (max-width: 768px) {
     nav { padding: 0.9rem 1.25rem; }
     .nav-cta { font-size: 0.6rem; padding: 0.45rem 0.9rem; }
@@ -1170,19 +1174,16 @@
     .hero-btn:last-child { border-bottom: none; }
     .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
     .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
-    .hero-stats-band .stat-item:nth-child(1),
-    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(1), .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .section { padding: 4rem 1.25rem; }
     .section-topbar { padding: 4rem 1.25rem 0; }
-    .como-funciona,
-    .para-quien,
-    .cta-banner,
-    .caso0-section { padding: 4.5rem 1.25rem; }
+    .como-funciona, .para-quien, .cta-banner, .caso0-section { padding: 4.5rem 1.25rem; }
     .steps-grid { grid-template-columns: 1fr 1fr; }
     .cta-banner-inner { flex-direction: column; }
     .cta-banner-actions { min-width: 0; width: 100%; }
     footer { padding: 2rem 1.25rem; }
+    .footer-top { flex-direction: column; gap: 1.5rem; }
     .footer-contact { text-align: left; }
     .nav-dropdown { padding: 5rem 1.25rem 2rem; }
     .nav-item-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
@@ -1197,13 +1198,28 @@
     .suscripcion-caso0 { grid-template-columns: 1fr; gap: 1.5rem; }
     .caso0-inline-inner { grid-template-columns: 1fr; }
     .caso0-inline-actions { flex-direction: column; }
+    .casos-grid { grid-template-columns: 1fr; }
+    .caso-especial-title-row { flex-direction: column; gap: 0.6rem; }
+    .caso-precio-destacado { align-self: flex-start; }
+    .caso-especial-cover { margin: 0 -1.25rem 1.4rem; padding: 1.2rem 1.25rem; }
+    .modal-inner { width: 95vw; max-width: 95vw; padding: 1.8rem; }
+    .val-cierre-body { padding: 1.8rem; }
+    .val-password-form { max-width: 100%; }
+    .val-casos-grid { grid-template-columns: 1fr 1fr; }
+    .sobre-banda { padding: 1.8rem; }
+    .novedades-card { grid-template-columns: 1fr; }
+    .novedades-card-right { display: none; }
+    h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
+    .faq-question { padding: 1.2rem 1.4rem; }
+    .faq-answer p { padding: 1rem 1.4rem 1.5rem 1.8rem; }
   }
 
-  /* ── Mobile ── */
+  /* ── Mobile grande (≤480px) ── */
   @media (max-width: 480px) {
     nav { padding: 0.85rem 1rem; }
     .nav-cta { display: none; }
     h1 { font-size: clamp(3.2rem, 16vw, 4.5rem); }
+    h2 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
     .hero { padding: 5.5rem 1rem 3rem; }
     .hero-eyebrow { font-size: 0.6rem; gap: 0.6rem; }
     .hero-eyebrow::before { width: 1.5rem; }
@@ -1212,31 +1228,70 @@
     .hero-btn:last-child { border-bottom: none; }
     .hero-stats-band { grid-template-columns: repeat(2, 1fr); }
     .hero-stats-band .stat-item:nth-child(2) { border-right: none; }
-    .hero-stats-band .stat-item:nth-child(1),
-    .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .hero-stats-band .stat-item:nth-child(1), .hero-stats-band .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     .hero-stats-band .stat-item:nth-child(4) { border-right: none; }
     .stat-num { font-size: 1.9rem; }
     .stat-label { font-size: 0.52rem; }
     .steps-grid { grid-template-columns: 1fr; }
     .step-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
     .step-item:last-child { border-bottom: none !important; }
-    h2 { font-size: clamp(2.4rem, 9vw, 3.5rem); }
     .casos-grid { grid-template-columns: 1fr; }
-    .faq-question span { font-size: 0.92rem; }
+    .faq-question span { font-size: 0.9rem; }
+    .faq-question { padding: 1.1rem 1.2rem; }
+    .faq-answer p { padding: 0.9rem 1.2rem 1.4rem 1.6rem; }
     .cta-links { flex-direction: column; }
-    .btn-primary,
-    .btn-secondary { width: 100%; justify-content: space-between; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: space-between; }
     .dropdown-nav a { padding: 1.1rem 0; }
     .nav-item-title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
     footer { padding: 1.5rem 1rem; }
     .ticker-item { font-size: 0.6rem; }
     .caso0-section { padding: 4rem 1rem; }
+    .section { padding: 3.5rem 1rem; }
+    .section-topbar { padding: 3.5rem 1rem 0; }
+    .como-funciona, .para-quien, .cta-banner { padding: 3.5rem 1rem; }
     .hero-case-num { display: none; }
     .hero-lines, .hero-lines-2 { display: none; }
-    .sobre-banda { padding: 1.8rem; grid-template-columns: 1fr; gap: 1rem; }
-    .caso0-card-body { padding: 1.5rem; }
-    .caso0-card-header { padding: 1.2rem 1.5rem; }
-    .caso0-card-meta { padding: 0.8rem 1.5rem; }
+    .sobre-banda { padding: 1.5rem; grid-template-columns: 1fr; gap: 1rem; }
+    .caso0-card-body { padding: 1.4rem; }
+    .caso0-card-header { padding: 1.1rem 1.4rem; }
+    .caso0-card-meta { padding: 0.7rem 1.4rem; }
+    .caso-especial-cover { margin: 0 -1.4rem 1.2rem; padding: 1rem 1.4rem; }
+    .caso-especial-title { font-size: 1.8rem !important; }
+    .modal-inner { width: 100vw; max-width: 100vw; padding: 1.5rem 1.2rem; border-left: none; border-right: none; }
+    .modal-step h3 { font-size: 1.8rem; }
+    .val-cierre-body { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    .val-cierre-btn { width: 100%; justify-content: center; }
+    .val-cierre-sep-texto { font-size: 0.52rem; letter-spacing: 0.12em; }
+    .val-casos-grid { grid-template-columns: 1fr; }
+    .val-password-form { max-width: 100%; }
+    .caso0-inline-inner { grid-template-columns: 1fr; }
+    .caso0-inline-actions { flex-direction: column; }
+    .novedades-title { font-size: 1.6rem; }
+    .caso-especial-actions { gap: 0.5rem; }
+    .caso-especial-solidario { font-size: 0.75rem; }
+    .precio-hero { padding: 1.5rem; gap: 1.5rem; }
+    .cta-banner-inner { padding: 2rem 1.5rem; }
+    .modalidad-item { padding: 1.2rem; }
+    .casos-modalidades { gap: 0.6rem; }
+  }
+
+  /* ── Mobile chico (≤360px) ── */
+  @media (max-width: 360px) {
+    h1 { font-size: clamp(2.8rem, 17vw, 4rem); }
+    h2 { font-size: clamp(2rem, 11vw, 2.8rem); }
+    .hero { padding: 5rem 0.85rem 2.5rem; }
+    .hero-btn { font-size: 0.6rem; padding: 0.9rem 1rem; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    .section, .como-funciona, .para-quien, .cta-banner { padding: 3rem 0.85rem; }
+    .caso0-section { padding: 3rem 0.85rem; }
+    footer { padding: 1.2rem 0.85rem; }
+    .modal-inner { padding: 1.2rem 1rem; }
+    .caso0-card-body, .caso0-card-header, .caso0-card-meta { padding-left: 1.1rem; padding-right: 1.1rem; }
+    .caso-especial-cover { margin: 0 -1.1rem 1rem; padding: 0.9rem 1.1rem; }
+    .nav-dropdown { padding: 4.5rem 0.85rem 1.5rem; }
+    .sobre-banda { padding: 1.2rem; }
+    .val-cierre-body { padding: 1.2rem; }
+    .caso-especial-title { font-size: 1.6rem !important; }
   }
 
   /* ══════════════════════════════════
@@ -2505,7 +2560,7 @@
           <p class="novedades-desc">Un caso solidario desarrollado en colaboración con Gatumanía. Albahaca desapareció hace cuatro días. La puerta estaba cerrada por dentro. Una tarjeta que nadie puso ahí dice "Perdón" y una dirección. El objetivo: descubrir qué pasó y dónde está.</p>
           <div class="novedades-meta">
             <span>⏱ 60–90 min</span>
-            <span>🐾 $6.000 van a Gatumanía</span>
+            <span>🐾 75% va a Gatumanía</span>
           </div>
           <div class="novedades-actions">
             <button class="btn-block novedades-btn-comprar" onclick="showSection('casos'); setTimeout(abrirModalCompra, 300)"><span>🐾 Lo quiero</span><span>→</span></button>
@@ -2804,7 +2859,7 @@
           <div class="caso-especial-solidario">
             <span class="solidario-icon">♥</span>
             <div>
-              <span>De cada caso vendido, <strong>$6.000</strong> se destinan directamente a <strong>Gatumanía</strong> para continuar con el rescate y cuidado de gatos para adopción</span>
+              <span>De cada caso vendido, el <strong>75%</strong> se destina directamente a <strong>Gatumanía</strong> para continuar con el rescate y cuidado de gatos para adopción</span>
             </div>
           </div>
           <a href="https://www.instagram.com/gatu_mania/" target="_blank" rel="noopener" class="btn-conocer-gatu-standalone">
@@ -3031,7 +3086,7 @@
       <div class="modal-case-summary">
         <div class="modal-case-summary-info">
           <span>Rastro Perdido — E·01</span>
-          <span>🐾 $6.000 van a Gatumanía</span>
+          <span>🐾 75% va a Gatumanía</span>
         </div>
         <span class="modal-case-price">$8.000</span>
       </div>
