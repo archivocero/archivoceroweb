@@ -1260,6 +1260,13 @@
     color: var(--paper);
   }
   .val-input::placeholder { color: rgba(240,236,224,0.2); }
+  .val-hint {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(212,160,23,0.55);
+    margin-top: 0.8rem;
+  }
+  .val-hint::before { content: "// "; opacity: 0.6; }
   .val-input:focus { background: rgba(22,10,10,0.9); }
   .val-btn-acceso {
     display: flex; align-items: center; gap: 0.6rem;
@@ -1434,6 +1441,82 @@
     color: rgba(240,236,224,0.45); white-space: nowrap; flex-shrink: 0;
   }
   .val-inline-arrow { transition: transform 0.2s; }
+
+  /* ── VAL-CIERRE ── */
+  .val-cierre {
+    margin: 3.5rem 0 0;
+    padding: 2.8rem 0 0;
+  }
+  .val-cierre-separador {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.4rem;
+  }
+  .val-cierre-sep-linea {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,160,23,0.3), transparent);
+  }
+  .val-cierre-sep-texto {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(212,160,23,0.5); white-space: nowrap; flex-shrink: 0;
+  }
+  .val-cierre-body {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem;
+    border: 1px solid rgba(240,236,224,0.1);
+    border-left: 3px solid var(--amber);
+    background: linear-gradient(135deg, rgba(212,160,23,0.07) 0%, rgba(212,160,23,0.03) 100%);
+    padding: 2.2rem 2.5rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s, border-color 0.25s;
+  }
+  .val-cierre-body::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--amber), transparent);
+    pointer-events: none;
+  }
+  .val-cierre-body::before {
+    content: "CERRAR CASO"; position: absolute; right: -0.5rem; top: -1rem;
+    font-family: "Bebas Neue", cursive; font-size: 5.5rem;
+    color: rgba(212,160,23,0.04); letter-spacing: 0.05em;
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .val-cierre-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); display: block; margin-bottom: 0.5rem;
+  }
+  .val-cierre-titulo {
+    font-family: "Bebas Neue", cursive; font-size: 2rem;
+    letter-spacing: 0.06em; color: var(--paper);
+    margin: 0 0 0.6rem; line-height: 1;
+  }
+  .val-cierre-desc {
+    font-size: 0.88rem; line-height: 1.7;
+    color: rgba(240,236,224,0.55); margin: 0;
+  }
+  .val-cierre-btn {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 0.8rem;
+    background: var(--amber); color: var(--ink);
+    border: none; cursor: pointer;
+    font-family: "Space Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    padding: 1rem 1.8rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .val-cierre-btn:hover {
+    background: #e8b800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212,160,23,0.35);
+  }
+  .val-cierre-btn:hover .val-cierre-arrow { transform: translateX(5px); }
+  .val-cierre-arrow { display: inline-block; transition: transform 0.2s; font-size: 1rem; }
+  @media (max-width: 600px) {
+    .val-cierre-body { flex-direction: column; align-items: flex-start; }
+    .val-cierre-btn { width: 100%; justify-content: center; }
+  }
   @media (max-width: 540px) {
     .val-inline-inner { grid-template-columns: 1fr; }
     .val-inline-action { display: none; }
@@ -1925,6 +2008,82 @@
     transition: border-color 0.2s, background 0.2s;
   }
   .modal-download-link:hover { border-color: rgba(201,130,138,0.5); background: rgba(201,130,138,0.05); }
+
+  /* ── MODAL PASO 3 REDISEÑADO ── */
+  .modal-pago-ok {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.8rem;
+  }
+  .modal-pago-ok-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 1.8rem; height: 1.8rem;
+    border: 1.5px solid #4caf7d;
+    border-radius: 50%;
+    color: #4caf7d; font-size: 0.85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .modal-pago-ok-texto {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #4caf7d;
+  }
+  .modal-paso3-caso-id {
+    display: flex; align-items: center; gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(240,236,224,0.08);
+  }
+  .modal-paso3-num {
+    font-family: "Bebas Neue", cursive; font-size: 2.8rem;
+    color: var(--amber); line-height: 1; letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+  .modal-paso3-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(240,236,224,0.35); display: block; margin-bottom: 0.3rem;
+  }
+  .modal-paso3-titulo {
+    font-family: "Bebas Neue", cursive; font-size: 1.9rem;
+    letter-spacing: 0.06em; color: var(--paper); line-height: 1;
+  }
+  .modal-paso3-desc {
+    font-size: 0.88rem; line-height: 1.7;
+    color: rgba(240,236,224,0.55); margin-bottom: 1.8rem;
+  }
+  .modal-dl-btn {
+    display: flex; align-items: center; gap: 1.2rem;
+    text-decoration: none;
+    background: var(--amber);
+    padding: 1.2rem 1.6rem;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    margin-bottom: 1.4rem;
+  }
+  .modal-dl-btn:hover {
+    background: #e8b800;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212,160,23,0.35);
+  }
+  .modal-dl-btn-icon {
+    font-size: 1.5rem; color: var(--ink); font-weight: 700; flex-shrink: 0;
+    width: 2.2rem; height: 2.2rem;
+    border: 2px solid rgba(11,9,7,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-dl-btn-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(11,9,7,0.6); display: block; margin-bottom: 0.2rem;
+  }
+  .modal-dl-btn-nombre {
+    font-family: "Bebas Neue", cursive; font-size: 1.2rem;
+    letter-spacing: 0.06em; color: var(--ink); display: block;
+  }
+  .modal-paso3-nota {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.22); line-height: 1.7; text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -2697,17 +2856,22 @@
       </div>
 
       <!-- BLOQUE VALIDACIÓN -->
-      <div class="val-inline" onclick="showSection('validacion')" role="button" tabindex="0" onkeydown="if(event.key==='Enter') showSection('validacion')">
-        <div class="val-inline-inner">
-          <div>
-            <span class="val-inline-eyebrow">// Acceso restringido</span>
-            <h3>Validación de casos</h3>
-            <p>¿Ya resolviste un caso? Ingresá el código que descubriste para reconstruir la investigación y confirmar tus respuestas.</p>
+      <div class="val-cierre">
+        <div class="val-cierre-separador">
+          <span class="val-cierre-sep-linea"></span>
+          <span class="val-cierre-sep-texto">// fin del expediente</span>
+          <span class="val-cierre-sep-linea"></span>
+        </div>
+        <div class="val-cierre-body">
+          <div class="val-cierre-left">
+            <span class="val-cierre-eyebrow">¿Ya lo resolviste?</span>
+            <h3 class="val-cierre-titulo">Validá tu investigación</h3>
+            <p class="val-cierre-desc">Ingresá el código que encontraste para confirmar tus respuestas y cerrar el caso.</p>
           </div>
-          <div class="val-inline-action">
+          <button class="val-cierre-btn" onclick="showSection('validacion')">
             <span>Ir a validación</span>
-            <span class="val-inline-arrow">→</span>
-          </div>
+            <span class="val-cierre-arrow">→</span>
+          </button>
         </div>
       </div>
 
@@ -2824,6 +2988,7 @@
             <button class="val-btn-acceso" onclick="validarAcceso()"><span>Ingresar</span><span>→</span></button>
           </div>
           <p class="val-error" id="val-error"></p>
+          <p class="val-hint" id="val-hint"></p>
         </div>
       </div>
 
@@ -2898,17 +3063,26 @@
 
     <!-- PASO 3: Acceso al caso -->
     <div class="modal-step" id="modal-paso-3">
-      <p class="modal-step-label">Tu caso</p>
-      <h3>Rastro Perdido<br>E·01</h3>
-      <p>¡Gracias por apoyar a Gatumanía! 🐾 Accedé a los archivos del caso. Te recomendamos empezar por el Archivo 0.</p>
-      <div class="modal-caso-acceso">
-        <span class="modal-caso-acceso-label">Material del caso</span>
-        <a href="https://drive.google.com/drive/folders/1J9ovhLcFWlOgTVGVO_M_O8_VO179fq1u?usp=sharing" target="_blank" rel="noopener" class="modal-download-link">
-          <span>📁 Acceder a los archivos del caso</span>
-          <span>↓</span>
-        </a>
+      <div class="modal-pago-ok">
+        <span class="modal-pago-ok-icon">✓</span>
+        <span class="modal-pago-ok-texto">Pago confirmado</span>
       </div>
-      <p style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,224,0.28);line-height:1.7;margin-top:1rem;">También te enviamos el material por mail · hola.archivocero@gmail.com</p>
+      <div class="modal-paso3-caso-id">
+        <span class="modal-paso3-num">E·01</span>
+        <div>
+          <span class="modal-paso3-eyebrow">Caso especial · Solidario</span>
+          <h3 class="modal-paso3-titulo">Rastro Perdido</h3>
+        </div>
+      </div>
+      <p class="modal-paso3-desc">¡Gracias por apoyar a Gatumanía! 🐾<br>El material completo del caso está listo para descargar.</p>
+      <a href="https://drive.google.com/file/d/1t-EOID3cM8h4b6oZrd0dMqPHeT4CtfRj/view?usp=sharing" target="_blank" rel="noopener" class="modal-dl-btn">
+        <span class="modal-dl-btn-icon">↓</span>
+        <div>
+          <span class="modal-dl-btn-label">Descargar</span>
+          <span class="modal-dl-btn-nombre">Caso E·01 — Rastro Perdido</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -3041,6 +3215,7 @@
   const CASOS_DATA = {
     caso00: {
       password: '23',
+      hint: 'Pista: son dos números.',
       label: 'Archivo Cero · Caso #00',
       titulo: 'El Otro Yo',
       subtitle: '6 preguntas · Reconstrucción del manuscrito',
@@ -3057,6 +3232,7 @@
     },
     casoe01: {
       password: 'caro',
+      hint: 'Pista: apodo de cuatro letras.',
       label: 'Archivo Cero · Caso E·01',
       titulo: 'Rastro Perdido',
       subtitle: '7 preguntas · Rastro Perdido',
@@ -3084,6 +3260,9 @@
     document.getElementById('val-gate-label').textContent = caso.label;
     document.getElementById('val-gate-titulo').textContent = caso.titulo;
     document.getElementById('val-input').value = '';
+    const hint = CASOS_DATA[caso].hint || '';
+    const hintEl = document.getElementById('val-hint');
+    if (hintEl) hintEl.textContent = hint;
     document.getElementById('val-error').textContent = '';
     document.getElementById('val-preguntas').style.display = 'none';
     document.getElementById('val-resultado').style.display = 'none';
