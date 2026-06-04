@@ -1048,19 +1048,52 @@
   }
 
   /* ── FAQ ── */
-  .faq-list { display: flex; flex-direction: column; }
-  .faq-item { border-bottom: 1px solid var(--border); transition: background 0.3s, border-color 0.3s; }
-  .faq-item.open { background: rgba(212,160,23,0.06); border-bottom-color: rgba(212,160,23,0.22); }
-  .faq-question { width: 100%; background: none; border: none; padding: 1.7rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; text-align: left; gap: 1rem; transition: padding-left 0.2s; }
-  .faq-question:hover { padding-left: 0.5rem; }
-  .faq-item.open .faq-question { padding-left: 0.5rem; }
+  .faq-list { display: flex; flex-direction: column; gap: 0.55rem; }
+  .faq-item {
+    border: 1px solid rgba(240,236,224,0.1);
+    border-left: 3px solid rgba(192,57,43,0.45);
+    background: rgba(240,236,224,0.028);
+    transition: background 0.25s, border-color 0.25s, border-left-color 0.25s, box-shadow 0.25s;
+  }
+  .faq-item:hover {
+    border-color: rgba(240,236,224,0.18);
+    border-left-color: var(--red);
+    background: rgba(240,236,224,0.045);
+  }
+  .faq-item.open {
+    border-color: rgba(212,160,23,0.28);
+    border-left-color: var(--amber);
+    background: rgba(212,160,23,0.07);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(212,160,23,0.08);
+  }
+  .faq-question {
+    width: 100%; background: none; border: none;
+    padding: 1.5rem 1.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; text-align: left; gap: 1rem;
+    transition: padding-left 0.2s;
+  }
+  .faq-question:hover { padding-left: 2.2rem; }
+  .faq-item.open .faq-question { padding-left: 2.2rem; }
   .faq-question span { font-family: "Courier Prime", monospace; font-size: 1.02rem; color: var(--paper); line-height: 1.5; }
   .faq-item.open .faq-question > span:first-child { color: var(--amber); }
-  .faq-icon { font-family: "Space Mono", monospace; font-size: 1.2rem; color: var(--red); flex-shrink: 0; transition: transform 0.3s, color 0.3s; }
-  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--amber); }
+  .faq-icon {
+    font-family: "Space Mono", monospace; font-size: 1.1rem;
+    color: rgba(240,236,224,0.35); flex-shrink: 0;
+    transition: transform 0.3s, color 0.3s;
+    width: 1.6rem; height: 1.6rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(240,236,224,0.12);
+  }
+  .faq-item:hover .faq-icon { color: var(--red); border-color: rgba(192,57,43,0.35); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--amber); border-color: rgba(212,160,23,0.45); }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-item.open .faq-answer { max-height: 500px; }
-  .faq-answer p { font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.62); padding-bottom: 1.8rem; padding-right: 2rem; padding-left: 0.5rem; }
+  .faq-answer p {
+    font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.62);
+    padding: 1.2rem 1.8rem 1.8rem 2.2rem;
+    border-top: 1px solid rgba(212,160,23,0.12);
+  }
   .faq-contacto { margin-top: 4rem; padding: 2.5rem; background: rgba(192,57,43,0.04); border: 1px solid rgba(192,57,43,0.18); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
   .faq-contacto-text p { font-size: 0.86rem; color: rgba(240,236,224,0.52); line-height: 1.65; }
   .faq-contacto-text a { color: var(--amber); text-decoration: none; }
@@ -1354,12 +1387,13 @@
   /* ── VALIDACIÓN INLINE (sección casos) ── */
   .val-inline {
     margin: 3rem 0 0;
-    border: 1px solid rgba(192,57,43,0.3);
-    background: rgba(192,57,43,0.05);
+    border: 1px solid rgba(120,20,14,0.45);
+    border-left: 3px solid var(--red);
+    background: linear-gradient(135deg, rgba(100,15,10,0.45) 0%, rgba(80,10,7,0.55) 100%);
     padding: 2.2rem 2.5rem;
     position: relative; overflow: hidden;
     cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s, background 0.3s;
   }
   .val-inline::before {
     content: "VALIDAR"; position: absolute; right: -0.5rem; top: -1rem;
@@ -1372,7 +1406,7 @@
     background: linear-gradient(to right, var(--red), transparent);
     pointer-events: none;
   }
-  .val-inline:hover { border-color: rgba(192,57,43,0.55); background: rgba(192,57,43,0.08); }
+  .val-inline:hover { border-color: rgba(120,20,14,0.65); background: linear-gradient(135deg, rgba(120,20,14,0.55) 0%, rgba(90,12,8,0.65) 100%); }
   .val-inline:hover .val-inline-arrow { transform: translateX(5px); }
   .val-inline-inner {
     position: relative; z-index: 1;
@@ -1382,7 +1416,7 @@
   .val-inline-eyebrow {
     font-family: "Space Mono", monospace; font-size: 0.6rem;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 0.6rem; display: block;
+    color: var(--amber); margin-bottom: 0.6rem; display: block;
   }
   .val-inline h3 {
     font-family: "Bebas Neue", cursive; font-size: 1.8rem;
@@ -3087,7 +3121,7 @@
         <div class="val-select-wrap">
           <select id="vq${i}" class="val-select">
             <option value="">Seleccionar</option>
-            ${p.opciones.map(o => `<option value="${o}">${o}</option>`).join('')}
+            ${p.opciones.map(o => `<option value="${o.replace(/"/g, '&quot;')}">${o}</option>`).join('')}
           </select>
         </div>
       </div>
