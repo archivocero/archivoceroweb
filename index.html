@@ -863,7 +863,7 @@
     border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden;
     background: rgba(14,12,10,0.5); transition: border-color 0.3s, transform 0.22s, box-shadow 0.3s;
   }
-  .caso-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(192,57,43,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+  .caso-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(192,57,43,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
   .caso-card:hover { border-color: rgba(192,57,43,0.4); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .caso-card:hover::before { opacity: 1; }
   .caso-tag { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.28rem 0.7rem; border: 1px solid; display: inline-block; margin-bottom: 1.2rem; }
@@ -931,6 +931,121 @@
     display: flex; align-items: center; gap: 0.5rem;
   }
   .proximamente-banner-item .pb-accent { color: var(--amber); }
+
+  /* ── NOVEDADES ── */
+  .novedades-section {
+    background: linear-gradient(135deg, rgba(192,57,43,0.14) 0%, rgba(22,10,10,0.95) 60%);
+    border-top: 1px solid rgba(192,57,43,0.35);
+    border-bottom: 1px solid rgba(192,57,43,0.35);
+  }
+  .novedades-section .section { padding-top: 2.8rem; padding-bottom: 2.8rem; }
+  .novedades-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.4rem; gap: 1rem; flex-wrap: wrap;
+  }
+  .novedades-header h2 { margin-bottom: 0; }
+  .novedades-badge {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #c9828a; border: 1px solid rgba(201,130,138,0.4);
+    padding: 0.4rem 0.85rem; background: rgba(201,130,138,0.08);
+  }
+  .novedades-card {
+    display: grid; grid-template-columns: 1fr 140px;
+    border: 1px solid rgba(201,130,138,0.5);
+    background: rgba(28,12,12,0.95);
+    overflow: hidden; gap: 0; position: relative;
+    box-shadow: 0 8px 48px rgba(192,57,43,0.2), inset 0 0 80px rgba(201,130,138,0.06);
+  }
+  .novedades-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, #c9828a, var(--red), transparent);
+  }
+  .novedades-card-left {
+    padding: 1.6rem 2rem; display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .novedades-top-row {
+    display: flex; align-items: baseline; gap: 1rem;
+  }
+  .novedades-num {
+    font-family: "Bebas Neue", cursive; font-size: 0.85rem;
+    letter-spacing: 0.25em; color: rgba(201,130,138,0.7);
+    flex-shrink: 0;
+  }
+  .novedades-title {
+    font-family: "Bebas Neue", cursive; font-size: 2.2rem;
+    letter-spacing: 0.04em; line-height: 1; color: var(--paper);
+    margin: 0;
+  }
+  .novedades-desc {
+    font-size: 0.82rem; line-height: 1.75;
+    color: rgba(240,236,224,0.65); max-width: 54ch; margin: 0;
+  }
+  .novedades-meta {
+    display: flex; gap: 1.2rem; flex-wrap: wrap;
+    font-family: "Space Mono", monospace; font-size: 0.68rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(201,130,138,0.92);
+    padding-top: 0.65rem; border-top: 1px solid rgba(201,130,138,0.2);
+  }
+  .novedades-actions {
+    display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  }
+  .novedades-btn-comprar { max-width: 180px; background: #c9828a !important; color: var(--ink) !important; }
+  .novedades-btn-comprar:hover { background: #dea8ae !important; }
+  .novedades-btn-ver { max-width: 160px; }
+  .novedades-btn-gatu {
+    width: auto !important; flex-shrink: 0;
+    padding: 0.9rem 1rem !important;
+    align-self: stretch;
+    justify-content: space-between;
+  }
+  .novedades-precio {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border: 1px solid rgba(201,130,138,0.3);
+    background: rgba(201,130,138,0.06);
+    padding: 0.6rem 1rem;
+  }
+  .novedades-precio-label {
+    font-family: "Space Mono", monospace; font-size: 0.56rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(201,130,138,0.65);
+  }
+  .novedades-precio-valor {
+    font-family: "Bebas Neue", cursive; font-size: 1.7rem;
+    letter-spacing: 0.04em; color: #c9828a; line-height: 1;
+  }
+  .novedades-precio-moneda {
+    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    color: rgba(201,130,138,0.55); letter-spacing: 0.08em;
+  }
+  .novedades-link-gatu {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(201,130,138,0.65); text-decoration: none;
+    border-bottom: 1px solid rgba(201,130,138,0.3); padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .novedades-link-gatu:hover { color: #c9828a; border-color: rgba(201,130,138,0.7); }
+  .novedades-card-right {
+    background: rgba(201,130,138,0.08);
+    border-left: 1px solid rgba(201,130,138,0.25);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+  .novedades-visual { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+  .novedades-visual-num {
+    font-family: "Bebas Neue", cursive; font-size: 1.2rem;
+    letter-spacing: 0.15em; color: rgba(201,130,138,0.45);
+  }
+  .novedades-paw { width: 52px; height: 52px; fill: rgba(201,130,138,0.3); }
+  @media (max-width: 640px) {
+    .novedades-card { grid-template-columns: 1fr; }
+    .novedades-card-right { display: none; }
+    .novedades-card-left { padding: 1.4rem 1.6rem; }
+    .novedades-title { font-size: 1.8rem; }
+    .novedades-section .section { padding-top: 2rem; padding-bottom: 2rem; }
+  }
 
   /* ── FAQ ── */
   .faq-list { display: flex; flex-direction: column; }
@@ -1091,13 +1206,691 @@
     .caso0-card-meta { padding: 0.8rem 1.5rem; }
   }
 
-  /* ── Mobile pequeño ── */
+  /* ══════════════════════════════════
+     SECCIÓN VALIDACIÓN
+  ══════════════════════════════════ */
+  .val-subtitle {
+    font-size: 0.88rem; line-height: 1.8;
+    color: rgba(240,236,224,0.45); margin-top: 0.6rem; margin-bottom: 2.4rem;
+  }
+  .val-password-form { max-width: 480px; }
+  .val-input-wrap {
+    display: flex; gap: 0;
+    border: 1px solid rgba(201,130,138,0.3);
+  }
+  .val-input {
+    flex: 1; background: rgba(22,10,10,0.6);
+    border: none; outline: none;
+    padding: 1rem 1.2rem;
+    font-family: "Space Mono", monospace; font-size: 0.78rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--paper);
+  }
+  .val-input::placeholder { color: rgba(240,236,224,0.2); }
+  .val-input:focus { background: rgba(22,10,10,0.9); }
+  .val-btn-acceso {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: "Space Mono", monospace; font-size: 0.68rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); background: #c9828a;
+    border: none; padding: 1rem 1.4rem; cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .val-btn-acceso:hover { background: #dea8ae; }
+  .val-error {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(248,113,113,0.8); margin-top: 0.7rem;
+    min-height: 1em;
+  }
+  /* Header preguntas */
+  .val-header { margin-bottom: 2.4rem; }
+  /* Preguntas */
+  .val-questions { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 2.4rem; }
+  .val-q {
+    border-bottom: 1px solid rgba(240,236,224,0.07);
+    padding-bottom: 2rem;
+  }
+  .val-q-num {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(201,130,138,0.6); display: block; margin-bottom: 0.5rem;
+  }
+  .val-q-text {
+    font-size: 0.92rem; font-weight: 600; line-height: 1.55;
+    color: var(--paper); margin-bottom: 1rem;
+  }
+  .val-select-wrap { position: relative; }
+  .val-select-wrap::after {
+    content: "▾"; position: absolute; right: 1rem; top: 50%;
+    transform: translateY(-50%); color: #c9828a;
+    pointer-events: none; font-size: 0.85rem;
+  }
+  .val-select {
+    width: 100%; padding: 0.85rem 2.5rem 0.85rem 1rem;
+    background: rgba(22,10,10,0.5);
+    color: var(--paper);
+    border: 1px solid rgba(240,236,224,0.1);
+    font-family: "Courier Prime", monospace; font-size: 0.82rem;
+    appearance: none; cursor: pointer; outline: none;
+    transition: border-color 0.2s;
+  }
+  .val-select:focus { border-color: rgba(201,130,138,0.5); }
+  .val-select option { background: #130a0a; }
+  /* Botón confirmar */
+  .val-submit { margin-bottom: 2rem; }
+  .val-btn-confirmar { width: 100%; justify-content: space-between; }
+  /* Resultado */
+  .val-resultado {
+    padding: 2rem 2.2rem; margin-top: 1.5rem;
+    border: 1px solid; animation: fadeIn 0.4s ease;
+  }
+  .val-resultado.ok { border-color: rgba(74,222,128,0.3); background: rgba(10,30,16,0.7); }
+  .val-resultado.error { border-color: rgba(248,113,113,0.3); background: rgba(30,10,10,0.7); }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .val-result-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .ok .val-result-label { color: #4ade80; }
+  .error .val-result-label { color: #f87171; }
+  .val-result-body {
+    font-size: 0.85rem; line-height: 1.9;
+    color: rgba(240,236,224,0.62);
+  }
+  .val-result-code {
+    font-family: "Space Mono", monospace; font-size: 0.78rem;
+    letter-spacing: 0.18em; color: #c9828a;
+    margin-top: 1.2rem;
+  }
+
+  .val-casos-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 2rem; max-width: 640px;
+  }
+  .val-caso-btn {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem;
+    border: 1px solid rgba(240,236,224,0.1);
+    background: rgba(240,236,224,0.02);
+    padding: 1.6rem; cursor: pointer; text-align: left;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .val-caso-btn::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--red), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .val-caso-btn:hover { border-color: rgba(240,236,224,0.2); background: rgba(240,236,224,0.04); }
+  .val-caso-btn:hover::before { opacity: 1; }
+  .val-caso-num {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(240,236,224,0.35); display: block;
+  }
+  .val-caso-nombre {
+    font-family: "Bebas Neue", cursive; font-size: 1.5rem;
+    letter-spacing: 0.04em; color: var(--paper); display: block;
+    line-height: 1;
+  }
+  .val-caso-arrow {
+    position: absolute; bottom: 1.4rem; right: 1.4rem;
+    font-family: "Space Mono", monospace; font-size: 0.8rem;
+    color: rgba(240,236,224,0.2);
+    transition: transform 0.2s, color 0.2s;
+  }
+  .val-caso-btn:hover .val-caso-arrow { transform: translateX(4px); color: rgba(240,236,224,0.5); }
+  .val-back-link {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(240,236,224,0.3); background: none; border: none;
+    cursor: pointer; padding: 0; margin-bottom: 1.8rem; display: block;
+    transition: color 0.2s;
+  }
+  .val-back-link:hover { color: rgba(240,236,224,0.6); }
+  @media (max-width: 540px) { .val-casos-grid { grid-template-columns: 1fr; } }
+
+  /* ── VALIDACIÓN INLINE (sección casos) ── */
+  .val-inline {
+    margin: 3rem 0 0;
+    border: 1px solid rgba(192,57,43,0.3);
+    background: rgba(192,57,43,0.05);
+    padding: 2.2rem 2.5rem;
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .val-inline::before {
+    content: "VALIDAR"; position: absolute; right: -0.5rem; top: -1rem;
+    font-family: "Bebas Neue", cursive; font-size: 6rem;
+    color: rgba(192,57,43,0.06); letter-spacing: 0.05em;
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .val-inline::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--red), transparent);
+    pointer-events: none;
+  }
+  .val-inline:hover { border-color: rgba(192,57,43,0.55); background: rgba(192,57,43,0.08); }
+  .val-inline:hover .val-inline-arrow { transform: translateX(5px); }
+  .val-inline-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: center;
+  }
+  .val-inline-eyebrow {
+    font-family: "Space Mono", monospace; font-size: 0.6rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.6rem; display: block;
+  }
+  .val-inline h3 {
+    font-family: "Bebas Neue", cursive; font-size: 1.8rem;
+    letter-spacing: 0.03em; margin-bottom: 0.7rem; line-height: 1;
+    color: var(--paper);
+  }
+  .val-inline p {
+    font-size: 0.85rem; line-height: 1.78;
+    color: rgba(240,236,224,0.5); margin: 0; max-width: 48ch;
+  }
+  .val-inline-action {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(240,236,224,0.45); white-space: nowrap; flex-shrink: 0;
+  }
+  .val-inline-arrow { transition: transform 0.2s; }
+  @media (max-width: 540px) {
+    .val-inline-inner { grid-template-columns: 1fr; }
+    .val-inline-action { display: none; }
+  }
+
   @media (max-width: 360px) {
     h1 { font-size: clamp(2.8rem, 17vw, 4rem); }
     .hero { padding: 5rem 0.85rem 2.5rem; }
     .hero-btn { font-size: 0.6rem; padding: 0.9rem 1rem; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
   }
+
+  /* ══════════════════════════════════
+     CASO ESPECIAL — RASTRO PERDIDO
+  ══════════════════════════════════ */
+  .tag-especial {
+    color: #c9828a;
+    border-color: rgba(201,130,138,0.45);
+  }
+  .caso-especial-card {
+    border-color: rgba(201,130,138,0.3) !important;
+    background: rgba(20,10,11,0.65) !important;
+    position: relative; overflow: hidden;
+  }
+  .caso-especial-card::before {
+    background: linear-gradient(135deg, rgba(201,130,138,0.08) 0%, rgba(192,57,43,0.05) 60%, transparent 100%) !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+  }
+  .caso-especial-card::after {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, #c9828a, rgba(192,57,43,0.6), transparent);
+    pointer-events: none;
+  }
+  .caso-especial-card:hover {
+    border-color: rgba(201,130,138,0.6) !important;
+    box-shadow: 0 8px 40px rgba(201,130,138,0.12) !important;
+  }
+  /* Título + precio en la misma fila */
+  .caso-especial-title-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.9rem;
+  }
+  .caso-especial-title {
+    font-family: "Bebas Neue", cursive !important;
+    font-size: 2.4rem !important; letter-spacing: 0.04em !important;
+    line-height: 1 !important; margin-bottom: 0 !important;
+    color: var(--paper) !important; flex: 1; white-space: nowrap;
+  }
+  .caso-precio-destacado {
+    display: flex; flex-direction: column; align-items: flex-end;
+    flex-shrink: 0; min-width: 110px;
+    border: 1px solid rgba(201,130,138,0.2);
+    background: rgba(201,130,138,0.05);
+    padding: 0.45rem 0.85rem;
+  }
+  .precio-label {
+    font-family: "Space Mono", monospace; font-size: 0.52rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(201,130,138,0.6); margin-bottom: 0.1rem;
+  }
+  .precio-valor-grande {
+    font-family: "Bebas Neue", cursive; font-size: 1.4rem;
+    letter-spacing: 0.04em; color: #c9828a; line-height: 1;
+  }
+  .precio-moneda {
+    font-size: 0.7rem; color: rgba(201,130,138,0.55);
+    font-family: "Space Mono", monospace; letter-spacing: 0.08em;
+  }
+  .caso-especial-header-badge {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .caso-especial-collab {
+    font-family: "Space Mono", monospace; font-size: 0.55rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(201,130,138,0.6);
+  }
+  .caso-especial-cover {
+    margin: 0 -2rem 1.4rem; padding: 1.8rem 2rem;
+    background: linear-gradient(135deg, rgba(201,130,138,0.08) 0%, rgba(20,10,11,0.9) 100%);
+    border-top: 1px solid rgba(201,130,138,0.12);
+    border-bottom: 1px solid rgba(201,130,138,0.12);
+    position: relative; overflow: hidden;
+  }
+  .caso-especial-cover::before {
+    content: "RASTRO PERDIDO";
+    position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
+    font-family: "Bebas Neue", cursive; font-size: 3.5rem;
+    color: rgba(201,130,138,0.06); letter-spacing: 0.04em;
+    pointer-events: none; user-select: none; white-space: nowrap;
+  }
+  .caso-especial-cover-inner {
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  .cover-numero {
+    font-family: "Bebas Neue", cursive; font-size: 2.8rem;
+    letter-spacing: 0.1em; color: rgba(201,130,138,0.75); line-height: 1;
+  }
+  .cover-linea {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, rgba(201,130,138,0.4), transparent);
+  }
+  .caso-especial-title {
+    font-family: "Bebas Neue", cursive !important;
+    font-size: 2rem !important; letter-spacing: 0.04em !important;
+    line-height: 1 !important; margin-bottom: 0.9rem !important;
+    color: var(--paper) !important;
+  }
+  .caso-especial-desc {
+    font-size: 0.82rem !important; line-height: 1.78 !important;
+    color: rgba(240,236,224,0.52) !important; margin-bottom: 1.2rem !important;
+  }
+  .caso-especial-meta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-family: "Space Mono", monospace; font-size: 0.67rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(201,130,138,0.75);
+    margin-bottom: 1.4rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(201,130,138,0.12);
+  }
+  .caso-especial-actions {
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .btn-trailer {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.65); text-decoration: none;
+    border: 1px solid rgba(240,236,224,0.12);
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .btn-trailer:hover {
+    border-color: rgba(201,130,138,0.5);
+    color: #c9828a;
+    background: rgba(201,130,138,0.05);
+  }
+  .btn-trailer-icon { color: #c9828a; font-size: 0.8rem; }
+  .btn-trailer-arrow { margin-left: auto; transition: transform 0.2s; }
+  .btn-trailer:hover .btn-trailer-arrow { transform: translateX(4px); }
+  .btn-comprar-caso {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); background: #c9828a;
+    border: none; padding: 0.9rem 1.2rem;
+    cursor: pointer; width: 100%;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-comprar-caso:hover {
+    background: #dea8ae;
+    transform: translateX(5px);
+    box-shadow: 0 4px 24px rgba(201,130,138,0.3);
+  }
+  .btn-comprar-precio {
+    margin-left: auto; margin-right: 0;
+    font-size: 0.6rem; opacity: 0.8;
+    background: rgba(0,0,0,0.18); padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+  }
+  .btn-comprar-caso:last-child { margin-left: auto; }
+  .stamp-especial {
+    color: rgba(201,130,138,0.55);
+    border-color: rgba(201,130,138,0.4);
+  }
+  /* Bloque solidario */
+  .caso-especial-solidario {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.78rem; line-height: 1.6;
+    color: rgba(240,236,224,0.48);
+    border: 1px solid rgba(201,130,138,0.18);
+    background: rgba(201,130,138,0.05);
+    padding: 0.75rem 1rem; margin-bottom: 1.1rem;
+  }
+  .caso-especial-solidario strong { color: rgba(201,130,138,0.9); }
+  .solidario-icon { color: #c9828a; flex-shrink: 0; font-size: 0.85rem; margin-top: 0.1rem; }
+  .btn-conocer-gatu-standalone {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 0.7rem; width: 100%;
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.6); text-decoration: none;
+    border: 1px solid rgba(201,130,138,0.2);
+    padding: 0.65rem 0.9rem; margin-bottom: 1.1rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .btn-conocer-gatu-standalone:hover {
+    border-color: rgba(201,130,138,0.5);
+    color: #c9828a;
+    background: rgba(201,130,138,0.04);
+  }
+  .btn-conocer-gatu-arrow { transition: transform 0.2s; flex-shrink: 0; }
+  .btn-conocer-gatu-standalone:hover .btn-conocer-gatu-arrow { transform: translateX(4px); }
+  /* Contador */
+  .caso-contador {
+    font-family: "Space Mono", monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(201,130,138,0.65);
+    border-top: 1px solid rgba(201,130,138,0.12);
+    padding-top: 0.85rem; margin-top: 0.2rem; margin-bottom: 0.9rem;
+    display: none;
+  }
+  .caso-contador.visible { display: block; }
+  .caso-contador-num {
+    font-family: "Bebas Neue", cursive; font-size: 1.3rem;
+    color: #c9828a; letter-spacing: 0.06em; margin-right: 0.4rem;
+  }
+  /* Huellitas de fondo decorativas */
+  .paw-deco {
+    position: absolute; bottom: 3.2rem; right: 1rem;
+    display: flex; flex-direction: column; gap: 0.1rem;
+    pointer-events: none; user-select: none;
+    opacity: 0.06; font-size: 1.1rem;
+    transform: rotate(15deg);
+  }
+  .paw-deco span:nth-child(2) { margin-left: 0.8rem; }
+  .paw-deco span:nth-child(3) { margin-left: 0.3rem; }
+  /* Huellita en el cover */
+  .cover-paws { font-size: 1rem; opacity: 0.4; flex-shrink: 0; }
+
+  /* ═══════════════════
+     INTRO SECCIÓN CASOS
+  ═══════════════════ */
+  .casos-intro-desc {
+    margin-bottom: 2.8rem;
+  }
+  .casos-intro-desc > p {
+    font-size: 0.95rem; line-height: 1.85;
+    color: rgba(240,236,224,0.58); max-width: 58ch;
+    margin-bottom: 1.8rem;
+  }
+  .casos-modalidades {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-top: 1.8rem;
+  }
+  .modalidad-item {
+    border: 1px solid rgba(240,236,224,0.12);
+    background: rgba(240,236,224,0.03);
+    padding: 1.5rem 1.6rem;
+    display: flex; flex-direction: column; gap: 0.7rem;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .modalidad-item::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .modalidad-item:first-child::before { background: linear-gradient(to right, var(--red), transparent); }
+  .modalidad-item:last-child::before { background: linear-gradient(to right, #c9828a, transparent); }
+  .modalidad-item:hover { border-color: rgba(240,236,224,0.22); background: rgba(240,236,224,0.05); }
+  .modalidad-item:hover::before { opacity: 1; }
+  .modalidad-tag { display: inline-block; }
+  .modalidad-titulo {
+    font-family: "Bebas Neue", cursive; font-size: 1.25rem;
+    letter-spacing: 0.05em; color: var(--paper); line-height: 1;
+  }
+  .modalidad-text {
+    font-size: 0.82rem; line-height: 1.7;
+    color: rgba(240,236,224,0.48);
+    font-family: "Courier Prime", monospace;
+  }
+  .modalidad-status {
+    font-family: "Space Mono", monospace; font-size: 0.56rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-top: auto; padding-top: 0.6rem;
+    border-top: 1px solid rgba(240,236,224,0.07);
+  }
+  .modalidad-status.disponible { color: #c9828a; }
+  .modalidad-status.pronto { color: rgba(240,236,224,0.28); }
+  @media (max-width: 600px) {
+    .casos-modalidades { grid-template-columns: 1fr; }
+  }
+
+  /* ═══════════════════
+     CASO ESPECIAL — número en header
+  ═══════════════════ */
+  .caso-especial-num {
+    font-family: "Bebas Neue", cursive; font-size: 0.85rem;
+    letter-spacing: 0.2em; color: rgba(201,130,138,0.55);
+  }
+
+  /* Cover rediseñado — texto de fondo que cabe completo */
+  .caso-especial-cover {
+    margin: 0 -2rem 1.4rem; padding: 1.4rem 2rem;
+    background: linear-gradient(135deg, rgba(201,130,138,0.07) 0%, rgba(20,10,11,0.9) 100%);
+    border-top: 1px solid rgba(201,130,138,0.12);
+    border-bottom: 1px solid rgba(201,130,138,0.12);
+    position: relative; overflow: hidden;
+  }
+  .caso-especial-cover-inner {
+    display: flex; align-items: center;
+  }
+  .cover-titulo-bg {
+    font-family: "Bebas Neue", cursive;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    letter-spacing: 0.12em;
+    color: rgba(201,130,138,0.18);
+    white-space: nowrap;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* Precio destacado */
+  .caso-precio-destacado {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border: 1px solid rgba(201,130,138,0.2);
+    background: rgba(201,130,138,0.05);
+    padding: 0.8rem 1rem; margin-bottom: 1rem;
+  }
+  .precio-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(201,130,138,0.6);
+  }
+  .precio-valor-grande {
+    font-family: "Bebas Neue", cursive; font-size: 1.9rem;
+    letter-spacing: 0.04em; color: #c9828a; line-height: 1;
+  }
+  .precio-moneda {
+    font-size: 0.9rem; color: rgba(201,130,138,0.55);
+    font-family: "Space Mono", monospace; letter-spacing: 0.08em;
+  }
+
+  /* Huellitas SVG de fondo */
+  .paw-deco {
+    position: absolute; bottom: 2.5rem; right: 1.2rem;
+    display: flex; flex-direction: column; gap: 0.2rem;
+    pointer-events: none; user-select: none;
+    transform: rotate(18deg);
+  }
+  .paw-svg {
+    width: 28px; height: 28px;
+    fill: rgba(201,130,138,0.1);
+  }
+  .paw-svg-2 { margin-left: 14px; }
+  .paw-svg-3 { margin-left: 5px; }
+
+  /* ══════════════════════════════════
+     MODAL DE COMPRA
+  ══════════════════════════════════ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 9500;
+    background: rgba(6,5,4,0.92);
+    backdrop-filter: blur(18px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: rgba(22,13,14,0.98);
+    border: 1px solid rgba(201,130,138,0.25);
+    max-width: 520px; width: 100%;
+    position: relative; overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.35s ease;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,130,138,0.08), inset 0 0 80px rgba(201,130,138,0.03);
+  }
+  .modal-overlay.open .modal-box { transform: translateY(0); }
+  .modal-box::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, #c9828a, rgba(192,57,43,0.5), transparent);
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: none; border: none; cursor: pointer;
+    font-family: "Space Mono", monospace; font-size: 0.8rem;
+    color: rgba(240,236,224,0.3); transition: color 0.2s;
+    padding: 0.3rem 0.6rem;
+  }
+  .modal-close:hover { color: var(--paper); }
+
+  /* Pasos del modal */
+  .modal-step { display: none; padding: 2.5rem; }
+  .modal-step.active { display: block; }
+  .modal-step-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: #c9828a; margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .modal-step-label::before { content: "//"; color: rgba(240,236,224,0.18); }
+  .modal-step h3 {
+    font-family: "Bebas Neue", cursive; font-size: 1.8rem;
+    letter-spacing: 0.04em; color: var(--paper);
+    margin-bottom: 0.5rem; line-height: 1;
+  }
+  .modal-step p {
+    font-size: 0.82rem; line-height: 1.78;
+    color: rgba(240,236,224,0.5); margin-bottom: 1.5rem;
+  }
+  .modal-case-summary {
+    border: 1px solid rgba(201,130,138,0.18);
+    background: rgba(201,130,138,0.04);
+    padding: 1.2rem 1.4rem; margin-bottom: 1.8rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .modal-case-summary-info span:first-child {
+    display: block; font-family: "Bebas Neue", cursive; font-size: 1.1rem;
+    letter-spacing: 0.05em; color: var(--paper); margin-bottom: 0.15rem;
+  }
+  .modal-case-summary-info span:last-child {
+    font-family: "Space Mono", monospace; font-size: 0.64rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(201,130,138,0.9);
+    margin-top: 0.1rem;
+  }
+  .modal-case-price {
+    font-family: "Bebas Neue", cursive; font-size: 1.9rem;
+    letter-spacing: 0.04em; color: #c9828a;
+  }
+  .modal-btn-mp {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; font-family: "Space Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); background: #c9828a;
+    border: none; padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none; margin-bottom: 0.6rem;
+  }
+  .modal-btn-mp:hover { background: #dea8ae; transform: translateX(4px); }
+  .modal-btn-mp-sub {
+    font-size: 0.55rem; opacity: 0.75; display: block; margin-top: 0.2rem;
+    font-weight: normal; letter-spacing: 0.08em;
+  }
+  .modal-note {
+    font-family: "Space Mono", monospace; font-size: 0.56rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.22); line-height: 1.75; text-align: center;
+    margin-top: 1rem;
+  }
+  /* Paso 2: Confirmación de pago simulada */
+  .modal-confirm-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 2px solid rgba(74,222,128,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+    background: rgba(74,222,128,0.06);
+  }
+  .modal-access-box {
+    border: 1px solid rgba(74,222,128,0.25);
+    background: rgba(74,222,128,0.04);
+    padding: 1.2rem 1.4rem; margin: 1.5rem 0;
+  }
+  .modal-access-box-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #4ade80; margin-bottom: 0.5rem; display: block;
+  }
+  .modal-access-box p {
+    font-size: 0.82rem; line-height: 1.7;
+    color: rgba(240,236,224,0.58); margin-bottom: 0;
+  }
+  .modal-btn-acceso {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; font-family: "Space Mono", monospace; font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink); background: #4ade80;
+    border: none; padding: 1.1rem 1.4rem; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .modal-btn-acceso:hover { background: #86efac; transform: translateX(4px); }
+
+  /* Paso 3: acceso al caso */
+  .modal-caso-acceso {
+    border: 1px solid rgba(201,130,138,0.25);
+    background: rgba(201,130,138,0.04);
+    padding: 1.5rem; margin: 1.5rem 0;
+  }
+  .modal-caso-acceso-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #c9828a; margin-bottom: 0.8rem; display: block;
+  }
+  .modal-download-link {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "Space Mono", monospace; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--paper); text-decoration: none;
+    border: 1px solid rgba(240,236,224,0.15);
+    padding: 0.8rem 1rem; margin-bottom: 0.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .modal-download-link:hover { border-color: rgba(201,130,138,0.5); background: rgba(201,130,138,0.05); }
 </style>
 </head>
 <body>
@@ -1238,7 +2031,7 @@
   .splash-tap {
     font-family: "Space Mono", monospace;
     font-size: clamp(0.58rem, 2vw, 0.68rem); letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(240,236,224,0.32); margin-top: 0.9rem;
+    color: rgba(240,236,224,0.65); margin-top: 0.9rem;
     opacity: 0;
     animation: splashFadeUp 0.7s ease 0.9s both, tapBlink 2s ease-in-out 1.8s infinite;
     transition: opacity 0.4s ease;
@@ -1349,9 +2142,8 @@
       <a href="#" onclick="return false;"><span class="nav-item-number">02</span><span class="nav-item-title">Quiero suscribirme</span><span class="nav-item-arrow">→</span></a>
       <div class="nav-prox-overlay"><span class="nav-prox-overlay-text">Próximamente</span></div>
     </li>
-    <li class="nav-item-disabled">
-      <a href="#" onclick="return false;"><span class="nav-item-number">03</span><span class="nav-item-title">Casos individuales</span><span class="nav-item-arrow">→</span></a>
-      <div class="nav-prox-overlay"><span class="nav-prox-overlay-text">Próximamente</span></div>
+    <li>
+      <a href="#" onclick="showSection('casos'); return false;"><span class="nav-item-number">03</span><span class="nav-item-title">Casos</span><span class="nav-item-arrow">→</span></a>
     </li>
     <li><a href="#" onclick="showSection('faq'); return false;"><span class="nav-item-number">04</span><span class="nav-item-title">Preguntas frecuentes</span><span class="nav-item-arrow">→</span></a></li>
   </ul>
@@ -1496,6 +2288,50 @@
       <span class="ticker-item"><span>◂</span>Experiencia sin precedentes</span>
     </div>
   </div>
+
+  <!-- NOVEDADES / ÚLTIMO LANZAMIENTO -->
+  <section class="novedades-section">
+    <div class="section">
+      <div class="novedades-header reveal">
+        <div>
+          <p class="section-label">Último lanzamiento</p>
+          <h2>Novedad</h2>
+        </div>
+        <span class="novedades-badge">🐾 Caso Solidario</span>
+      </div>
+      <div class="novedades-card reveal">
+        <div class="novedades-card-left">
+          <div class="novedades-top-row">
+            <span class="novedades-num">E·01</span>
+            <h3 class="novedades-title">Rastro Perdido</h3>
+            <div class="novedades-precio">
+              <span class="novedades-precio-label">Valor</span>
+              <span class="novedades-precio-valor">$8.000 <span class="novedades-precio-moneda">ARS</span></span>
+            </div>
+          </div>
+          <p class="novedades-desc">Un caso solidario desarrollado en colaboración con Gatumanía. Albahaca desapareció hace cuatro días. La puerta estaba cerrada por dentro. Una tarjeta que nadie puso ahí dice "Perdón" y una dirección. El objetivo: descubrir qué pasó y dónde está.</p>
+          <div class="novedades-meta">
+            <span>⏱ 60–90 min</span>
+            <span>🐾 $6.000 van a Gatumanía</span>
+          </div>
+          <div class="novedades-actions">
+            <button class="btn-block novedades-btn-comprar" onclick="showSection('casos'); setTimeout(abrirModalCompra, 300)"><span>🐾 Lo quiero</span><span>→</span></button>
+            <button class="btn-block novedades-btn-ver" onclick="showSection('casos')"><span>Ver el caso</span><span>→</span></button>
+            <a href="https://www.instagram.com/gatu_mania/" target="_blank" rel="noopener" class="btn-conocer-gatu-standalone novedades-btn-gatu">
+              <span>🐾 Conocé más de Gatumanía</span>
+              <span class="btn-conocer-gatu-arrow">→</span>
+            </a>
+          </div>
+        </div>
+        <div class="novedades-card-right" aria-hidden="true">
+          <div class="novedades-visual">
+            <span class="novedades-visual-num">E·01</span>
+            <svg class="novedades-paw" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="38" rx="13" ry="10"/><ellipse cx="14" cy="24" rx="6" ry="8" transform="rotate(-20 14 24)"/><ellipse cx="46" cy="24" rx="6" ry="8" transform="rotate(20 46 24)"/><ellipse cx="22" cy="16" rx="5" ry="7" transform="rotate(-10 22 16)"/><ellipse cx="38" cy="16" rx="5" ry="7" transform="rotate(10 38 16)"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CÓMO FUNCIONA -->
   <section class="como-funciona">
@@ -1724,7 +2560,27 @@
   <section>
     <div class="section">
       <p class="section-label">Expedientes</p>
-      <h2>Casos individuales</h2>
+      <h2>Casos</h2>
+
+      <!-- INTRO DESCRIPCIÓN -->
+      <div class="casos-intro-desc">
+        <p>Casos que adquirís al instante, cuando quieras, sin suscripción. Hacés click en el link de pago y en minutos tenés acceso al material completo para empezar a investigar.</p>
+        <div class="casos-modalidades">
+        <div class="modalidad-item">
+            <span class="modalidad-tag tag-rojo">Casos individuales</span>
+            <span class="modalidad-titulo">Investigaciones estándar</span>
+            <span class="modalidad-text">Elegís el caso que querés resolver y lo adquirís al instante. Sin suscripción, sin compromisos.</span>
+            <span class="modalidad-status pronto">// Próximamente</span>
+          </div>
+          <div class="modalidad-item">
+            <span class="modalidad-tag tag-especial">🐾 Casos especiales</span>
+            <span class="modalidad-titulo">Colaboraciones e inéditos</span>
+            <span class="modalidad-text">Investigaciones desarrolladas junto a organizaciones reales o con causas solidarias. Parte del valor se dona directamente.</span>
+            <span class="modalidad-status disponible">// Disponible ahora</span>
+          </div>
+        </div>
+      </div>
+
       <div class="casos-grid">
         <div class="caso-card caso-card-disabled">
           <div class="proximamente-overlay">
@@ -1733,38 +2589,94 @@
           </div>
           <span class="caso-tag tag-rojo">Próximamente</span>
           <h3>Casos individuales</h3>
-          <p>Próximamente podrás adquirir casos individuales sin necesidad de suscripción. Elegís la investigación que querés resolver y accedés de forma directa.</p>
+          <p>Elegís la investigación que querés resolver y accedés de forma directa.</p>
           <div class="caso-meta"><span>⏱ 60–90 min</span><span>👤 Solo o en grupo</span></div>
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
-        <div class="caso-card caso-card-disabled">
-          <div class="proximamente-overlay">
-            <span class="proximamente-overlay-text">PRÓXIMAMENTE</span>
-            <span class="proximamente-overlay-sub">En desarrollo</span>
+
+        <!-- CASO ESPECIAL: RASTRO PERDIDO -->
+        <div class="caso-card caso-especial-card" id="card-rastro-perdido">
+          <div class="caso-especial-header-badge">
+            <span class="caso-tag tag-especial">🐾 Caso Solidario</span>
+            <span class="caso-especial-num">E·01</span>
           </div>
-          <span class="caso-tag tag-ambar">En desarrollo</span>
-          <h3>Casos especiales</h3>
-          <p>El equipo de Archivo Cero trabaja en nuevas investigaciones especiales. Cada caso está diseñado con enfoque en coherencia, realismo y experiencia inmersiva.</p>
-          <div class="caso-meta"><span>⏱ 60–90 min</span><span>👥 Ideal en equipo</span></div>
-          <div class="stamp stamp-pronto">PRÓXIMO</div>
+          <div class="caso-especial-title-row">
+            <h3 class="caso-especial-title">Rastro<br>Perdido</h3>
+            <div class="caso-precio-destacado">
+              <span class="precio-label">Valor</span>
+              <span class="precio-valor-grande">$8.000 <span class="precio-moneda">ARS</span></span>
+            </div>
+          </div>
+          <p class="caso-especial-desc">Natalia rescata gatos hace más de siete años. Entre todos los que pasaron por su departamento en Devoto, Albahaca nunca se fue a adopción ya que cumple un rol fundamental: es la que calma a los recién llegados. Hace cuatro días desapareció. La puerta estaba cerrada por dentro, y en el lugar se encontró con un lugar vacío y una tarjeta que dice "Perdón" y una dirección. El objetivo es averiguar qué pasó, por qué y dónde está Albahaca.</p>
+          <div class="caso-especial-solidario">
+            <span class="solidario-icon">♥</span>
+            <div>
+              <span>De cada caso vendido, <strong>$6.000</strong> se destinan directamente a <strong>Gatumanía</strong> para continuar con el rescate y cuidado de gatos para adopción</span>
+            </div>
+          </div>
+          <a href="https://www.instagram.com/gatu_mania/" target="_blank" rel="noopener" class="btn-conocer-gatu-standalone">
+            <span>🐾 Conocé más sobre Gatumanía</span>
+            <span class="btn-conocer-gatu-arrow">→</span>
+          </a>
+          <div class="caso-especial-meta">
+            <span>⏱ 60–90 min</span>
+            <span>Solo o en equipo</span>
+            <span>🐾 Causa real</span>
+          </div>
+          <div class="caso-especial-actions">
+            <a href="https://www.instagram.com/archivocero0" target="_blank" rel="noopener" class="btn-trailer">
+              <span class="btn-trailer-icon">▶</span>
+              <span>Ver trailer en Instagram</span>
+              <span class="btn-trailer-arrow">→</span>
+            </a>
+            <button class="btn-comprar-caso" onclick="abrirModalCompra()">
+              <span>🐾 Lo quiero</span>
+              <span>→</span>
+            </button>
+          </div>
+          <!-- Contador de colaboradores -->
+          <div class="caso-contador" id="contador-rastro">
+            <!-- Se muestra solo al llegar a 20+ -->
+          </div>
+          <!-- Huellitas decorativas SVG de fondo -->
+          <div class="paw-deco" aria-hidden="true">
+            <svg class="paw-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="38" rx="13" ry="10"/><ellipse cx="14" cy="24" rx="6" ry="8" transform="rotate(-20 14 24)"/><ellipse cx="46" cy="24" rx="6" ry="8" transform="rotate(20 46 24)"/><ellipse cx="22" cy="16" rx="5" ry="7" transform="rotate(-10 22 16)"/><ellipse cx="38" cy="16" rx="5" ry="7" transform="rotate(10 38 16)"/></svg>
+            <svg class="paw-svg paw-svg-2" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="38" rx="13" ry="10"/><ellipse cx="14" cy="24" rx="6" ry="8" transform="rotate(-20 14 24)"/><ellipse cx="46" cy="24" rx="6" ry="8" transform="rotate(20 46 24)"/><ellipse cx="22" cy="16" rx="5" ry="7" transform="rotate(-10 22 16)"/><ellipse cx="38" cy="16" rx="5" ry="7" transform="rotate(10 38 16)"/></svg>
+            <svg class="paw-svg paw-svg-3" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="38" rx="13" ry="10"/><ellipse cx="14" cy="24" rx="6" ry="8" transform="rotate(-20 14 24)"/><ellipse cx="46" cy="24" rx="6" ry="8" transform="rotate(20 46 24)"/><ellipse cx="22" cy="16" rx="5" ry="7" transform="rotate(-10 22 16)"/><ellipse cx="38" cy="16" rx="5" ry="7" transform="rotate(10 38 16)"/></svg>
+          </div>
+          <div class="stamp stamp-especial">E·01</div>
         </div>
       </div>
       <div class="proximamente-banner" aria-hidden="true">
         <div class="proximamente-banner-track">
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Próximamente</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Seguinos para el lanzamiento</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos individuales en camino</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Sin suscripción</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Elegís el caso</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos individuales</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Casos especiales</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Colaboraciones</span>
           <span class="proximamente-banner-item"><span class="pb-accent">·</span> Acceso directo</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Próximamente</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Seguinos para el lanzamiento</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos individuales en camino</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Sin suscripción</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Elegís el caso</span>
-          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Acceso directo</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Misterios por resolver</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Casos individuales</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Casos especiales</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Colaboraciones</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">▸</span> Acceso directo</span>
+          <span class="proximamente-banner-item"><span class="pb-accent">·</span> Misterios por resolver</span>
         </div>
       </div>
+
+      <!-- BLOQUE VALIDACIÓN -->
+      <div class="val-inline" onclick="showSection('validacion')" role="button" tabindex="0" onkeydown="if(event.key==='Enter') showSection('validacion')">
+        <div class="val-inline-inner">
+          <div>
+            <span class="val-inline-eyebrow">// Acceso restringido</span>
+            <h3>Validación de casos</h3>
+            <p>¿Ya resolviste un caso? Ingresá el código que descubriste para reconstruir la investigación y confirmar tus respuestas.</p>
+          </div>
+          <div class="val-inline-action">
+            <span>Ir a validación</span>
+            <span class="val-inline-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
   <footer>
@@ -1812,6 +2724,10 @@
           <button class="faq-question" onclick="toggleFaq(this)"><span>¿Cómo accedo al caso individual después de pagar?</span><span class="faq-icon">+</span></button>
           <div class="faq-answer"><p>Una vez confirmado el pago, recibís un correo electrónico con las instrucciones de acceso y descarga del caso. Esta validación puede demorar hasta 24 hs. Si tenés algún problema, podés escribirnos a hola.archivocero@gmail.com.</p></div>
         </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Qué son los casos especiales?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Los casos especiales son investigaciones únicas que se adquieren de la misma forma que los individuales — al instante, con acceso inmediato — pero que nacen de una colaboración con una organización, causa o referente real. Lo que los distingue es que parte del valor de cada compra se dona directamente a esa causa, la cual siempre se comunica de forma transparente. Son casos inéditos, con su propia numeración (E·01, E·02…), diseñados para combinar narrativa inmersiva con impacto real.</p></div>
+        </div>
       </div>
       <div class="faq-contacto">
         <div class="faq-contacto-text">
@@ -1831,8 +2747,198 @@
   </footer>
 </div>
 
+<!-- ═══ VALIDACIÓN — SECCIÓN OCULTA ═══ -->
+<div id="view-validacion" class="page-section">
+  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
+  <section>
+    <div class="section">
+
+      <!-- PASO 1: Selección de caso -->
+      <div id="val-selector">
+        <p class="section-label">Archivo Cero · Acceso restringido</p>
+        <h2>Verificación de casos</h2>
+        <p class="val-subtitle">Seleccioná el caso que querés validar e ingresá el código que descubriste durante la investigación.</p>
+
+        <div class="val-casos-grid">
+
+          <button class="val-caso-btn" onclick="seleccionarCaso('caso00')">
+            <span class="val-caso-num">// #00</span>
+            <span class="val-caso-nombre">El Otro Yo</span>
+            <span class="val-caso-tag tag-ambar">Caso base · Gratis</span>
+            <span class="val-caso-arrow">→</span>
+          </button>
+
+          <button class="val-caso-btn" onclick="seleccionarCaso('casoe01')">
+            <span class="val-caso-num">// E·01</span>
+            <span class="val-caso-nombre">Rastro Perdido</span>
+            <span class="val-caso-tag tag-especial">🐾 Caso Solidario</span>
+            <span class="val-caso-arrow">→</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- PASO 2: Gate de contraseña -->
+      <div id="val-gate" style="display:none">
+        <button class="val-back-link" onclick="volverSelector()">← Cambiar caso</button>
+        <p class="section-label" id="val-gate-label"></p>
+        <h2 id="val-gate-titulo"></h2>
+        <p class="val-subtitle">Ingresá el código que descubriste en el caso para continuar.</p>
+        <div class="val-password-form">
+          <div class="val-input-wrap">
+            <input type="text" id="val-input" class="val-input" placeholder="código de acceso" autocomplete="off" onkeydown="if(event.key==='Enter') validarAcceso()">
+            <button class="val-btn-acceso" onclick="validarAcceso()"><span>Ingresar</span><span>→</span></button>
+          </div>
+          <p class="val-error" id="val-error"></p>
+        </div>
+      </div>
+
+      <!-- PASO 3: Preguntas -->
+      <div id="val-preguntas" style="display:none">
+        <button class="val-back-link" onclick="volverSelector()">← Cambiar caso</button>
+        <div class="val-header">
+          <p class="section-label" id="val-preg-label"></p>
+          <h2>Reconstrucción del caso</h2>
+          <p class="val-subtitle" id="val-preg-subtitle"></p>
+        </div>
+        <div class="val-questions" id="val-questions-container"></div>
+        <div class="val-submit">
+          <button class="btn-comprar-caso val-btn-confirmar" onclick="validarRespuestas()">
+            <span>Confirmar reconstrucción</span>
+            <span>→</span>
+          </button>
+        </div>
+        <div id="val-resultado" style="display:none" class="val-resultado">
+          <div class="val-result-label" id="val-result-label"></div>
+          <div class="val-result-body" id="val-result-body"></div>
+          <div class="val-result-code" id="val-result-code"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+
+<div class="modal-overlay" id="modalCompra">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModalCompra()">✕ cerrar</button>
+
+    <!-- PASO 1: Detalle y pago -->
+    <div class="modal-step active" id="modal-paso-1">
+      <p class="modal-step-label">Caso Solidario E·01</p>
+      <h3>Rastro Perdido</h3>
+      <p>Tu compra financia directamente a <strong style="color:#c9828a;">Gatumanía</strong> para seguir rescatando gatos en Buenos Aires. El pago se procesa por Mercado Pago de forma segura.</p>
+      <div class="modal-case-summary">
+        <div class="modal-case-summary-info">
+          <span>Rastro Perdido — E·01</span>
+          <span>🐾 $6.000 van a Gatumanía</span>
+        </div>
+        <span class="modal-case-price">$8.000</span>
+      </div>
+      <a href="https://mpago.la/2KMh7s3" target="_blank" rel="noopener" class="modal-btn-mp" onclick="simularPago(event)">
+        <span>
+          Pagar con Mercado Pago
+          <span class="modal-btn-mp-sub">Tarjeta, transferencia o efectivo</span>
+        </span>
+        <span>→</span>
+      </a>
+      <p class="modal-note">Pago 100% seguro · Procesado por Mercado Pago · Acceso inmediato tras confirmación</p>
+    </div>
+
+    <!-- PASO 2: Confirmación de pago -->
+    <div class="modal-step" id="modal-paso-2">
+      <div class="modal-confirm-icon">✓</div>
+      <p class="modal-step-label">Pago confirmado</p>
+      <h3>¡Listo, investigador!</h3>
+      <p>Tu pago fue procesado correctamente. El caso Rastro Perdido E·01 está desbloqueado para vos.</p>
+      <div class="modal-access-box">
+        <span class="modal-access-box-label">Acceso confirmado</span>
+        <p>También vas a recibir el material por correo electrónico. Podés acceder directamente desde acá.</p>
+      </div>
+      <button class="modal-btn-acceso" onclick="irAlAccesoCaso()">
+        <span>Acceder al caso ahora</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <!-- PASO 3: Acceso al caso -->
+    <div class="modal-step" id="modal-paso-3">
+      <p class="modal-step-label">Tu caso</p>
+      <h3>Rastro Perdido<br>E·01</h3>
+      <p>¡Gracias por apoyar a Gatumanía! 🐾 Accedé a los archivos del caso. Te recomendamos empezar por el Archivo 0.</p>
+      <div class="modal-caso-acceso">
+        <span class="modal-caso-acceso-label">Material del caso</span>
+        <a href="https://drive.google.com/drive/folders/1J9ovhLcFWlOgTVGVO_M_O8_VO179fq1u?usp=sharing" target="_blank" rel="noopener" class="modal-download-link">
+          <span>📁 Acceder a los archivos del caso</span>
+          <span>↓</span>
+        </a>
+      </div>
+      <p style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,236,224,0.28);line-height:1.7;margin-top:1rem;">También te enviamos el material por mail · hola.archivocero@gmail.com</p>
+    </div>
+  </div>
+</div>
+
 <script>
-  const SECTIONS = ['que-es', 'suscripcion', 'casos', 'faq'];
+  const SECTIONS = ['que-es', 'suscripcion', 'casos', 'faq', 'validacion'];
+
+  function abrirModalCompra() {
+    document.getElementById('modal-paso-1').classList.add('active');
+    document.getElementById('modal-paso-2').classList.remove('active');
+    document.getElementById('modal-paso-3').classList.remove('active');
+    document.getElementById('modalCompra').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrarModalCompra() {
+    document.getElementById('modalCompra').classList.remove('open');
+    document.body.style.overflow = '';
+    // Limpiar el parámetro de la URL sin recargar
+    const url = new URL(window.location.href);
+    url.searchParams.delete('pago');
+    window.history.replaceState({}, '', url);
+  }
+  function simularPago(e) {
+    // Abre MP en nueva pestaña — la redirección real viene desde MP al volver
+    // No hacemos nada más acá
+  }
+  function irAlAccesoCaso() {
+    document.getElementById('modal-paso-2').classList.remove('active');
+    document.getElementById('modal-paso-3').classList.add('active');
+  }
+  document.getElementById('modalCompra').addEventListener('click', function(e) {
+    if (e.target === this) cerrarModalCompra();
+  });
+
+  // Contador de colaboradores — se muestra solo si hay 20+
+  // Número real: actualizalo manualmente acá cuando tengas ventas
+  (function initContador() {
+    const TOTAL_COLABORADORES = 0; // ← cambiá este número cuando tengas ventas reales
+    const UMBRAL = 20;
+    const el = document.getElementById('contador-rastro');
+    if (!el) return;
+    if (TOTAL_COLABORADORES >= UMBRAL) {
+      el.innerHTML = `<span class="caso-contador-num">${TOTAL_COLABORADORES}</span> personas ya contribuyeron con Gatumanía 🐾`;
+      el.classList.add('visible');
+    }
+  })();
+
+  // Detectar retorno desde Mercado Pago
+  (function detectarPagoMP() {
+    const params = new URLSearchParams(window.location.search);
+    const pago = params.get('pago');
+    if (pago === 'aprobado') {
+      // Esperar a que el DOM esté listo y abrir directo en paso 3
+      setTimeout(() => {
+        document.getElementById('modal-paso-1').classList.remove('active');
+        document.getElementById('modal-paso-2').classList.remove('active');
+        document.getElementById('modal-paso-3').classList.add('active');
+        document.getElementById('modalCompra').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        // Navegar a la sección de casos para que se vea el modal con contexto
+        showSection('casos');
+      }, 600);
+    }
+  })();
 
   function toggleMenu() {
     document.getElementById('menuToggle').classList.toggle('active');
@@ -1896,6 +3002,117 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMenu();
   });
+
+  // ═══ VALIDACIÓN DE CASOS ═══
+  const CASOS_DATA = {
+    caso00: {
+      password: '23',
+      label: 'Archivo Cero · Caso #00',
+      titulo: 'El Otro Yo',
+      subtitle: '6 preguntas · Reconstrucción del manuscrito',
+      preguntas: [
+        { texto: '¿Quién escribió el manuscrito "EL OTRO YO"?', opciones: ['Un impostor que investigó la vida de Elías durante años','Elías Vane desde una línea temporal alternativa donde no tiró el cuaderno en 1997','Renata Solís, directora de Paradoja Press, usando información filtrada','El propio Elías en un estado de escritura automática que no recuerda'], correcta: 'Elías Vane desde una línea temporal alternativa donde no tiró el cuaderno en 1997' },
+        { texto: '¿Qué número conecta la firma del "otro Elías" con la ficha oficial de autor?', opciones: ['312','1997','2847','09/03'], correcta: '2847' },
+        { texto: '¿Cuál fue el momento exacto de bifurcación entre las dos líneas temporales?', opciones: ['El día que Elías publicó su primera novela (2005)','La noche en que su padre se fue de la casa','El día de 1997 en que Elías tiró el cuaderno azul','El 9 de marzo de 2024, durante el evento de decoherencia'], correcta: 'El día de 1997 en que Elías tiró el cuaderno azul' },
+        { texto: '¿Qué anomalía del log del dispositivo confirma que el archivo NO fue escrito en ese momento?', opciones: ['El archivo fue enviado desde otro correo electrónico','El documento de 114.847 palabras fue guardado en exactamente 1 minuto','El log muestra que Pages fue abierto con una cuenta de usuario diferente','El archivo tenía una fecha de creación anterior al 2024'], correcta: 'El documento de 114.847 palabras fue guardado en exactamente 1 minuto' },
+        { texto: '¿Por qué el vecino Jorge Almada es un testigo clave?', opciones: ['Porque vio a alguien entrar al departamento de Elías esa noche','Porque escuchó la máquina de escribir en el horario del evento de bifurcación','Porque recibió un manuscrito similar en su propio buzón','Porque conocía al "otro Elías" de antes'], correcta: 'Porque escuchó la máquina de escribir en el horario del evento de bifurcación' },
+        { texto: '¿Qué significa el Capítulo 23 en blanco?', opciones: ['Que el "otro Elías" no terminó el libro a tiempo','Es un error de producción del manuscrito','Es deliberado: ese capítulo solo lo puede escribir el Elías de esta línea','Contiene texto invisible — es una pista oculta'], correcta: 'Es deliberado: ese capítulo solo lo puede escribir el Elías de esta línea' }
+      ],
+      resultadoOk: { label: 'Reconstrucción validada', body: 'Lograste conectar correctamente los registros.<br><br>El manuscrito no fue escrito en esta línea temporal.<br>La bifurcación existió. Y alguien consiguió atravesarla.<br><br><em>El capítulo 23 sigue vacío. Ahora entendés por qué.</em>', code: '' },
+      resultadoError: { label: 'Reconstrucción incompleta', body: 'Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar el manuscrito antes de confirmar.', code: '' }
+    },
+    casoe01: {
+      password: 'caro',
+      label: 'Archivo Cero · Caso E·01',
+      titulo: 'Rastro Perdido',
+      subtitle: '7 preguntas · Rastro Perdido',
+      preguntas: [
+        { texto: '¿Quién entró al departamento de Natalia la noche del 16 al 17 de abril?', opciones: ['Marcos, el ex voluntario, para "cerrar ciclos" con el refugio','Lucía, la veterinaria, para llevar a Albahaca a una revisión urgente','Caro, la adoptante, con la llave que nunca devolvió','Dante, el vecino, como represalia por las quejas ignoradas'], correcta: 'Caro, la adoptante, con la llave que nunca devolvió' },
+        { texto: '¿Por qué Caro quería ver a Albahaca?', opciones: ['Quería adoptarla ahora que Miel había muerto','Quería hablar con Natalia pero no se animaba a llamarla directamente','Necesitaba estar cerca de Albahaca para procesar el duelo por Miel','Quería demostrarle a Marcos que podía entrar sin ser descubierta'], correcta: 'Necesitaba estar cerca de Albahaca para procesar el duelo por Miel' },
+        { texto: '¿Qué rol tuvo Marcos en lo que pasó?', opciones: ['Podría decirse que ninguno — no sabía que Caro iba a llevarse a Albahaca.','Le prestó su llave a Caro para que pudiera entrar','Entró con Caro esa noche como acompañante','Le avisó a Caro sobre los horarios de Natalia para que no la cruzara'], correcta: 'Podría decirse que ninguno — no sabía que Caro iba a llevarse a Albahaca.' },
+        { texto: '¿Qué dice el mensaje cifrado del dorso de la tarjeta?', opciones: ['"FUE POR MIEL" — Caro explica en tres palabras por qué lo hizo','"FUE POR MIEL" — era un mensaje para Marcos justificando la decisión','"FUE POR MIEL" — Caro culpaba a la muerte de Miel de todo lo ocurrido','"FUE POR MIEL" — indicaba la dirección donde había que buscar a Albahaca'], correcta: '"FUE POR MIEL" — Caro explica en tres palabras por qué lo hizo' },
+        { texto: '¿Cómo escapó Albahaca del departamento de Caro?', opciones: ['Caro la llevó afuera intencionalmente para soltarla','Albahaca encontró una ventana abierta y saltó','Caro abrió la puerta un momento y Albahaca salió corriendo','Marcos entró a buscarla y Albahaca escapó cuando él abrió la puerta'], correcta: 'Caro abrió la puerta un momento y Albahaca salió corriendo' },
+        { texto: '¿En qué orden se reconstruye el recorrido de Albahaca esa noche?', opciones: ['Sale del edificio de Caro → kiosco Galván y Yerbal → florería Avellaneda → edificio de Santi','Sale del edificio de Caro → florería Avellaneda → kiosco Galván y Yerbal → edificio de Santi','Kiosco Galván y Yerbal → sale del edificio de Caro → florería Avellaneda → edificio de Santi','Sale del edificio de Caro → kiosco Galván y Yerbal → edificio de Santi → florería Avellaneda'], correcta: 'Sale del edificio de Caro → kiosco Galván y Yerbal → florería Avellaneda → edificio de Santi' },
+        { texto: '¿Cuáles son los tres datos que forman la respuesta final del caso?', opciones: ['MARCOS + FUE POR MIEL + ACFBEDG','CARO + YERBAL + ACFBDGE','MARCOS + YERBAL + ABCDEFG','CARO + FUE POR MIEL + ACFBEDG'], correcta: 'CARO + FUE POR MIEL + ACFBEDG' }
+      ],
+      resultadoOk: { label: 'Reconstrucción validada', body: 'Lograste conectar correctamente todos los registros.<br><br>La desaparición de Albahaca no fue un secuestro ni un abandono deliberado.<br>Fue el duelo de alguien que no encontró otra forma de transitarlo.<br><br>✓ Se identificó a la responsable del ingreso al departamento.<br>✓ Se verificó que no existió intención de abandono.<br>✓ Albahaca fue localizada sana y salva.', code: 'CARO · FUE POR MIEL · ACFBEDG' },
+      resultadoError: { label: 'Reconstrucción incompleta', body: 'Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar los testimonios y las evidencias antes de confirmar.', code: '' }
+    }
+  };
+
+  let casoActivo = null;
+
+  function seleccionarCaso(id) {
+    casoActivo = id;
+    const caso = CASOS_DATA[id];
+    document.getElementById('val-selector').style.display = 'none';
+    document.getElementById('val-gate').style.display = 'block';
+    document.getElementById('val-gate-label').textContent = caso.label;
+    document.getElementById('val-gate-titulo').textContent = caso.titulo;
+    document.getElementById('val-input').value = '';
+    document.getElementById('val-error').textContent = '';
+    document.getElementById('val-preguntas').style.display = 'none';
+    document.getElementById('val-resultado').style.display = 'none';
+  }
+
+  function volverSelector() {
+    casoActivo = null;
+    document.getElementById('val-selector').style.display = 'block';
+    document.getElementById('val-gate').style.display = 'none';
+    document.getElementById('val-preguntas').style.display = 'none';
+  }
+
+  function validarAcceso() {
+    const input = document.getElementById('val-input').value.trim().toLowerCase();
+    const password = CASOS_DATA[casoActivo].password.toLowerCase();
+    if (input === password) {
+      document.getElementById('val-gate').style.display = 'none';
+      mostrarPreguntas();
+    } else {
+      document.getElementById('val-error').textContent = '// Código incorrecto. Revisá el caso.';
+      document.getElementById('val-input').style.borderColor = 'rgba(248,113,113,0.5)';
+      setTimeout(() => { document.getElementById('val-input').style.borderColor = ''; }, 1500);
+    }
+  }
+
+  function mostrarPreguntas() {
+    const caso = CASOS_DATA[casoActivo];
+    document.getElementById('val-preg-label').textContent = caso.label;
+    document.getElementById('val-preg-subtitle').textContent = caso.subtitle;
+    const container = document.getElementById('val-questions-container');
+    container.innerHTML = caso.preguntas.map((p, i) => `
+      <div class="val-q">
+        <span class="val-q-num">// ${String(i+1).padStart(2,'0')}</span>
+        <p class="val-q-text">${p.texto}</p>
+        <div class="val-select-wrap">
+          <select id="vq${i}" class="val-select">
+            <option value="">Seleccionar</option>
+            ${p.opciones.map(o => `<option value="${o}">${o}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('val-resultado').style.display = 'none';
+    document.getElementById('val-preguntas').style.display = 'block';
+    document.getElementById('val-preguntas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function validarRespuestas() {
+    const caso = CASOS_DATA[casoActivo];
+    const todas = caso.preguntas.every((p, i) => {
+      const sel = document.getElementById('vq' + i);
+      return sel && sel.value === p.correcta;
+    });
+    const res = document.getElementById('val-resultado');
+    const data = todas ? caso.resultadoOk : caso.resultadoError;
+    res.className = 'val-resultado ' + (todas ? 'ok' : 'error');
+    document.getElementById('val-result-label').textContent = data.label;
+    document.getElementById('val-result-body').innerHTML = data.body;
+    document.getElementById('val-result-code').textContent = data.code;
+    res.style.display = 'block';
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  // ═══ FIN VALIDACIÓN ═══
 </script>
 
 <script>
