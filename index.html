@@ -2812,7 +2812,7 @@
             <span class="btn-conocer-gatu-arrow">→</span>
           </a>
           <div class="caso-especial-meta">
-            <span>⏱ 60–90 min</span>
+            <span>⏱ 40–60 min</span>
             <span>Solo o en equipo</span>
             <span>🐾 Causa real</span>
           </div>
@@ -3135,7 +3135,11 @@
     const params = new URLSearchParams(window.location.search);
     const pago = params.get('pago');
     if (pago === 'aprobado') {
-      // Esperar a que el DOM esté listo y abrir directo en paso 3
+      // Saltear splash directamente
+      const splash = document.getElementById('splash');
+      if (splash) { splash.style.display = 'none'; }
+      document.body.style.overflow = '';
+      // Abrir directo en paso 3
       setTimeout(() => {
         document.getElementById('modal-paso-1').classList.remove('active');
         document.getElementById('modal-paso-2').classList.remove('active');
