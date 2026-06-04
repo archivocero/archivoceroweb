@@ -3260,7 +3260,7 @@
     document.getElementById('val-gate-label').textContent = caso.label;
     document.getElementById('val-gate-titulo').textContent = caso.titulo;
     document.getElementById('val-input').value = '';
-    const hint = CASOS_DATA[caso].hint || '';
+    const hint = caso.hint || '';
     const hintEl = document.getElementById('val-hint');
     if (hintEl) hintEl.textContent = hint;
     document.getElementById('val-error').textContent = '';
