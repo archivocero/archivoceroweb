@@ -2434,7 +2434,7 @@
 
   <!-- STATS BAND -->
   <div class="hero-stats-band">
-    <div class="stat-item"><span class="stat-num">60–90</span><span class="stat-label">Min por caso</span></div>
+    <div class="stat-item"><span class="stat-num">40–60</span><span class="stat-label">Min por caso</span></div>
     <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
     <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
     <div class="stat-item"><span class="stat-num">BsAs</span><span class="stat-label">Desarrollado en Argentina</span></div>
@@ -2444,7 +2444,7 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item"><span>▸</span>Casos digitales</span>
-      <span class="ticker-item"><span>▸</span>60–90 minutos por caso</span>
+      <span class="ticker-item"><span>▸</span>40–60 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
       <span class="ticker-item"><span>▸</span>Sin instalación</span>
       <span class="ticker-item"><span>▸</span>Un nuevo caso por mes</span>
@@ -2452,7 +2452,7 @@
       <span class="ticker-item"><span>▸</span>Narrativa digital inmersiva</span>
       <span class="ticker-item"><span>▸</span>Caso #00 gratis</span>
       <span class="ticker-item"><span>▸</span>Casos digitales</span>
-      <span class="ticker-item"><span>▸</span>60–90 minutos por caso</span>
+      <span class="ticker-item"><span>▸</span>40–60 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
       <span class="ticker-item"><span>▸</span>Sin instalación</span>
       <span class="ticker-item"><span>▸</span>Un nuevo caso por mes</span>
@@ -2545,37 +2545,48 @@
           <p class="section-label">Último lanzamiento</p>
           <h2>Novedad</h2>
         </div>
-        <span class="novedades-badge">🐾 Caso Solidario</span>
       </div>
-      <div class="novedades-card reveal">
-        <div class="novedades-card-left">
-          <div class="novedades-top-row">
-            <span class="novedades-num">E·01</span>
-            <h3 class="novedades-title">Rastro Perdido</h3>
-            <div class="novedades-precio">
-              <span class="novedades-precio-label">Valor</span>
-              <span class="novedades-precio-valor">$8.000 <span class="novedades-precio-moneda">ARS</span></span>
+      <div class="casos-grid reveal" style="margin-top:0;">
+        <div class="caso-card caso-especial-card">
+          <div class="caso-especial-header-badge">
+            <span class="caso-tag tag-especial">🐾 Caso Solidario</span>
+            <span class="caso-especial-num">E·01</span>
+          </div>
+          <div class="caso-especial-title-row">
+            <h3 class="caso-especial-title">Rastro<br>Perdido</h3>
+            <div class="caso-precio-destacado">
+              <span class="precio-label">Valor</span>
+              <span class="precio-valor-grande">$8.000</span>
             </div>
           </div>
-          <p class="novedades-desc">Un caso solidario desarrollado en colaboración con Gatumanía. Albahaca desapareció hace cuatro días. La puerta estaba cerrada por dentro. Una tarjeta que nadie puso ahí dice "Perdón" y una dirección. El objetivo: descubrir qué pasó y dónde está.</p>
-          <div class="novedades-meta">
-            <span>⏱ 60–90 min</span>
-            <span>🐾 75% va a Gatumanía</span>
+          <p class="caso-especial-desc">Natalia rescata gatos hace más de siete años. Entre todos los que pasaron por su departamento en Devoto, Albahaca nunca se fue a adopción ya que cumple un rol fundamental: es la que calma a los recién llegados. Hace cuatro días desapareció. La puerta estaba cerrada por dentro, y en el lugar se encontró con un lugar vacío y una tarjeta que dice "Perdón" y una dirección. El objetivo es averiguar qué pasó, por qué y dónde está Albahaca.</p>
+          <div class="caso-especial-solidario">
+            <span class="solidario-icon">♥</span>
+            <div>
+              <span>De cada caso vendido, el <strong>75%</strong> se destina directamente a <strong>Gatumanía</strong> para continuar con el rescate y cuidado de gatos para adopción</span>
+            </div>
           </div>
-          <div class="novedades-actions">
-            <button class="btn-block novedades-btn-comprar" onclick="showSection('casos'); setTimeout(abrirModalCompra, 300)"><span>🐾 Lo quiero</span><span>→</span></button>
-            <button class="btn-block novedades-btn-ver" onclick="showSection('casos')"><span>Ver el caso</span><span>→</span></button>
-            <a href="https://www.instagram.com/gatu_mania/" target="_blank" rel="noopener" class="btn-conocer-gatu-standalone novedades-btn-gatu">
-              <span>🐾 Conocé más de Gatumanía</span>
-              <span class="btn-conocer-gatu-arrow">→</span>
+          <a href="https://www.instagram.com/gatu_mania/" target="_blank" rel="noopener" class="btn-conocer-gatu-standalone">
+            <span>🐾 Conocé más sobre Gatumanía</span>
+            <span class="btn-conocer-gatu-arrow">→</span>
+          </a>
+          <div class="caso-especial-meta">
+            <span>⏱ 40–60 min</span>
+            <span>Solo o en equipo</span>
+            <span>🐾 Causa real</span>
+          </div>
+          <div class="caso-especial-actions">
+            <a href="https://www.instagram.com/archivocero0" target="_blank" rel="noopener" class="btn-trailer">
+              <span class="btn-trailer-icon">▶</span>
+              <span>Ver trailer en Instagram</span>
+              <span class="btn-trailer-arrow">→</span>
             </a>
+            <button class="btn-comprar-caso" onclick="showSection('casos'); setTimeout(abrirModalCompra, 300)">
+              <span>🐾 Lo quiero</span>
+              <span class="btn-comprar-precio">$8.000</span>
+            </button>
           </div>
-        </div>
-        <div class="novedades-card-right" aria-hidden="true">
-          <div class="novedades-visual">
-            <span class="novedades-visual-num">E·01</span>
-            <svg class="novedades-paw" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="38" rx="13" ry="10"/><ellipse cx="14" cy="24" rx="6" ry="8" transform="rotate(-20 14 24)"/><ellipse cx="46" cy="24" rx="6" ry="8" transform="rotate(20 46 24)"/><ellipse cx="22" cy="16" rx="5" ry="7" transform="rotate(-10 22 16)"/><ellipse cx="38" cy="16" rx="5" ry="7" transform="rotate(10 38 16)"/></svg>
-          </div>
+          <div class="paw-deco" aria-hidden="true"><span>🐾</span><span>🐾</span><span>🐾</span></div>
         </div>
       </div>
     </div>
@@ -2852,7 +2863,7 @@
             <h3 class="caso-especial-title">Rastro<br>Perdido</h3>
             <div class="caso-precio-destacado">
               <span class="precio-label">Valor</span>
-              <span class="precio-valor-grande">$8.000 <span class="precio-moneda">ARS</span></span>
+              <span class="precio-valor-grande">$8.000</span>
             </div>
           </div>
           <p class="caso-especial-desc">Natalia rescata gatos hace más de siete años. Entre todos los que pasaron por su departamento en Devoto, Albahaca nunca se fue a adopción ya que cumple un rol fundamental: es la que calma a los recién llegados. Hace cuatro días desapareció. La puerta estaba cerrada por dentro, y en el lugar se encontró con un lugar vacío y una tarjeta que dice "Perdón" y una dirección. El objetivo es averiguar qué pasó, por qué y dónde está Albahaca.</p>
