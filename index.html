@@ -2371,10 +2371,10 @@
 <nav>
   <a class="nav-logo" onclick="showHero()">Archivo<span>_</span>Cero</a>
   <div class="nav-right">
-    <a class="nav-ig" href="https://www.instagram.com/reel/DZLrtLZtiEF/?igsh=MW1sdTN2OHg2dHh6Mw==" target="_blank" rel="noopener" aria-label="Instagram">
+    <a class="nav-ig" href="https://www.instagram.com/archivocero/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a class="nav-cta nav-cta-disabled">Suscribirme<span class="btn-prox-label">Próximamente</span></a>
+    <a class="nav-cta" href="#" onclick="showSection('validacion'); return false;">✓ Validar caso</a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -2397,7 +2397,7 @@
   </ul>
   <div class="dropdown-footer">
     <a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a>
-    <a href="https://www.instagram.com/reel/DZLrtLZtiEF/?igsh=MW1sdTN2OHg2dHh6Mw==" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.instagram.com/archivocero/" target="_blank" rel="noopener">Instagram</a>
   </div>
 </div>
 
@@ -2420,12 +2420,11 @@
 
   <!-- BOTONES BANDA -->
   <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <a class="hero-btn hero-btn-primary hero-btn-disabled">
-      <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
-      <span class="btn-prox-label">Próximamente</span>
+    <a href="#" class="hero-btn hero-btn-primary" onclick="showSection('casos'); return false;">
+      <span>🐾 Rastro Perdido — $8.000</span><span class="btn-arrow">→</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
-      <span>Acceso gratuito al Caso #00</span><span class="btn-arrow">→</span>
+      <span>Caso #00 gratis</span><span class="btn-arrow">→</span>
     </a>
     <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('que-es'); return false;">
       <span>¿Qué es Archivo Cero?</span><span class="btn-arrow">→</span>
@@ -2470,14 +2469,13 @@
         <div class="caso0-left reveal">
           <p class="caso0-eyebrow" style="color: var(--amber);">Acceso gratuito</p>
           <h2 class="caso0-title">Probá el<br><span>Caso #00</span><br>gratis.</h2>
-          <p class="caso0-desc">Antes de suscribirte, metete en la historia. El Caso #00 es tu entrada al universo de Archivo Cero: 30 minutos de investigación sin costo. Solo vos, el archivo, y la verdad que tenés que encontrar.</p>
+          <p class="caso0-desc">Antes de elegir tu caso, metete en la historia. El Caso #00 es tu entrada al universo de Archivo Cero: 30 minutos de investigación sin costo. Solo vos, el archivo, y la verdad que tenés que encontrar.</p>
           <div class="caso0-actions">
             <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:340px;">
               <span>Descargar el Caso #00</span><span class="btn-arrow">→</span>
             </a>
-            <a class="hero-btn hero-btn-ghost hero-btn-disabled" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);">
-              <span>Quiero la suscripción mensual</span><span class="btn-arrow">→</span>
-              <span class="btn-prox-label">Próximamente</span>
+            <a href="#" class="hero-btn hero-btn-ghost" style="max-width:340px; border: 1px solid rgba(240,236,224,0.35) !important; color: rgba(240,236,224,0.75);" onclick="showSection('casos'); return false;">
+              <span>🐾 Ver Rastro Perdido</span><span class="btn-arrow">→</span>
             </a>
           </div>
         </div>
@@ -2601,8 +2599,8 @@
         <div class="step-item reveal">
           <span class="step-num">01</span>
           <span class="step-icon">📁</span>
-          <span class="step-title">Te suscribís</span>
-          <p class="step-desc">Al suscribirte, recibís por mail el caso del mes — tu punto de entrada a la investigación. Mes a mes, un caso nuevo se desbloquea.</p>
+          <span class="step-title">Elegís tu caso</span>
+          <p class="step-desc">Navegás el catálogo, elegís el caso que más te llama y lo comprás. En minutos recibís el acceso por mail — listo para investigar.</p>
         </div>
         <div class="step-item reveal reveal-delay-1">
           <span class="step-num">02</span>
@@ -2849,7 +2847,7 @@
           <span class="caso-tag tag-rojo">Próximamente</span>
           <h3>Casos individuales</h3>
           <p>Elegís la investigación que querés resolver y accedés de forma directa.</p>
-          <div class="caso-meta"><span>⏱ 60–90 min</span><span>👤 Solo o en grupo</span></div>
+          <div class="caso-meta"><span>⏱ 40–60 min</span><span>👤 Solo o en grupo</span></div>
           <div class="stamp stamp-pronto">PRÓXIMO</div>
         </div>
 
