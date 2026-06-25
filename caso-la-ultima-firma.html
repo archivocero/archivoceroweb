@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIVO_CERO // CASO X·A — La Última Firma</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px;transition:font-size .2s}
+html.sz-s{font-size:11px}
+html.sz-m{font-size:13px}
+html.sz-l{font-size:16px}
+:root{
+  --bg:#09100d;--bg2:#0d1510;--bg3:#111a14;--bg4:#151f17;
+  --border:#1a2a1e;--border2:#243529;
+  --green:#3dff7a;--green-dim:#1a6b38;--green-muted:#0f2a1a;
+  --amber:#e8a830;--amber-dim:#5a3f08;--amber-muted:#1e1508;
+  --red:#e84444;--red-muted:#2a0f0f;
+  --text:#c8d9cc;--text-dim:#506050;--text-mid:#8aab90;
+  --locked-text:#2d4535;--locked:#1a2a1e;
+  --font-mono:'IBM Plex Mono',monospace;
+  --font-display:'Share Tech Mono',monospace;
+  --font-sans:'IBM Plex Sans',sans-serif;
+  --top:48px;--foot:32px;--sb:230px;--piz:33vw;
+}
+/* LIGHT MODE */
+html.light{
+  --bg:#e8e0d0;--bg2:#ddd5c4;--bg3:#d2c9b8;--bg4:#c8bfac;
+  --border:#b8ad98;--border2:#a8a088;
+  --green:#1a6b38;--green-dim:#0f4020;--green-muted:#c8ddc8;
+  --amber:#8a5a00;--amber-dim:#c49030;--amber-muted:#f0e0b0;
+  --red:#9b1010;--red-muted:#f0d0d0;
+  --text:#1a1a14;--text-dim:#6a6050;--text-mid:#3a3428;
+  --locked-text:#a09080;--locked:#d2c9b8;
+}
+/* CURSOR */
+.docs-panel{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='10' cy='10' r='7' fill='none' stroke='%233dff7a' stroke-width='2'/%3E%3Cline x1='15' y1='15' x2='21' y2='21' stroke='%233dff7a' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%233dff7a'/%3E%3C/svg%3E") 10 10,zoom-in}
+html.light .docs-panel{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='10' cy='10' r='7' fill='none' stroke='%231a6b38' stroke-width='2'/%3E%3Cline x1='15' y1='15' x2='21' y2='21' stroke='%231a6b38' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%231a6b38'/%3E%3C/svg%3E") 10 10,zoom-in}
+
+/* SPLASH SCREEN */
+.splash{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow-y:auto;padding:24px 16px}
+.splash-backdrop{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 70% at 65% 20%, rgba(61,255,122,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 90% at 10% 80%, rgba(232,168,48,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 90%, rgba(61,255,122,0.04) 0%, transparent 50%),
+    linear-gradient(160deg, rgba(20,30,20,0.3) 0%, rgba(9,16,13,0) 40%, rgba(9,16,13,0.6) 80%, rgba(9,16,13,1) 100%);
+}
+.splash-lines{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.splash-lines::before{
+  content:'';position:absolute;top:0;left:50%;width:1px;height:100%;
+  background:linear-gradient(to bottom, transparent 0%, rgba(61,255,122,0.08) 25%, rgba(61,255,122,0.08) 75%, transparent 100%);
+}
+.splash-lines::after{
+  content:'';position:absolute;top:38%;left:0;right:0;height:1px;
+  background:linear-gradient(to right, transparent 0%, rgba(232,168,48,0.06) 20%, rgba(232,168,48,0.06) 80%, transparent 100%);
+}
+.splash-lines2{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.splash-lines2::before{
+  content:'';position:absolute;top:0;left:24%;width:1px;height:100%;
+  background:linear-gradient(to bottom, transparent 0%, rgba(61,255,122,0.04) 30%, rgba(61,255,122,0.04) 70%, transparent 100%);
+}
+.splash-lines2::after{
+  content:'';position:absolute;top:0;left:76%;width:1px;height:100%;
+  background:linear-gradient(to bottom, transparent 0%, rgba(61,255,122,0.04) 30%, rgba(61,255,122,0.04) 70%, transparent 100%);
+}
+.splash-bgtext{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
+  font-family:var(--font-display);font-size:clamp(8rem,32vw,26rem);
+  color:rgba(61,255,122,0.008);letter-spacing:-0.01em;white-space:nowrap;
+  pointer-events:none;user-select:none;line-height:1;
+}
+.splash-casenum{
+  position:absolute;top:7rem;right:2rem;
+  font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.3em;
+  text-transform:uppercase;color:rgba(61,255,122,0.25);
+  writing-mode:vertical-rl;text-orientation:mixed;
+  pointer-events:none;
+}
+.splash-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.splash.hidden{display:none}
+.splash-pre{font-size:0.85rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:18px}
+.splash-title{font-family:var(--font-display);font-size:clamp(28px,5vw,52px);color:var(--green);letter-spacing:.1em;text-align:center;line-height:1.1;margin-bottom:14px;animation:flicker 7s infinite}
+@keyframes flicker{
+  0%,89%,100%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,0.25)}
+  89.3%{opacity:.3;text-shadow:none}
+  89.5%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,0.25)}
+  89.7%{opacity:.4;text-shadow:none}
+  89.9%{opacity:1;text-shadow:0 0 22px rgba(61,255,122,0.35)}
+  90.4%{opacity:.5;text-shadow:none}
+  90.6%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,0.25)}
+  92%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,0.25)}
+  92.2%{opacity:.35;text-shadow:none}
+  92.4%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,0.25)}
+}
+.splash-sub{font-size:1.08rem;color:var(--text-mid);letter-spacing:.05em;text-align:center;max-width:480px;line-height:1.7;margin-bottom:36px}
+.splash-meta{display:flex;gap:28px;margin-bottom:42px}
+.splash-meta-item{text-align:center}
+.splash-meta-label{font-size:0.77rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px}
+.splash-meta-val{font-size:0.85rem;color:var(--text)}
+.splash-btn{font-family:var(--font-display);font-size:1.08rem;color:var(--green);border:1px solid var(--green-dim);background:var(--green-muted);padding:14px 36px;cursor:pointer;letter-spacing:.2em;transition:all .2s}
+.splash-btn:hover{background:var(--green-dim);box-shadow:0 0 20px rgba(61,255,122,.15)}
+.splash-warning{font-size:0.85rem;color:var(--text-dim);margin-top:22px;letter-spacing:.06em}
+.splash-scan{font-size:0.69rem;color:var(--green-dim);letter-spacing:.2em;margin-bottom:30px;animation:blink 1.8s infinite}
+
+/* TIMER */
+.timer-wrap{display:flex;align-items:center;gap:6px}
+.timer-icon{font-size:0.77rem;color:var(--text-dim)}
+.timer-display{font-family:var(--font-display);font-size:1rem;color:var(--amber);letter-spacing:.15em;min-width:52px}
+.timer-display.urgent{color:var(--red);animation:blink .8s infinite}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:1rem;display:flex;flex-direction:column;transition:background .3s,color .3s}
+
+/* TOPBAR */
+.topbar{height:var(--top);display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;z-index:100}
+.t-left{display:flex;align-items:center;gap:12px}
+.t-logo{font-family:var(--font-display);font-size:1.08rem;color:var(--green);letter-spacing:.12em;text-decoration:none}
+.t-logo:hover{opacity:.8}
+.t-sep{color:var(--border2)}
+.t-case{font-size:0.85rem;color:var(--text-dim);letter-spacing:.1em}
+.t-badge{font-size:0.69rem;padding:3px 8px;border:1px solid var(--amber-dim);color:var(--amber);background:var(--amber-muted);letter-spacing:.12em}
+.t-right{display:flex;align-items:center;gap:10px}
+.t-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.t-status{font-size:0.69rem;color:var(--text-dim);letter-spacing:.1em}
+.tbtn{font-family:var(--font-mono);font-size:0.77rem;border:1px solid var(--border2);background:transparent;padding:5px 11px;cursor:pointer;letter-spacing:.06em;transition:all .15s;color:var(--text-dim)}
+.tbtn:hover{border-color:var(--text-dim);color:var(--text)}
+.tbtn.amber{color:var(--amber);border-color:var(--amber-dim)}
+.tbtn.amber:hover,.tbtn.amber.active{background:var(--amber-muted);border-color:var(--amber)}
+
+/* SHELL: sidebar + main(docs + pizarra) */
+.shell{flex:1;display:flex;overflow:hidden;height:calc(100vh - var(--top) - var(--foot))}
+
+/* SIDEBAR */
+.sidebar{width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2)}
+
+.sb-free{padding:6px 0;border-bottom:1px solid var(--border)}
+.sb-free-label{padding:7px 14px 4px;font-size:0.69rem;color:var(--text-dim);letter-spacing:.2em}
+.sb-section{border-bottom:1px solid var(--border)}
+.sb-head{padding:8px 14px;font-size:0.69rem;color:var(--text-dim);letter-spacing:.2em;display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+.sb-head::before{content:'▸';font-size:0.62rem;color:var(--green-dim);transition:transform .15s;flex-shrink:0}
+.sb-head.open::before{transform:rotate(90deg)}
+.fb{font-size:0.62rem;padding:1px 6px;letter-spacing:.08em;margin-left:auto;flex-shrink:0}
+.fb-open{background:var(--green-muted);color:var(--green);border:1px solid var(--green-dim)}
+.fb-locked{background:var(--locked);color:var(--locked-text);border:1px solid var(--locked-text)}
+.fb-done{background:var(--amber-muted);color:var(--amber);border:1px solid var(--amber-dim)}
+.sb-items{display:none}
+.sb-items.open{display:block}
+.sb-item{display:flex;align-items:center;gap:7px;padding:6px 14px 6px 22px;font-size:0.85rem;color:var(--text-mid);cursor:pointer;transition:all .1s;border-left:2px solid transparent}
+.sb-item:hover{background:var(--bg3);color:var(--text)}
+.sb-item.active{background:var(--bg3);color:var(--green);border-left-color:var(--green)}
+.sb-item.locked{color:var(--locked-text);cursor:not-allowed;pointer-events:none}
+.sb-item.visited:not(.active){color:var(--green-dim)}
+.sb-item.visited:not(.active) .sb-icon::after{content:'✓';position:absolute;font-size:0.6rem;margin-left:2px}
+.sb-item.visited .sb-icon{position:relative}
+.sb-icon{font-size:0.77rem;width:12px;text-align:center;flex-shrink:0}
+.sb-lock{font-size:0.69rem;color:var(--locked-text);margin-left:auto}
+
+/* enigma blocks in sidebar */
+.sb-enigma{padding:9px 12px;background:var(--amber-muted);border-top:1px solid var(--amber-dim)}
+.sb-enigma-label{font-size:0.69rem;color:var(--amber);letter-spacing:.12em;margin-bottom:6px}
+.sb-enigma-row{display:flex;gap:5px}
+.sb-enigma-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:0.92rem;padding:6px 8px;letter-spacing:.2em;text-transform:uppercase;outline:none;min-width:0}
+.sb-enigma-input:focus{border-color:var(--green-dim)}
+.sb-enigma-btn{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:0.77rem;padding:0 8px;cursor:pointer;flex-shrink:0}
+.sb-enigma-btn:hover{background:var(--green-dim)}
+.sb-enigma-msg{font-size:0.77rem;margin-top:5px;padding:4px 7px;display:none}
+.sb-enigma-msg.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.sb-enigma-msg.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+
+.sb-prog{margin-top:auto;border-top:1px solid var(--border);padding:10px 14px}
+.sb-prog-label{font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px}
+.sb-prog-bar{height:2px;background:var(--border)}
+.sb-prog-fill{height:100%;background:var(--green-dim);transition:width .4s}
+.sb-prog-pct{font-size:0.69rem;color:var(--green-dim);margin-top:3px}
+
+/* CONTENT AREA = docs + pizarra side by side */
+.content-area{flex:1;display:flex;overflow:hidden;position:relative;min-width:0}
+
+/* DOCS PANEL */
+.docs-panel{
+  flex:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:22px 28px;
+  background:var(--bg);
+  min-width:320px;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+  direction:ltr;
+}
+.docs-panel::-webkit-scrollbar{width:8px}
+.docs-panel::-webkit-scrollbar-track{background:var(--bg2)}
+.docs-panel::-webkit-scrollbar-thumb{background:var(--green-dim);border-radius:2px}
+.docs-panel::-webkit-scrollbar-thumb:hover{background:var(--green)}
+.breadcrumb{font-size:0.77rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+.bc-sep{color:var(--green-dim)}
+.page{display:none;max-width:660px;animation:fadein .18s ease}
+.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* PIZARRA PANEL */
+.pizarra-panel{width:0;background:var(--bg2);border-left:1px solid var(--border);overflow:hidden;flex-shrink:0;flex-grow:0;display:flex;flex-direction:column;transition:width .2s ease}
+.pizarra-panel.open{width:var(--piz);min-width:var(--piz);max-width:var(--piz)}
+.pizarra-panel.fullscreen{position:fixed;inset:var(--top) 0 var(--foot) 0;width:100%!important;z-index:200}
+.piz-inner{width:var(--piz);height:100%;display:flex;flex-direction:column;overflow:hidden}
+.pizarra-panel.fullscreen .piz-inner{width:100%}
+
+.piz-topbar{padding:9px 12px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.piz-title{font-size:0.69rem;color:var(--amber);letter-spacing:.18em}
+.piz-topbar-btns{display:flex;gap:6px}
+.piz-btn{font-family:var(--font-mono);font-size:0.69rem;padding:4px 8px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);letter-spacing:.06em;transition:all .15s}
+.piz-btn:hover{border-color:var(--text-dim);color:var(--text)}
+.piz-btn.active{border-color:var(--amber);color:var(--amber);background:var(--amber-muted)}
+
+.piz-tools{display:flex;gap:5px;padding:8px 10px;border-bottom:1px solid var(--border);flex-wrap:wrap;flex-shrink:0}
+.piz-tool{font-family:var(--font-mono);font-size:0.69rem;padding:4px 9px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);letter-spacing:.06em;transition:all .15s;display:flex;align-items:center;gap:4px}
+.piz-tool:hover{background:var(--bg3);color:var(--text)}
+.piz-tool.active{border-color:var(--amber);color:var(--amber);background:var(--amber-muted)}
+.piz-tool .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+.piz-canvas-wrap{flex:1;overflow:hidden;position:relative}
+.piz-canvas{width:100%;height:100%;position:relative;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23c8a060'/%3E%3Ccircle cx='1' cy='1' r='.7' fill='%23b08840' opacity='.5'/%3E%3Ccircle cx='3' cy='3' r='.5' fill='%23907030' opacity='.35'/%3E%3C/svg%3E");overflow:hidden;cursor:default;touch-action:pan-y}
+.piz-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+
+/* CORK CARDS */
+.cork-card{position:absolute;min-width:130px;max-width:190px;box-shadow:2px 3px 10px rgba(0,0,0,.45);cursor:grab;user-select:none;z-index:10;transition:box-shadow .15s}
+.cork-card:active,.cork-card.dragging{cursor:grabbing;box-shadow:4px 6px 18px rgba(0,0,0,.6);z-index:50}
+.cork-card.selected{box-shadow:0 0 0 2px var(--amber),3px 4px 14px rgba(0,0,0,.55);z-index:40}
+.cork-chinche{width:12px;height:12px;border-radius:50%;position:absolute;top:-6px;left:50%;transform:translateX(-50%);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
+.cork-card-head{padding:5px 8px 4px;font-size:0.62rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.12);display:flex;justify-content:space-between;align-items:center;cursor:grab}
+.cork-card-body{padding:7px 8px;font-size:0.85rem;font-family:var(--font-sans);color:#2a2010;line-height:1.5;min-height:36px;word-break:break-word}
+.cork-card-body[contenteditable="true"]{outline:none;cursor:text}
+.cork-del{font-size:0.77rem;color:#999;cursor:pointer;padding:0 1px;line-height:1;flex-shrink:0}
+.cork-del:hover{color:#c00}
+
+.card-nota{background:#fefbe8;border:1px solid #d4c060}
+.card-nota .cork-card-head{background:#f8e860;color:#5a3800}
+.card-nota .cork-chinche{background:#d03030}
+.card-sospechoso{background:#fff4ea;border:1px solid #d4a060}
+.card-sospechoso .cork-card-head{background:#ffd090;color:#4a1800}
+.card-sospechoso .cork-chinche{background:#b04000}
+.card-pista{background:#edfaea;border:1px solid #80c080}
+.card-pista .cork-card-head{background:#b8f0b0;color:#1a3810}
+.card-pista .cork-chinche{background:#207020}
+.card-hipotesis{background:#f0eeff;border:1px solid #a090d8}
+.card-hipotesis .cork-card-head{background:#c8b8f8;color:#201050}
+.card-hipotesis .cork-chinche{background:#5030b0}
+
+/* FOOTER */
+.footer{height:var(--foot);background:var(--bg2);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:0.69rem;color:var(--text-dim);letter-spacing:.08em;flex-shrink:0;z-index:50}
+
+/* ─── DOC STYLES ─── */
+.case-hdr{border:1px solid var(--border2);background:var(--bg2);padding:18px 22px;margin-bottom:18px}
+.case-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.ch-ref{font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px}
+.ch-title{font-family:var(--font-display);font-size:1.69rem;color:var(--green);letter-spacing:.08em}
+.ch-sub{font-size:0.85rem;color:var(--text-mid);margin-top:4px;line-height:1.5}
+.ch-badge{font-size:0.69rem;padding:3px 9px;border:1px solid var(--border2);color:var(--text-dim);white-space:nowrap}
+.case-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cm-l{font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}
+.cm-v{font-size:0.92rem;color:var(--text)}
+
+.doc-card{border:1px solid var(--border2);background:var(--bg2);margin-bottom:12px}
+.dc-head{padding:8px 13px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.dc-title{font-size:0.69rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
+.dc-ref{font-size:0.69rem;color:var(--green-dim)}
+.dc-body{padding:14px 16px;line-height:1.85;font-size:0.92rem;color:var(--text)}
+.dc-body p{margin-bottom:11px}
+.dc-body p:last-child{margin-bottom:0}
+
+.nota{border:1px solid var(--amber-dim);background:var(--amber-muted);padding:9px 13px;font-size:0.85rem;color:var(--amber);letter-spacing:.03em;line-height:1.6;margin-bottom:12px;display:flex;gap:9px;align-items:flex-start}
+.nota.red{border-color:#5a1a1a;background:var(--red-muted);color:var(--red)}
+.nota.green{border-color:var(--green-dim);background:var(--green-muted);color:var(--green)}
+
+/* informe */
+.informe{background:var(--bg3);border:1px solid var(--border2);margin-bottom:12px}
+.inf-hdr{background:var(--bg4);padding:12px 16px;border-bottom:1px solid var(--border2);text-align:center}
+.inf-org{font-size:0.69rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:2px}
+.inf-tit{font-size:1rem;color:var(--text);letter-spacing:.1em;font-weight:500}
+.inf-sub{font-size:0.77rem;color:var(--text-dim);margin-top:2px}
+.inf-body{padding:14px 16px}
+.inf-row{display:flex;gap:8px;margin-bottom:7px;font-size:0.92rem}
+.inf-k{color:var(--text-dim);width:150px;flex-shrink:0}
+.inf-v{color:var(--text)}
+.inf-sep{border:none;border-top:1px solid var(--border);margin:10px 0}
+.inf-nota{font-size:0.85rem;color:var(--text-mid);font-style:italic;line-height:1.7}
+.reg-hdr{background:var(--bg4);padding:7px 11px;border-bottom:1px solid var(--border2);display:grid;grid-template-columns:130px 150px 1fr;font-size:0.69rem;color:var(--text-dim);letter-spacing:.1em}
+.reg-row{padding:6px 11px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:130px 150px 1fr;font-size:0.85rem;color:var(--text)}
+.reg-row:last-child{border-bottom:none}
+.reg-row.hl{background:rgba(232,168,48,.07);color:var(--amber)}
+.reg-row.hl2{background:rgba(232,68,68,.05);color:#e89090}
+
+/* whatsapp */
+.wa-shell{background:#1a1a2e;font-family:-apple-system,'Segoe UI',sans-serif;font-size:1rem;margin-bottom:12px;border:1px solid #2a2a4a}
+.wa-bar{background:#075e54;color:white;padding:8px 13px;display:flex;align-items:center;gap:9px}
+.wa-av{width:32px;height:32px;border-radius:50%;background:#128c7e;display:flex;align-items:center;justify-content:center;font-size:0.92rem;font-weight:600;color:white;flex-shrink:0}
+.wa-name{font-size:1rem;font-weight:500}
+.wa-last{font-size:0.77rem;opacity:.75}
+.wa-msgs{padding:10px 8px;background:#0d1117}
+.wa-msg{margin-bottom:4px;display:flex}
+.wa-msg.out{justify-content:flex-end}
+.wa-bubble{max-width:74%;padding:6px 9px 4px;border-radius:8px;line-height:1.5;font-size:0.92rem;color:#e0e0e0}
+.wa-msg.in .wa-bubble{background:#1e2d3d;border-top-left-radius:0}
+.wa-msg.out .wa-bubble{background:#1a3a2a;border-top-right-radius:0}
+.wa-time{font-size:0.77rem;color:#606060;text-align:right;margin-top:2px}
+.wa-date{text-align:center;margin:7px 0;font-size:0.77rem;color:#505050}
+.wa-date span{background:#1a1a2e;padding:2px 9px;border-radius:10px}
+
+/* email */
+.email-shell{background:#12121e;border:1px solid #1e1e3a;margin-bottom:12px;font-family:var(--font-sans);font-size:1rem}
+.email-bar{background:#0d0d1a;padding:8px 13px;border-bottom:1px solid #1e1e3a;display:flex;justify-content:space-between;align-items:center}
+.email-bar span{font-size:0.77rem;color:#5050a0;font-family:var(--font-mono)}
+.email-hdr{padding:13px 16px;border-bottom:1px solid #1e1e3a}
+.email-hdr-row{font-size:0.92rem;color:#7070b0;margin-bottom:4px}
+.email-hdr-row strong{color:#b0b0d8}
+.email-subject{font-size:1.08rem;color:#d8d8f8;margin-top:7px;font-weight:500}
+.email-body{padding:16px;color:#b0b8d0;line-height:1.85}
+.email-body p{margin-bottom:11px}
+.email-body .highlight{color:var(--amber);font-style:italic}
+
+/* carta */
+.carta{background:#f5f0e6;color:#1a1a1a;padding:30px 38px;font-family:'Times New Roman',serif;font-size:1rem;line-height:1.85;border:1px solid #ddd;margin-bottom:12px;position:relative}
+.carta-head{display:flex;justify-content:space-between;margin-bottom:20px;font-size:0.85rem;color:#555}
+.carta-titulo{text-align:center;font-weight:bold;letter-spacing:.04em;margin-bottom:16px;font-size:1rem}
+.carta p{margin-bottom:12px}
+.carta-firma{margin-top:22px;font-style:italic;color:#444}
+.sello{position:absolute;top:28px;right:38px;width:64px;height:64px;border:2px solid rgba(80,80,180,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.54rem;color:rgba(80,80,180,.4);letter-spacing:.04em;font-weight:bold;transform:rotate(-14deg);line-height:1.3;font-family:Arial,sans-serif}
+.error-marca{background:rgba(232,68,68,.15);border-left:3px solid var(--red);padding:4px 8px;font-size:0.85rem;color:var(--red);margin:4px 0;display:inline}
+
+/* sospechosos */
+.sosp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.sosp-card{border:1px solid var(--border2);background:var(--bg2);overflow:hidden}
+.sosp-photo{height:130px;background:var(--bg3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden}
+.sosp-photo img{width:100%;height:100%;object-fit:cover}
+.sosp-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--locked-text);font-size:0.69rem;letter-spacing:.1em;width:100%;height:100%}
+.sosp-ph .ph-i{font-size:1.85rem;opacity:.4}
+.sosp-info{padding:10px}
+.sosp-nombre{font-size:1rem;color:var(--text);font-weight:500;margin-bottom:2px}
+.sosp-rol{font-size:0.69rem;color:var(--amber);letter-spacing:.08em;margin-bottom:7px}
+.sosp-dato{font-size:0.85rem;color:var(--text-mid);line-height:1.6}
+.sosp-coartada{margin-top:7px;padding-top:7px;border-top:1px solid var(--border);font-size:0.77rem;color:var(--text-dim);letter-spacing:.04em}
+.sosp-coartada span{color:var(--text-mid)}
+.sosp-flag{font-size:0.69rem;margin-top:5px;padding:3px 7px;display:inline-block;border:1px solid var(--amber-dim);color:var(--amber);background:var(--amber-muted);letter-spacing:.06em}
+
+/* testamento */
+.testamento{background:#f0ece0;border:2px solid #c0b090;padding:28px 36px;font-family:'Times New Roman',serif;font-size:1rem;line-height:2;color:#1a1500;margin-bottom:12px;position:relative}
+.test-titulo{text-align:center;font-size:1.15rem;font-weight:bold;letter-spacing:.05em;margin-bottom:18px}
+.test-body p{margin-bottom:13px}
+.test-firma{margin-top:20px;display:flex;justify-content:space-between;font-size:0.92rem}
+.test-sello{position:absolute;bottom:28px;right:36px;width:76px;height:76px;border:3px solid rgba(100,70,0,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.54rem;color:rgba(100,70,0,.35);letter-spacing:.04em;font-weight:bold;transform:rotate(-8deg);line-height:1.4;font-family:Arial,sans-serif}
+.tachado{background:#1a1500;color:#1a1500;padding:0 6px;display:inline-block;user-select:none}
+.redacted{background:#222;color:#222;padding:1px 5px;display:inline-block;user-select:none;border-radius:1px}
+
+/* nota oculta / cifrado */
+.hidden-data{background:var(--bg3);border:1px solid var(--border2);padding:14px 18px;margin-bottom:12px;font-family:var(--font-mono)}
+.hd-label{font-size:0.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:8px}
+.hd-text{font-size:1rem;color:var(--green);letter-spacing:.2em;line-height:2}
+.hd-hint{margin-top:10px;font-size:0.77rem;color:var(--amber);line-height:1.6}
+
+/* enigma inline */
+.enigma-box{border:1px solid var(--amber-dim);background:var(--amber-muted);padding:16px 18px;margin-bottom:12px}
+.enigma-title{font-family:var(--font-display);font-size:0.85rem;color:var(--amber);letter-spacing:.15em;margin-bottom:7px}
+.enigma-text{font-size:0.92rem;color:var(--text-mid);line-height:1.7;margin-bottom:12px}
+.enigma-row{display:flex;gap:7px}
+.enigma-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:8px 11px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.enigma-input:focus{border-color:var(--green-dim)}
+.enigma-submit{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:0.77rem;padding:0 13px;cursor:pointer;letter-spacing:.08em;transition:all .15s;white-space:nowrap}
+.enigma-submit:hover{background:var(--green-dim)}
+.enigma-msg{margin-top:7px;font-size:0.85rem;padding:6px 9px;display:none}
+.enigma-msg.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.enigma-msg.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+
+/* validación */
+.val-preg{margin-bottom:14px}
+.val-label{font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px}
+.val-row{display:flex;gap:7px}
+.val-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.15rem;padding:9px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.val-input:focus{border-color:var(--green-dim)}
+.val-check{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:0.77rem;padding:0 12px;cursor:pointer;letter-spacing:.08em;transition:all .15s;white-space:nowrap}
+.val-check:hover{background:var(--green-dim)}
+.val-fb{margin-top:5px;font-size:0.85rem;padding:6px 9px;display:none}
+.val-fb.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.val-fb.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+.val-submit-wrap{margin-top:20px;display:none}
+.val-submit-wrap.show{display:block}
+.val-submit{width:100%;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:1rem;padding:13px;cursor:pointer;letter-spacing:.2em;transition:all .15s}
+.val-submit:hover{background:var(--green-dim)}
+.val-result{margin-top:14px;padding:16px;border:1px solid var(--green-dim);background:var(--green-muted);color:var(--green);font-size:0.92rem;line-height:1.8;display:none}
+.val-result.show{display:block}
+.val-result p{margin-bottom:9px}
+
+/* tabla comparativa */
+.tabla{width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:12px}
+.tabla th{padding:7px 10px;text-align:left;font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;border-bottom:1px solid var(--border2);background:var(--bg4)}
+.tabla td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.tabla tr:last-child td{border-bottom:none}
+.tabla .conflict{color:var(--red)}
+.tabla .ok{color:var(--green)}
+
+.sz-btn{font-family:var(--font-mono);padding:4px 8px;background:transparent;border:none;color:var(--text-dim);cursor:pointer;transition:all .15s;letter-spacing:.04em}
+.sz-btn:hover{color:var(--text);background:var(--bg3)}
+.sz-btn.sz-active{color:var(--amber);background:var(--amber-muted)}
+.hint-menu-btn{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-mono);font-size:0.77rem;padding:10px 12px;cursor:pointer;letter-spacing:.04em;text-align:left;transition:all .15s}
+.hint-menu-btn:hover{border-color:var(--amber-dim);color:var(--text)}
+.hint-menu-btn.used{color:var(--text-dim);opacity:.6}
+.spotify-teaser{border:1px solid var(--border2);background:var(--bg2);overflow:hidden;transition:border-color .3s;margin-bottom:12px}
+.spotify-teaser:hover{border-color:var(--green-dim)}
+.btn-spotify-toggle{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:0.77rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);padding:12px 14px;transition:color .2s,background .2s;text-align:left}
+.btn-spotify-toggle:hover{color:var(--green);background:var(--green-muted)}
+.sp-icon{width:14px;height:14px;flex-shrink:0;fill:#1ed760}
+.sp-arrow{margin-left:auto;transition:transform .3s;font-size:0.77rem;color:var(--green-dim)}
+.spotify-teaser.open .sp-arrow{transform:rotate(180deg)}
+.sp-wrap{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.spotify-teaser.open .sp-wrap{max-height:160px}
+.sp-wrap iframe{display:block;width:100%;border:none}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+
+/* TABLET */
+@media(max-width:1024px){
+  :root{--sb:200px;--piz:300px}
+  .sosp-grid{grid-template-columns:1fr 1fr}
+  .case-meta{grid-template-columns:1fr 1fr 1fr;gap:8px}
+}
+
+/* MOBILE LANDSCAPE / SMALL TABLET */
+@media(max-width:900px){
+  :root{--sb:170px;--piz:280px}
+  .sosp-grid{grid-template-columns:1fr}
+  .docs-panel{padding:14px}
+  .t-case{display:none}
+  .t-badge{display:none}
+}
+
+/* MOBILE */
+@media(max-width:680px){
+  :root{--top:84px;--foot:26px}
+  .topbar{flex-wrap:wrap;height:auto;padding:8px 12px;gap:8px}
+  .t-left{width:100%;justify-content:space-between}
+  .t-case,.t-badge{display:none}
+  .t-right{width:100%;justify-content:space-between;gap:6px}
+  .timer-wrap{order:1}
+  .t-status,.t-dot{display:none}
+
+  /* sidebar becomes a slide-out drawer */
+  .shell{position:relative}
+  .sidebar{
+    position:fixed;
+    top:var(--top);
+    left:0;
+    bottom:var(--foot);
+    width:78vw;
+    max-width:300px;
+    z-index:150;
+    transform:translateX(-100%);
+    transition:transform .25s ease;
+    box-shadow:4px 0 20px rgba(0,0,0,.4);
+  }
+  .sidebar.mobile-open{transform:translateX(0)}
+  .sidebar-backdrop{
+    display:none;
+    position:fixed;inset:var(--top) 0 var(--foot) 0;
+    background:rgba(0,0,0,.6);z-index:140;
+  }
+  .sidebar-backdrop.show{display:block}
+
+  .docs-panel{padding:14px 14px 80px;min-width:0}
+  .content-area{position:relative}
+
+  /* mobile menu toggle button */
+  .mobile-menu-btn{
+    display:flex!important;
+    align-items:center;gap:5px;
+    background:var(--bg3);border:1px solid var(--border2);
+    color:var(--text);font-family:var(--font-mono);font-size:0.7rem;
+    padding:6px 10px;cursor:pointer;letter-spacing:.06em;
+  }
+
+  /* pizarra becomes fullscreen on mobile when open */
+  .pizarra-panel.open{
+    position:fixed;
+    inset:var(--top) 0 var(--foot) 0;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    z-index:160;
+  }
+  .piz-inner{width:100%!important}
+
+  .case-meta{grid-template-columns:1fr 1fr;gap:8px}
+  .case-hdr-top{flex-direction:column;gap:10px}
+  .ch-badge{align-self:flex-start}
+  .ch-title{font-size:1.5rem}
+
+  .doc-card .dc-body{padding:12px}
+  .carta,.testamento{padding:18px 16px}
+  .sello,.test-sello{display:none}
+
+  .reg-hdr,.reg-row{grid-template-columns:90px 100px 1fr;font-size:0.7rem}
+
+  .val-row{flex-direction:column;gap:6px}
+  .val-check{padding:9px;width:100%}
+
+  .enigma-row{flex-direction:column}
+  .enigma-submit{padding:9px;width:100%}
+
+  /* tour adjustments */
+  .tour-tooltip{width:90vw;max-width:280px}
+
+  /* hide font size / mode labels, keep icons compact */
+  .sz-btn{padding:5px 7px}
+}
+
+/* VERY SMALL MOBILE */
+@media(max-width:380px){
+  .sidebar{width:88vw}
+  .case-meta{grid-template-columns:1fr}
+  .sosp-photo{height:110px}
+}
+
+
+/* ONBOARDING TUTORIAL */
+.tour-overlay{position:fixed;inset:0;z-index:600;pointer-events:none;display:none}
+.tour-overlay.active{display:block;pointer-events:all}
+.tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+.tour-highlight{position:absolute;border:2px solid var(--amber);box-shadow:0 0 0 3px rgba(232,168,48,.25),0 0 24px rgba(232,168,48,.12);transition:all .35s ease;pointer-events:none;z-index:2}
+.tour-tooltip{position:absolute;background:var(--bg2);border:1px solid var(--amber-dim);padding:16px 18px;width:270px;z-index:3;animation:fadein .2s ease}
+.tour-arrow-l::before,.tour-arrow-t::before,.tour-arrow-r::before,.tour-arrow-b::before{content:'';position:absolute;width:9px;height:9px;background:var(--bg2);transform:rotate(45deg)}
+.tour-arrow-l::before{left:-5px;top:20px;border-bottom:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-t::before{top:-5px;left:22px;border-top:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-r::before{right:-5px;top:20px;border-top:1px solid var(--amber-dim);border-right:1px solid var(--amber-dim)}
+.tour-arrow-b::before{bottom:-5px;left:22px;border-bottom:1px solid var(--amber-dim);border-right:1px solid var(--amber-dim)}
+.tour-num{font-size:0.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:4px}
+.tour-title{font-family:var(--font-display);font-size:1rem;color:var(--text);letter-spacing:.08em;margin-bottom:7px}
+.tour-desc{font-size:0.85rem;color:var(--text-mid);line-height:1.65;margin-bottom:13px}
+.tour-footer{display:flex;align-items:center;gap:7px}
+.tour-next{font-family:var(--font-mono);font-size:0.77rem;padding:6px 13px;cursor:pointer;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);letter-spacing:.08em;transition:all .15s}
+.tour-next:hover{background:var(--amber-dim)}
+.tour-skip{font-family:var(--font-mono);font-size:0.77rem;padding:6px 10px;cursor:pointer;background:transparent;border:1px solid var(--border2);color:var(--text-dim);letter-spacing:.06em;transition:all .15s}
+.tour-skip:hover{color:var(--text);border-color:var(--text-dim)}
+.tour-dots{display:flex;gap:4px;margin-left:auto}
+.tour-dot{width:5px;height:5px;border-radius:50%;background:var(--border2)}
+.tour-dot.on{background:var(--amber)}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-backdrop"></div>
+  <div class="splash-lines"></div>
+  <div class="splash-lines2"></div>
+  <div class="splash-bgtext">X·A</div>
+  <div class="splash-casenum">CASO X·A · LA ÚLTIMA FIRMA · ARCHIVO_CERO</div>
+
+  <div class="splash-content">
+  <div class="splash-pre">ARCHIVO_CERO · SISTEMA SEGURO</div>
+  <div class="splash-scan">// CARGANDO EXPEDIENTE...</div>
+  <div class="splash-title">LA ÚLTIMA<br>FIRMA</div>
+  <div class="splash-sub">El fundador de una empresa familiar aparece muerto.<br>Causa oficial: paro cardíaco. Cinco días antes había firmado un testamento que nadie conocía.</div>
+
+  <div style="width:100%;max-width:340px;margin-bottom:24px">
+    <div style="font-size:0.69rem;color:var(--amber);letter-spacing:.15em;margin-bottom:8px;text-align:center">🎧 ESCUCHÁ EL AUDIO DISPARADOR Y, CUANDO TERMINE, INICIÁ LA INVESTIGACIÓN</div>
+    <div class="spotify-teaser" id="sp-splash" style="margin-bottom:0">
+      <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-splash')" aria-expanded="false">
+        <svg class="sp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        <span>▶ REPRODUCIR TEASER</span>
+        <span class="sp-arrow">▾</span>
+      </button>
+      <div class="sp-wrap">
+        <iframe src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="splash-meta">
+    <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">X·A — EXPRESS</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">40–60 min</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Media-alta</div></div>
+  </div>
+  <button class="splash-btn" onclick="iniciarInvestigacion()">▶ INICIAR INVESTIGACIÓN</button>
+  <div class="splash-warning">El cronómetro comienza al iniciar · Investigación individual o grupal</div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar" id="topbar" style="display:none">
+  <div class="t-left">
+    <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileSidebar()" style="display:none">☰ MENÚ</button>
+    <a class="t-logo" href="https://archivo0.com.ar">ARCHIVO_CERO</a>
+    <span class="t-sep">//</span>
+    <span class="t-case">CASO X·A — La Última Firma</span>
+    <span class="t-badge">EXPRESS</span>
+  </div>
+  <div class="t-right">
+    <div class="timer-wrap">
+      <span class="timer-icon">⏱</span>
+      <span class="timer-display" id="timerDisplay">00:00</span>
+    </div>
+    <button class="tbtn amber" id="btnHint" onclick="openHintMenu()" title="Pistas disponibles">💡 PISTAS <span id="hintCount">3</span></button>
+    <div style="display:flex;align-items:center;gap:5px"><div class="t-dot"></div><span class="t-status">SESIÓN ACTIVA</span></div>
+    <div style="display:flex;align-items:center;border:1px solid var(--border2)">
+      <button onclick="setSize('s')" id="sz-s" class="sz-btn" title="Texto pequeño" style="font-size:9px">A</button>
+      <button onclick="setSize('m')" id="sz-m" class="sz-btn sz-active" title="Texto mediano" style="font-size:11px">A</button>
+      <button onclick="setSize('l')" id="sz-l" class="sz-btn" title="Texto grande" style="font-size:13px">A</button>
+    </div>
+    <button class="tbtn amber" id="btnPiz" onclick="togglePiz()">📌 PIZARRA</button>
+    <button class="tbtn" id="btnMode" onclick="toggleMode()" title="Modo claro/oscuro" style="font-size:14px;padding:4px 8px">☀</button>
+  </div>
+</div>
+
+<div class="shell" id="mainShell" style="display:none">
+
+<!-- SIDEBAR BACKDROP (mobile) -->
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebarNav">
+
+  <!-- LIBRE -->
+  <div class="sb-free" style="border-bottom:1px solid var(--border)">
+    <div class="sb-item" onclick="startTour()" style="color:var(--text-dim)"><span class="sb-icon">🔄</span>Ver tutorial de nuevo</div>
+  </div>
+  <div class="sb-free">
+    <div class="sb-free-label">// ACCESO LIBRE</div>
+    <div class="sb-item active" onclick="go('resumen')"><span class="sb-icon">▸</span>Resumen del caso</div>
+    <div class="sb-item" onclick="go('teaser')"><span class="sb-icon">▶</span>Audio disparador</div>
+    <div class="sb-item" onclick="go('instrucciones')"><span class="sb-icon">▸</span>Cómo investigar</div>
+  </div>
+
+  <!-- CARPETA 1 -->
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 1<span class="fb fb-open" id="badge1">ABIERTA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item" onclick="go('sospechosos')"><span class="sb-icon">◈</span>Perfiles (×5)</div>
+      <div class="sb-item" onclick="go('cronologia')"><span class="sb-icon">▤</span>Cronología</div>
+      <div class="sb-item" onclick="go('informe-empresa')"><span class="sb-icon">▤</span>Informe empresa</div>
+      <div class="sb-item" style="color:var(--amber);border-left:2px solid var(--amber-dim)" onclick="openEnigmaModal(1)"><span class="sb-icon">⊛</span>Enigma 1 — ingresar clave</div>
+    </div>
+  </div>
+
+  <!-- CARPETA 2 -->
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 2<span class="fb fb-locked" id="badge2">BLOQUEADA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-informe-seguridad"><span class="sb-icon">▤</span>Registro accesos<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-email-medico"><span class="sb-icon">✉</span>Email al médico<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-whatsapp-marcos"><span class="sb-icon">◉</span>Chat Marcos/abogado<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-whatsapp-cecilia"><span class="sb-icon">◉</span>Chat Cecilia/amiga<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-informe-medico"><span class="sb-icon">▤</span>Informe médico oficial<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="enigma2-sb-item" style="color:var(--amber-dim);border-left:2px solid transparent" onclick="openEnigmaModal(2)"><span class="sb-icon">⊛</span>Enigma 2 — ingresar clave<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+
+  <!-- CARPETA 3 -->
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 3<span class="fb fb-locked" id="badge3">BLOQUEADA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-nota-cajon"><span class="sb-icon">✎</span>Nota del cajón<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-testamento"><span class="sb-icon">▤</span>Fragmento testamento<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-carta-ibanez"><span class="sb-icon">▤</span>Carta de Ibáñez<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-nota-oculta"><span class="sb-icon">⌘</span>Datos ocultos<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+
+  <!-- CIERRE -->
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">⊛ CIERRE</div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-validacion"><span class="sb-icon">✓</span>Resolver el caso<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+
+  <div class="sb-prog">
+    <div class="sb-prog-label">PROGRESO</div>
+    <div class="sb-prog-bar"><div class="sb-prog-fill" id="progFill" style="width:5%"></div></div>
+    <div class="sb-prog-pct" id="progPct">5%</div>
+    <button onclick="confirmReset()" style="width:100%;margin-top:10px;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;padding:6px;cursor:pointer;letter-spacing:.06em;transition:all .15s" onmouseover="this.style.color='var(--red)';this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--text-dim)';this.style.borderColor='var(--border2)'">↺ REINICIAR CASO</button>
+  </div>
+</nav>
+
+<!-- RESET CONFIRM MODAL -->
+<div id="resetModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--red);padding:26px 28px;width:380px;max-width:95vw;text-align:center">
+    <div style="font-family:var(--font-display);font-size:0.92rem;color:var(--red);letter-spacing:.12em;margin-bottom:14px">⚠ REINICIAR EL CASO</div>
+    <div style="font-size:0.85rem;color:var(--text-mid);line-height:1.7;margin-bottom:22px">Esto va a borrar tu progreso: carpetas desbloqueadas, pistas usadas, notas y dibujos de la pizarra, y el cronómetro. Esta acción no se puede deshacer.<br><br><strong style="color:var(--text)">¿Confirmás que querés empezar de cero?</strong></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="closeResetModal()" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.77rem;padding:11px;cursor:pointer;letter-spacing:.06em">CANCELAR</button>
+      <button onclick="doReset()" style="flex:1;background:var(--red-muted);border:1px solid var(--red);color:var(--red);font-family:var(--font-mono);font-size:0.77rem;padding:11px;cursor:pointer;letter-spacing:.06em">SÍ, REINICIAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- HINT MENU MODAL -->
+<div id="hintMenuModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--amber-dim);padding:22px 24px;width:340px;max-width:95vw">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-family:var(--font-display);font-size:0.85rem;color:var(--amber);letter-spacing:.15em">💡 PISTAS</div>
+      <span id="hintsBadgeMenu" style="font-size:0.62rem;padding:3px 8px;background:var(--amber-muted);color:var(--amber);border:1px solid var(--amber-dim)">3 DISPONIBLES</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <button onclick="requestHint(1)" id="hint-btn-1" class="hint-menu-btn">💡 Pista — Carpeta 1</button>
+      <button onclick="requestHint(2)" id="hint-btn-2" class="hint-menu-btn">💡 Pista — Carpeta 2</button>
+      <button onclick="requestHint(3)" id="hint-btn-3" class="hint-menu-btn">💡 Pista — Carpeta 3</button>
+    </div>
+    <button onclick="closeHintMenu()" style="width:100%;margin-top:14px;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.69rem;padding:8px;cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- HINT MODAL -->
+<div id="hintModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--amber-dim);padding:26px 28px;width:400px;max-width:95vw">
+    <div style="font-family:var(--font-display);font-size:0.85rem;color:var(--amber);letter-spacing:.15em;margin-bottom:10px" id="hintModalTitle">// PISTA</div>
+    <div style="font-size:0.92rem;color:var(--text);line-height:1.7;margin-bottom:20px" id="hintModalText"></div>
+    <button onclick="closeHintModal()" style="width:100%;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-mono);font-size:0.77rem;padding:10px;cursor:pointer;letter-spacing:.08em">ENTENDIDO</button>
+  </div>
+</div>
+
+<!-- SHARE CARD MODAL -->
+<div id="shareModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:450;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--green-dim);padding:24px;width:440px;max-width:95vw;text-align:center">
+    <div style="font-family:var(--font-display);font-size:0.85rem;color:var(--green);letter-spacing:.15em;margin-bottom:16px">// TARJETA PARA COMPARTIR</div>
+    <canvas id="shareCanvas" width="800" height="800" style="width:100%;max-width:340px;border:1px solid var(--border2);margin-bottom:16px"></canvas>
+    <div style="display:flex;gap:8px;flex-direction:column">
+      <button onclick="downloadShareCard()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:0.77rem;padding:11px;cursor:pointer;letter-spacing:.08em">⬇ DESCARGAR IMAGEN</button>
+      <div style="font-size:0.69rem;color:var(--text-dim);line-height:1.6;margin-top:4px">Subila a tu Instagram y etiquetá <strong style="color:var(--amber)">@archivocero</strong> — nos encanta ver quién resuelve los casos 🔍</div>
+      <button onclick="closeShareModal()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.69rem;padding:8px;cursor:pointer;margin-top:6px">CERRAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT AREA -->
+<div class="content-area">
+
+  <!-- DOCS PANEL -->
+  <div class="docs-panel" id="docsPanel">
+    <div class="breadcrumb">ARCHIVO_CERO <span class="bc-sep">›</span> CASO X·A <span class="bc-sep">›</span> <span id="bcCurrent">Resumen</span> <span id="bcFolder" style="margin-left:auto;color:var(--amber-dim)"></span></div>
+
+    <!-- ══ RESUMEN ══ -->
+    <div class="page active" id="page-resumen">
+      <div class="case-hdr">
+        <div class="case-hdr-top">
+          <div>
+            <div class="ch-ref">REF: AC-X·A · HOMICIDIO / SUCESIÓN · CASO EXPRESS</div>
+            <div class="ch-title">LA ÚLTIMA FIRMA</div>
+            <div class="ch-sub">El fundador de Vidal &amp; Hijos S.A. aparece muerto un lunes a la mañana.<br>Causa oficial: paro cardíaco. Cinco días antes había firmado un testamento que excluía a toda su familia.</div>
+          </div>
+          <div class="ch-badge">CASO ABIERTO</div>
+        </div>
+        <div class="case-meta">
+          <div><div class="cm-l">Duración</div><div class="cm-v">40–60 min</div></div>
+          <div><div class="cm-l">Modalidad</div><div class="cm-v">100% online</div></div>
+          <div><div class="cm-l">Dificultad</div><div class="cm-v">Media-alta</div></div>
+        </div>
+      </div>
+      <div class="nota"><span>⚠</span><span>El expediente tiene 3 carpetas que se desbloquean con enigmas. Algunos documentos contienen información oculta o contradictoria — no todo lo que leas es verdad. Usá la <strong>Pizarra</strong> para cruzar datos.</span></div>
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">LOS HECHOS</span><span class="dc-ref">DOC-XA-00</span></div>
+        <div class="dc-body">
+          <p>Ernesto Vidal, 71 años, fue encontrado muerto en su oficina privada el lunes 7 de octubre a las 8:40 por su secretaria, Graciela Ríos. El médico de guardia certificó paro cardíaco — Ernesto tenía hipertensión crónica y tomaba medicación diaria.</p>
+          <p>Lo que debería haber sido un cierre tranquilo se convirtió en algo más complicado cuando, tres días después, la familia abrió el sobre que Ernesto había dejado con instrucciones de "abrir solo en caso de fallecimiento". Adentro: un testamento modificado el 2 de octubre que dejaba todo a una persona cuyo nombre aparecía tachado en la copia disponible.</p>
+          <p>Cinco personas tenían acceso a su entorno inmediato. Dos tienen coartadas verificables. Las otras tres no.</p>
+          <p style="color:var(--green)">Tu objetivo: identificar <strong>quién</strong> mató a Ernesto, <strong>cómo</strong> lo hizo y <strong>cuál fue el detonante</strong> que lo llevó a actuar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TEASER ══ -->
+
+    <!-- ══ TEASER ══ -->
+    <div class="page" id="page-teaser">
+      <div class="case-hdr">
+        <div class="case-hdr-top">
+          <div>
+            <div class="ch-ref">REF: AC-X·A · AUDIO DISPARADOR · ACCESO LIBRE</div>
+            <div class="ch-title">TEASER DEL CASO</div>
+            <div class="ch-sub">Archivo de voz incorporado al expediente. Escuchalo antes de abrir los documentos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">TRANSMISIÓN — ARCHIVO AC-XA-00</span><span class="dc-ref">AUDIO-01</span></div>
+        <div class="dc-body" style="padding:14px 16px">
+          <p style="font-size:11px;color:var(--text-dim);margin-bottom:14px">Archivo de audio introductorio al Caso X·A.</p>
+          <div class="spotify-teaser" id="sp-teaser-xa">
+            <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-teaser-xa')" aria-expanded="false">
+              <svg class="sp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              <span>▶ REPRODUCIR TEASER — La Última Firma</span>
+              <span class="sp-arrow">▾</span>
+            </button>
+            <div class="sp-wrap">
+              <iframe src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ INSTRUCCIONES ══ -->
+    <div class="page" id="page-instrucciones">
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-XA</span></div>
+        <div class="dc-body">
+          <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong> que se desbloquean resolviendo enigmas. Cada enigma requiere cruzar información de más de un documento — no hay respuesta que venga de una sola fuente.</p>
+          <p><strong style="color:var(--red)">Atención:</strong> algunos documentos contienen errores deliberados o información manipulada por los propios involucrados. Parte del trabajo es detectar qué no cierra.</p>
+          <p>Usá la <strong style="color:var(--amber)">Pizarra</strong> para arrastrar tarjetas, conectarlas con hilos y registrar contradicciones. Se guarda automáticamente.</p>
+          <p>La validación final tiene <strong style="color:var(--green)">3 preguntas</strong>, una palabra cada una, sin acentos.</p>
+        </div>
+      </div>
+      <div class="nota red"><span>⚠</span><span>No todos los documentos son honestos. Si algo no cierra con otro documento, anotalo — esa contradicción es parte de la respuesta.</span></div>
+    </div>
+
+    <!-- ══ SOSPECHOSOS ══ -->
+    <div class="page" id="page-sospechosos">
+      <div class="doc-card" style="margin-bottom:12px">
+        <div class="dc-head"><span class="dc-title">PERFILES — 6 PERSONAS DE INTERÉS</span><span class="dc-ref">PERF-XA</span></div>
+        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Seis personas con acceso al entorno inmediato de Ernesto Vidal. Todas tienen algo que ganar o perder.</div>
+      </div>
+      <div class="sosp-grid">
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-marcos"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/1_isez66.png" alt="Marcos Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Marcos Vidal</div>
+            <div class="sosp-rol">HIJO MAYOR · 44 AÑOS · DIR. OPERACIONES</div>
+            <div class="sosp-dato">15 años al frente de la empresa. Creía que heredaría el control total. Conflictos documentados con su padre sobre la dirección del negocio. Viajó a Rosario el fin de semana.</div>
+            <div class="sosp-coartada">COARTADA: <span>Hotel Riviera, Rosario, 4–6 oct. Factura registrada. Regresó el lunes a las 6:30 AM.</span></div>
+            <div class="sosp-flag">Se enteró del testamento el viernes 4/10</div>
+          </div>
+        </div>
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-cecilia"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Cecilia Vidal</div></div></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Cecilia Vidal</div>
+            <div class="sosp-rol">HIJA MENOR · 39 AÑOS · DISEÑADORA</div>
+            <div class="sosp-dato">Distanciada de la empresa durante años. Retomó el vínculo con su padre hace 6 meses — cenas semanales, llamadas frecuentes. Desde julio colabora en algunas gestiones personales de Ernesto. Dice haber estado en casa el fin de semana.</div>
+            <div class="sosp-coartada">COARTADA: <span>En casa sábado y domingo. Sin testigos. Sin movimientos de tarjeta. Teléfono apagado desde las 20:00 del domingo.</span></div>
+            <div class="sosp-flag">Revinculada con su padre desde hace 6 meses</div>
+          </div>
+        </div>
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-rodrigo"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Rodrigo Ibáñez</div></div></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Rodrigo Ibáñez</div>
+            <div class="sosp-rol">SOCIO 40% · 55 AÑOS</div>
+            <div class="sosp-dato">Amigo de Ernesto desde la universidad. Único que conocía el contenido completo del nuevo testamento. Si la empresa se vende tras la muerte, pierde su posición y sus ingresos.</div>
+            <div class="sosp-coartada">COARTADA: <span>Vuelo Aeroparque-Mendoza el viernes 18:30. Vuelta el lunes 14:00. Pasajes confirmados por aerolínea.</span></div>
+            <div class="sosp-flag">Tenía poder especial sobre los documentos desde el 12/9</div>
+          </div>
+        </div>
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-graciela"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Graciela Ríos</div></div></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Graciela Ríos</div>
+            <div class="sosp-rol">SECRETARIA · 58 AÑOS · 22 AÑOS EN LA EMPRESA</div>
+            <div class="sosp-dato">Secretaria personal de Ernesto desde 2002. Tenía acceso al código de la oficina privada — era la única empleada además de Ernesto con ese privilegio. Conocía su agenda, sus contactos y sus rutinas. Trabajó horas extra la semana del 29 de septiembre al 3 de octubre. Fue quien "descubrió" el cuerpo el lunes.</div>
+            <div class="sosp-coartada">COARTADA: <span>No registra accesos el fin de semana. Entrada el lunes 8:38. Fue la primera en llegar — y la primera en estar sola con el cuerpo.</span></div>
+            <div class="sosp-flag">Código de oficina privada · Horas extra semana clave · Iba a ser despedida</div>
+          </div>
+        </div>
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-gastón"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Gastón Ferreyra</div></div></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Gastón Ferreyra</div>
+            <div class="sosp-rol">ABOGADO DE LA FAMILIA · 51 AÑOS</div>
+            <div class="sosp-dato">Abogado de confianza de la familia Vidal desde hace 12 años. Redactó el testamento anterior (2019). No participó del nuevo. Marcos lo contactó el viernes para consultar sobre impugnación.</div>
+            <div class="sosp-coartada">COARTADA: <span>Congreso de derecho civil en Córdoba, 4–7 oct. Verificable por registro de asistencia.</span></div>
+            <div class="sosp-flag">No participó en la redacción del nuevo testamento</div>
+          </div>
+        </div>
+        <div class="sosp-card">
+          <div class="sosp-photo" id="photo-valeria"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Valeria Sandín</div></div></div>
+          <div class="sosp-info">
+            <div class="sosp-nombre">Valeria Sandín</div>
+            <div class="sosp-rol">MÉDICA SUPLENTE · 45 AÑOS</div>
+            <div class="sosp-dato">Cubre al Dr. Pizarro cuando no está disponible. Realizó dos visitas domiciliarias a Ernesto en septiembre para "controles de rutina". Conoce su medicación exacta y sus dosis. En agosto, Ernesto amenazó con denunciarla por haber firmado una receta irregular a nombre de un familiar suyo.</div>
+            <div class="sosp-coartada">COARTADA: <span>Dice haber estado de guardia el fin de semana, pero el hospital no registra su presencia el domingo a la noche. No responde llamados desde el lunes 7 de octubre.</span></div>
+            <div class="sosp-flag">Acceso domiciliario · Conoce la medicación · Coartada sin confirmar</div>
+          </div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Revisá las coartadas de cada uno contra el Registro de Accesos y la Cronología. No todas las coartadas tienen la misma solidez — y no todos los sospechosos necesitaban estar en el edificio para actuar.</span></div>
+
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — ETIQUETA DE FARMACIA</span><span class="dc-ref">EV-XA-00</span></div>
+        <div class="dc-body">
+          <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:14px">Encontrada pegada en el reverso de la caja de medicación de Ernesto, en el cajón de su escritorio. Parece una nota manuscrita superpuesta a la etiqueta original de la farmacia — no forma parte del rótulo impreso.</p>
+          <div class="cipher-wrap">
+            <div class="cipher-label">// TEXTO MANUSCRITO SOBRE LA ETIQUETA (alfabeto desplazado 13 posiciones)</div>
+            <div class="cipher-txt">ZRQVPNPVBA</div>
+            <div class="cipher-hint">// El laboratorio uso un cifrado ROT13 en sus controles de calidad internos. Si conocés el método, la palabra se revela sola.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ CRONOLOGÍA ══ -->
+    <div class="page" id="page-cronologia">
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">CRONOLOGÍA DE HECHOS VERIFICADOS</span><span class="dc-ref">CRON-XA</span></div>
+        <div class="dc-body">
+          <table class="tabla">
+            <tr><th>FECHA</th><th>HECHO</th><th>FUENTE</th></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Mar 12 sep</td><td>Ernesto firma poder especial a favor de Rodrigo Ibáñez para "gestión de documentos sensibles"</td><td>Notaría Romano</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 13 sep</td><td>Valeria Sandín visita el domicilio de Ernesto — "control de rutina" en reemplazo del Dr. Pizarro. Duración: 40 min.</td><td>Agenda personal Ernesto</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Mar 24 sep</td><td>Segunda visita domiciliaria de Valeria Sandín. Ernesto le confía que "se siente raro desde hace días". Ella ajusta la dosis de su medicación — de 5mg a 10mg.</td><td>Agenda personal Ernesto</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Mié 2 oct</td><td>Ernesto firma nuevo testamento. Excluye a Marcos y Cecilia. Beneficiario tachado en copia disponible.</td><td>Escribanía Romano</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct</td><td>Ernesto envía email al médico reportando síntomas con su medicación. Pide turno urgente.</td><td>Email (EV-XA-02)</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct · tarde</td><td>Graciela Ríos permanece en el edificio hasta las 21:30 — fuera de su horario habitual. Registra acceso a la oficina privada de Ernesto a las 20:15 (duración: 8 min). Justificación declarada: "archivé documentos que me pidió".</td><td>Registro accesos · Declaración</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · tarde</td><td>Rodrigo Ibáñez vuela a Mendoza (18:30). Marcos Vidal viaja a Rosario en auto.</td><td>Aerolínea / Hotel</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · noche</td><td>Marcos contacta a su abogado por WhatsApp sobre el testamento nuevo.</td><td>Chat (EV-XA-03)</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Sáb 5 oct · 9:11</td><td>Rodrigo Ibáñez accede brevemente al edificio (14 min) antes de volar. Retira documentos.</td><td>Registro accesos ⚠</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Dom 6 oct · 21:14</td><td>Acceso al edificio fuera de horario. 47 minutos. Sin registro de archivos retirados. Identidad: ver Carpeta 2.</td><td>Registro accesos</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:38</td><td>Graciela Ríos llega al edificio. Encuentra a Ernesto muerto a las 8:40.</td><td>Registro accesos</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:45</td><td>Médico de guardia certifica paro cardíaco. No se solicita autopsia de inmediato.</td><td>Informe médico</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 10 oct</td><td>Familia abre el sobre. Se descubre el nuevo testamento. Se solicita investigación.</td><td>Familia Vidal</td></tr>
+          </table>
+          <div class="nota"><span>📋</span><span>Graciela registra horas extra durante la semana crítica del 29 sep–3 oct. Su acceso a la oficina privada el jueves 3 merece atención — es el mismo día en que Ernesto le escribe al médico.</span></div>
+          <div class="nota"><span>📋</span><span>La identidad del acceso del domingo a las 21:14 está redactada en esta copia. Aparecerá en la Carpeta 2.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ INFORME EMPRESA ══ -->
+    <div class="page" id="page-informe-empresa">
+      <div class="informe">
+        <div class="inf-hdr">
+          <div class="inf-org">VIDAL &amp; HIJOS S.A. — DOCUMENTO INTERNO CONFIDENCIAL</div>
+          <div class="inf-tit">REORGANIZACIÓN SOCIETARIA 2024</div>
+          <div class="inf-sub">Elaborado por: Dirección General · Octubre 2024 · Uso restringido</div>
+        </div>
+        <div class="inf-body">
+          <div class="inf-row"><span class="inf-k">Empresa:</span><span class="inf-v">Vidal &amp; Hijos S.A. — Importadora de materiales de construcción</span></div>
+          <div class="inf-row"><span class="inf-k">Composición accionaria:</span><span class="inf-v">Ernesto Vidal 60% · Rodrigo Ibáñez 40%</span></div>
+          <div class="inf-row"><span class="inf-k">Valuación estimada:</span><span class="inf-v">$4.200.000 USD (valuación dic. 2023)</span></div>
+          <hr class="inf-sep">
+          <div class="inf-row"><span class="inf-k">Situación actual:</span><span class="inf-v">La empresa atraviesa una reestructuración iniciada por Ernesto Vidal en agosto 2024.</span></div>
+          <div class="inf-row"><span class="inf-k">Cambios previstos:</span><span class="inf-v">Reducción de 30% del personal administrativo. Incorporación de socio inversor externo.</span></div>
+          <div class="inf-row"><span class="inf-k">Impacto en dirección:</span><span class="inf-v">Marcos Vidal mantiene rol pero pierde poder de veto. Rodrigo Ibáñez mantiene participación pero sin rol ejecutivo desde enero 2025.</span></div>
+          <hr class="inf-sep">
+          <p style="font-size:11px;color:var(--text-dim);font-style:italic">Nota interna (E. Vidal, 28 sep): "La incorporación del nuevo socio no es negociable. Quien no acompañe esta decisión tiene la opción de vender su participación al precio de mercado."</p>
+          <hr class="inf-sep">
+          <div class="inf-row"><span class="inf-k">Personal afectado:</span><span class="inf-v">Entre los puestos a eliminar figura el de <strong>Secretaria de Dirección General</strong> (Graciela Ríos), efectivo noviembre 2024. Graciela era la única empleada con acceso al código numérico de la oficina privada de Ernesto, además del propio Ernesto.</span></div>
+          <hr class="inf-sep">
+          <p style="font-size:11px;color:var(--text-dim);font-style:italic">Nota adicional: Ernesto Vidal recibió un mensaje de Graciela Ríos el 1 de octubre a las 23:47 por WhatsApp personal: "Ernesto necesito que hablemos antes de que sea demasiado tarde. Mañana sin falta." No hay registro de que esa reunión haya ocurrido.</p>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Graciela tenía motivo (iba a perder su trabajo de 22 años), oportunidad (código de la oficina privada) y un contacto no explicado con Ernesto la noche anterior a que los síntomas se agravaran.</span></div>
+    </div>
+
+    <!-- ══ REGISTRO ACCESOS ══ -->
+    <div class="page" id="page-informe-seguridad">
+      <div class="informe">
+        <div class="inf-hdr">
+          <div class="inf-org">SAFE-TECH SEGURIDAD PRIVADA · BUENOS AIRES</div>
+          <div class="inf-tit">REGISTRO DE ACCESOS — VIDAL &amp; HIJOS S.A.</div>
+          <div class="inf-sub">Período: Vie 4 oct — Lun 7 oct 2024 · Ref. interna: 0741</div>
+        </div>
+        <div class="inf-body">
+          <div class="inf-row"><span class="inf-k">Sistema:</span><span class="inf-v">Tarjeta de proximidad + cámara de entrada · Oficina privada: código numérico</span></div>
+          <hr class="inf-sep">
+          <div style="font-family:var(--font-mono);font-size:11px">
+            <div class="reg-hdr"><div>FECHA / HORA</div><div>TARJETA / PERSONA</div><div>OBSERVACIÓN</div></div>
+            <div class="reg-row"><div>Jue 03/10 · 20:15</div><div>Graciela Ríos</div><div>Acceso a oficina privada — 8 min. Fuera de horario laboral. Declaró "archivé documentos".</div></div>
+            <div class="reg-row"><div>Jue 03/10 · 21:30</div><div>Graciela Ríos</div><div>Salida del edificio.</div></div>
+            <div class="reg-row"><div>Vie 04/10 · 18:52</div><div>Ernesto Vidal</div><div>Salida normal. Último registro suyo.</div></div>
+            <div class="reg-row hl2"><div>Sáb 05/10 · 09:11</div><div>Rodrigo Ibáñez</div><div>⚠ Acceso 14 min. Retiró carpeta "Contratos 2019-2024".</div></div>
+            <div class="reg-row hl"><div>Dom 06/10 · 21:14</div><div>CECILIA VIDAL</div><div>Acceso nocturno — 47 min. Sin retiro de archivos registrado.</div></div>
+            <div class="reg-row"><div>Dom 06/10 · 22:01</div><div>Cecilia Vidal</div><div>Salida.</div></div>
+            <div class="reg-row"><div>Lun 07/10 · 08:38</div><div>Graciela Ríos</div><div>Primera entrada del lunes. Descubre el cuerpo 8:40.</div></div>
+          </div>
+          <hr class="inf-sep">
+          <div class="inf-nota">El sistema registra tres accesos fuera de patrón: Graciela Ríos el jueves 3/10 a las 20:15 (con entrada a la oficina privada), Rodrigo Ibáñez el sábado 5/10 antes de su vuelo a Mendoza, y Cecilia Vidal el domingo 6/10 a las 21:14. Marcos Vidal no registra accesos durante todo el período.</div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Compará estos horarios con lo que cada sospechoso declaró sobre su fin de semana en sus propios testimonios.</span></div>
+      <div class="nota"><span>📋</span><span>El aeropuerto de Aeroparque está a 45 minutos del edificio en auto, en condiciones normales de tránsito.</span></div>
+
+      <div class="doc-card">
+        <div class="dc-head"><span class="dc-title">LOG DEL SISTEMA — CÓDIGO DE INCIDENTE AUTOGENERADO</span><span class="dc-ref">SYS-0741</span></div>
+        <div class="dc-body">
+          <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:14px">El sistema de seguridad etiqueta automáticamente cada acceso fuera de horario con un código interno. Cada número corresponde a la posición de una letra en el abecedario (A=1, B=2, C=3...).</p>
+          <div class="cipher-wrap">
+            <div class="cipher-label">// CÓDIGO DE INCIDENTE — ACCESO DOMINGO 21:14</div>
+            <div class="cipher-txt">13-5-14-20-9-18-1</div>
+            <div class="cipher-hint">// Convertí cada número a su letra correspondiente (A=1 ... Z=26) y formá la palabra.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EMAIL MÉDICO ══ -->
+    <div class="page" id="page-email-medico">
+      <div class="email-shell">
+        <div class="email-bar"><span>CORREO — ernesto.vidal@vidalhijos.com.ar</span><span>Jue 3 oct 2024 · 16:44</span></div>
+        <div class="email-hdr">
+          <div class="email-hdr-row"><strong>De:</strong> ernesto.vidal@vidalhijos.com.ar</div>
+          <div class="email-hdr-row"><strong>Para:</strong> dr.pizarro@clinicasanmartin.com.ar</div>
+          <div class="email-subject">Consulta urgente — mi medicación</div>
+        </div>
+        <div class="email-body">
+          <p>Doctor Pizarro:</p>
+          <p>Le escribo porque desde hace unos días noto efectos que no tenía antes con mi medicación para la presión. Mareos al levantarme, palpitaciones nocturnas, sensación de pesadez en el pecho. Es distinto a lo habitual.</p>
+          <p>No cambié nada en mi rutina. Hay una persona de confianza que me alcanza la medicación desde julio porque me cuesta bajar al garage donde la guardo desde que me operé la rodilla. Le pregunté si las había renovado en otra farmacia y me dijo que no. <span class="highlight">Las pastillas vienen en el mismo blíster de siempre, pero algo no está igual.</span></p>
+          <p>¿Podría darme turno lo antes posible? Tengo el presentimiento de que algo no está bien.</p>
+          <p style="color:#7070a0;font-size:11px">Ernesto Vidal — cel 11-4823-XXXX</p>
+        </div>
+      </div>
+      <div class="email-shell" style="margin-top:0">
+        <div class="email-bar"><span>RESPUESTA — dr.pizarro@clinicasanmartin.com.ar</span><span>Jue 3 oct 2024 · 18:22</span></div>
+        <div class="email-hdr">
+          <div class="email-hdr-row"><strong>Para:</strong> ernesto.vidal@vidalhijos.com.ar</div>
+          <div class="email-subject">Re: Consulta urgente — mi medicación</div>
+        </div>
+        <div class="email-body">
+          <p>Ernesto, lo atiendo el martes 8 a las 10:00. Si los síntomas se intensifican el fin de semana, no dude en llamarme al celular o ir a urgencias.</p>
+          <p>Una consulta importante: en mi historial figura que la Dra. Sandín ajustó su dosis de Amlodipina el 24 de septiembre — de 5mg a 10mg. ¿Usted autorizó ese cambio? Necesito confirmarlo porque esa dosis puede tener efectos importantes en pacientes con su historial.</p>
+          <p style="color:#7070a0;font-size:11px">Dr. Pizarro</p>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>El Dr. Pizarro menciona un ajuste de dosis realizado por Valeria Sandín el 24 de septiembre — exactamente antes del período en que el forense estima que comenzó la sobredosis.</span></div>
+    </div>
+
+    <!-- ══ WHATSAPP MARCOS ══ -->
+    <div class="page" id="page-whatsapp-marcos">
+      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — MARCOS VIDAL / GASTÓN FERREYRA (ABOGADO)</span><span class="dc-ref">EV-XA-03</span></div></div>
+      <div class="wa-shell">
+        <div class="wa-bar"><div class="wa-av">GF</div><div><div class="wa-name">Gastón Ferreyra</div><div class="wa-last">visto lun 7 oct · 11:02</div></div></div>
+        <div class="wa-msgs">
+          <div class="wa-date"><span>Viernes 4 de octubre · 22:17</span></div>
+          <div class="wa-msg out"><div class="wa-bubble">Gastón. El viejo hizo un testamento nuevo. Me lo dijo alguien de la escribanía. Necesito saber qué dice.<div class="wa-time">22:17 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">Eso es confidencial, Marcos. ¿Quién te lo dijo?<div class="wa-time">22:28</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">No importa. ¿Se puede impugnar si hubo influencia emocional?<div class="wa-time">22:31 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">En teoría sí. Captación de voluntad. Pero es difícil de probar. Necesitás demostrar que alguien lo manipuló sistemáticamente en los últimos meses.<div class="wa-time">22:39</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">¿Y si la persona que lo "influenció" tenía acceso a sus documentos médicos?<div class="wa-time">22:41 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">Eso cambiaría todo. Llamame mañana.<div class="wa-time">22:44</div></div></div>
+          <div class="wa-date"><span>Lunes 7 de octubre</span></div>
+          <div class="wa-msg in"><div class="wa-bubble">Marcos. Vi las noticias. Lo siento mucho. ¿Estás bien?<div class="wa-time">10:15</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">No. Avisame si podés ver el testamento antes que nadie.<div class="wa-time">10:51 ✓✓</div></div></div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Marcos menciona a alguien con "acceso a documentos médicos" sin nombrarla. También queda sin responder quién de la escribanía le filtró la información del testamento.</span></div>
+    </div>
+
+    <!-- ══ WHATSAPP CECILIA ══ -->
+    <div class="page" id="page-whatsapp-cecilia">
+      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — CECILIA VIDAL / VALERIA M. (AMIGA)</span><span class="dc-ref">EV-XA-04</span></div></div>
+      <div class="wa-shell">
+        <div class="wa-bar"><div class="wa-av">VM</div><div><div class="wa-name">Valeria M.</div><div class="wa-last">visto dom 6 oct · 20:55</div></div></div>
+        <div class="wa-msgs">
+          <div class="wa-date"><span>Domingo 6 de octubre</span></div>
+          <div class="wa-msg out"><div class="wa-bubble">Vale necesito hablar con alguien. ¿Estás?<div class="wa-time">18:32 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">Acá estoy. ¿Qué pasó?<div class="wa-time">18:40</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">Mi papá firmó algo. No sé los detalles pero Rodrigo me llamó para "avisarme" y fue un llamado muy raro. Me dijo que había cambios y que yo "no me iba a quedar sin nada" pero que confiara en él.<div class="wa-time">18:44 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">¿Rodrigo te llamó? ¿Para qué haría eso?<div class="wa-time">18:47</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">No sé. Pero me puse a pensar y creo que el testamento nos excluye a Marcos y a mí. Y encima la empresa está cambiando. Todo está cambiando.<div class="wa-time">18:52 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">¿Hablaste con tu papá?<div class="wa-time">18:59</div></div></div>
+          <div class="wa-msg out"><div class="wa-bubble">No. Y no lo voy a llamar. Voy a ir a la oficina a buscar algo que confirme lo que pienso.<div class="wa-time">19:03 ✓✓</div></div></div>
+          <div class="wa-msg in"><div class="wa-bubble">Ceci esperá, no hagas nada que...<div class="wa-time">19:05</div></div></div>
+          <div class="wa-msg out" style="opacity:.6"><div class="wa-bubble" style="font-style:italic;font-size:11px">[Cecilia dejó de responder. Teléfono apagado desde las 20:00]<div class="wa-time">—</div></div></div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Cecilia dice que Rodrigo la llamó antes de que ella fuera a la oficina. Guardá este dato — puede ser útil cuando tengas el resto de los testimonios.</span></div>
+
+    </div>
+
+    <!-- ══ INFORME MÉDICO OFICIAL ══ -->
+    <div class="page" id="page-informe-medico">
+      <div class="informe">
+        <div class="inf-hdr">
+          <div class="inf-org">CLÍNICA SAN MARTÍN · MEDICINA FORENSE</div>
+          <div class="inf-tit">INFORME MÉDICO PRELIMINAR — ERNESTO A. VIDAL</div>
+          <div class="inf-sub">Fecha: 9 oct 2024 · Nro. caso: 2024-1041 · CONFIDENCIAL</div>
+        </div>
+        <div class="inf-body">
+          <div class="inf-row"><span class="inf-k">Causa de muerte inicial:</span><span class="inf-v">Paro cardíaco — insuficiencia cardíaca aguda</span></div>
+          <div class="inf-row"><span class="inf-k">Historial:</span><span class="inf-v">Hipertensión crónica · Medicación: Amlodipina — dosis oficial 5mg diaria (ajustada a 10mg el 24/9 por Dra. Sandín, suplente)</span></div>
+          <hr class="inf-sep">
+          <div class="inf-row"><span class="inf-k">Hallazgo clave:</span><span class="inf-v" style="color:var(--red)">Niveles de Amlodipina en sangre: equivalentes a 40mg diarios — cuatro veces la dosis ajustada de 10mg. La sobredosis supera ampliamente cualquier prescripción registrada.</span></div>
+          <div class="inf-row"><span class="inf-k">Mecanismo probable:</span><span class="inf-v">Administración de dosis incrementales durante varios días. El medicamento fue alterado en su presentación original (blíster) — requiere acceso frecuente a la medicación en el <strong>domicilio del paciente</strong>, no en su lugar de trabajo.</span></div>
+          <div class="inf-row"><span class="inf-k">Período estimado:</span><span class="inf-v">Entre el 27 y el 30 de septiembre. La persona responsable debía tener contacto con Ernesto Vidal en su domicilio o acceso a su medicación fuera del edificio de la empresa.</span></div>
+          <hr class="inf-sep">
+          <div class="inf-nota">Conclusión: La muerte no fue natural. Se abre investigación por homicidio. El método requiere acceso frecuente y sostenido a la medicación del occiso durante al menos una semana previa al fallecimiento.</div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>Compará estas fechas con lo que cada sospechoso declaró sobre su acceso a la medicación y sus actividades en ese rango.</span></div>
+    </div>
+
+    <!-- ══ NOTA CAJÓN ══ -->
+    <div class="page" id="page-nota-cajon">
+      <div class="doc-card" style="margin-bottom:12px">
+        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — NOTA MANUSCRITA DEL CAJÓN</span><span class="dc-ref">EV-XA-05</span></div>
+        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Encontrada en el cajón derecho del escritorio. Letra verificada como de Ernesto. Sin fecha. Tinta corrida en margen inferior.</div>
+      </div>
+      <div style="background:#f5f0e6;border:1px solid #ddd;padding:28px 36px;margin-bottom:12px;font-family:'Times New Roman',serif;max-width:460px">
+        <div style="color:#333;font-size:14px;line-height:2.4">
+          Hablar con R. sobre C.<br>
+          No puede enterarse del testamento.<br>
+          R. me dijo que ya habló con ella — pero C.<br>
+          se comporta diferente desde el martes.<br>
+          G. dice que no tocó nada. Le creo.<br>
+          V. subió la dosis — ¿error o algo más?<br>
+          Las pastillas. Revisar las pastillas.<br>
+          <span style="color:#aaa;font-style:italic">[ilegible — tinta corrida]</span>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>"R." y "C." — guardá estas iniciales junto con los nombres completos que ya conocés. El propio Ernesto anotó "revisar las pastillas" antes de morir.</span></div>
+    </div>
+
+    <!-- ══ TESTAMENTO ══ -->
+    <div class="page" id="page-testamento">
+      <div class="doc-card" style="margin-bottom:12px">
+        <div class="dc-head"><span class="dc-title">DOCUMENTO — FRAGMENTO DEL TESTAMENTO</span><span class="dc-ref">DOC-XA-01</span></div>
+        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Copia parcial. Original en resguardo judicial. El nombre del beneficiario aparece tachado — quién lo tachó es parte de la investigación.</div>
+      </div>
+      <div class="testamento">
+        <div class="test-sello">ESCRIBANÍA<br>ROMANO<br>▪ CABA ▪</div>
+        <div class="test-titulo">TESTAMENTO OLÓGRAFO — MODIFICACIÓN · 2 OCT 2024</div>
+        <div class="test-body">
+          <p>Yo, Ernesto Alberto Vidal, en pleno uso de mis facultades, declaro que este documento reemplaza en su totalidad al testamento de fecha 14 de marzo de 2019.</p>
+          <p>Dispongo que la totalidad de mis bienes — incluyendo el <strong>100% de mis acciones en Vidal &amp; Hijos S.A.</strong>, mis propiedades inmuebles y activos financieros — sean transferidos a:</p>
+          <p style="text-align:center;font-size:15px;letter-spacing:.04em;margin:18px 0"><span class="tachado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+          <p>Quedan <strong>expresamente excluidos</strong> de esta sucesión Marcos Ernesto Vidal y Cecilia Graciela Vidal, quienes recibirán únicamente la porción legítima que establece la ley.</p>
+          <p>Las razones de esta decisión están documentadas en carta adjunta, a ser entregada al beneficiario por el escribano actuante una vez confirmado el fallecimiento.</p>
+          <p style="font-size:11px;color:#666;margin-top:8px">Cláusula adicional: En caso de que el beneficiario designado no pueda o no quiera aceptar la herencia, la totalidad de los bienes pasará a la Fundación <span class="redacted">XXXXXXXX</span>.</p>
+        </div>
+        <div class="test-firma">
+          <div>Firmado: <em>Ernesto A. Vidal</em></div>
+          <div>2 de octubre de 2024</div>
+          <div>Escribano: <em>Dr. C. Romano</em></div>
+        </div>
+      </div>
+      <div class="nota"><span>📋</span><span>El testamento excluye a Marcos y Cecilia. Hay una cláusula de respaldo a una fundación cuyo nombre está redactado, y el beneficiario principal está tachado.</span></div>
+    </div>
+
+    <!-- ══ CARTA IBÁÑEZ ══ -->
+    <div class="page" id="page-carta-ibanez">
+      <div class="doc-card" style="margin-bottom:12px">
+        <div class="dc-head"><span class="dc-title">DOCUMENTO — CARTA DE RODRIGO IBÁÑEZ</span><span class="dc-ref">DOC-XA-02</span></div>
+        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Entregada voluntariamente por Ibáñez el martes 8 de octubre.</div>
+      </div>
+      <div class="carta">
+        <div class="sello">RODRIGO<br>IBÁÑEZ<br>▪ SOCIO ▪</div>
+        <div class="carta-head"><div><strong>Rodrigo A. Ibáñez</strong><br>Socio — Vidal &amp; Hijos S.A.</div><div>Buenos Aires, 8 de octubre de 2024</div></div>
+        <div class="carta-titulo">A LA FAMILIA VIDAL — CONFIDENCIAL</div>
+        <p>Escribo esta carta porque sería deshonesto callar lo que sé.</p>
+        <p>Ernesto me habló del nuevo testamento hace tres semanas. Me pidió discreción porque temía la reacción de sus hijos, especialmente la de Cecilia.</p>
+        <p>La semana del 2 de octubre, Ernesto me llamó angustiado. Me dijo que Cecilia le había preguntado "cosas raras" sobre el testamento. Alguien le había filtrado que habría una modificación. Ernesto me pidió que hablara con ella. <span class="error-marca">Viajé a Mendoza el viernes y no llegué a hacerlo.</span> Cuando volví el lunes, Ernesto ya había muerto.</p>
+        <p>Fui al edificio el sábado a la mañana a retirar unos contratos que Ernesto me había pedido guardar. Salí antes de las 9:30 y tomé el vuelo a las 10:30 sin inconvenientes.</p>
+        <p>No sé quién entró el domingo a la noche. No tengo información sobre eso.</p>
+        <div class="carta-firma">Atentamente,<br><br><strong>Rodrigo A. Ibáñez</strong></div>
+      </div>
+      <div class="nota"><span>📋</span><span>Ibáñez afirma acá que no llegó a hablar con Cecilia. Releé lo que dijiste haber leído en otros documentos sobre ese mismo tema.</span></div>
+      <div class="nota"><span>📋</span><span>Dice que salió "antes de las 9:30". Tenés el horario exacto de entrada y la duración de su visita en el Registro de Accesos — hacé la cuenta vos mismo.</span></div>
+    </div>
+
+    <!-- ══ DATOS OCULTOS ══ -->
+    <div class="page" id="page-nota-oculta">
+      <div class="doc-card" style="margin-bottom:12px">
+        <div class="dc-head"><span class="dc-title">ANÁLISIS — DATOS OCULTOS EN DOCUMENTOS</span><span class="dc-ref">ANAL-XA</span></div>
+        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Esta sección reúne fechas y datos puntuales mencionados en distintos documentos. No saca conclusiones — esa parte es tuya.</div>
+      </div>
+
+      <div class="hidden-data">
+        <div class="hd-label">// LÍNEA DE TIEMPO — MEDICACIÓN Y ACCESOS</div>
+        <div class="hd-text">13 SEP → primera visita domiciliaria de Valeria Sandín<br>24 SEP → Valeria ajusta dosis a 10mg (registrado en historial médico)<br>27–30 SEP → inicio sobredosis — nivel en sangre equivale a 40mg<br>3 OCT → Ernesto escribe al médico · Graciela accede a oficina esa noche<br>6 OCT · 21:14 → acceso al edificio — 47 minutos<br>7 OCT → fallecimiento</div>
+      </div>
+
+      <div class="hidden-data">
+        <div class="hd-label">// PREGUNTA CENTRAL</div>
+        <div class="hd-text">La sobredosis empezó entre el 27 y 30 de septiembre y requirió acceso al domicilio de Ernesto durante esos días.<br>Revisá quién estuvo en contacto con él en su casa durante ese período — no en el edificio.</div>
+      </div>
+
+      <div class="hidden-data">
+        <div class="hd-label">// LÍNEA DE TIEMPO — TESTAMENTO Y PODERES</div>
+        <div class="hd-text">12 SEP → Ernesto firma poder especial a Ibáñez<br>28 SEP → nota interna sobre reestructuración societaria<br>2 OCT → nuevo testamento firmado</div>
+      </div>
+
+      <div class="hidden-data">
+        <div class="hd-label">// TESTIMONIOS — EL LLAMADO DEL DOMINGO</div>
+        <div class="hd-text">Cruzá lo que dice la carta de Ibáñez, el chat de Cecilia con su amiga, y la nota del cajón de Ernesto sobre ese mismo llamado.</div>
+      </div>
+
+      <div class="nota"><span>📋</span><span>Con todo lo que leíste en las tres carpetas tenés los elementos para responder. El detonante no es solo "el testamento" — revisá qué cambió específicamente la semana del 28 de septiembre.</span></div>
+    </div>
+
+    <!-- ══ VALIDACIÓN ══ -->
+    <div class="page" id="page-validacion">
+      <div class="doc-card" style="margin-bottom:16px">
+        <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-XA</span></div>
+        <div class="dc-body"><p style="color:var(--text-mid);font-size:12px;line-height:1.7">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula. La tercera respuesta requiere haber cruzado el informe médico con la cronología y los datos ocultos.</p></div>
+      </div>
+      <div class="val-preg">
+        <div class="val-label">01 · ¿QUIÉN mató a Ernesto Vidal?</div>
+        <div class="val-row"><input class="val-input" id="v1" placeholder="_ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(1)"><button class="val-check" onclick="checkV(1)">VERIFICAR</button></div>
+        <div class="val-fb" id="f1"></div>
+      </div>
+      <div class="val-preg">
+        <div class="val-label">02 · ¿CÓMO lo hizo? (el método)</div>
+        <div class="val-row"><input class="val-input" id="v2" placeholder="_ _ _ _ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(2)"><button class="val-check" onclick="checkV(2)">VERIFICAR</button></div>
+        <div class="val-fb" id="f2"></div>
+      </div>
+      <div class="val-preg">
+        <div class="val-label">03 · ¿CUÁL fue el detonante que la llevó a actuar ESA semana?</div>
+        <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
+        <div class="val-fb" id="f3"></div>
+      </div>
+      <div class="val-submit-wrap" id="submitWrap">
+        <button class="val-submit" onclick="cerrarCaso()">▶ CERRAR EL CASO</button>
+      </div>
+
+      <!-- PANTALLA SELLO -->
+      <div id="caseStamp" style="display:none;margin-top:24px;background:var(--bg);border:1px solid var(--border2);padding:40px 20px;text-align:center;position:relative;overflow:hidden">
+        <svg viewBox="0 0 340 180" width="100%" height="auto" style="opacity:0.85;transform:rotate(-10deg);max-width:520px">
+          <ellipse cx="170" cy="90" rx="162" ry="82" fill="none" stroke="#c82020" stroke-width="7"/>
+          <ellipse cx="170" cy="90" rx="148" ry="68" fill="none" stroke="#c82020" stroke-width="2"/>
+          <text x="170" y="68" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="22" fill="#c82020" letter-spacing="10">CASO</text>
+          <text x="170" y="108" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="38" fill="#c82020" letter-spacing="5" font-weight="bold">RESUELTO</text>
+          <text x="170" y="132" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="12" fill="#c82020" letter-spacing="7">ARCHIVO_CERO · X·A</text>
+        </svg>
+        <button onclick="openShareCard()" style="margin-top:20px;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-mono);font-size:0.77rem;padding:10px 20px;cursor:pointer;letter-spacing:.1em;transition:all .15s" onmouseover="this.style.background='var(--amber-dim)'" onmouseout="this.style.background='var(--amber-muted)'">📸 GENERAR IMAGEN PARA COMPARTIR</button>
+      </div>
+    </div>
+
+  </div><!-- /docs-panel -->
+
+  <!-- PIZARRA PANEL -->
+  <div class="pizarra-panel" id="pizPanel">
+    <div class="piz-inner" id="pizInner">
+      <div class="piz-topbar">
+        <span class="piz-title">📌 PIZARRA</span>
+        <div class="piz-topbar-btns">
+          <button class="piz-btn" id="btnFs" onclick="toggleFs()" title="Pantalla completa">⤢</button>
+          <button class="piz-btn" onclick="clearBoard()" title="Limpiar">↺</button>
+          <button class="piz-btn" onclick="togglePiz()">✕</button>
+        </div>
+      </div>
+      <div class="piz-tools">
+        <button class="piz-tool" onclick="addCard('nota')"><span class="dot" style="background:#e8e050"></span>Nota</button>
+        <button class="piz-tool" onclick="addCard('sospechoso')"><span class="dot" style="background:#e87830"></span>Sospechoso</button>
+        <button class="piz-tool" onclick="addCard('pista')"><span class="dot" style="background:#50c850"></span>Pista</button>
+        <button class="piz-tool" onclick="addCard('hipotesis')"><span class="dot" style="background:#8060e0"></span>Hipótesis</button>
+        <button class="piz-tool" id="btnLine" onclick="startLine()">⬡ Conectar</button>
+        <button class="piz-tool" id="btnCancelLine" style="display:none;color:#e04040" onclick="cancelLine()">✕ Hilo</button>
+        <button class="piz-tool" id="btnPencil" onclick="togglePencil()" title="Dibujar libremente">✏ Lápiz</button>
+        <button class="piz-tool" id="btnErase" onclick="toggleErase()" title="Borrar trazos">⌫ Borrar</button>
+      </div>
+      <div class="piz-canvas-wrap">
+        <div class="piz-canvas" id="pizCanvas">
+          <svg class="piz-svg" id="pizSvg"></svg>
+          <canvas id="drawCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content-area -->
+</div><!-- /shell -->
+
+<div class="footer" id="mainFooter" style="display:none">
+  <span>ARCHIVO_CERO · CASO X·A · La Última Firma · archivo0.com.ar</span>
+  <span id="footerTime"></span>
+</div>
+
+<!-- ENIGMA MODAL -->
+<div id="enigmaModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--amber-dim);padding:28px 30px;width:420px;max-width:95vw">
+    <div style="font-family:var(--font-display);font-size:11px;color:var(--amber);letter-spacing:.18em;margin-bottom:6px" id="enigmaModalTitle">// ENIGMA 1</div>
+    <div style="font-size:12px;color:var(--text-mid);line-height:1.7;margin-bottom:18px" id="enigmaModalText"></div>
+    <div style="display:flex;gap:7px;margin-bottom:10px">
+      <input id="enigmaModalInput" style="flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:16px;padding:10px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none" placeholder="CLAVE" maxlength="15" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')submitEnigmaModal()">
+      <button onclick="submitEnigmaModal()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:11px;padding:0 16px;cursor:pointer;letter-spacing:.08em">DESBLOQUEAR</button>
+    </div>
+    <div id="enigmaModalMsg" style="font-size:11px;padding:7px 10px;display:none;margin-bottom:10px"></div>
+    <button onclick="closeEnigmaModal()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:10px;padding:6px 14px;cursor:pointer;letter-spacing:.06em">CANCELAR</button>
+  </div>
+</div>
+
+<!-- TOUR OVERLAY -->
+<div class="tour-overlay" id="tourOverlay">
+  <div class="tour-backdrop" onclick="skipTour()"></div>
+  <div class="tour-highlight" id="tourHL"></div>
+  <div class="tour-tooltip" id="tourTT">
+    <div class="tour-num" id="tourNum"></div>
+    <div class="tour-title" id="tourTitle"></div>
+    <div class="tour-desc" id="tourDesc"></div>
+    <div class="tour-footer">
+      <button class="tour-next" id="tourNext" onclick="tourStep()">SIGUIENTE →</button>
+      <button class="tour-skip" onclick="skipTour()">SALTAR</button>
+      <div class="tour-dots" id="tourDots"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CASO CERRADO MODAL -->
+<div id="casoModal" style="display:none;position:fixed;inset:0;z-index:700;align-items:center;justify-content:center;background:rgba(0,0,0,.85)">
+  <div style="background:var(--bg2);border:1px solid var(--green-dim);max-width:560px;width:95vw;max-height:90vh;overflow-y:auto;position:relative">
+    <!-- header -->
+    <div style="background:var(--green-muted);border-bottom:1px solid var(--green-dim);padding:22px 28px;text-align:center">
+      <div style="font-size:10px;color:var(--green-dim);letter-spacing:.25em;margin-bottom:8px">ARCHIVO_CERO · CASO X·A · RESOLUCIÓN OFICIAL</div>
+      <div style="font-family:var(--font-display);font-size:28px;color:var(--green);letter-spacing:.12em;line-height:1.1">FELICITACIONES,<br>INVESTIGADOR/A</div>
+      <div style="font-size:11px;color:var(--text-mid);margin-top:10px;letter-spacing:.06em">El caso ha sido cerrado correctamente.</div>
+    </div>
+    <!-- body -->
+    <div style="padding:24px 28px">
+
+      <div style="font-size:9px;color:var(--amber);letter-spacing:.2em;margin-bottom:12px">// INFORME FINAL — RESOLUCIÓN DEL CASO</div>
+
+      <div style="font-size:12px;color:var(--text);line-height:1.9;margin-bottom:18px">
+        <p style="margin-bottom:12px"><strong style="color:var(--green)">Ernesto Vidal fue asesinado por su hija menor, Cecilia Vidal.</strong> El método fue una sobredosis crónica de Amlodipina. Cecilia llevaba tres meses acercándole la medicación en su domicilio desde que él se operó la rodilla en julio. Aprovechó esa rutina de confianza para incrementar gradualmente la dosis entre el 27 y el 30 de septiembre.</p>
+        <p style="margin-bottom:12px"><strong style="color:var(--amber)">El detonante fue la nota interna del 28 de septiembre.</strong> La reestructuración de la empresa significaba para Cecilia perderlo todo al mismo tiempo: la herencia —ya excluida por el nuevo testamento— y cualquier futuro en la empresa familiar. Actuó dentro de los dos días siguientes.</p>
+        <p style="margin-bottom:12px"><strong style="color:var(--text-dim)">¿Por qué no fue Valeria Sandín?</strong> La Dra. Sandín subió la dosis oficialmente a 10mg el 24 de septiembre — con prescripción registrada, firmada y en el historial del paciente. El nivel en sangre de Ernesto equivalía a 40mg: cuatro veces esa dosis. Nadie con intención médica legítima o incluso negligente llega a esos niveles. Además, Valeria no tuvo acceso a la medicación entre el 24 de septiembre y la muerte — eso lo cubría exclusivamente Cecilia desde el domicilio. La "amenaza de denuncia" era motivo, pero sin acceso en el período crítico.</p>
+        <p style="margin-bottom:12px"><strong style="color:var(--text-dim)">¿Por qué no fue Graciela?</strong> Graciela tenía el código de la oficina y entró el jueves 3 — pero la medicación se alteró en el domicilio de Ernesto, no en la empresa. Su acceso era al edificio, no a las pastillas. Y Ernesto mismo escribió en su nota: "G. dice que no tocó nada. Le creo."</p>
+        <p style="margin-bottom:0"><strong style="color:var(--text-dim)">La mentira de Ibáñez</strong> — Rodrigo mintió en su carta al decir que no habló con Cecilia. La llamó el domingo para calmarla. No sabía — o no dijo — que ya era demasiado tarde.</p>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:16px;margin-bottom:18px">
+        <div style="font-size:9px;color:var(--text-dim);letter-spacing:.2em;margin-bottom:10px">// RESPUESTAS CORRECTAS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
+            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿QUIÉN?</div>
+            <div style="font-family:var(--font-display);font-size:14px;color:var(--green);letter-spacing:.15em">CECILIA</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
+            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿CÓMO?</div>
+            <div style="font-family:var(--font-display);font-size:14px;color:var(--green);letter-spacing:.15em">MEDICACION</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
+            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿DETONANTE?</div>
+            <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.1em">REESTRUCTURACION</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:18px;margin-bottom:18px;text-align:center">
+        <div style="font-size:0.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:10px">¿TE GUSTÓ INVESTIGAR?</div>
+        <div style="font-size:0.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:14px">Archivo Cero tiene más casos esperando — algunos en papel, algunos 100% digitales como este. Conocé el catálogo completo.</div>
+        <a href="https://archivo0.com.ar" target="_blank" rel="noopener" style="display:inline-block;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-display);font-size:0.85rem;padding:10px 22px;letter-spacing:.1em;text-decoration:none;transition:all .15s" onmouseover="this.style.background='var(--amber-dim)'" onmouseout="this.style.background='var(--amber-muted)'">VER MÁS CASOS →</a>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button onclick="closeCasoModal()" style="flex:1;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:13px;padding:13px;cursor:pointer;letter-spacing:.15em;transition:all .15s" onmouseover="this.style.background='var(--green-dim)'" onmouseout="this.style.background='var(--green-muted)'">✓ CERRAR INFORME</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══ NAV ═══
+const pageNames={resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cómo investigar',sospechosos:'Perfiles de sospechosos',cronologia:'Cronología',
+'informe-empresa':'Informe empresa','informe-seguridad':'Registro de accesos','email-medico':'Email al médico',
+'whatsapp-marcos':'Chat Marcos/abogado','whatsapp-cecilia':'Chat Cecilia/amiga','informe-medico':'Informe médico',
+'nota-cajon':'Nota del cajón',testamento:'Testamento','carta-ibanez':'Carta de Ibáñez',
+'nota-oculta':'Datos ocultos',validacion:'Resolver el caso'};
+const progMap={resumen:4,teaser:6,instrucciones:7,sospechosos:14,cronologia:20,'informe-empresa':26,
+'informe-seguridad':34,'email-medico':42,'whatsapp-marcos':50,'whatsapp-cecilia':58,'informe-medico':65,
+'nota-cajon':72,testamento:80,'carta-ibanez':87,'nota-oculta':93,validacion:96};
+const folderMap={
+  resumen:0,teaser:0,instrucciones:0,
+  sospechosos:1,cronologia:1,'informe-empresa':1,
+  'informe-seguridad':2,'email-medico':2,'whatsapp-marcos':2,'whatsapp-cecilia':2,'informe-medico':2,
+  'nota-cajon':3,testamento:3,'carta-ibanez':3,'nota-oculta':3,
+  validacion:4
+};
+const visited=new Set(['resumen']);
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  const p=document.getElementById('page-'+id);
+  if(p)p.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(i=>{
+    if(i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id)i.classList.add('active');
+  });
+  document.getElementById('bcCurrent').textContent=pageNames[id]||id;
+  updateFolderIndicator(id);
+  visited.add(id);
+  markVisitedInSidebar(id);
+  const pct=Math.max(...[...visited].map(v=>progMap[v]||0));
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progPct').textContent=pct+'%';
+  saveState();
+  if(isMobile())closeMobileSidebar();
+}
+function updateFolderIndicator(id){
+  const f=folderMap[id];
+  const el=document.getElementById('bcFolder');
+  if(!el)return;
+  if(f===0){el.textContent='';return}
+  if(f===4){el.textContent='⊛ CIERRE';return}
+  el.textContent='📁 CARPETA '+f+' / 3';
+}
+function markVisitedInSidebar(id){
+  document.querySelectorAll('.sb-item').forEach(i=>{
+    if(i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id){
+      if(!i.classList.contains('locked'))i.classList.add('visited');
+    }
+  });
+}
+function toggleSB(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('open')}
+
+// ═══ ENIGMAS ═══
+const ENIGMAS={1:'MEDICACION',2:'MENTIRA'};
+let unlocked={1:false,2:false};
+
+function checkE(n){
+  const il=document.getElementById('e'+n+'inline');
+  const val=(il?il.value:'').trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const ok=val===ENIGMAS[n];
+  const ilm=document.getElementById('e'+n+'msg');
+  if(ilm){ilm.className='enigma-msg '+(ok?'ok':'err');ilm.textContent=ok?'✓ Correcto — usá el menú izquierdo para continuar.':'✗ Incorrecto. Revisá los documentos.'}
+  if(ok&&!unlocked[n]){unlocked[n]=true;n===1?unlock2():unlock3();saveState()}
+}
+
+// ═══ ENIGMA MODAL ═══
+const ENIGMA_TEXTS={
+  1:'En el perfil de los sospechosos encontrarás una etiqueta de farmacia con un texto manuscrito superpuesto. Está cifrado con un método de sustitución donde cada letra fue reemplazada por la que está 13 posiciones después en el abecedario (y si te pasás del final, volvés a empezar).\n\nDecodificá el texto y vas a tener la respuesta — una sola palabra que describe a qué tenía acceso la persona que buscás.',
+  2:'En el Registro de Accesos hay un código de incidente autogenerado por el sistema de seguridad, asociado al acceso del domingo a las 21:14. Cada número representa la posición de una letra en el abecedario (A=1, B=2, C=3... Z=26).\n\nDecodificá el código. La palabra resultante no es un nombre — es lo que ese acceso terminó revelando sobre uno de los testimonios que ya leíste.'
+};
+let currentEnigmaN=0;
+
+function openEnigmaModal(n){
+  currentEnigmaN=n;
+  document.getElementById('enigmaModalTitle').textContent='// ENIGMA '+n+' — DESBLOQUEAR CARPETA '+(n+1);
+  document.getElementById('enigmaModalText').textContent=ENIGMA_TEXTS[n];
+  document.getElementById('enigmaModalInput').value='';
+  const msg=document.getElementById('enigmaModalMsg');
+  msg.style.display='none';msg.textContent='';
+  const modal=document.getElementById('enigmaModal');
+  modal.style.display='flex';
+  setTimeout(()=>document.getElementById('enigmaModalInput').focus(),50);
+}
+function closeEnigmaModal(){
+  document.getElementById('enigmaModal').style.display='none';
+}
+function submitEnigmaModal(){
+  const val=document.getElementById('enigmaModalInput').value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const ok=val===ENIGMAS[currentEnigmaN];
+  const msg=document.getElementById('enigmaModalMsg');
+  msg.style.display='block';
+  if(ok){
+    msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim);margin-bottom:10px';
+    msg.textContent='✓ Correcto — Carpeta '+(currentEnigmaN+1)+' desbloqueada.';
+    if(!unlocked[currentEnigmaN]){
+      unlocked[currentEnigmaN]=true;
+      currentEnigmaN===1?unlock2():unlock3();
+      saveState();
+    }
+    setTimeout(closeEnigmaModal,1200);
+  }else{
+    msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a;margin-bottom:10px';
+    msg.textContent='✗ Incorrecto. Revisá los documentos de la carpeta.';
+  }
+}
+
+// close modal on overlay click
+document.getElementById('enigmaModal').addEventListener('click',function(e){if(e.target===this)closeEnigmaModal()});
+
+
+
+function unlock2(){
+  ['informe-seguridad','email-medico','whatsapp-marcos','whatsapp-cecilia','informe-medico'].forEach(id=>{
+    const el=document.getElementById('item-'+id);
+    if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge2');b.className='fb fb-open';b.textContent='ABIERTA';
+  // enable enigma 2 sidebar item
+  const e2=document.getElementById('enigma2-sb-item');
+  if(e2){
+    e2.classList.remove('locked');
+    e2.style.color='var(--amber)';
+    e2.style.borderLeft='2px solid var(--amber-dim)';
+    const lk=e2.querySelector('.sb-lock');if(lk)lk.remove();
+  }
+}
+function unlock3(){
+  ['nota-cajon','testamento','carta-ibanez','nota-oculta','validacion'].forEach(id=>{
+    const el=document.getElementById('item-'+id);
+    if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge3');b.className='fb fb-open';b.textContent='ABIERTA';
+}
+
+// ═══ VALIDACIÓN ═══
+const ANSWERS={1:'CECILIA',2:'MEDICACION',3:'REESTRUCTURACION'};
+const correct={1:false,2:false,3:false};
+function checkV(n){
+  const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const fb=document.getElementById('f'+n);
+  if(val===ANSWERS[n]){
+    correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';
+    document.getElementById('v'+n).style.borderColor='var(--green-dim)';
+    if(correct[1]&&correct[2]&&correct[3]){
+      document.getElementById('submitWrap').classList.add('show');
+    }
+  }else{fb.className='val-fb err';fb.textContent='✗ No es correcto.'}
+}
+function cerrarCaso(){
+  document.getElementById('submitWrap').style.display='none';
+  document.getElementById('progFill').style.width='100%';
+  document.getElementById('progPct').textContent='100%';
+  clearInterval(timerInterval);
+  document.getElementById('casoModal').style.display='flex';
+}
+function closeCasoModal(){
+  document.getElementById('casoModal').style.display='none';
+  // show stamp over validation section
+  document.getElementById('caseStamp').style.display='flex';
+}
+// close on backdrop click
+document.getElementById('casoModal').addEventListener('click',function(e){
+  if(e.target===this)closeCasoModal();
+});
+
+// ═══ STATE ═══
+function saveState(){try{localStorage.setItem('ac_xa_st',JSON.stringify({unlocked,visited:[...visited]}))}catch(e){}}
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem('ac_xa_st')||'{}');
+    if(s.unlocked){
+      if(s.unlocked[1]){unlocked[1]=true;unlock2()}
+      if(s.unlocked[2]){unlocked[2]=true;unlock3()}
+    }
+    if(s.visited)s.visited.forEach(v=>visited.add(v));
+  }catch(e){}
+}
+
+// ═══ PIZARRA ═══
+let pizOpen=false,pizFs=false;
+function togglePiz(){
+  pizOpen=!pizOpen;
+  document.getElementById('pizPanel').classList.toggle('open',pizOpen);
+  document.getElementById('btnPiz').classList.toggle('active',pizOpen);
+  if(pizOpen){
+    if(cards.length===0)seedBoard();
+    setTimeout(()=>{
+      initCanvas();
+      const cv=getDrawCanvas();
+      if(cv)resizeObs.observe(cv.parentElement);
+    },50);
+  }
+  drawLines();
+}
+function toggleFs(){
+  pizFs=!pizFs;
+  const pp=document.getElementById('pizPanel');
+  pp.classList.toggle('fullscreen',pizFs);
+  if(pizFs&&!pizOpen){pizOpen=true;pp.classList.add('open')}
+  document.getElementById('btnFs').textContent=pizFs?'⤡':'⤢';
+  setTimeout(drawLines,50);
+}
+
+// ═══ CORK BOARD ═══
+let cards=[],lines=[],cardId=0,lineMode=false,lineStart=null,dragging=null,dragOx=0,dragOy=0,selected=null;
+
+function seedBoard(){
+  addCard('sospechoso',20,30,'Cecilia Vidal\n⚠ Acceso medicación\n⚠ Dom 21:14 en edificio\n⚠ Coartada FALSA');
+  addCard('sospechoso',220,30,'Marcos Vidal\n⚠ Sabía del testamento\nCoartada verificable\nNo accedió al edificio');
+  addCard('sospechoso',420,30,'Rodrigo Ibáñez\n⚠ MINTIÓ en su carta\n⚠ Llamó a Cecilia el dom.\nCoartada verificable');
+  addCard('pista',20,220,'Sobredosis empezó\n27-30 sep.\nCecilia tuvo acceso\ndesde julio.');
+  addCard('nota',220,220,'Nota cajón Ernesto:\n"R. me dijo que ya\nhabló con ella"\nIbáñez lo niega.');
+}
+
+function addCard(type,x,y,text){
+  const canvas=document.getElementById('pizCanvas');
+  const r=canvas.getBoundingClientRect();
+  const cx=x!==undefined?x:20+Math.random()*(Math.max(r.width-200,100));
+  const cy=y!==undefined?y:30+Math.random()*(Math.max(r.height-150,80));
+  const labels={nota:'NOTA',sospechoso:'SOSPECHOSO',pista:'PISTA',hipotesis:'HIPÓTESIS'};
+  const def={nota:'Escribí acá...',sospechoso:'Nombre...',pista:'Pista encontrada...',hipotesis:'Mi hipótesis...'};
+  const id='c'+(++cardId);
+  const div=document.createElement('div');
+  div.className='cork-card card-'+type;div.id=id;
+  div.style.cssText='left:'+cx+'px;top:'+cy+'px;transform:rotate('+(Math.random()*6-3)+'deg)';
+  div.innerHTML='<div class="cork-chinche"></div><div class="cork-card-head"><span>'+labels[type]+'</span><span class="cork-del" onclick="delCard(\''+id+'\')">✕</span></div><div class="cork-card-body" contenteditable="true" onblur="saveBoard()">'+(text||def[type]).replace(/\n/g,'<br>')+'</div>';
+  canvas.appendChild(div);
+  cards.push({id,type,x:cx,y:cy});
+  makeDrag(div);
+  saveBoard();
+  return div;
+}
+
+function makeDrag(el){
+  function handleStart(e){
+    if(e.target.classList.contains('cork-del'))return;
+    if(lineMode){
+      e.preventDefault();
+      e.stopPropagation();
+      pickLine(el);
+      return;
+    }
+    if(pencilMode||eraseMode)return;
+    if(!e.target.closest('.cork-card-head'))return;
+    e.preventDefault();
+    selectCard(el);
+    const r=el.getBoundingClientRect();
+    const pt=e.touches?e.touches[0]:e;
+    dragOx=pt.clientX-r.left;dragOy=pt.clientY-r.top;
+    dragging=el;el.style.zIndex=100;
+  }
+  el.addEventListener('mousedown',handleStart);
+  el.addEventListener('touchstart',handleStart,{passive:false});
+}
+
+function handleDragMove(e){
+  if(!dragging)return;
+  const c=document.getElementById('pizCanvas');
+  const r=c.getBoundingClientRect();
+  const pt=e.touches?e.touches[0]:e;
+  let nx=pt.clientX-r.left-dragOx,ny=pt.clientY-r.top-dragOy;
+  nx=Math.max(0,Math.min(nx,r.width-dragging.offsetWidth));
+  ny=Math.max(0,Math.min(ny,r.height-dragging.offsetHeight));
+  dragging.style.left=nx+'px';dragging.style.top=ny+'px';
+  drawLines();
+  if(e.touches)e.preventDefault();
+}
+function handleDragEnd(){if(dragging){dragging.style.zIndex=10;dragging=null;saveBoard()}}
+
+document.addEventListener('mousemove',handleDragMove);
+document.addEventListener('mouseup',handleDragEnd);
+document.addEventListener('touchmove',handleDragMove,{passive:false});
+document.addEventListener('touchend',handleDragEnd);
+
+function selectCard(el){if(selected&&selected!==el)selected.classList.remove('selected');selected=el;el.classList.add('selected')}
+
+function delCard(id){
+  lines=lines.filter(l=>l.a!==id&&l.b!==id);
+  document.getElementById(id)?.remove();
+  cards=cards.filter(c=>c.id!==id);
+  drawLines();saveBoard();
+}
+
+function startLine(){
+  // cancel pencil/erase first
+  if(pencilMode)togglePencil();
+  if(eraseMode)toggleErase();
+  lineMode=true;lineStart=null;
+  document.getElementById('btnLine').style.display='none';
+  document.getElementById('btnCancelLine').style.display='flex';
+  document.getElementById('pizCanvas').style.cursor='crosshair';
+  // make cards clickable for line picking
+  document.querySelectorAll('.cork-card').forEach(c=>{
+    c.style.pointerEvents='all';
+    c.style.cursor='crosshair';
+  });
+}
+function cancelLine(){
+  lineMode=false;lineStart=null;
+  document.getElementById('btnLine').style.display='flex';
+  document.getElementById('btnCancelLine').style.display='none';
+  document.getElementById('pizCanvas').style.cursor='default';
+  document.querySelectorAll('.cork-card').forEach(c=>{c.style.cursor='';c.style.pointerEvents=''});
+  // deselect
+  if(selected){selected.classList.remove('selected');selected=null;}
+}
+function pickLine(el){
+  if(!lineMode)return;
+  el.classList.add('selected');
+  if(!lineStart){
+    lineStart=el.id;
+    selected=el;
+    return;
+  }
+  if(lineStart===el.id){cancelLine();return}
+  lines.push({a:lineStart,b:el.id,c:'#9b2335'});
+  drawLines();
+  cancelLine();
+  saveBoard();
+}
+
+function getCenter(id){
+  const el=document.getElementById(id);
+  if(!el)return null;
+  return{x:el.offsetLeft+el.offsetWidth/2,y:el.offsetTop+el.offsetHeight/2};
+}
+function drawLines(){
+  const svg=document.getElementById('pizSvg');
+  svg.innerHTML='';
+  lines.forEach(l=>{
+    const a=getCenter(l.a),b=getCenter(l.b);
+    if(!a||!b)return;
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',a.x);line.setAttribute('y1',a.y);line.setAttribute('x2',b.x);line.setAttribute('y2',b.y);
+    line.setAttribute('stroke',l.c||'#e84444');line.setAttribute('stroke-width','2');
+    line.setAttribute('stroke-dasharray','5,3');line.setAttribute('opacity','0.85');
+    svg.appendChild(line);
+    [a,b].forEach(pt=>{
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);c.setAttribute('r','4');
+      c.setAttribute('fill',l.c||'#e84444');c.setAttribute('opacity','0.9');
+      svg.appendChild(c);
+    });
+  });
+}
+
+function clearBoard(){
+  if(!confirm('¿Limpiar toda la pizarra?'))return;
+  cards=[];lines=[];cardId=0;drawPaths=[];
+  document.querySelectorAll('.cork-card').forEach(c=>c.remove());
+  document.getElementById('pizSvg').innerHTML='';
+  const cv=getDrawCanvas();if(cv){const ctx=getDrawCtx();ctx.clearRect(0,0,cv.width,cv.height)}
+  saveBoard();
+}
+
+function saveBoard(){
+  try{
+    const data={cards:cards.map(c=>{
+      const el=document.getElementById(c.id);
+      return{...c,html:el?.querySelector('.cork-card-body')?.innerHTML||'',
+        x:parseInt(el?.style.left)||c.x,y:parseInt(el?.style.top)||c.y,
+        rot:el?.style.transform||''};
+    }),lines,cardId,drawPaths};
+    localStorage.setItem('ac_xa_board',JSON.stringify(data));
+  }catch(e){}
+}
+function loadBoard(){
+  try{
+    const d=JSON.parse(localStorage.getItem('ac_xa_board')||'{}');
+    if(d.cards&&d.cards.length){
+      cardId=d.cardId||0;
+      d.cards.forEach(c=>{
+        const el=addCard(c.type,c.x,c.y,'');
+        const b=el.querySelector('.cork-card-body');if(b)b.innerHTML=c.html||'';
+        if(c.rot)el.style.transform=c.rot;
+      });
+      lines=d.lines||[];drawLines();
+    }
+    if(d.drawPaths){drawPaths=d.drawPaths;setTimeout(redrawPaths,100)}
+  }catch(e){}
+}
+
+// ═══ SPLASH + TIMER ═══
+let timerInterval=null,timerSeconds=0,timerStarted=false;
+
+// ═══ TOUR ═══
+const TOUR_STEPS=[
+  {
+    target:()=>document.querySelector('.t-right'),
+    arrow:'tour-arrow-t',
+    offset:{top:'below',left:'align-right'},
+    title:'Navegación superior',
+    desc:'Acá arriba tenés todo lo que necesitás durante la partida: el cronómetro ⏱, las pistas 💡, el tamaño de letra (A A A), el modo claro/oscuro ☀/🌙, y el botón de la Pizarra 📌.'
+  },
+  {
+    target:()=>document.getElementById('btnPiz'),
+    arrow:'tour-arrow-t',
+    offset:{top:'below',left:'align-right'},
+    title:'La pizarra',
+    desc:'Tomá notas, arrastrá tarjetas, conectalas con hilos y dibujá libremente con el lápiz. Todo se guarda automáticamente mientras investigás.',
+    action:()=>{if(!pizOpen)togglePiz();setTimeout(()=>{if(pizOpen)togglePiz();},1800)}
+  },
+  {
+    target:()=>document.querySelector('.sidebar'),
+    arrow:'tour-arrow-l',
+    offset:{top:60,left:'right'},
+    title:'Navegación lateral',
+    desc:'Acá están todos los documentos organizados en carpetas. Las carpetas 2 y 3 están bloqueadas — se desbloquean resolviendo los enigmas.'
+  },
+  {
+    target:()=>document.getElementById('page-resumen'),
+    arrow:'tour-arrow-t',
+    offset:{top:80,left:20},
+    title:'¡Listo para investigar!',
+    desc:'Empezá por el Resumen del caso y explorá la Carpeta 1. Resolvé el Enigma 1 para desbloquear la siguiente sección. Buena suerte, investigador/a.',
+    isLast:true
+  }
+];
+let tourI=0;
+
+function startTour(){
+  tourI=0;
+  renderTourStep();
+  document.getElementById('tourOverlay').classList.add('active');
+}
+function skipTour(){
+  document.getElementById('tourOverlay').classList.remove('active');
+}
+function tourStep(){
+  const step=TOUR_STEPS[tourI];
+  if(step.action)step.action();
+  tourI++;
+  if(tourI>=TOUR_STEPS.length){skipTour();return}
+  setTimeout(renderTourStep,350);
+}
+function renderTourStep(){
+  const step=TOUR_STEPS[tourI];
+  if(!step)return;
+  // run action before rendering
+  const el=step.target();
+  if(!el)return;
+
+  // update dots
+  const dots=document.getElementById('tourDots');
+  dots.innerHTML=TOUR_STEPS.map((_,i)=>`<div class="tour-dot${i===tourI?' on':''}"></div>`).join('');
+
+  // update text
+  document.getElementById('tourNum').textContent='PASO '+(tourI+1)+' DE '+TOUR_STEPS.length;
+  document.getElementById('tourTitle').textContent=step.title;
+  document.getElementById('tourDesc').textContent=step.desc;
+  document.getElementById('tourNext').textContent=step.isLast?'EMPEZAR →':'SIGUIENTE →';
+
+  // position highlight
+  const hl=document.getElementById('tourHL');
+  const r=el.getBoundingClientRect();
+  hl.style.top=(r.top-4)+'px';
+  hl.style.left=(r.left-4)+'px';
+  hl.style.width=(r.width+8)+'px';
+  hl.style.height=(r.height+8)+'px';
+
+  // position tooltip
+  const tt=document.getElementById('tourTT');
+  tt.className='tour-tooltip '+step.arrow;
+  const pad=14;
+  let ttTop,ttLeft;
+
+  if(step.offset.top==='below'){
+    ttTop=r.bottom+pad;
+  }else if(step.offset.top==='above'){
+    ttTop=r.top-tt.offsetHeight-pad;
+  }else if(step.offset.left==='right'){
+    ttTop=r.top;
+  }else if(step.offset.left==='left'){
+    ttTop=r.top;
+  }else{
+    ttTop=r.top+step.offset.top;
+  }
+
+  if(step.offset.left==='right'){
+    ttLeft=r.right+pad;
+  }else if(step.offset.left==='left'){
+    ttLeft=r.left-274-pad;
+  }else if(step.offset.left==='align-right'){
+    ttLeft=r.right-270;
+  }else{
+    ttLeft=r.left+step.offset.left;
+  }
+
+  // clamp to viewport
+  ttLeft=Math.max(8,Math.min(ttLeft,window.innerWidth-290));
+  ttTop=Math.max(8,Math.min(ttTop,window.innerHeight-200));
+
+  tt.style.top=ttTop+'px';
+  tt.style.left=ttLeft+'px';
+}
+
+function iniciarInvestigacion(){
+  document.getElementById('splash').classList.add('hidden');
+  document.getElementById('topbar').style.display='flex';
+  document.getElementById('mainShell').style.display='flex';
+  document.getElementById('mainFooter').style.display='flex';
+  startTimer();
+  try{sessionStorage.setItem('ac_xa_started','1')}catch(e){}
+  go('resumen');
+  // start tour after a short delay
+  setTimeout(startTour,400);
+}
+
+
+
+function startTimer(){
+  if(timerStarted)return;
+  timerStarted=true;
+  timerSeconds=0; // always start from zero
+  timerInterval=setInterval(()=>{
+    timerSeconds++;
+    updateTimerDisplay();
+    try{sessionStorage.setItem('ac_xa_timer',timerSeconds)}catch(e){}
+  },1000);
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay(){
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  const str=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  const el=document.getElementById('timerDisplay');
+  if(el){
+    el.textContent=str;
+    // turn red after 45 min
+    el.classList.toggle('urgent',timerSeconds>2700);
+  }
+}
+
+// check if session was already started (same browser tab session)
+(function(){
+  try{
+    const st=JSON.parse(localStorage.getItem('ac_xa_st')||'{}');
+    // only skip splash if user has visited multiple pages in this session
+    if(sessionStorage.getItem('ac_xa_started')&&st.visited&&st.visited.length>1){
+      document.getElementById('splash').classList.add('hidden');
+      document.getElementById('topbar').style.display='flex';
+      document.getElementById('mainShell').style.display='flex';
+      document.getElementById('mainFooter').style.display='flex';
+      startTimer();
+      go('resumen');
+    }
+  }catch(e){}
+})();
+
+// ═══ PENCIL / DRAW ═══
+let pencilMode=false,eraseMode=false,isDrawing=false,lastX=0,lastY=0;
+let drawPaths=[]; // store paths for save/load
+
+function getDrawCanvas(){return document.getElementById('drawCanvas')}
+function getDrawCtx(){return getDrawCanvas()?.getContext('2d')}
+
+function initCanvas(){
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  const wrap=cv.parentElement;
+  cv.width=wrap.offsetWidth||600;
+  cv.height=wrap.offsetHeight||400;
+  redrawPaths();
+}
+
+function togglePencil(){
+  eraseMode=false;
+  pencilMode=!pencilMode;
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  if(pencilMode){
+    cv.style.pointerEvents='all';
+    cv.style.cursor='crosshair';
+    cv.style.touchAction='none';
+    document.getElementById('btnPencil').classList.add('active');
+    document.getElementById('btnErase').classList.remove('active');
+    // make cards non-interactive while drawing
+    document.querySelectorAll('.cork-card').forEach(c=>c.style.pointerEvents='none');
+    if(lineMode)cancelLine();
+  }else{
+    cv.style.pointerEvents='none';
+    cv.style.cursor='default';
+    cv.style.touchAction='';
+    document.getElementById('btnPencil').classList.remove('active');
+    document.querySelectorAll('.cork-card').forEach(c=>c.style.pointerEvents='');
+  }
+}
+
+function toggleErase(){
+  pencilMode=false;
+  eraseMode=!eraseMode;
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  if(eraseMode){
+    cv.style.pointerEvents='all';
+    cv.style.cursor='cell';
+    cv.style.touchAction='none';
+    document.getElementById('btnErase').classList.add('active');
+    document.getElementById('btnPencil').classList.remove('active');
+    document.querySelectorAll('.cork-card').forEach(c=>c.style.pointerEvents='none');
+  }else{
+    cv.style.pointerEvents='none';
+    cv.style.cursor='default';
+    cv.style.touchAction='';
+    document.getElementById('btnErase').classList.remove('active');
+    document.querySelectorAll('.cork-card').forEach(c=>c.style.pointerEvents='');
+  }
+}
+
+function getPos(e,cv){
+  const r=cv.getBoundingClientRect();
+  const touch=e.touches?e.touches[0]:e;
+  return{x:(touch.clientX-r.left)*(cv.width/r.width),y:(touch.clientY-r.top)*(cv.height/r.height)};
+}
+
+let currentPath=[];
+
+function pencilStart(e){
+  if(!pencilMode&&!eraseMode)return;
+  const cv=getDrawCanvas();
+  if(!cv||e.target!==cv)return;
+  isDrawing=true;
+  const pos=getPos(e,cv);
+  lastX=pos.x;lastY=pos.y;
+  if(pencilMode)currentPath=[{x:pos.x,y:pos.y}];
+  if(e.touches)e.preventDefault();
+}
+function pencilMove(e){
+  if(!isDrawing)return;
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  const ctx=getDrawCtx();
+  const pos=getPos(e,cv);
+  if(pencilMode){
+    ctx.beginPath();
+    ctx.moveTo(lastX,lastY);
+    ctx.lineTo(pos.x,pos.y);
+    ctx.strokeStyle='#c83030';
+    ctx.lineWidth=2.5;
+    ctx.lineCap='round';
+    ctx.lineJoin='round';
+    ctx.stroke();
+    currentPath.push({x:pos.x,y:pos.y});
+  }else if(eraseMode){
+    ctx.clearRect(pos.x-18,pos.y-18,36,36);
+    eraseNear(pos.x,pos.y,20);
+    redrawPaths();
+  }
+  lastX=pos.x;lastY=pos.y;
+  if(e.touches)e.preventDefault();
+}
+function pencilEnd(){
+  if(!isDrawing)return;
+  isDrawing=false;
+  if(pencilMode&&currentPath.length>1){
+    drawPaths.push([...currentPath]);
+    currentPath=[];
+    saveBoard();
+  }
+}
+document.addEventListener('mousedown',pencilStart);
+document.addEventListener('mousemove',pencilMove);
+document.addEventListener('mouseup',pencilEnd);
+document.addEventListener('touchstart',pencilStart,{passive:false});
+document.addEventListener('touchmove',pencilMove,{passive:false});
+document.addEventListener('touchend',pencilEnd);
+
+function eraseNear(x,y,r){
+  drawPaths=drawPaths.filter(path=>{
+    return!path.some(pt=>Math.hypot(pt.x-x,pt.y-y)<r);
+  });
+}
+
+function redrawPaths(){
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  const ctx=getDrawCtx();
+  ctx.clearRect(0,0,cv.width,cv.height);
+  drawPaths.forEach(path=>{
+    if(path.length<2)return;
+    ctx.beginPath();
+    ctx.moveTo(path[0].x,path[0].y);
+    for(let i=1;i<path.length;i++)ctx.lineTo(path[i].x,path[i].y);
+    ctx.strokeStyle='#c83030';
+    ctx.lineWidth=2.5;
+    ctx.lineCap='round';
+    ctx.lineJoin='round';
+    ctx.stroke();
+  });
+}
+
+// resize canvas when pizarra opens/resizes
+const resizeObs=new ResizeObserver(()=>{
+  const cv=getDrawCanvas();
+  if(!cv)return;
+  const wrap=cv.parentElement;
+  const old=ctx_snapshot();
+  cv.width=wrap.offsetWidth||cv.width;
+  cv.height=wrap.offsetHeight||cv.height;
+  redrawPaths();
+});
+function ctx_snapshot(){return null} // placeholder
+
+// hook into pizarra toggle to init canvas
+const _origTogglePiz=togglePiz;
+
+// ═══ AUDIO PLAYER ═══
+let audioPlaying=false;
+const SPOTIFY_URL='https://open.spotify.com/episode/7uSwJecLcnVscD1gW6PtnZ';
+
+function toggleAudio(){
+  audioPlaying=!audioPlaying;
+  const btn=document.getElementById('playBtn');
+  const status=document.getElementById('audioStatus');
+  if(audioPlaying){
+    btn.textContent='⏸';
+    btn.style.background='var(--green-dim)';
+    status.textContent='// REPRODUCIENDO EN SPOTIFY...';
+    status.style.color='var(--green)';
+    // open spotify in background tab
+    window.open(SPOTIFY_URL,'_blank','noopener');
+    // simulate progress for UX
+    simulateProgress();
+  }else{
+    btn.textContent='▶';
+    btn.style.background='var(--green-muted)';
+    status.textContent='// DETENIDO';
+    status.style.color='var(--text-dim)';
+    clearInterval(window._audioSim);
+  }
+}
+
+let _audioSec=0;
+function simulateProgress(){
+  clearInterval(window._audioSim);
+  window._audioSim=setInterval(()=>{
+    if(!audioPlaying){clearInterval(window._audioSim);return}
+    _audioSec++;
+    const m=Math.floor(_audioSec/60),s=_audioSec%60;
+    document.getElementById('audioTime').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    // assume ~3 min episode for demo
+    const pct=Math.min((_audioSec/180)*100,100);
+    document.getElementById('audioProgress').style.width=pct+'%';
+  },1000);
+}
+
+function seekAudio(e){
+  const bar=document.getElementById('progressBar');
+  const r=bar.getBoundingClientRect();
+  const pct=(e.clientX-r.left)/r.width;
+  _audioSec=Math.floor(pct*180);
+  document.getElementById('audioProgress').style.width=(pct*100)+'%';
+}
+
+// ═══ SCROLL FIX ═══
+// prevent pizarra canvas from stealing scroll events on docs panel
+document.addEventListener('wheel',e=>{
+  const docsPanel=document.getElementById('docsPanel');
+  if(docsPanel&&docsPanel.contains(e.target)){
+    e.stopPropagation();
+  }
+},{passive:true});
+
+// ═══ FONT SIZE ═══
+function setSize(s){
+  document.documentElement.classList.remove('sz-s','sz-m','sz-l');
+  document.documentElement.classList.add('sz-'+s);
+  ['s','m','l'].forEach(v=>{
+    const btn=document.getElementById('sz-'+v);
+    if(btn)btn.classList.toggle('sz-active',v===s);
+  });
+  try{localStorage.setItem('ac_xa_size',s)}catch(e){}
+}
+(function(){try{const s=localStorage.getItem('ac_xa_size');if(s)setSize(s);}catch(e){}}());
+
+// ═══ DARK / LIGHT MODE ═══
+let lightMode=false;
+function toggleMode(){
+  lightMode=!lightMode;
+  document.documentElement.classList.toggle('light',lightMode);
+  const btn=document.getElementById('btnMode');
+  if(btn)btn.textContent=lightMode?'🌙':'☀';
+  try{localStorage.setItem('ac_xa_mode',lightMode?'light':'dark')}catch(e){}
+}
+(function(){
+  try{
+    const m=localStorage.getItem('ac_xa_mode');
+    if(m==='light'){lightMode=true;document.documentElement.classList.add('light');
+    const btn=document.getElementById('btnMode');if(btn)btn.textContent='🌙';}
+  }catch(e){}
+}());
+
+// ═══ REINICIAR CASO ═══
+function confirmReset(){
+  document.getElementById('resetModal').style.display='flex';
+}
+function closeResetModal(){
+  document.getElementById('resetModal').style.display='none';
+}
+function doReset(){
+  try{
+    localStorage.removeItem('ac_xa_st');
+    localStorage.removeItem('ac_xa_board');
+    localStorage.removeItem('ac_xa_size');
+    localStorage.removeItem('ac_xa_mode');
+    sessionStorage.removeItem('ac_xa_started');
+    sessionStorage.removeItem('ac_xa_timer');
+  }catch(e){}
+  location.reload();
+}
+document.getElementById('resetModal').addEventListener('click',function(e){if(e.target===this)closeResetModal()});
+
+// ═══ MOBILE SIDEBAR ═══
+function toggleMobileSidebar(){
+  const nav=document.getElementById('sidebarNav');
+  const bd=document.getElementById('sidebarBackdrop');
+  const isOpen=nav.classList.contains('mobile-open');
+  nav.classList.toggle('mobile-open',!isOpen);
+  bd.classList.toggle('show',!isOpen);
+}
+function closeMobileSidebar(){
+  document.getElementById('sidebarNav').classList.remove('mobile-open');
+  document.getElementById('sidebarBackdrop').classList.remove('show');
+}
+function isMobile(){return window.innerWidth<=680}
+
+// ═══ SHARE CARD ═══
+function openShareCard(){
+  document.getElementById('shareModal').style.display='flex';
+  drawShareCard();
+}
+function closeShareModal(){
+  document.getElementById('shareModal').style.display='none';
+}
+function drawShareCard(){
+  const cv=document.getElementById('shareCanvas');
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+
+  // background
+  ctx.fillStyle='#09100d';
+  ctx.fillRect(0,0,W,H);
+
+  // texture dots
+  ctx.fillStyle='rgba(61,255,122,0.04)';
+  for(let i=0;i<200;i++){
+    ctx.beginPath();
+    ctx.arc(Math.random()*W,Math.random()*H,1,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  // border frame
+  ctx.strokeStyle='#243529';
+  ctx.lineWidth=3;
+  ctx.strokeRect(30,30,W-60,H-60);
+
+  // top label
+  ctx.fillStyle='#506050';
+  ctx.font='18px monospace';
+  ctx.textAlign='center';
+  ctx.letterSpacing='4px';
+  ctx.fillText('ARCHIVO_CERO · SISTEMA SEGURO',W/2,90);
+
+  // case badge
+  ctx.fillStyle='#1e1508';
+  ctx.fillRect(W/2-90,115,180,32);
+  ctx.strokeStyle='#5a3f08';
+  ctx.lineWidth=1;
+  ctx.strokeRect(W/2-90,115,180,32);
+  ctx.fillStyle='#e8a830';
+  ctx.font='14px monospace';
+  ctx.letterSpacing='2px';
+  ctx.fillText('CASO X·A · EXPRESS',W/2,137);
+
+  // title
+  ctx.fillStyle='#3dff7a';
+  ctx.font='bold 38px monospace';
+  ctx.letterSpacing='3px';
+  ctx.fillText('LA ÚLTIMA',W/2,220);
+  ctx.fillText('FIRMA',W/2,265);
+
+  // stamp ellipse
+  ctx.save();
+  ctx.translate(W/2,420);
+  ctx.rotate(-10*Math.PI/180);
+  ctx.strokeStyle='#c82020';
+  ctx.lineWidth=7;
+  ctx.beginPath();
+  ctx.ellipse(0,0,210,105,0,0,Math.PI*2);
+  ctx.stroke();
+  ctx.lineWidth=2;
+  ctx.beginPath();
+  ctx.ellipse(0,0,192,88,0,0,Math.PI*2);
+  ctx.stroke();
+  ctx.fillStyle='#c82020';
+  ctx.font='24px monospace';
+  ctx.letterSpacing='10px';
+  ctx.fillText('CASO',0,-15);
+  ctx.font='bold 42px monospace';
+  ctx.letterSpacing='4px';
+  ctx.fillText('RESUELTO',0,30);
+  ctx.restore();
+
+  // time
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  const timeStr=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  ctx.fillStyle='#8aab90';
+  ctx.font='16px monospace';
+  ctx.letterSpacing='1px';
+  ctx.fillText('Tiempo de investigación',W/2,580);
+  ctx.fillStyle='#e8a830';
+  ctx.font='bold 44px monospace';
+  ctx.fillText(timeStr,W/2,635);
+
+  // footer
+  ctx.fillStyle='#506050';
+  ctx.font='14px monospace';
+  ctx.letterSpacing='2px';
+  ctx.fillText('archivo0.com.ar',W/2,700);
+  ctx.fillStyle='#3dff7a';
+  ctx.font='13px monospace';
+  ctx.fillText('@archivocero',W/2,725);
+
+  // corner brackets
+  ctx.strokeStyle='#1a6b38';
+  ctx.lineWidth=4;
+  const cl=40;
+  [[50,50,1,1],[W-50,50,-1,1],[50,H-50,1,-1],[W-50,H-50,-1,-1]].forEach(([x,y,dx,dy])=>{
+    ctx.beginPath();
+    ctx.moveTo(x,y+cl*dy);
+    ctx.lineTo(x,y);
+    ctx.lineTo(x+cl*dx,y);
+    ctx.stroke();
+  });
+}
+function downloadShareCard(){
+  const cv=document.getElementById('shareCanvas');
+  const link=document.createElement('a');
+  link.download='archivo-cero-caso-xa-resuelto.png';
+  link.href=cv.toDataURL('image/png');
+  link.click();
+}
+document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareModal()});
+
+// ═══ PISTAS ═══
+const HINTS={
+  1:'Fijate en la etiqueta de farmacia del perfil de sospechosos — el texto manuscrito no es azar, está cifrado. El método se llama ROT13 y es uno de los más usados en notas "ocultas a simple vista". Buscá cómo funciona y aplicalo letra por letra al texto "ZRQVPNPVBA".',
+  2:'En el Registro de Accesos hay un código numérico asociado al ingreso del domingo. No es un horario ni una clave aleatoria — cada número ahí representa una letra del abecedario. Pensá en la forma más simple de convertir números en letras.',
+  3:'No busques "el testamento" como respuesta — buscá qué pasó específicamente la semana del 28 de septiembre que cambió todo. Revisá el Informe de empresa en la Carpeta 1 y cruzalo con la fecha de inicio de la sobredosis en el Informe médico.'
+};
+let hintsUsed={1:false,2:false,3:false};
+let hintsRemaining=3;
+
+function openHintMenu(){
+  document.getElementById('hintMenuModal').style.display='flex';
+}
+function closeHintMenu(){
+  document.getElementById('hintMenuModal').style.display='none';
+}
+function requestHint(n){
+  if(hintsUsed[n]){
+    showHintModal(n,true);
+    return;
+  }
+  if(hintsRemaining<=0){
+    showHintModal(null,false,true);
+    return;
+  }
+  hintsUsed[n]=true;
+  hintsRemaining--;
+  updateHintsBadge();
+  closeHintMenu();
+  showHintModal(n,false);
+  saveState();
+}
+function showHintModal(n,alreadyUsed,exhausted){
+  const modal=document.getElementById('hintModal');
+  const title=document.getElementById('hintModalTitle');
+  const text=document.getElementById('hintModalText');
+  if(exhausted){
+    title.textContent='// SIN PISTAS DISPONIBLES';
+    text.textContent='Ya usaste las 3 pistas del caso. A partir de acá, todo depende de tu investigación.';
+  }else{
+    title.textContent='// PISTA — CARPETA '+n;
+    text.textContent=HINTS[n];
+  }
+  modal.style.display='flex';
+  if(!exhausted){
+    const btn=document.getElementById('hint-btn-'+n);
+    if(btn){btn.classList.add('used');btn.innerHTML='✓ Pista — Carpeta '+n+' (vista)'}
+  }
+}
+function closeHintModal(){document.getElementById('hintModal').style.display='none'}
+function updateHintsBadge(){
+  const badge=document.getElementById('hintsBadgeMenu');
+  const count=document.getElementById('hintCount');
+  if(count)count.textContent=hintsRemaining;
+  if(badge){
+    badge.textContent=hintsRemaining+' DISPONIBLE'+(hintsRemaining===1?'':'S');
+    if(hintsRemaining===0){
+      badge.style.background='var(--locked)';
+      badge.style.color='var(--locked-text)';
+      badge.style.borderColor='var(--locked-text)';
+    }
+  }
+  const topBtn=document.getElementById('btnHint');
+  if(topBtn&&hintsRemaining===0){
+    topBtn.style.color='var(--text-dim)';
+    topBtn.style.borderColor='var(--border2)';
+  }
+}
+document.getElementById('hintMenuModal').addEventListener('click',function(e){if(e.target===this)closeHintMenu()});
+document.getElementById('hintModal').addEventListener('click',function(e){if(e.target===this)closeHintModal()});
+
+// ═══ SPOTIFY ═══
+function toggleSpotify(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const isOpen=el.classList.contains('open');
+  el.classList.toggle('open',!isOpen);
+  const btn=el.querySelector('.btn-spotify-toggle');
+  if(btn)btn.setAttribute('aria-expanded',String(!isOpen));
+}
+
+// ═══ CLOCK ═══
+function tick(){const n=new Date();document.getElementById('footerTime').textContent=n.toLocaleDateString('es-AR')+' · '+n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+tick();setInterval(tick,1000);
+
+// ═══ INIT ═══
+loadState();loadBoard();
+</script>
+</body>
+</html>
