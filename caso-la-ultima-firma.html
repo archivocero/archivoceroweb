@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCHIVO_CERO // CASO X·A — La Última Firma</title>
+<title>ARCHIVO_CERO // CASO INTERACTIVO A — La Última Firma</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -335,7 +335,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 /* sospechosos */
 .sosp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .sosp-card{border:1px solid var(--border2);background:var(--bg2);overflow:hidden}
-.sosp-photo{height:130px;background:var(--bg3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden}
+.sosp-photo{height:360px;background:var(--bg3);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);overflow:hidden}
 .sosp-photo img{width:100%;height:100%;object-fit:cover}
 .sosp-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--locked-text);font-size:0.69rem;letter-spacing:.1em;width:100%;height:100%}
 .sosp-ph .ph-i{font-size:1.85rem;opacity:.4}
@@ -555,8 +555,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="splash-backdrop"></div>
   <div class="splash-lines"></div>
   <div class="splash-lines2"></div>
-  <div class="splash-bgtext">X·A</div>
-  <div class="splash-casenum">CASO X·A · LA ÚLTIMA FIRMA · ARCHIVO_CERO</div>
+  <div class="splash-bgtext">IA</div>
+  <div class="splash-casenum">CASO INTERACTIVO A · LA ÚLTIMA FIRMA · ARCHIVO_CERO</div>
 
   <div class="splash-content">
   <div class="splash-pre">ARCHIVO_CERO · SISTEMA SEGURO</div>
@@ -579,7 +579,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   </div>
 
   <div class="splash-meta">
-    <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">X·A — EXPRESS</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">INTERACTIVO A</div></div>
     <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">40–60 min</div></div>
     <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Media-alta</div></div>
   </div>
@@ -594,7 +594,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileSidebar()" style="display:none">☰ MENÚ</button>
     <a class="t-logo" href="https://archivo0.com.ar">ARCHIVO_CERO</a>
     <span class="t-sep">//</span>
-    <span class="t-case">CASO X·A — La Última Firma</span>
+    <span class="t-case">CASO INTERACTIVO A — La Última Firma</span>
     <span class="t-badge">EXPRESS</span>
   </div>
   <div class="t-right">
@@ -637,7 +637,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="sb-section">
     <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 1<span class="fb fb-open" id="badge1">ABIERTA</span></div>
     <div class="sb-items open">
-      <div class="sb-item" onclick="go('sospechosos')"><span class="sb-icon">◈</span>Perfiles (×5)</div>
+      <div class="sb-item" onclick="go('sospechosos')"><span class="sb-icon">◈</span>Perfiles (×6)</div>
       <div class="sb-item" onclick="go('cronologia')"><span class="sb-icon">▤</span>Cronología</div>
       <div class="sb-item" onclick="go('informe-empresa')"><span class="sb-icon">▤</span>Informe empresa</div>
       <div class="sb-item" style="color:var(--amber);border-left:2px solid var(--amber-dim)" onclick="openEnigmaModal(1)"><span class="sb-icon">⊛</span>Enigma 1 — ingresar clave</div>
@@ -739,14 +739,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
   <!-- DOCS PANEL -->
   <div class="docs-panel" id="docsPanel">
-    <div class="breadcrumb">ARCHIVO_CERO <span class="bc-sep">›</span> CASO X·A <span class="bc-sep">›</span> <span id="bcCurrent">Resumen</span> <span id="bcFolder" style="margin-left:auto;color:var(--amber-dim)"></span></div>
+    <div class="breadcrumb">ARCHIVO_CERO <span class="bc-sep">›</span> CASO INTERACTIVO A <span class="bc-sep">›</span> <span id="bcCurrent">Resumen</span> <span id="bcFolder" style="margin-left:auto;color:var(--amber-dim)"></span></div>
 
     <!-- ══ RESUMEN ══ -->
     <div class="page active" id="page-resumen">
       <div class="case-hdr">
         <div class="case-hdr-top">
           <div>
-            <div class="ch-ref">REF: AC-X·A · HOMICIDIO / SUCESIÓN · CASO EXPRESS</div>
+            <div class="ch-ref">REF: AC-IA · HOMICIDIO / SUCESIÓN · CASO EXPRESS</div>
             <div class="ch-title">LA ÚLTIMA FIRMA</div>
             <div class="ch-sub">El fundador de Vidal &amp; Hijos S.A. aparece muerto un lunes a la mañana.<br>Causa oficial: paro cardíaco. Cinco días antes había firmado un testamento que excluía a toda su familia.</div>
           </div>
@@ -760,7 +760,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
       <div class="nota"><span>⚠</span><span>El expediente tiene 3 carpetas que se desbloquean con enigmas. Algunos documentos contienen información oculta o contradictoria — no todo lo que leas es verdad. Usá la <strong>Pizarra</strong> para cruzar datos.</span></div>
       <div class="doc-card">
-        <div class="dc-head"><span class="dc-title">LOS HECHOS</span><span class="dc-ref">DOC-XA-00</span></div>
+        <div class="dc-head"><span class="dc-title">LOS HECHOS</span><span class="dc-ref">DOC-IA-00</span></div>
         <div class="dc-body">
           <p>Ernesto Vidal, 71 años, fue encontrado muerto en su oficina privada el lunes 7 de octubre a las 8:40 por su secretaria, Graciela Ríos. El médico de guardia certificó paro cardíaco — Ernesto tenía hipertensión crónica y tomaba medicación diaria.</p>
           <p>Lo que debería haber sido un cierre tranquilo se convirtió en algo más complicado cuando, tres días después, la familia abrió el sobre que Ernesto había dejado con instrucciones de "abrir solo en caso de fallecimiento". Adentro: un testamento modificado el 2 de octubre que dejaba todo a una persona cuyo nombre aparecía tachado en la copia disponible.</p>
@@ -777,18 +777,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="case-hdr">
         <div class="case-hdr-top">
           <div>
-            <div class="ch-ref">REF: AC-X·A · AUDIO DISPARADOR · ACCESO LIBRE</div>
+            <div class="ch-ref">REF: AC-IA · AUDIO DISPARADOR · ACCESO LIBRE</div>
             <div class="ch-title">TEASER DEL CASO</div>
             <div class="ch-sub">Archivo de voz incorporado al expediente. Escuchalo antes de abrir los documentos.</div>
           </div>
         </div>
       </div>
       <div class="doc-card">
-        <div class="dc-head"><span class="dc-title">TRANSMISIÓN — ARCHIVO AC-XA-00</span><span class="dc-ref">AUDIO-01</span></div>
+        <div class="dc-head"><span class="dc-title">TRANSMISIÓN — ARCHIVO AC-IA-00</span><span class="dc-ref">AUDIO-01</span></div>
         <div class="dc-body" style="padding:14px 16px">
-          <p style="font-size:11px;color:var(--text-dim);margin-bottom:14px">Archivo de audio introductorio al Caso X·A.</p>
-          <div class="spotify-teaser" id="sp-teaser-xa">
-            <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-teaser-xa')" aria-expanded="false">
+          <p style="font-size:11px;color:var(--text-dim);margin-bottom:14px">Archivo de audio introductorio al Caso Interactivo A.</p>
+          <div class="spotify-teaser" id="sp-teaser-ia">
+            <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-teaser-ia')" aria-expanded="false">
               <svg class="sp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
               <span>▶ REPRODUCIR TEASER — La Última Firma</span>
               <span class="sp-arrow">▾</span>
@@ -804,7 +804,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ INSTRUCCIONES ══ -->
     <div class="page" id="page-instrucciones">
       <div class="doc-card">
-        <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-XA</span></div>
+        <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-IA</span></div>
         <div class="dc-body">
           <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong> que se desbloquean resolviendo enigmas. Cada enigma requiere cruzar información de más de un documento — no hay respuesta que venga de una sola fuente.</p>
           <p><strong style="color:var(--red)">Atención:</strong> algunos documentos contienen errores deliberados o información manipulada por los propios involucrados. Parte del trabajo es detectar qué no cierra.</p>
@@ -818,7 +818,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ SOSPECHOSOS ══ -->
     <div class="page" id="page-sospechosos">
       <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">PERFILES — 6 PERSONAS DE INTERÉS</span><span class="dc-ref">PERF-XA</span></div>
+        <div class="dc-head"><span class="dc-title">PERFILES — 6 PERSONAS DE INTERÉS</span><span class="dc-ref">PERF-IA</span></div>
         <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Seis personas con acceso al entorno inmediato de Ernesto Vidal. Todas tienen algo que ganar o perder.</div>
       </div>
       <div class="sosp-grid">
@@ -833,7 +833,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-cecilia"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Cecilia Vidal</div></div></div>
+          <div class="sosp-photo" id="photo-cecilia"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/2_gyuevn.png" alt="Cecilia Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Cecilia Vidal</div>
             <div class="sosp-rol">HIJA MENOR · 39 AÑOS · DISEÑADORA</div>
@@ -843,7 +843,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-rodrigo"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Rodrigo Ibáñez</div></div></div>
+          <div class="sosp-photo" id="photo-rodrigo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/3_t2iphq.png" alt="Rodrigo Ibáñez" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Rodrigo Ibáñez</div>
             <div class="sosp-rol">SOCIO 40% · 55 AÑOS</div>
@@ -853,7 +853,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-graciela"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Graciela Ríos</div></div></div>
+          <div class="sosp-photo" id="photo-graciela"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/4_pibub0.png" alt="Graciela Ríos" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Graciela Ríos</div>
             <div class="sosp-rol">SECRETARIA · 58 AÑOS · 22 AÑOS EN LA EMPRESA</div>
@@ -863,7 +863,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-gastón"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Gastón Ferreyra</div></div></div>
+          <div class="sosp-photo" id="photo-gastón"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/5_b0kyh8.png" alt="Gastón Ferreyra" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Gastón Ferreyra</div>
             <div class="sosp-rol">ABOGADO DE LA FAMILIA · 51 AÑOS</div>
@@ -873,7 +873,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-valeria"><div class="sosp-ph"><div class="ph-i">◈</div><div>FOTO PENDIENTE</div><div style="font-size:8px;opacity:.5">Valeria Sandín</div></div></div>
+          <div class="sosp-photo" id="photo-valeria"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/6_eummef.png" alt="Valeria Sandín" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Valeria Sandín</div>
             <div class="sosp-rol">MÉDICA SUPLENTE · 45 AÑOS</div>
@@ -886,13 +886,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="nota"><span>📋</span><span>Revisá las coartadas de cada uno contra el Registro de Accesos y la Cronología. No todas las coartadas tienen la misma solidez — y no todos los sospechosos necesitaban estar en el edificio para actuar.</span></div>
 
       <div class="doc-card">
-        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — ETIQUETA DE FARMACIA</span><span class="dc-ref">EV-XA-00</span></div>
+        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — ETIQUETA DE FARMACIA</span><span class="dc-ref">EV-IA-00</span></div>
         <div class="dc-body">
           <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:14px">Encontrada pegada en el reverso de la caja de medicación de Ernesto, en el cajón de su escritorio. Parece una nota manuscrita superpuesta a la etiqueta original de la farmacia — no forma parte del rótulo impreso.</p>
           <div class="cipher-wrap">
-            <div class="cipher-label">// TEXTO MANUSCRITO SOBRE LA ETIQUETA (alfabeto desplazado 13 posiciones)</div>
+            <div class="cipher-label">// TEXTO MANUSCRITO SOBRE LA ETIQUETA</div>
             <div class="cipher-txt">ZRQVPNPVBA</div>
-            <div class="cipher-hint">// El laboratorio uso un cifrado ROT13 en sus controles de calidad internos. Si conocés el método, la palabra se revela sola.</div>
+            <div class="cipher-hint">// Texto ilegible a simple vista. Parece usar algún tipo de sustitución de caracteres.</div>
           </div>
         </div>
       </div>
@@ -902,7 +902,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ CRONOLOGÍA ══ -->
     <div class="page" id="page-cronologia">
       <div class="doc-card">
-        <div class="dc-head"><span class="dc-title">CRONOLOGÍA DE HECHOS VERIFICADOS</span><span class="dc-ref">CRON-XA</span></div>
+        <div class="dc-head"><span class="dc-title">CRONOLOGÍA DE HECHOS VERIFICADOS</span><span class="dc-ref">CRON-IA</span></div>
         <div class="dc-body">
           <table class="tabla">
             <tr><th>FECHA</th><th>HECHO</th><th>FUENTE</th></tr>
@@ -910,10 +910,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
             <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 13 sep</td><td>Valeria Sandín visita el domicilio de Ernesto — "control de rutina" en reemplazo del Dr. Pizarro. Duración: 40 min.</td><td>Agenda personal Ernesto</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Mar 24 sep</td><td>Segunda visita domiciliaria de Valeria Sandín. Ernesto le confía que "se siente raro desde hace días". Ella ajusta la dosis de su medicación — de 5mg a 10mg.</td><td>Agenda personal Ernesto</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Mié 2 oct</td><td>Ernesto firma nuevo testamento. Excluye a Marcos y Cecilia. Beneficiario tachado en copia disponible.</td><td>Escribanía Romano</td></tr>
-            <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct</td><td>Ernesto envía email al médico reportando síntomas con su medicación. Pide turno urgente.</td><td>Email (EV-XA-02)</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct</td><td>Ernesto envía email al médico reportando síntomas con su medicación. Pide turno urgente.</td><td>Email (EV-IA-02)</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct · tarde</td><td>Graciela Ríos permanece en el edificio hasta las 21:30 — fuera de su horario habitual. Registra acceso a la oficina privada de Ernesto a las 20:15 (duración: 8 min). Justificación declarada: "archivé documentos que me pidió".</td><td>Registro accesos · Declaración</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · tarde</td><td>Rodrigo Ibáñez vuela a Mendoza (18:30). Marcos Vidal viaja a Rosario en auto.</td><td>Aerolínea / Hotel</td></tr>
-            <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · noche</td><td>Marcos contacta a su abogado por WhatsApp sobre el testamento nuevo.</td><td>Chat (EV-XA-03)</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · noche</td><td>Marcos contacta a su abogado por WhatsApp sobre el testamento nuevo.</td><td>Chat (EV-IA-03)</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Sáb 5 oct · 9:11</td><td>Rodrigo Ibáñez accede brevemente al edificio (14 min) antes de volar. Retira documentos.</td><td>Registro accesos ⚠</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Dom 6 oct · 21:14</td><td>Acceso al edificio fuera de horario. 47 minutos. Sin registro de archivos retirados. Identidad: ver Carpeta 2.</td><td>Registro accesos</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:38</td><td>Graciela Ríos llega al edificio. Encuentra a Ernesto muerto a las 8:40.</td><td>Registro accesos</td></tr>
@@ -1028,7 +1028,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
     <!-- ══ WHATSAPP MARCOS ══ -->
     <div class="page" id="page-whatsapp-marcos">
-      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — MARCOS VIDAL / GASTÓN FERREYRA (ABOGADO)</span><span class="dc-ref">EV-XA-03</span></div></div>
+      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — MARCOS VIDAL / GASTÓN FERREYRA (ABOGADO)</span><span class="dc-ref">EV-IA-03</span></div></div>
       <div class="wa-shell">
         <div class="wa-bar"><div class="wa-av">GF</div><div><div class="wa-name">Gastón Ferreyra</div><div class="wa-last">visto lun 7 oct · 11:02</div></div></div>
         <div class="wa-msgs">
@@ -1049,7 +1049,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
     <!-- ══ WHATSAPP CECILIA ══ -->
     <div class="page" id="page-whatsapp-cecilia">
-      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — CECILIA VIDAL / VALERIA M. (AMIGA)</span><span class="dc-ref">EV-XA-04</span></div></div>
+      <div class="doc-card" style="margin-bottom:10px;border-bottom:none"><div class="dc-head"><span class="dc-title">CHAT — CECILIA VIDAL / VALERIA M. (AMIGA)</span><span class="dc-ref">EV-IA-04</span></div></div>
       <div class="wa-shell">
         <div class="wa-bar"><div class="wa-av">VM</div><div><div class="wa-name">Valeria M.</div><div class="wa-last">visto dom 6 oct · 20:55</div></div></div>
         <div class="wa-msgs">
@@ -1094,7 +1094,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ NOTA CAJÓN ══ -->
     <div class="page" id="page-nota-cajon">
       <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — NOTA MANUSCRITA DEL CAJÓN</span><span class="dc-ref">EV-XA-05</span></div>
+        <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — NOTA MANUSCRITA DEL CAJÓN</span><span class="dc-ref">EV-IA-05</span></div>
         <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Encontrada en el cajón derecho del escritorio. Letra verificada como de Ernesto. Sin fecha. Tinta corrida en margen inferior.</div>
       </div>
       <div style="background:#f5f0e6;border:1px solid #ddd;padding:28px 36px;margin-bottom:12px;font-family:'Times New Roman',serif;max-width:460px">
@@ -1115,7 +1115,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ TESTAMENTO ══ -->
     <div class="page" id="page-testamento">
       <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">DOCUMENTO — FRAGMENTO DEL TESTAMENTO</span><span class="dc-ref">DOC-XA-01</span></div>
+        <div class="dc-head"><span class="dc-title">DOCUMENTO — FRAGMENTO DEL TESTAMENTO</span><span class="dc-ref">DOC-IA-01</span></div>
         <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Copia parcial. Original en resguardo judicial. El nombre del beneficiario aparece tachado — quién lo tachó es parte de la investigación.</div>
       </div>
       <div class="testamento">
@@ -1141,7 +1141,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ CARTA IBÁÑEZ ══ -->
     <div class="page" id="page-carta-ibanez">
       <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">DOCUMENTO — CARTA DE RODRIGO IBÁÑEZ</span><span class="dc-ref">DOC-XA-02</span></div>
+        <div class="dc-head"><span class="dc-title">DOCUMENTO — CARTA DE RODRIGO IBÁÑEZ</span><span class="dc-ref">DOC-IA-02</span></div>
         <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Entregada voluntariamente por Ibáñez el martes 8 de octubre.</div>
       </div>
       <div class="carta">
@@ -1162,7 +1162,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ DATOS OCULTOS ══ -->
     <div class="page" id="page-nota-oculta">
       <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">ANÁLISIS — DATOS OCULTOS EN DOCUMENTOS</span><span class="dc-ref">ANAL-XA</span></div>
+        <div class="dc-head"><span class="dc-title">ANÁLISIS — DATOS OCULTOS EN DOCUMENTOS</span><span class="dc-ref">ANAL-IA</span></div>
         <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Esta sección reúne fechas y datos puntuales mencionados en distintos documentos. No saca conclusiones — esa parte es tuya.</div>
       </div>
 
@@ -1192,7 +1192,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <!-- ══ VALIDACIÓN ══ -->
     <div class="page" id="page-validacion">
       <div class="doc-card" style="margin-bottom:16px">
-        <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-XA</span></div>
+        <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-IA</span></div>
         <div class="dc-body"><p style="color:var(--text-mid);font-size:12px;line-height:1.7">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula. La tercera respuesta requiere haber cruzado el informe médico con la cronología y los datos ocultos.</p></div>
       </div>
       <div class="val-preg">
@@ -1263,7 +1263,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 </div><!-- /shell -->
 
 <div class="footer" id="mainFooter" style="display:none">
-  <span>ARCHIVO_CERO · CASO X·A · La Última Firma · archivo0.com.ar</span>
+  <span>ARCHIVO_CERO · CASO INTERACTIVO A · La Última Firma · archivo0.com.ar</span>
   <span id="footerTime"></span>
 </div>
 
@@ -1302,7 +1302,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div style="background:var(--bg2);border:1px solid var(--green-dim);max-width:560px;width:95vw;max-height:90vh;overflow-y:auto;position:relative">
     <!-- header -->
     <div style="background:var(--green-muted);border-bottom:1px solid var(--green-dim);padding:22px 28px;text-align:center">
-      <div style="font-size:10px;color:var(--green-dim);letter-spacing:.25em;margin-bottom:8px">ARCHIVO_CERO · CASO X·A · RESOLUCIÓN OFICIAL</div>
+      <div style="font-size:10px;color:var(--green-dim);letter-spacing:.25em;margin-bottom:8px">ARCHIVO_CERO · CASO INTERACTIVO A · RESOLUCIÓN OFICIAL</div>
       <div style="font-family:var(--font-display);font-size:28px;color:var(--green);letter-spacing:.12em;line-height:1.1">FELICITACIONES,<br>INVESTIGADOR/A</div>
       <div style="font-size:11px;color:var(--text-mid);margin-top:10px;letter-spacing:.06em">El caso ha sido cerrado correctamente.</div>
     </div>
@@ -2225,7 +2225,7 @@ function drawShareCard(){
   ctx.fillStyle='#e8a830';
   ctx.font='14px monospace';
   ctx.letterSpacing='2px';
-  ctx.fillText('CASO X·A · EXPRESS',W/2,137);
+  ctx.fillText('CASO INTERACTIVO A · EXPRESS',W/2,137);
 
   // title
   ctx.fillStyle='#3dff7a';
