@@ -909,6 +909,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
             <tr><td style="color:var(--text-dim);white-space:nowrap">Mar 12 sep</td><td>Ernesto firma poder especial a favor de Rodrigo Ibáñez para "gestión de documentos sensibles"</td><td>Notaría Romano</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 13 sep</td><td>Valeria Sandín visita el domicilio de Ernesto — "control de rutina" en reemplazo del Dr. Pizarro. Duración: 40 min.</td><td>Agenda personal Ernesto</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Mar 24 sep</td><td>Segunda visita domiciliaria de Valeria Sandín. Ernesto le confía que "se siente raro desde hace días". Ella ajusta la dosis de su medicación — de 5mg a 10mg.</td><td>Agenda personal Ernesto</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Dom 29 sep</td><td>Cecilia Vidal visita a Ernesto en su domicilio. Duración aproximada: 2 horas. Según la agenda de Ernesto: "Cena con C. — me trajo las pastillas del mes."</td><td>Agenda personal Ernesto</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Mié 2 oct</td><td>Ernesto firma nuevo testamento. Excluye a Marcos y Cecilia. Beneficiario tachado en copia disponible.</td><td>Escribanía Romano</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct</td><td>Ernesto envía email al médico reportando síntomas con su medicación. Pide turno urgente.</td><td>Email (EV-IA-02)</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 3 oct · tarde</td><td>Graciela Ríos permanece en el edificio hasta las 21:30 — fuera de su horario habitual. Registra acceso a la oficina privada de Ernesto a las 20:15 (duración: 8 min). Justificación declarada: "archivé documentos que me pidió".</td><td>Registro accesos · Declaración</td></tr>
@@ -1420,7 +1421,7 @@ function checkE(n){
 
 // ═══ ENIGMA MODAL ═══
 const ENIGMA_TEXTS={
-  1:'En el perfil de los sospechosos encontrarás una etiqueta de farmacia con un texto manuscrito superpuesto. Está cifrado con un método de sustitución donde cada letra fue reemplazada por la que está 13 posiciones después en el abecedario (y si te pasás del final, volvés a empezar).\n\nDecodificá el texto y vas a tener la respuesta — una sola palabra que describe a qué tenía acceso la persona que buscás.',
+  1:'En el perfil de los sospechosos hay una etiqueta de farmacia con texto manuscrito que no pertenece al rótulo original. Ese texto está cifrado.\n\nDecodificarlo te va a dar una sola palabra — la respuesta a este enigma.',
   2:'En el Registro de Accesos hay un código de incidente autogenerado por el sistema de seguridad, asociado al acceso del domingo a las 21:14. Cada número representa la posición de una letra en el abecedario (A=1, B=2, C=3... Z=26).\n\nDecodificá el código. La palabra resultante no es un nombre — es lo que ese acceso terminó revelando sobre uno de los testimonios que ya leíste.'
 };
 let currentEnigmaN=0;
@@ -2299,7 +2300,7 @@ document.getElementById('shareModal').addEventListener('click',function(e){if(e.
 
 // ═══ PISTAS ═══
 const HINTS={
-  1:'En la página de sospechosos hay una etiqueta de farmacia con un texto manuscrito que no pertenece al rótulo original. El texto está cifrado — cada letra fue reemplazada por otra usando un método de sustitución clásico. Buscá métodos de cifrado simples de sustitución alfabética y probá aplicarlos al texto "ZRQVPNPVBA".',
+  1:'El texto "ZRQVPNPVBA" usa un cifrado de desplazamiento — cada letra se corrió una cantidad fija de posiciones en el abecedario. El truco está en encontrar cuántas posiciones. Probá con números simples: 1, 3, 13. Cuando todas las letras formen una palabra en español, encontraste la clave.',
   2:'En el Registro de Accesos hay un código numérico asociado al ingreso del domingo. No es un horario ni una clave aleatoria — cada número ahí representa una letra del abecedario. Pensá en la forma más simple de convertir números en letras.',
   3:'No busques "el testamento" como respuesta — buscá qué pasó específicamente la semana del 28 de septiembre que cambió todo. Revisá el Informe de empresa en la Carpeta 1 y cruzalo con la fecha de inicio de la sobredosis en el Informe médico.'
 };
