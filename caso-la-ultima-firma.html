@@ -797,6 +797,35 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
               <iframe src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
           </div>
+
+          <!-- TRANSCRIPCIÓN DEL AUDIO -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px">
+            <div style="background:var(--bg2);border:1px solid var(--border2)">
+              <!-- Header tipo dc-head del expediente -->
+              <div style="padding:7px 13px;border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;background:var(--bg4)">
+                <span style="font-family:var(--font-display);font-size:0.75rem;color:var(--text-mid);letter-spacing:.12em">TRANSCRIPCIÓN · NOTA DE VOZ</span>
+                <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-dim);letter-spacing:.1em">EV-IA-00 · AUDIO</span>
+              </div>
+              <!-- Metadata -->
+              <div style="padding:8px 13px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:0.69rem;color:var(--text-dim);letter-spacing:.07em">
+                <div><span style="color:var(--text-dim)">EMISOR </span><span style="color:var(--text-mid)">Graciela Ríos</span></div>
+                <div><span style="color:var(--text-dim)">FECHA </span><span style="color:var(--text-mid)">Jue 10 oct · 10:45</span></div>
+              </div>
+              <!-- Cuerpo -->
+              <div style="padding:14px 16px;font-family:var(--font-mono);font-size:0.85rem;line-height:1.8;color:var(--text-mid);font-style:italic">
+                <p style="margin:0 0 10px">Hola... ¿Sos el investigador del que me hablaron?</p>
+                <p style="margin:0 0 10px">Soy Graciela Ríos... la secretaria de Ernesto Vidal. Mirá... no sé si estoy exagerando o no, pero necesito que alguien revise esto. El lunes a la mañana llegué a la oficina, como todos los días. Fui a buscar a Ernesto... y lo encontré muerto. El médico dijo que había sido un paro cardíaco. Y, la verdad, nadie lo cuestionó porque Ernesto tenía problemas de salud y tomaba medicación... así que todos siguieron adelante.</p>
+                <p style="margin:0 0 10px">Pero después pasó algo que para mí cambió todo. Tres días más tarde apareció un sobre que él había dejado con una indicación muy clara: <span style="font-style:normal;color:var(--amber);letter-spacing:.04em">"Abrir solo en caso de fallecimiento"</span>. Adentro había un testamento. Lo había firmado apenas cinco días antes de morir. Y dejaba toda su fortuna a una sola persona.</p>
+                <p style="margin:0 0 10px">El problema es que... ese nombre figura tachado.</p>
+                <p style="margin:0">Desde ese momento siento que hay algo que no cierra. Te mandé todo lo que pude reunir. Necesito que me ayudes a entender qué pasó con Ernesto.</p>
+              </div>
+              <!-- Footer -->
+              <div style="padding:5px 13px 8px;border-top:1px solid var(--border);display:flex;justify-content:flex-end">
+                <span style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text-dim);letter-spacing:.08em">transcripción automática · puede contener errores</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -848,7 +877,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
             <div class="sosp-nombre">Rodrigo Ibáñez</div>
             <div class="sosp-rol">SOCIO 40% · 55 AÑOS</div>
             <div class="sosp-dato">Amigo de Ernesto desde la universidad. Único que conocía el contenido completo del nuevo testamento. Si la empresa se vende tras la muerte, pierde su posición y sus ingresos.</div>
-            <div class="sosp-coartada">COARTADA: <span>Vuelo Aeroparque-Mendoza el viernes 18:30. Vuelta el lunes 14:00. Pasajes confirmados por aerolínea.</span></div>
+            <div class="sosp-coartada">COARTADA: <span>Vuelo Aeroparque-Mendoza el viernes 18:30. Vuelta el lunes 14:00. Pasajes confirmados por aerolínea. Aeroparque queda a 45 minutos del edificio en auto.</span></div>
             <div class="sosp-flag">Tenía poder especial sobre los documentos desde el 12/9</div>
           </div>
         </div>
@@ -883,7 +912,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Revisá las coartadas de cada uno contra el Registro de Accesos y la Cronología. No todas las coartadas tienen la misma solidez — y no todos los sospechosos necesitaban estar en el edificio para actuar.</span></div>
 
       <div class="doc-card">
         <div class="dc-head"><span class="dc-title">EVIDENCIA FÍSICA — ETIQUETA DE FARMACIA</span><span class="dc-ref">EV-IA-00</span></div>
@@ -892,7 +920,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="cipher-wrap">
             <div class="cipher-label">// TEXTO MANUSCRITO SOBRE LA ETIQUETA</div>
             <div class="cipher-txt">ZRQVPNPVBA</div>
-            <div class="cipher-hint">// Texto ilegible a simple vista. Parece usar algún tipo de sustitución de caracteres.</div>
           </div>
         </div>
       </div>
@@ -921,8 +948,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
             <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:45</td><td>Médico de guardia certifica paro cardíaco. No se solicita autopsia de inmediato.</td><td>Informe médico</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 10 oct</td><td>Familia abre el sobre. Se descubre el nuevo testamento. Se solicita investigación.</td><td>Familia Vidal</td></tr>
           </table>
-          <div class="nota"><span>📋</span><span>Graciela registra horas extra durante la semana crítica del 29 sep–3 oct. Su acceso a la oficina privada el jueves 3 merece atención — es el mismo día en que Ernesto le escribe al médico.</span></div>
-          <div class="nota"><span>📋</span><span>La identidad del acceso del domingo a las 21:14 está redactada en esta copia. Aparecerá en la Carpeta 2.</span></div>
+
         </div>
       </div>
     </div>
@@ -951,7 +977,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <p style="font-size:11px;color:var(--text-dim);font-style:italic">Nota adicional: Ernesto Vidal recibió un mensaje de Graciela Ríos el 1 de octubre a las 23:47 por WhatsApp personal: "Ernesto necesito que hablemos antes de que sea demasiado tarde. Mañana sin falta." No hay registro de que esa reunión haya ocurrido.</p>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Graciela tenía motivo (iba a perder su trabajo de 22 años), oportunidad (código de la oficina privada) y un contacto no explicado con Ernesto la noche anterior a que los síntomas se agravaran.</span></div>
+
     </div>
 
     <!-- ══ REGISTRO ACCESOS ══ -->
@@ -979,8 +1005,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="inf-nota">El sistema registra tres accesos fuera de patrón: Graciela Ríos el jueves 3/10 a las 20:15 (con entrada a la oficina privada), Rodrigo Ibáñez el sábado 5/10 antes de su vuelo a Mendoza, y Cecilia Vidal el domingo 6/10 a las 21:14. Marcos Vidal no registra accesos durante todo el período.</div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Compará estos horarios con lo que cada sospechoso declaró sobre su fin de semana en sus propios testimonios.</span></div>
-      <div class="nota"><span>📋</span><span>El aeropuerto de Aeroparque está a 45 minutos del edificio en auto, en condiciones normales de tránsito.</span></div>
 
       <div class="doc-card">
         <div class="dc-head"><span class="dc-title">LOG DEL SISTEMA — CÓDIGO DE INCIDENTE AUTOGENERADO</span><span class="dc-ref">SYS-0741</span></div>
@@ -989,7 +1013,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="cipher-wrap">
             <div class="cipher-label">// CÓDIGO DE INCIDENTE — ACCESO DOMINGO 21:14</div>
             <div class="cipher-txt">13-5-14-20-9-18-1</div>
-            <div class="cipher-hint">// Convertí cada número a su letra correspondiente (A=1 ... Z=26) y formá la palabra.</div>
+
           </div>
         </div>
       </div>
@@ -1024,7 +1048,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <p style="color:#7070a0;font-size:11px">Dr. Pizarro</p>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>El Dr. Pizarro menciona un ajuste de dosis realizado por Valeria Sandín el 24 de septiembre — exactamente antes del período en que el forense estima que comenzó la sobredosis.</span></div>
     </div>
 
     <!-- ══ WHATSAPP MARCOS ══ -->
@@ -1045,7 +1068,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="wa-msg out"><div class="wa-bubble">No. Avisame si podés ver el testamento antes que nadie.<div class="wa-time">10:51 ✓✓</div></div></div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Marcos menciona a alguien con "acceso a documentos médicos" sin nombrarla. También queda sin responder quién de la escribanía le filtró la información del testamento.</span></div>
     </div>
 
     <!-- ══ WHATSAPP CECILIA ══ -->
@@ -1066,7 +1088,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="wa-msg out" style="opacity:.6"><div class="wa-bubble" style="font-style:italic;font-size:11px">[Cecilia dejó de responder. Teléfono apagado desde las 20:00]<div class="wa-time">—</div></div></div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Cecilia dice que Rodrigo la llamó antes de que ella fuera a la oficina. Guardá este dato — puede ser útil cuando tengas el resto de los testimonios.</span></div>
 
     </div>
 
@@ -1089,7 +1110,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="inf-nota">Conclusión: La muerte no fue natural. Se abre investigación por homicidio. El método requiere acceso frecuente y sostenido a la medicación del occiso durante al menos una semana previa al fallecimiento.</div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>Compará estas fechas con lo que cada sospechoso declaró sobre su acceso a la medicación y sus actividades en ese rango.</span></div>
     </div>
 
     <!-- ══ NOTA CAJÓN ══ -->
@@ -1110,7 +1130,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <span style="color:#aaa;font-style:italic">[ilegible — tinta corrida]</span>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>"R." y "C." — guardá estas iniciales junto con los nombres completos que ya conocés. El propio Ernesto anotó "revisar las pastillas" antes de morir.</span></div>
     </div>
 
     <!-- ══ TESTAMENTO ══ -->
@@ -1136,7 +1155,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div>Escribano: <em>Dr. C. Romano</em></div>
         </div>
       </div>
-      <div class="nota"><span>📋</span><span>El testamento excluye a Marcos y Cecilia. Hay una cláusula de respaldo a una fundación cuyo nombre está redactado, y el beneficiario principal está tachado.</span></div>
     </div>
 
     <!-- ══ CARTA IBÁÑEZ ══ -->
@@ -1156,8 +1174,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <p>No sé quién entró el domingo a la noche. No tengo información sobre eso.</p>
         <div class="carta-firma">Atentamente,<br><br><strong>Rodrigo A. Ibáñez</strong></div>
       </div>
-      <div class="nota"><span>📋</span><span>Ibáñez afirma acá que no llegó a hablar con Cecilia. Releé lo que dijiste haber leído en otros documentos sobre ese mismo tema.</span></div>
-      <div class="nota"><span>📋</span><span>Dice que salió "antes de las 9:30". Tenés el horario exacto de entrada y la duración de su visita en el Registro de Accesos — hacé la cuenta vos mismo.</span></div>
     </div>
 
     <!-- ══ DATOS OCULTOS ══ -->
@@ -1187,14 +1203,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="hd-text">Cruzá lo que dice la carta de Ibáñez, el chat de Cecilia con su amiga, y la nota del cajón de Ernesto sobre ese mismo llamado.</div>
       </div>
 
-      <div class="nota"><span>📋</span><span>Con todo lo que leíste en las tres carpetas tenés los elementos para responder. El detonante no es solo "el testamento" — revisá qué cambió específicamente la semana del 28 de septiembre.</span></div>
     </div>
 
     <!-- ══ VALIDACIÓN ══ -->
     <div class="page" id="page-validacion">
       <div class="doc-card" style="margin-bottom:16px">
         <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-IA</span></div>
-        <div class="dc-body"><p style="color:var(--text-mid);font-size:12px;line-height:1.7">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula. La tercera respuesta requiere haber cruzado el informe médico con la cronología y los datos ocultos.</p></div>
+        <div class="dc-body"><p style="color:var(--text-mid);font-size:12px;line-height:1.7">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula.</p></div>
       </div>
       <div class="val-preg">
         <div class="val-label">01 · ¿QUIÉN mató a Ernesto Vidal?</div>
@@ -1207,7 +1222,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="val-fb" id="f2"></div>
       </div>
       <div class="val-preg">
-        <div class="val-label">03 · ¿CUÁL fue el detonante que la llevó a actuar ESA semana?</div>
+        <div class="val-label">03 · ¿CUÁL fue el detonante que llevó a esta persona a actuar?</div>
         <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
         <div class="val-fb" id="f3"></div>
       </div>
@@ -2302,7 +2317,7 @@ document.getElementById('shareModal').addEventListener('click',function(e){if(e.
 const HINTS={
   1:'El texto "ZRQVPNPVBA" usa un cifrado de desplazamiento — cada letra se corrió una cantidad fija de posiciones en el abecedario. El truco está en encontrar cuántas posiciones. Probá con números simples: 1, 3, 13. Cuando todas las letras formen una palabra en español, encontraste la clave.',
   2:'En el Registro de Accesos hay un código numérico asociado al ingreso del domingo. No es un horario ni una clave aleatoria — cada número ahí representa una letra del abecedario. Pensá en la forma más simple de convertir números en letras.',
-  3:'No busques "el testamento" como respuesta — buscá qué pasó específicamente la semana del 28 de septiembre que cambió todo. Revisá el Informe de empresa en la Carpeta 1 y cruzalo con la fecha de inicio de la sobredosis en el Informe médico.'
+  3:'El detonante no fue el testamento en sí — fue algo que ocurrió días antes. Buscá qué cambió en la vida de Ernesto esa semana y quién tenía más que perder con ese cambio.'
 };
 let hintsUsed={1:false,2:false,3:false};
 let hintsRemaining=3;
