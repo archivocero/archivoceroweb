@@ -664,7 +664,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="sb-item locked" id="item-nota-cajon"><span class="sb-icon">✎</span>Nota del cajón<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-testamento"><span class="sb-icon">▤</span>Fragmento testamento<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-carta-ibanez"><span class="sb-icon">▤</span>Carta de Ibáñez<span class="sb-lock">🔒</span></div>
-      <div class="sb-item locked" id="item-nota-oculta"><span class="sb-icon">⌘</span>Datos ocultos<span class="sb-lock">🔒</span></div>
+
     </div>
   </div>
 
@@ -943,7 +943,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
             <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · tarde</td><td>Rodrigo Ibáñez vuela a Mendoza (18:30). Marcos Vidal viaja a Rosario en auto.</td><td>Aerolínea / Hotel</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Vie 4 oct · noche</td><td>Marcos contacta a su abogado por WhatsApp sobre el testamento nuevo.</td><td>Chat (EV-IA-03)</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Sáb 5 oct · 9:11</td><td>Rodrigo Ibáñez accede brevemente al edificio (14 min) antes de volar. Retira documentos.</td><td>Registro accesos ⚠</td></tr>
-            <tr><td style="color:var(--text-dim);white-space:nowrap">Dom 6 oct · 21:14</td><td>Acceso al edificio fuera de horario. 47 minutos. Sin registro de archivos retirados. Identidad: ver Carpeta 2.</td><td>Registro accesos</td></tr>
+            <tr><td style="color:var(--text-dim);white-space:nowrap">Dom 6 oct · 21:14</td><td>Acceso al edificio fuera de horario. 47 minutos. Sin registro de archivos retirados. Identidad: <span style="color:var(--amber)">[sin confirmar en esta copia]</span></td><td>Registro accesos</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:38</td><td>Graciela Ríos llega al edificio. Encuentra a Ernesto muerto a las 8:40.</td><td>Registro accesos</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Lun 7 oct · 8:45</td><td>Médico de guardia certifica paro cardíaco. No se solicita autopsia de inmediato.</td><td>Informe médico</td></tr>
             <tr><td style="color:var(--text-dim);white-space:nowrap">Jue 10 oct</td><td>Familia abre el sobre. Se descubre el nuevo testamento. Se solicita investigación.</td><td>Familia Vidal</td></tr>
@@ -1104,10 +1104,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <div class="inf-row"><span class="inf-k">Historial:</span><span class="inf-v">Hipertensión crónica · Medicación: Amlodipina — dosis oficial 5mg diaria (ajustada a 10mg el 24/9 por Dra. Sandín, suplente)</span></div>
           <hr class="inf-sep">
           <div class="inf-row"><span class="inf-k">Hallazgo clave:</span><span class="inf-v" style="color:var(--red)">Niveles de Amlodipina en sangre: equivalentes a 40mg diarios — cuatro veces la dosis ajustada de 10mg. La sobredosis supera ampliamente cualquier prescripción registrada.</span></div>
-          <div class="inf-row"><span class="inf-k">Mecanismo probable:</span><span class="inf-v">Administración de dosis incrementales durante varios días. El medicamento fue alterado en su presentación original (blíster) — requiere acceso frecuente a la medicación en el <strong>domicilio del paciente</strong>, no en su lugar de trabajo.</span></div>
-          <div class="inf-row"><span class="inf-k">Período estimado:</span><span class="inf-v">Entre el 27 y el 30 de septiembre. La persona responsable debía tener contacto con Ernesto Vidal en su domicilio o acceso a su medicación fuera del edificio de la empresa.</span></div>
+          <div class="inf-row"><span class="inf-k">Mecanismo probable:</span><span class="inf-v">Las pastillas fueron reemplazadas en su presentación original (blíster) por comprimidos de mayor concentración antes de ser entregadas al paciente. No se requiere acceso repetido al domicilio — basta con haber manipulado la medicación previo a su entrega.</span></div>
+          <div class="inf-row"><span class="inf-k">Período estimado:</span><span class="inf-v">A partir del 29 de septiembre. La sobredosis acumulada se vuelve letal en los días siguientes. La persona responsable debía tener acceso a la medicación de Ernesto Vidal antes de que llegara a sus manos.</span></div>
           <hr class="inf-sep">
-          <div class="inf-nota">Conclusión: La muerte no fue natural. Se abre investigación por homicidio. El método requiere acceso frecuente y sostenido a la medicación del occiso durante al menos una semana previa al fallecimiento.</div>
+          <div class="inf-nota">Conclusión: La muerte no fue natural. Se abre investigación por homicidio. El método no requirió presencia en el edificio — requirió acceso previo a la medicación del occiso.</div>
         </div>
       </div>
     </div>
@@ -1176,35 +1176,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
 
-    <!-- ══ DATOS OCULTOS ══ -->
-    <div class="page" id="page-nota-oculta">
-      <div class="doc-card" style="margin-bottom:12px">
-        <div class="dc-head"><span class="dc-title">ANÁLISIS — DATOS OCULTOS EN DOCUMENTOS</span><span class="dc-ref">ANAL-IA</span></div>
-        <div class="dc-body" style="font-size:11px;color:var(--text-dim)">Esta sección reúne fechas y datos puntuales mencionados en distintos documentos. No saca conclusiones — esa parte es tuya.</div>
-      </div>
-
-      <div class="hidden-data">
-        <div class="hd-label">// LÍNEA DE TIEMPO — MEDICACIÓN Y ACCESOS</div>
-        <div class="hd-text">13 SEP → primera visita domiciliaria de Valeria Sandín<br>24 SEP → Valeria ajusta dosis a 10mg (registrado en historial médico)<br>27–30 SEP → inicio sobredosis — nivel en sangre equivale a 40mg<br>3 OCT → Ernesto escribe al médico · Graciela accede a oficina esa noche<br>6 OCT · 21:14 → acceso al edificio — 47 minutos<br>7 OCT → fallecimiento</div>
-      </div>
-
-      <div class="hidden-data">
-        <div class="hd-label">// PREGUNTA CENTRAL</div>
-        <div class="hd-text">La sobredosis empezó entre el 27 y 30 de septiembre y requirió acceso al domicilio de Ernesto durante esos días.<br>Revisá quién estuvo en contacto con él en su casa durante ese período — no en el edificio.</div>
-      </div>
-
-      <div class="hidden-data">
-        <div class="hd-label">// LÍNEA DE TIEMPO — TESTAMENTO Y PODERES</div>
-        <div class="hd-text">12 SEP → Ernesto firma poder especial a Ibáñez<br>28 SEP → nota interna sobre reestructuración societaria<br>2 OCT → nuevo testamento firmado</div>
-      </div>
-
-      <div class="hidden-data">
-        <div class="hd-label">// TESTIMONIOS — EL LLAMADO DEL DOMINGO</div>
-        <div class="hd-text">Cruzá lo que dice la carta de Ibáñez, el chat de Cecilia con su amiga, y la nota del cajón de Ernesto sobre ese mismo llamado.</div>
-      </div>
-
-    </div>
-
     <!-- ══ VALIDACIÓN ══ -->
     <div class="page" id="page-validacion">
       <div class="doc-card" style="margin-bottom:16px">
@@ -1223,7 +1194,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
       <div class="val-preg">
         <div class="val-label">03 · ¿CUÁL fue el detonante que llevó a esta persona a actuar?</div>
-        <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
+        <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
         <div class="val-fb" id="f3"></div>
       </div>
       <div class="val-submit-wrap" id="submitWrap">
@@ -1373,15 +1344,15 @@ const pageNames={resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cóm
 'informe-empresa':'Informe empresa','informe-seguridad':'Registro de accesos','email-medico':'Email al médico',
 'whatsapp-marcos':'Chat Marcos/abogado','whatsapp-cecilia':'Chat Cecilia/amiga','informe-medico':'Informe médico',
 'nota-cajon':'Nota del cajón',testamento:'Testamento','carta-ibanez':'Carta de Ibáñez',
-'nota-oculta':'Datos ocultos',validacion:'Resolver el caso'};
+validacion:'Resolver el caso'};
 const progMap={resumen:4,teaser:6,instrucciones:7,sospechosos:14,cronologia:20,'informe-empresa':26,
-'informe-seguridad':34,'email-medico':42,'whatsapp-marcos':50,'whatsapp-cecilia':58,'informe-medico':65,
-'nota-cajon':72,testamento:80,'carta-ibanez':87,'nota-oculta':93,validacion:96};
+'informe-seguridad':34,'email-medico':42,'whatsapp-marcos':50,'whatsapp-cecilia':58,'informe-medico':67,
+'nota-cajon':76,testamento:84,'carta-ibanez':92,validacion:96};
 const folderMap={
   resumen:0,teaser:0,instrucciones:0,
   sospechosos:1,cronologia:1,'informe-empresa':1,
   'informe-seguridad':2,'email-medico':2,'whatsapp-marcos':2,'whatsapp-cecilia':2,'informe-medico':2,
-  'nota-cajon':3,testamento:3,'carta-ibanez':3,'nota-oculta':3,
+  'nota-cajon':3,testamento:3,'carta-ibanez':3,
   validacion:4
 };
 const visited=new Set(['resumen']);
@@ -1496,7 +1467,7 @@ function unlock2(){
   }
 }
 function unlock3(){
-  ['nota-cajon','testamento','carta-ibanez','nota-oculta','validacion'].forEach(id=>{
+  ['nota-cajon','testamento','carta-ibanez','validacion'].forEach(id=>{
     const el=document.getElementById('item-'+id);
     if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
   });
@@ -1504,7 +1475,7 @@ function unlock3(){
 }
 
 // ═══ VALIDACIÓN ═══
-const ANSWERS={1:'CECILIA',2:'MEDICACION',3:'REESTRUCTURACION'};
+const ANSWERS={1:'CECILIA',2:'MEDICACION',3:'EXCLUSION'};
 const correct={1:false,2:false,3:false};
 function checkV(n){
   const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -2317,7 +2288,7 @@ document.getElementById('shareModal').addEventListener('click',function(e){if(e.
 const HINTS={
   1:'El texto "ZRQVPNPVBA" usa un cifrado de desplazamiento — cada letra se corrió una cantidad fija de posiciones en el abecedario. El truco está en encontrar cuántas posiciones. Probá con números simples: 1, 3, 13. Cuando todas las letras formen una palabra en español, encontraste la clave.',
   2:'En el Registro de Accesos hay un código numérico asociado al ingreso del domingo. No es un horario ni una clave aleatoria — cada número ahí representa una letra del abecedario. Pensá en la forma más simple de convertir números en letras.',
-  3:'El detonante no fue el testamento en sí — fue algo que ocurrió días antes. Buscá qué cambió en la vida de Ernesto esa semana y quién tenía más que perder con ese cambio.'
+  3:'Buscá qué descubrió esta persona sobre su propio futuro en los días previos al crimen. La respuesta está en los documentos de la escribanía y en lo que Ernesto dejó por escrito.'
 };
 let hintsUsed={1:false,2:false,3:false};
 let hintsRemaining=3;
