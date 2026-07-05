@@ -725,10 +725,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 <div id="shareModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:450;align-items:center;justify-content:center">
   <div style="background:var(--bg2);border:1px solid var(--green-dim);padding:24px;width:440px;max-width:95vw;text-align:center">
     <div style="font-family:var(--font-display);font-size:0.85rem;color:var(--green);letter-spacing:.15em;margin-bottom:16px">// TARJETA PARA COMPARTIR</div>
-    <canvas id="shareCanvas" width="800" height="800" style="width:100%;max-width:340px;border:1px solid var(--border2);margin-bottom:16px"></canvas>
+    <canvas id="shareCanvas" width="1080" height="1920" style="width:100%;max-width:280px;border:1px solid var(--border2);margin-bottom:16px"></canvas>
     <div style="display:flex;gap:8px;flex-direction:column">
       <button onclick="downloadShareCard()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:0.77rem;padding:11px;cursor:pointer;letter-spacing:.08em">⬇ DESCARGAR IMAGEN</button>
-      <div style="font-size:0.69rem;color:var(--text-dim);line-height:1.6;margin-top:4px">Subila a tu Instagram y etiquetá <strong style="color:var(--amber)">@archivocero</strong> — nos encanta ver quién resuelve los casos 🔍</div>
+      <div style="font-size:0.69rem;color:var(--text-dim);line-height:1.6;margin-top:4px">Subila a tu Instagram y etiquetá <strong style="color:var(--amber)">@archivocero0</strong> — nos encanta ver quién resuelve los casos 🔍</div>
       <button onclick="closeShareModal()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.69rem;padding:8px;cursor:pointer;margin-top:6px">CERRAR</button>
     </div>
   </div>
@@ -764,13 +764,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="dc-body">
           <p>Ernesto Vidal, 71 años, fue encontrado muerto en su oficina privada el lunes 7 de octubre a las 8:40 por su secretaria, Graciela Ríos. El médico de guardia certificó paro cardíaco — Ernesto tenía hipertensión crónica y tomaba medicación diaria.</p>
           <p>Lo que debería haber sido un cierre tranquilo se convirtió en algo más complicado cuando, tres días después, la familia abrió el sobre que Ernesto había dejado con instrucciones de "abrir solo en caso de fallecimiento". Adentro: un testamento modificado el 2 de octubre que dejaba todo a una persona cuyo nombre aparecía tachado en la copia disponible.</p>
-          <p>Cinco personas tenían acceso a su entorno inmediato. Dos tienen coartadas verificables. Las otras tres no.</p>
+          <p>Seis personas tenían acceso a su entorno inmediato. Tres tienen coartadas verificables. Las otras tres no.</p>
           <p style="color:var(--green)">Tu objetivo: identificar <strong>quién</strong> mató a Ernesto, <strong>cómo</strong> lo hizo y <strong>cuál fue el detonante</strong> que lo llevó a actuar.</p>
         </div>
       </div>
     </div>
-
-    <!-- ══ TEASER ══ -->
 
     <!-- ══ TEASER ══ -->
     <div class="page" id="page-teaser">
@@ -1196,8 +1194,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="val-fb" id="f2"></div>
       </div>
       <div class="val-preg">
-        <div class="val-label">03 · ¿QUÉ descubrió esta persona que la llevó a actuar?</div>
-        <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
+        <div class="val-label">03 · ¿QUÉ descubrió esta persona que llevó a esta persona a actuar?</div>
+        <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _ _" maxlength="25" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
         <div class="val-fb" id="f3"></div>
       </div>
       <div class="val-submit-wrap" id="submitWrap">
@@ -1302,8 +1300,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div style="font-size:9px;color:var(--amber);letter-spacing:.2em;margin-bottom:12px">// INFORME FINAL — RESOLUCIÓN DEL CASO</div>
 
       <div style="font-size:12px;color:var(--text);line-height:1.9;margin-bottom:18px">
-        <p style="margin-bottom:12px"><strong style="color:var(--green)">Ernesto Vidal fue asesinado por su hija menor, Cecilia Vidal.</strong> El método fue una sobredosis crónica de Amlodipina. Cecilia llevaba tres meses acercándole la medicación en su domicilio desde que él se operó la rodilla en julio. Aprovechó esa rutina de confianza para incrementar gradualmente la dosis entre el 27 y el 30 de septiembre.</p>
-        <p style="margin-bottom:12px"><strong style="color:var(--amber)">El detonante fue la nota interna del 28 de septiembre.</strong> La reestructuración de la empresa significaba para Cecilia perderlo todo al mismo tiempo: la herencia —ya excluida por el nuevo testamento— y cualquier futuro en la empresa familiar. Actuó dentro de los dos días siguientes.</p>
+        <p style="margin-bottom:12px"><strong style="color:var(--green)">Ernesto Vidal fue asesinado por su hija menor, Cecilia Vidal.</strong> El método fue una sobredosis crónica de Amlodipina. Cecilia llevaba tres meses acercándole la medicación en su domicilio desde que él se operó la rodilla en julio. El 29 de septiembre, cuando fue a cenar y le llevó "las pastillas del mes", entregó un blíster ya manipulado — los comprimidos habían sido reemplazados por otros de mayor concentración antes de llegar a sus manos. Ernesto empezó a tomarlas sin saber y la sobredosis acumulada se volvió letal días después.</p>
+        <p style="margin-bottom:12px"><strong style="color:var(--amber)">El detonante fue descubrir su exclusión del testamento.</strong> Rodrigo la llamó el domingo 6 de octubre para avisarle que había "cambios" — y Cecilia entendió que su padre la había excluido. Esa noche fue a la oficina a confirmar lo que ya sospechaba. Para ese momento, las pastillas ya estaban haciendo efecto desde hacía días. El crimen ya estaba en marcha — el testamento fue la confirmación de todo lo que tenía para perder.</p>
         <p style="margin-bottom:12px"><strong style="color:var(--text-dim)">¿Por qué no fue Valeria Sandín?</strong> La Dra. Sandín subió la dosis oficialmente a 10mg el 24 de septiembre — con prescripción registrada, firmada y en el historial del paciente. El nivel en sangre de Ernesto equivalía a 40mg: cuatro veces esa dosis. Nadie con intención médica legítima o incluso negligente llega a esos niveles. Además, Valeria no tuvo acceso a la medicación entre el 24 de septiembre y la muerte — eso lo cubría exclusivamente Cecilia desde el domicilio. La "amenaza de denuncia" era motivo, pero sin acceso en el período crítico.</p>
         <p style="margin-bottom:12px"><strong style="color:var(--text-dim)">¿Por qué no fue Graciela?</strong> Graciela tenía el código de la oficina y entró el jueves 3 — pero la medicación se alteró en el domicilio de Ernesto, no en la empresa. Su acceso era al edificio, no a las pastillas. Y Ernesto mismo escribió en su nota: "G. dice que no tocó nada. Le creo."</p>
         <p style="margin-bottom:0"><strong style="color:var(--text-dim)">La mentira de Ibáñez</strong> — Rodrigo mintió en su carta al decir que no habló con Cecilia. La llamó el domingo para calmarla. No sabía — o no dijo — que ya era demasiado tarde.</p>
@@ -1322,7 +1320,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
             <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿DETONANTE?</div>
-            <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.1em">REESTRUCTURACION</div>
+            <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.1em">EXCLUSION</div>
           </div>
         </div>
       </div>
@@ -2180,103 +2178,142 @@ function closeShareModal(){
 function drawShareCard(){
   const cv=document.getElementById('shareCanvas');
   const ctx=cv.getContext('2d');
-  const W=cv.width,H=cv.height;
+  const W=cv.width,H=cv.height; // 1080 x 1920
 
   // background
   ctx.fillStyle='#09100d';
   ctx.fillRect(0,0,W,H);
 
   // texture dots
-  ctx.fillStyle='rgba(61,255,122,0.04)';
-  for(let i=0;i<200;i++){
+  ctx.fillStyle='rgba(61,255,122,0.035)';
+  for(let i=0;i<500;i++){
     ctx.beginPath();
-    ctx.arc(Math.random()*W,Math.random()*H,1,0,Math.PI*2);
+    ctx.arc(Math.random()*W,Math.random()*H,1.5,0,Math.PI*2);
     ctx.fill();
   }
 
-  // border frame
-  ctx.strokeStyle='#243529';
-  ctx.lineWidth=3;
-  ctx.strokeRect(30,30,W-60,H-60);
-
-  // top label
-  ctx.fillStyle='#506050';
-  ctx.font='18px monospace';
-  ctx.textAlign='center';
-  ctx.letterSpacing='4px';
-  ctx.fillText('ARCHIVO_CERO · SISTEMA SEGURO',W/2,90);
-
-  // case badge
-  ctx.fillStyle='#1e1508';
-  ctx.fillRect(W/2-90,115,180,32);
-  ctx.strokeStyle='#5a3f08';
-  ctx.lineWidth=1;
-  ctx.strokeRect(W/2-90,115,180,32);
-  ctx.fillStyle='#e8a830';
-  ctx.font='14px monospace';
-  ctx.letterSpacing='2px';
-  ctx.fillText('CASO INTERACTIVO A · EXPRESS',W/2,137);
-
-  // title
-  ctx.fillStyle='#3dff7a';
-  ctx.font='bold 38px monospace';
-  ctx.letterSpacing='3px';
-  ctx.fillText('LA ÚLTIMA',W/2,220);
-  ctx.fillText('FIRMA',W/2,265);
-
-  // stamp ellipse
-  ctx.save();
-  ctx.translate(W/2,420);
-  ctx.rotate(-10*Math.PI/180);
-  ctx.strokeStyle='#c82020';
-  ctx.lineWidth=7;
-  ctx.beginPath();
-  ctx.ellipse(0,0,210,105,0,0,Math.PI*2);
-  ctx.stroke();
-  ctx.lineWidth=2;
-  ctx.beginPath();
-  ctx.ellipse(0,0,192,88,0,0,Math.PI*2);
-  ctx.stroke();
-  ctx.fillStyle='#c82020';
-  ctx.font='24px monospace';
-  ctx.letterSpacing='10px';
-  ctx.fillText('CASO',0,-15);
-  ctx.font='bold 42px monospace';
-  ctx.letterSpacing='4px';
-  ctx.fillText('RESUELTO',0,30);
-  ctx.restore();
-
-  // time
-  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
-  const timeStr=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  ctx.fillStyle='#8aab90';
-  ctx.font='16px monospace';
-  ctx.letterSpacing='1px';
-  ctx.fillText('Tiempo de investigación',W/2,580);
-  ctx.fillStyle='#e8a830';
-  ctx.font='bold 44px monospace';
-  ctx.fillText(timeStr,W/2,635);
-
-  // footer
-  ctx.fillStyle='#506050';
-  ctx.font='14px monospace';
-  ctx.letterSpacing='2px';
-  ctx.fillText('archivo0.com.ar',W/2,700);
-  ctx.fillStyle='#3dff7a';
-  ctx.font='13px monospace';
-  ctx.fillText('@archivocero',W/2,725);
+  // outer border
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=5;
+  ctx.strokeRect(48,48,W-96,H-96);
 
   // corner brackets
   ctx.strokeStyle='#1a6b38';
-  ctx.lineWidth=4;
-  const cl=40;
-  [[50,50,1,1],[W-50,50,-1,1],[50,H-50,1,-1],[W-50,H-50,-1,-1]].forEach(([x,y,dx,dy])=>{
+  ctx.lineWidth=6;
+  const cl=70;
+  [[68,68,1,1],[W-68,68,-1,1],[68,H-68,1,-1],[W-68,H-68,-1,-1]].forEach(([x,y,dx,dy])=>{
     ctx.beginPath();
     ctx.moveTo(x,y+cl*dy);
     ctx.lineTo(x,y);
     ctx.lineTo(x+cl*dx,y);
     ctx.stroke();
   });
+
+  // ── TOP LABEL ──
+  ctx.fillStyle='#3a5040';
+  ctx.font='26px "Share Tech Mono",monospace';
+  ctx.textAlign='center';
+  ctx.fillText('ARCHIVO_CERO · SISTEMA SEGURO',W/2,148);
+
+  // thin line under top label
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(120,172);ctx.lineTo(W-120,172);ctx.stroke();
+
+  // ── CASE BADGE ──
+  ctx.fillStyle='#1a1205';
+  ctx.fillRect(W/2-190,202,380,54);
+  ctx.strokeStyle='#4a3208';
+  ctx.lineWidth=1;
+  ctx.strokeRect(W/2-190,202,380,54);
+  ctx.fillStyle='#e8a830';
+  ctx.font='22px "Share Tech Mono",monospace';
+  ctx.fillText('CASO INTERACTIVO A · EXPRESS',W/2,236);
+
+  // ── MAIN TITLE ──
+  ctx.fillStyle='#3dff7a';
+  ctx.font='bold 96px "Share Tech Mono",monospace';
+  ctx.fillText('LA ÚLTIMA',W/2,430);
+  ctx.fillText('FIRMA',W/2,545);
+
+  // subtitle
+  ctx.fillStyle='#2e5038';
+  ctx.font='24px "Share Tech Mono",monospace';
+  ctx.fillText('UNA INVESTIGACIÓN DE ARCHIVO CERO',W/2,615);
+
+  // decorative scan lines
+  ctx.strokeStyle='#152512';
+  ctx.lineWidth=1;
+  for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(120,658+i*7);ctx.lineTo(W-120,658+i*7);ctx.stroke();}
+
+  // ── STAMP ──
+  ctx.save();
+  ctx.translate(W/2,940);
+  ctx.rotate(-8*Math.PI/180);
+  ctx.strokeStyle='#c82020';
+  ctx.lineWidth=11;
+  ctx.beginPath();ctx.ellipse(0,0,330,165,0,0,Math.PI*2);ctx.stroke();
+  ctx.lineWidth=3;
+  ctx.beginPath();ctx.ellipse(0,0,304,139,0,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle='#c82020';
+  ctx.textAlign='center';
+  ctx.font='38px "Share Tech Mono",monospace';
+  ctx.fillText('CASO',0,-28);
+  ctx.font='bold 66px "Share Tech Mono",monospace';
+  ctx.fillText('RESUELTO',0,48);
+  ctx.restore();
+
+  // ── TIME BOX ──
+  ctx.fillStyle='#0d1a10';
+  ctx.fillRect(120,1195,W-240,200);
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=1;
+  ctx.strokeRect(120,1195,W-240,200);
+
+  ctx.fillStyle='#506050';
+  ctx.font='26px "Share Tech Mono",monospace';
+  ctx.textAlign='center';
+  ctx.fillText('TIEMPO DE INVESTIGACIÓN',W/2,1252);
+
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  const timeStr=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  ctx.fillStyle='#e8a830';
+  ctx.font='bold 88px "Share Tech Mono",monospace';
+  ctx.fillText(timeStr,W/2,1358);
+
+  // ── DIFFICULTY TAG ──
+  ctx.fillStyle='#0a1410';
+  ctx.fillRect(W/2-145,1460,290,52);
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=1;
+  ctx.strokeRect(W/2-145,1460,290,52);
+  ctx.fillStyle='#3a5040';
+  ctx.font='22px "Share Tech Mono",monospace';
+  ctx.fillText('DIFICULTAD · MEDIA-ALTA',W/2,1493);
+
+  // thin line
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(120,1570);ctx.lineTo(W-120,1570);ctx.stroke();
+
+  // ── CALL TO ACTION ──
+  ctx.fillStyle='#3dff7a';
+  ctx.font='bold 36px "Share Tech Mono",monospace';
+  ctx.fillText('¿PODÉS RESOLVERLO?',W/2,1658);
+
+  ctx.fillStyle='#3a5040';
+  ctx.font='26px "Share Tech Mono",monospace';
+  ctx.fillText('archivo0.com.ar',W/2,1740);
+
+  // thin line
+  ctx.strokeStyle='#1e3525';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(120,1780);ctx.lineTo(W-120,1780);ctx.stroke();
+
+  // ── FOOTER ──
+  ctx.fillStyle='#3dff7a';
+  ctx.font='28px "Share Tech Mono",monospace';
+  ctx.fillText('@archivocero0',W/2,1848);
 }
 function downloadShareCard(){
   const cv=document.getElementById('shareCanvas');
