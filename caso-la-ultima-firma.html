@@ -1547,13 +1547,7 @@ function toggleFs(){
 // ═══ CORK BOARD ═══
 let cards=[],lines=[],cardId=0,lineMode=false,lineStart=null,dragging=null,dragOx=0,dragOy=0,selected=null;
 
-function seedBoard(){
-  addCard('sospechoso',20,30,'Cecilia Vidal\n⚠ Acceso medicación\n⚠ Dom 21:14 en edificio\n⚠ Coartada FALSA');
-  addCard('sospechoso',220,30,'Marcos Vidal\n⚠ Sabía del testamento\nCoartada verificable\nNo accedió al edificio');
-  addCard('sospechoso',420,30,'Rodrigo Ibáñez\n⚠ MINTIÓ en su carta\n⚠ Llamó a Cecilia el dom.\nCoartada verificable');
-  addCard('pista',20,220,'Sobredosis empezó\n27-30 sep.\nCecilia tuvo acceso\ndesde julio.');
-  addCard('nota',220,220,'Nota cajón Ernesto:\n"R. me dijo que ya\nhabló con ella"\nIbáñez lo niega.');
-}
+function seedBoard(){}
 
 function addCard(type,x,y,text){
   const canvas=document.getElementById('pizCanvas');
