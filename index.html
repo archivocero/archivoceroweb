@@ -620,6 +620,81 @@
     .testimonios-section { padding: 4rem 2rem; }
   }
 
+  /* ── PACK INVESTIGADOR ── */
+  .pack-section {
+    border-top: 1px solid var(--border);
+    padding: 5rem 2.8rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .pack-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 4rem;
+    align-items: center;
+    border: 1px solid rgba(212,160,23,0.25);
+    border-left: 4px solid var(--amber);
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(212,160,23,0.05) 0%, transparent 60%);
+    position: relative; overflow: hidden;
+  }
+  .pack-inner::after {
+    content: "PACK"; position: absolute;
+    font-family: "Bebas Neue", cursive; font-size: 8rem;
+    color: rgba(212,160,23,0.04); right: -1rem; bottom: -1rem;
+    line-height: 1; pointer-events: none; letter-spacing: 0.1em;
+  }
+  .pack-titulo {
+    font-family: "Bebas Neue", cursive; font-size: clamp(2.5rem, 4vw, 3.5rem);
+    letter-spacing: 0.04em; line-height: 1; margin: 0.4rem 0 1.2rem;
+  }
+  .pack-titulo-accent { color: var(--amber); }
+  .pack-precio { display: flex; flex-direction: column; gap: 0.2rem; }
+  .pack-precio-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(240,236,224,0.42);
+  }
+  .pack-precio-valor {
+    font-family: "Bebas Neue", cursive; font-size: 2.5rem;
+    color: var(--amber); letter-spacing: 0.04em; line-height: 1;
+  }
+  .pack-desc {
+    font-family: "Courier Prime", monospace; font-size: 0.9rem;
+    line-height: 1.8; color: rgba(240,236,224,0.65); margin-bottom: 1.5rem;
+  }
+  .pack-items { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .pack-grupo { display: flex; flex-direction: column; gap: 0.25rem; }
+  .pack-grupo-label {
+    font-family: "Space Mono", monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.42); margin-bottom: 0.2rem;
+  }
+  .pack-item {
+    font-family: "Courier Prime", monospace; font-size: 0.88rem;
+    color: rgba(240,236,224,0.65); padding-left: 0.5rem;
+  }
+  .pack-solidario { font-size: 0.72rem; color: #c9828a; }
+  .pack-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+  .pack-meta span {
+    font-family: "Space Mono", monospace; font-size: 0.56rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(240,236,224,0.42);
+    border: 1px solid rgba(240,236,224,0.1); padding: 0.3rem 0.7rem;
+  }
+  .pack-btn {
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); background: var(--amber);
+    padding: 1rem 1.8rem; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .pack-btn:hover { background: #e8b820; transform: translateX(4px); }
+  @media (max-width: 768px) {
+    .pack-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+    .pack-section { padding: 3rem 1.5rem; }
+  }
+
   .para-quien {
     padding: 7rem 2.5rem; border-top: 1px solid var(--border);
     background: linear-gradient(to bottom, rgba(192,57,43,0.025) 0%, transparent 50%);
@@ -1032,19 +1107,19 @@
     background: rgba(0,188,188,0.04);
   }
   .caso-interactivo-card {
-    border-color: rgba(0,188,188,0.25) !important;
-    background: rgba(0,15,15,0.65) !important;
+    border-color: rgba(0,188,188,0.45) !important;
+    background: rgba(0,20,20,0.85) !important;
     position: relative; overflow: hidden;
-    opacity: 0.7;
+    box-shadow: 0 4px 32px rgba(0,188,188,0.1);
   }
   .caso-interactivo-card::before {
-    background: linear-gradient(135deg, rgba(0,188,188,0.07) 0%, transparent 60%) !important;
+    background: linear-gradient(135deg, rgba(0,188,188,0.1) 0%, transparent 60%) !important;
     opacity: 1 !important; pointer-events: none !important;
   }
   .caso-interactivo-card::after {
     content: "";
     position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, #00bcbc, rgba(0,188,188,0.3), transparent);
+    background: linear-gradient(to right, #00bcbc, rgba(0,188,188,0.4), transparent);
     pointer-events: none;
   }
   .caso-tarea { font-family: "Courier Prime", monospace; font-size: 0.82rem; color: rgba(240,236,224,0.42); margin-bottom: 1rem; font-style: italic; }
@@ -1109,9 +1184,9 @@
 
   /* ── NOVEDADES ── */
   .novedades-section {
-    background: linear-gradient(135deg, rgba(192,57,43,0.14) 0%, rgba(22,10,10,0.95) 60%);
-    border-top: 1px solid rgba(192,57,43,0.35);
-    border-bottom: 1px solid rgba(192,57,43,0.35);
+    background: linear-gradient(135deg, rgba(0,188,188,0.12) 0%, rgba(10,22,22,0.98) 60%);
+    border-top: 1px solid rgba(0,188,188,0.4);
+    border-bottom: 1px solid rgba(0,188,188,0.4);
   }
   .novedades-section .section { padding-top: 2.8rem; padding-bottom: 2.8rem; }
   .novedades-header {
@@ -3046,6 +3121,12 @@
     <a class="nav-ig" href="https://www.instagram.com/archivocero0/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
     </a>
+    <a class="nav-ig" href="https://www.tiktok.com/@archivo_cero_0" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+    </a>
+    <a class="nav-ig" href="https://open.spotify.com/show/033jEcfvqOlwMPViigSDMJ?si=0174a775b1a8479d" target="_blank" rel="noopener" aria-label="Spotify">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    </a>
     <a class="nav-cta" href="#" onclick="showSection('validacion'); return false;">✓ Validar caso</a>
     <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
@@ -3088,8 +3169,8 @@
 
   <!-- BOTONES BANDA -->
   <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <a href="#" class="hero-btn hero-btn-primary" onclick="showSection('casos'); return false;">
-      <span>La Última Firma — $8.000</span><span class="btn-arrow">→</span>
+    <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-b-la-donante-anonima-16s8a/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
+      <span>La Donante Anónima — $7.000</span><span class="btn-arrow">→</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
       <span>Caso #00 gratis</span><span class="btn-arrow">→</span>
@@ -3227,17 +3308,17 @@
         <div class="caso-card caso-interactivo-card">
           <div class="caso-especial-header-badge">
             <span class="caso-tag tag-interactivo">Caso interactivo</span>
-            <span class="caso-especial-num">X·A</span>
+            <span class="caso-especial-num">X·B</span>
           </div>
           <div class="caso-especial-title-row">
-            <h3 class="caso-especial-title">La Última<br>Firma</h3>
+            <h3 class="caso-especial-title">La Donante<br>Anónima</h3>
             <div class="caso-precio-destacado" style="border-color:rgba(0,188,188,0.25);background:rgba(0,188,188,0.06);">
               <span class="precio-label" style="color:rgba(0,188,188,0.7)">Valor</span>
-              <span class="precio-valor-grande" style="color:#00bcbc">$8.000</span>
+              <span class="precio-valor-grande" style="color:#00bcbc">$7.000</span>
             </div>
           </div>
-          <p class="caso-especial-desc">El fundador de Vidal & Hijos S.A. aparece muerto un lunes a la mañana. Causa oficial: paro cardíaco. Cinco días antes había firmado un testamento que excluía a toda su familia. Nadie sabe quién es el beneficiario. Seis personas tenían acceso a su entorno inmediato. Dos tienen coartadas verificables. Las otras tres, no.</p>
-          <p class="caso-tarea">→ Tu tarea: identificar quién mató a Ernesto, cómo lo hizo y cuál fue el detonante.</p>
+          <p class="caso-especial-desc">Nora Acevedo, 78 años, donó su colección de arte al Museo Municipal de Buenos Aires. Firmó el contrato el 15 de septiembre. El 3 de octubre murió de una arritmia. El 12 de octubre, durante el inventario, el museo descubrió que tres de las obras más valiosas son falsificaciones. Los originales no aparecen. Alguien los sustituyó antes de que llegaran.</p>
+          <p class="caso-tarea">→ Tu objetivo: identificar quién realizó la sustitución, cómo lo hizo y qué descubrió que la llevó a actuar.</p>
           <div class="caso-especial-meta">
             <span>⏱ 60–90 min</span>
             <span>Solo o en grupo</span>
@@ -3245,28 +3326,27 @@
             <span>⚠ Dificultad media-alta</span>
           </div>
           <div class="caso-especial-actions">
-            <a href="https://www.instagram.com/reel/DajN6EgN822/?igsh=MTZ3c2hlbG95cWtpMA==" target="_blank" rel="noopener" class="btn-trailer">
+            <a href="#" class="btn-trailer btn-trailer-disabled" title="Trailer próximamente">
               <span class="btn-trailer-icon">▶</span>
               <span>Ver trailer en Instagram</span>
               <span class="btn-trailer-arrow">→</span>
             </a>
-            <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-a-la-ultima-firma-as3a2/" target="_blank" rel="noopener" class="btn-comprar-interactivo">
+            <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-b-la-donante-anonima-16s8a/" target="_blank" rel="noopener" class="btn-comprar-interactivo">
               <span>Quiero este caso</span>
               <span>→</span>
             </a>
           </div>
-          <!-- Spotify Teaser La Ultima Firma Novedad -->
-          <div class="spotify-teaser" id="spotify-firma-novedad">
-            <button class="btn-spotify-toggle" onclick="toggleSpotify('spotify-firma-novedad')" aria-expanded="false">
+          <div class="spotify-teaser" id="spotify-donante-novedad">
+            <button class="btn-spotify-toggle" onclick="toggleSpotify('spotify-donante-novedad')" aria-expanded="false">
               <svg class="spotify-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
               <span>Escuchá el teaser del caso</span>
               <span class="spotify-toggle-arrow">▾</span>
             </button>
             <div class="spotify-embed-wrap">
-              <iframe src="https://open.spotify.com/embed/episode/5fJHza8YkKw6uhoHoZMuPO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              <iframe src="https://open.spotify.com/embed/episode/0VvL6TpkBqh2RRbVffq4DG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
           </div>
-          <div class="stamp stamp-interactivo">X·A</div>
+          <div class="stamp stamp-interactivo">X·B</div>
         </div>
       </div>
     </div>
@@ -3365,19 +3445,53 @@
   </section>
 
   <!-- CTA BANNER -->
+  <!-- PACK INVESTIGADOR -->
+  <section class="pack-section">
+    <div class="pack-inner reveal">
+      <div class="pack-left">
+        <p class="section-label">// Oferta</p>
+        <h2 class="pack-titulo">Pack<br><span class="pack-titulo-accent">Investigador</span></h2>
+        <p class="pack-precio"><span class="pack-precio-label">Todo por</span><span class="pack-precio-valor">$20.000</span></p>
+      </div>
+      <div class="pack-right">
+        <p class="pack-desc">Descubrí la colección completa de Archivo Cero. Cuatro experiencias de investigación para resolver solo, en pareja o con amigos.</p>
+        <div class="pack-items">
+          <div class="pack-grupo">
+            <span class="pack-grupo-label">🖥 Casos interactivos — 100% online</span>
+            <span class="pack-item">· La Última Firma</span>
+            <span class="pack-item">· La Donante Anónima</span>
+          </div>
+          <div class="pack-grupo">
+            <span class="pack-grupo-label">📁 Expedientes digitales en PDF</span>
+            <span class="pack-item">· El Último Backup</span>
+            <span class="pack-item">· Rastro Perdido <span class="pack-solidario">🐾 Solidario</span></span>
+          </div>
+        </div>
+        <div class="pack-meta">
+          <span>👥 Solo o en grupo</span>
+          <span>🕒 +4 horas de investigación</span>
+          <span>📩 Acceso inmediato</span>
+        </div>
+        <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-b-la-donante-anonima-copia-qy6en/" target="_blank" rel="noopener" class="pack-btn">
+          <span>Quiero el pack completo</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="cta-banner-inner">
       <div class="cta-banner-text reveal">
         <h2><span style="color:var(--paper)">Tu </span><span class="cta-title-yellow">primer caso</span><br><span style="color:var(--paper)">te espera.</span></h2>
-        <p>Empezá gratis con el Caso #00 o suscribite para recibir nuevas investigaciones cada mes.</p>
+        <p>Empezá gratis con el Caso #00 o explorá el catálogo completo.</p>
       </div>
       <div class="cta-banner-actions reveal reveal-delay-1">
         <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:100%;">
           <span>Empezar por el Caso #00</span><span class="btn-arrow">→</span>
         </a>
-        <a class="hero-btn hero-btn-secondary hero-btn-disabled" style="max-width:100%;">
-          <span>Quiero suscribirme</span><span class="btn-arrow">→</span>
-          <span class="btn-prox-label">Próximamente</span>
+        <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('casos'); return false;" style="max-width:100%;">
+          <span>Ver todos los casos</span><span class="btn-arrow">→</span>
         </a>
         <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('faq'); return false;" style="max-width:100%;">
           <span>Tengo preguntas</span><span class="btn-arrow">→</span>
@@ -3794,6 +3908,7 @@
           <div class="caso-faq-body">
             <div class="casos-cards-wrap">
               <div class="casos-carrusel-inner">
+                <button class="casos-nav-btn" onclick="casoNav('interactivos',-1)">&#8249;</button>
                 <div class="casos-carrusel-viewport">
                   <div class="casos-carrusel-track" id="track-interactivos">
                     <div class="casos-carrusel-slide">
@@ -3806,7 +3921,7 @@
                           <h3 class="caso-especial-title">La Última<br>Firma</h3>
                           <div class="caso-precio-destacado" style="border-color:rgba(0,188,188,0.25);background:rgba(0,188,188,0.06);">
                             <span class="precio-label" style="color:rgba(0,188,188,0.7)">Valor</span>
-                            <span class="precio-valor-grande" style="color:#00bcbc">$8.000</span>
+                            <span class="precio-valor-grande" style="color:#00bcbc">$7.000</span>
                           </div>
                         </div>
                         <p class="caso-especial-desc">El fundador de Vidal & Hijos S.A. aparece muerto un lunes a la mañana. Causa oficial: paro cardíaco. Cinco días antes había firmado un testamento que excluía a toda su familia. Nadie sabe quién es el beneficiario. Seis personas tenían acceso a su entorno inmediato. Dos tienen coartadas verificables. Las otras tres, no.</p>
@@ -3841,9 +3956,55 @@
                         <div class="stamp stamp-interactivo">X·A</div>
                       </div>
                     </div><!-- /slide -->
+                    <div class="casos-carrusel-slide">
+                      <div class="caso-card caso-interactivo-card" id="card-donante-anonima">
+                        <div class="caso-especial-header-badge">
+                          <span class="caso-tag tag-interactivo">Caso interactivo</span>
+                          <span class="caso-especial-num">X·B</span>
+                        </div>
+                        <div class="caso-especial-title-row">
+                          <h3 class="caso-especial-title">La Donante<br>Anónima</h3>
+                          <div class="caso-precio-destacado" style="border-color:rgba(0,188,188,0.25);background:rgba(0,188,188,0.06);">
+                            <span class="precio-label" style="color:rgba(0,188,188,0.7)">Valor</span>
+                            <span class="precio-valor-grande" style="color:#00bcbc">$7.000</span>
+                          </div>
+                        </div>
+                        <p class="caso-especial-desc">Nora Acevedo, 78 años, donó su colección de arte al Museo Municipal de Buenos Aires. Firmó el contrato el 15 de septiembre. El 3 de octubre murió de una arritmia. El 12 de octubre, durante el inventario, el museo descubrió que tres de las obras más valiosas son falsificaciones. Los originales no aparecen. Alguien los sustituyó antes de que llegaran.</p>
+                        <p class="caso-tarea">→ Tu objetivo: identificar quién realizó la sustitución, cómo lo hizo y qué descubrió que la llevó a actuar.</p>
+                        <div class="caso-especial-meta">
+                          <span>⏱ 60–90 min</span>
+                          <span>Solo o en grupo</span>
+                          <span>🖥 100% online</span>
+                          <span>⚠ Dificultad media-alta</span>
+                        </div>
+                        <div class="caso-especial-actions">
+                          <a href="#" class="btn-trailer btn-trailer-disabled" title="Trailer próximamente">
+                            <span class="btn-trailer-icon">▶</span>
+                            <span>Ver trailer en Instagram</span>
+                            <span class="btn-trailer-arrow">→</span>
+                          </a>
+                          <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-b-la-donante-anonima-16s8a/" target="_blank" rel="noopener" class="btn-comprar-interactivo">
+                            <span>Quiero este caso</span>
+                            <span>→</span>
+                          </a>
+                        </div>
+                        <div class="spotify-teaser" id="spotify-xb-casos">
+                          <button class="btn-spotify-toggle" onclick="toggleSpotify('spotify-xb-casos')" aria-expanded="false">
+                            <svg class="spotify-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                            <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
+                          </button>
+                          <div class="spotify-embed-wrap">
+                            <iframe src="https://open.spotify.com/embed/episode/0VvL6TpkBqh2RRbVffq4DG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                          </div>
+                        </div>
+                        <div class="stamp stamp-interactivo">X·B</div>
+                      </div>
+                    </div><!-- /slide -->
                   </div><!-- /track -->
                 </div><!-- /viewport -->
+                <button class="casos-nav-btn" onclick="casoNav('interactivos',1)">&#8250;</button>
               </div><!-- /carrusel-inner -->
+              <div class="casos-carrusel-dots" id="dots-interactivos"></div>
             </div>
           </div>
         </div>
@@ -4611,26 +4772,35 @@ function toggleCasoFaq(btn) {
   const isOpen = item.classList.contains('open');
   item.classList.toggle('open', !isOpen);
   btn.setAttribute('aria-expanded', String(!isOpen));
+  // Reinicializar carruseles dentro del item que se abrió
+  if (!isOpen) {
+    ['clasicos','especiales','interactivos'].forEach(id => {
+      if (item.querySelector('#track-' + id)) casoCarruselInit(id);
+    });
+  }
 }
 
 // Carrusel de casos
 const casoCarrusel = {};
 function casoCarruselInit(id) {
-  if (casoCarrusel[id]) return;
   const track = document.getElementById('track-' + id);
   if (!track) return;
   const slides = track.querySelectorAll('.casos-carrusel-slide');
   const total = slides.length;
-  casoCarrusel[id] = { index: 0, total };
-  // Dots solo si hay más de 1
+  const prevIndex = casoCarrusel[id] ? casoCarrusel[id].index : 0;
+  casoCarrusel[id] = { index: prevIndex, total };
+  // Dots solo si hay más de 1 — reconstruir siempre
   const dotsEl = document.getElementById('dots-' + id);
-  if (dotsEl && total > 1) {
-    slides.forEach((_, i) => {
-      const d = document.createElement('button');
-      d.className = 'casos-carrusel-dot' + (i === 0 ? ' active' : '');
-      d.onclick = () => casoGoTo(id, i);
-      dotsEl.appendChild(d);
-    });
+  if (dotsEl) {
+    dotsEl.innerHTML = '';
+    if (total > 1) {
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'casos-carrusel-dot' + (i === prevIndex ? ' active' : '');
+        d.onclick = () => casoGoTo(id, i);
+        dotsEl.appendChild(d);
+      });
+    }
   }
   casoUpdateBtns(id);
 }
