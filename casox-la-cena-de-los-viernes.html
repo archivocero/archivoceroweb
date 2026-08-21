@@ -1,0 +1,1383 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIVO_CERO // CASO X — La Cena de los Viernes</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px}html.sz-s{font-size:11px}html.sz-m{font-size:13px}html.sz-l{font-size:16px}
+:root{
+  --bg:#09100d;--bg2:#0d1510;--bg3:#111a14;--bg4:#151f17;
+  --border:#1a2a1e;--border2:#243529;
+  --green:#3dff7a;--green-dim:#1a6b38;--green-muted:#0f2a1a;
+  --amber:#e8a830;--amber-dim:#5a3f08;--amber-muted:#1e1508;
+  --red:#e84444;--red-muted:#2a0f0f;
+  --text:#c8d9cc;--text-dim:#506050;--text-mid:#8aab90;
+  --locked-text:#2d4535;--locked:#1a2a1e;
+  --font-mono:"IBM Plex Mono",monospace;--font-display:"Share Tech Mono",monospace;--font-sans:"IBM Plex Sans",sans-serif;
+  --top:48px;--foot:32px;--sb:230px;--piz:33vw;
+}
+html.light{--bg:#e8e0d0;--bg2:#ddd5c4;--bg3:#d2c9b8;--bg4:#c8bfac;--border:#b8ad98;--border2:#a8a088;--green:#1a6b38;--green-dim:#0f4020;--green-muted:#c8ddc8;--amber:#8a5a00;--amber-dim:#c49030;--amber-muted:#f0e0b0;--red:#9b1010;--red-muted:#f0d0d0;--text:#1a1a14;--text-dim:#6a6050;--text-mid:#3a3428;--locked-text:#a09080;--locked:#d2c9b8}
+.docs-panel{cursor:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\'%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'7\' fill=\'none\' stroke=\'%233dff7a\' stroke-width=\'2\'/%3E%3Cline x1=\'15\' y1=\'15\' x2=\'21\' y2=\'21\' stroke=\'%233dff7a\' stroke-width=\'2\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'1\' fill=\'%233dff7a\'/%3E%3C/svg%3E") 10 10,zoom-in}
+.splash{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;padding:24px 16px}
+.splash-backdrop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 65% 20%,rgba(61,255,122,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 90% at 10% 80%,rgba(232,168,48,.05) 0%,transparent 55%)}
+.splash-bgtext{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:var(--font-display);font-size:clamp(8rem,32vw,26rem);color:rgba(61,255,122,.008);pointer-events:none;user-select:none;line-height:1;white-space:nowrap}
+.splash-casenum{position:absolute;top:7rem;right:2rem;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.3em;color:rgba(61,255,122,.25);writing-mode:vertical-rl;pointer-events:none}
+.splash-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.splash.hidden{display:none}
+.splash-pre{font-size:.85rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:18px}
+.splash-scan{font-size:0.69rem;color:var(--green-dim);letter-spacing:.2em;margin-bottom:30px;animation:blink 1.8s infinite}
+.splash-title{font-family:var(--font-display);font-size:clamp(24px,4.5vw,48px);color:var(--green);letter-spacing:.1em;text-align:center;line-height:1.15;margin-bottom:14px;animation:flicker 7s infinite}
+@keyframes flicker{0%,89%,100%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,.25)}89.3%{opacity:.3;text-shadow:none}89.9%{opacity:1;text-shadow:0 0 22px rgba(61,255,122,.35)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.splash-sub{font-size:1rem;color:var(--text-mid);letter-spacing:.04em;text-align:center;max-width:480px;line-height:1.7;margin-bottom:32px}
+.splash-meta{display:flex;gap:28px;margin-bottom:36px}
+.splash-meta-item{text-align:center}
+.splash-meta-label{font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px}
+.splash-meta-val{font-size:.85rem;color:var(--text)}
+.splash-btn{font-family:var(--font-display);font-size:1.08rem;color:var(--green);border:1px solid var(--green-dim);background:var(--green-muted);padding:14px 36px;cursor:pointer;letter-spacing:.2em;transition:all .2s}
+.splash-btn:hover{background:var(--green-dim)}
+.splash-warning{font-size:.85rem;color:var(--text-dim);margin-top:22px;letter-spacing:.06em}
+.sp-icon{width:16px;height:16px;fill:var(--green);flex-shrink:0}
+.timer-wrap{display:flex;align-items:center;gap:6px}
+.timer-display{font-family:var(--font-display);font-size:1rem;color:var(--amber);letter-spacing:.15em;min-width:52px}
+.timer-display.urgent{color:var(--red);animation:blink .8s infinite}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:1rem;display:flex;flex-direction:column;transition:background .3s,color .3s}
+.topbar{height:var(--top);display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;z-index:100}
+.t-left{display:flex;align-items:center;gap:12px}
+.t-logo{font-family:var(--font-display);font-size:1.08rem;color:var(--green);letter-spacing:.12em;text-decoration:none}
+.t-sep{color:var(--border2)}.t-case{font-size:.85rem;color:var(--text-dim);letter-spacing:.1em}
+.t-badge{font-size:.69rem;padding:3px 8px;border:1px solid var(--amber-dim);color:var(--amber);background:var(--amber-muted);letter-spacing:.12em}
+.t-right{display:flex;align-items:center;gap:10px}
+.t-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2.5s infinite}
+.t-status{font-size:.69rem;color:var(--text-dim);letter-spacing:.1em}
+.tbtn{font-family:var(--font-mono);font-size:.77rem;border:1px solid var(--border2);background:transparent;padding:5px 11px;cursor:pointer;letter-spacing:.06em;color:var(--text-dim);transition:all .15s}
+.tbtn:hover{border-color:var(--text-dim);color:var(--text)}
+.tbtn.amber{color:var(--amber);border-color:var(--amber-dim)}
+.tbtn.amber:hover,.tbtn.amber.active{background:var(--amber-muted);border-color:var(--amber)}
+.shell{flex:1;display:flex;overflow:hidden;height:calc(100vh - var(--top) - var(--foot))}
+.sidebar{width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--border2)}
+.sb-free{padding:6px 0;border-bottom:1px solid var(--border)}
+.sb-free-label{padding:7px 14px 4px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em}
+.sb-section{border-bottom:1px solid var(--border)}
+.sb-head{padding:8px 14px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+.sb-head::before{content:"▸";font-size:.62rem;color:var(--green-dim);transition:transform .15s;flex-shrink:0}
+.sb-head.open::before{transform:rotate(90deg)}
+.fb{font-size:.62rem;padding:1px 6px;letter-spacing:.08em;margin-left:auto;flex-shrink:0}
+.fb-open{background:var(--green-muted);color:var(--green);border:1px solid var(--green-dim)}
+.fb-locked{background:var(--locked);color:var(--locked-text);border:1px solid var(--locked-text)}
+.sb-items{display:none}.sb-items.open{display:block}
+.sb-item{display:flex;align-items:center;gap:7px;padding:6px 14px 6px 22px;font-size:.85rem;color:var(--text-mid);cursor:pointer;border-left:2px solid transparent;transition:all .1s}
+.sb-item:hover{background:var(--bg3);color:var(--text)}
+.sb-item.active{background:var(--bg3);color:var(--green);border-left-color:var(--green)}
+.sb-item.locked{color:var(--locked-text);cursor:not-allowed;pointer-events:none}
+.sb-item.visited:not(.active){color:var(--green-dim)}
+.sb-icon{font-size:.77rem;width:12px;text-align:center;flex-shrink:0}
+.sb-lock{font-size:.69rem;color:var(--locked-text);margin-left:auto}
+.sb-prog{margin-top:auto;border-top:1px solid var(--border);padding:10px 14px}
+.sb-prog-label{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px}
+.sb-prog-bar{height:2px;background:var(--border)}
+.sb-prog-fill{height:100%;background:var(--green-dim);transition:width .4s}
+.sb-prog-pct{font-size:.69rem;color:var(--green-dim);margin-top:3px}
+.content-area{flex:1;display:flex;overflow:hidden;position:relative;min-width:0}
+.docs-panel{flex:1;overflow-y:auto;overflow-x:hidden;padding:22px 28px;background:var(--bg);min-width:320px;overscroll-behavior:contain}
+.docs-panel::-webkit-scrollbar{width:8px}.docs-panel::-webkit-scrollbar-track{background:var(--bg2)}.docs-panel::-webkit-scrollbar-thumb{background:var(--green-dim);border-radius:2px}
+.breadcrumb{font-size:.77rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+.bc-sep{color:var(--green-dim)}
+.page{display:none;max-width:660px;animation:fadein .18s ease}.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.pizarra-panel{width:0;background:var(--bg2);border-left:1px solid var(--border);overflow:hidden;flex-shrink:0;display:flex;flex-direction:column;transition:width .2s ease}
+.pizarra-panel.open{width:var(--piz);min-width:var(--piz);max-width:var(--piz)}
+.pizarra-panel.fullscreen{position:fixed;inset:var(--top) 0 var(--foot) 0;width:100%!important;z-index:200}
+.piz-inner{width:var(--piz);height:100%;display:flex;flex-direction:column;overflow:hidden}
+.pizarra-panel.fullscreen .piz-inner{width:100%}
+.piz-topbar{padding:9px 12px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.piz-title{font-size:.69rem;color:var(--amber);letter-spacing:.18em}
+.piz-topbar-btns{display:flex;gap:6px}
+.piz-btn{font-family:var(--font-mono);font-size:.69rem;padding:4px 8px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);transition:all .15s}
+.piz-btn:hover{border-color:var(--text-dim);color:var(--text)}
+.piz-tools{display:flex;gap:5px;padding:8px 10px;border-bottom:1px solid var(--border);flex-wrap:wrap;flex-shrink:0}
+.piz-tool{font-family:var(--font-mono);font-size:.69rem;padding:4px 9px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);display:flex;align-items:center;gap:4px;transition:all .15s}
+.piz-tool:hover{background:var(--bg3);color:var(--text)}
+.piz-tool.active{border-color:var(--amber);color:var(--amber);background:var(--amber-muted)}
+.piz-tool .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.piz-canvas-wrap{flex:1;overflow:hidden;position:relative}
+.piz-canvas{width:100%;height:100%;position:relative;background:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'4\' height=\'4\'%3E%3Crect width=\'4\' height=\'4\' fill=\'%23c8a060\'/%3E%3Ccircle cx=\'1\' cy=\'1\' r=\'.7\' fill=\'%23b08840\' opacity=\'.5\'/%3E%3C/svg%3E");overflow:hidden;cursor:default}
+.piz-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.cork-card{position:absolute;min-width:130px;max-width:190px;box-shadow:2px 3px 10px rgba(0,0,0,.45);cursor:grab;user-select:none;z-index:10}
+.cork-card:active{cursor:grabbing;z-index:50}
+.cork-card.selected{box-shadow:0 0 0 2px var(--amber),3px 4px 14px rgba(0,0,0,.55);z-index:40}
+.cork-chinche{width:12px;height:12px;border-radius:50%;position:absolute;top:-6px;left:50%;transform:translateX(-50%);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
+.cork-card-head{padding:5px 8px 4px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.12);display:flex;justify-content:space-between;align-items:center;cursor:grab}
+.cork-card-body{padding:7px 8px;font-size:.85rem;font-family:var(--font-sans);color:#2a2010;line-height:1.5;min-height:36px;word-break:break-word}
+.cork-card-body[contenteditable="true"]{outline:none;cursor:text}
+.cork-del{font-size:.77rem;color:#999;cursor:pointer;padding:0 1px;line-height:1;flex-shrink:0}
+.cork-del:hover{color:#c00}
+.card-nota{background:#fefbe8;border:1px solid #d4c060}.card-nota .cork-card-head{background:#f8e860;color:#5a3800}.card-nota .cork-chinche{background:#d03030}
+.card-sospechoso{background:#fff4ea;border:1px solid #d4a060}.card-sospechoso .cork-card-head{background:#ffd090;color:#4a1800}.card-sospechoso .cork-chinche{background:#b04000}
+.card-pista{background:#edfaea;border:1px solid #80c080}.card-pista .cork-card-head{background:#b8f0b0;color:#1a3810}.card-pista .cork-chinche{background:#207020}
+.card-hipotesis{background:#f0eeff;border:1px solid #a090d8}.card-hipotesis .cork-card-head{background:#c8b8f8;color:#201050}.card-hipotesis .cork-chinche{background:#5030b0}
+.footer{height:var(--foot);background:var(--bg2);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:.69rem;color:var(--text-dim);letter-spacing:.08em;flex-shrink:0;z-index:50}
+.case-hdr{border:1px solid var(--border2);background:var(--bg2);padding:18px 22px;margin-bottom:18px}
+.case-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.ch-ref{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px}
+.ch-title{font-family:var(--font-display);font-size:1.69rem;color:var(--green);letter-spacing:.08em}
+.ch-sub{font-size:.85rem;color:var(--text-mid);margin-top:4px;line-height:1.5}
+.ch-badge{font-size:.69rem;padding:3px 9px;border:1px solid var(--border2);color:var(--text-dim);white-space:nowrap}
+.case-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cm-l{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}
+.cm-v{font-size:.92rem;color:var(--text)}
+.doc-card{border:1px solid var(--border2);background:var(--bg2);margin-bottom:12px}
+.dc-head{padding:8px 13px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.dc-title{font-size:.69rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
+.dc-ref{font-size:.69rem;color:var(--green-dim)}
+.dc-body{padding:14px 16px;line-height:1.85;font-size:.92rem;color:var(--text)}
+.dc-body p{margin-bottom:11px}.dc-body p:last-child{margin-bottom:0}
+.nota{border:1px solid var(--amber-dim);background:var(--amber-muted);padding:9px 13px;font-size:.85rem;color:var(--amber);letter-spacing:.03em;line-height:1.6;margin-bottom:12px;display:flex;gap:9px;align-items:flex-start}
+.nota.red{border-color:#5a1a1a;background:var(--red-muted);color:var(--red)}
+.informe{background:var(--bg3);border:1px solid var(--border2);margin-bottom:12px}
+.inf-hdr{background:var(--bg4);padding:12px 16px;border-bottom:1px solid var(--border2);text-align:center}
+.inf-org{font-size:.69rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:2px}
+.inf-tit{font-size:1rem;color:var(--text);letter-spacing:.1em;font-weight:500}
+.inf-sub{font-size:.77rem;color:var(--text-dim);margin-top:2px}
+.inf-body{padding:14px 16px}
+.inf-row{display:flex;gap:8px;margin-bottom:7px;font-size:.92rem}
+.inf-k{color:var(--text-dim);width:200px;flex-shrink:0}.inf-v{color:var(--text)}
+.inf-sep{border:none;border-top:1px solid var(--border);margin:10px 0}
+.inf-nota{font-size:.85rem;color:var(--text-mid);font-style:italic;line-height:1.7;margin-bottom:8px}
+.wa-shell{background:#1a1a2e;font-family:-apple-system,"Segoe UI",sans-serif;margin-bottom:12px;border:1px solid #2a2a4a}
+.wa-bar{background:#075e54;color:white;padding:8px 13px;display:flex;align-items:center;gap:9px}
+.wa-av{width:32px;height:32px;border-radius:50%;background:#128c7e;display:flex;align-items:center;justify-content:center;font-size:.92rem;font-weight:600;color:white;flex-shrink:0}
+.wa-name{font-size:1rem;font-weight:500}.wa-last{font-size:.77rem;opacity:.75}
+.wa-msgs{padding:10px 8px;background:#0d1117}
+.wa-msg{margin-bottom:4px;display:flex}.wa-msg.out{justify-content:flex-end}
+.wa-bubble{max-width:74%;padding:6px 9px 4px;border-radius:8px;line-height:1.5;font-size:.92rem;color:#e0e0e0}
+.wa-msg.in .wa-bubble{background:#1e2d3d;border-top-left-radius:0}
+.wa-msg.out .wa-bubble{background:#1a3a2a;border-top-right-radius:0}
+.wa-time{font-size:.77rem;color:#606060;text-align:right;margin-top:2px}
+.wa-date{text-align:center;margin:7px 0;font-size:.77rem;color:#505050}
+.wa-date span{background:#1a1a2e;padding:2px 9px;border-radius:10px}
+.carta{background:#f5f0e6;color:#1a1a1a;padding:30px 38px;font-family:"Times New Roman",serif;font-size:1rem;line-height:1.85;border:1px solid #ddd;margin-bottom:12px}
+.carta-head{display:flex;justify-content:space-between;margin-bottom:20px;font-size:.85rem;color:#555}
+.carta p{margin-bottom:12px}
+.carta-firma{margin-top:22px;font-style:italic;color:#444}
+.sosp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sosp-card{background:var(--bg2);border:1px solid var(--border2);overflow:hidden}
+.sosp-photo{aspect-ratio:4/5;background:var(--bg4);overflow:hidden;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.sosp-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.sosp-initial{font-family:var(--font-display);font-size:2.5rem;color:var(--green-dim);opacity:.5}
+.sosp-info{padding:10px}
+.sosp-name{font-size:.92rem;color:var(--text);letter-spacing:.05em;margin-bottom:2px}
+.sosp-role{font-size:.77rem;color:var(--text-dim);margin-bottom:8px}
+.sosp-dato{font-size:.77rem;color:var(--text-mid);margin-bottom:3px;line-height:1.4}
+.sosp-coartada{font-size:.69rem;color:var(--amber);border-top:1px solid var(--border);padding-top:7px;margin-top:7px;line-height:1.5}
+.sosp-coartada span{color:var(--text-mid)}
+.cipher-wrap{background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;margin:12px 0}
+.cipher-label{font-size:.69rem;color:var(--green-dim);letter-spacing:.15em;margin-bottom:8px}
+.cipher-txt{font-family:var(--font-display);font-size:1.38rem;color:var(--green);letter-spacing:.25em}
+.enigma-block{background:var(--amber-muted);border:1px solid var(--amber-dim);padding:14px 16px;margin-top:14px}
+.enigma-label{font-size:.69rem;color:var(--amber);letter-spacing:.15em;margin-bottom:10px}
+.enigma-row{display:flex;gap:7px}
+.enigma-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:9px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.enigma-input:focus{border-color:var(--green-dim)}
+.enigma-submit{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.85rem;padding:0 16px;cursor:pointer;white-space:nowrap}
+.enigma-submit:hover{background:var(--green-dim)}
+.enigma-msg{font-size:.85rem;margin-top:8px;padding:6px 10px;display:none}
+.enigma-msg.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.enigma-msg.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+.val-section{background:var(--bg2);border:1px solid var(--border2);padding:18px;margin-bottom:14px}
+.val-q{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:8px}
+.val-label{font-size:.92rem;color:var(--text);margin-bottom:10px;line-height:1.5}
+.val-row{display:flex;gap:7px;margin-bottom:6px}
+.val-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:9px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.val-input:focus{border-color:var(--green-dim)}
+.val-check{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.77rem;padding:0 14px;cursor:pointer;white-space:nowrap;letter-spacing:.06em}
+.val-check:hover{background:var(--green-dim)}
+.val-fb{font-size:.77rem;padding:4px 8px;display:none}
+.val-fb.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.val-fb.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+.submit-wrap{display:none;margin-top:16px}.submit-wrap.show{display:block}
+.submit-btn{width:100%;background:var(--green-muted);border:1px solid var(--green);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:14px;cursor:pointer;letter-spacing:.2em;transition:all .2s}
+.spotify-teaser{border:1px solid var(--border2);background:var(--bg2);overflow:hidden;margin-bottom:12px}
+.spotify-teaser:hover{border-color:var(--green-dim)}
+.btn-spotify-toggle{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:.77rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);padding:12px 14px;text-align:left}
+.btn-spotify-toggle:hover{color:var(--green);background:var(--green-muted)}
+.sp-arrow{font-size:.62rem;margin-left:auto;transition:transform .2s}
+.spotify-teaser.open .sp-arrow{transform:rotate(180deg)}
+.sp-wrap{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.spotify-teaser.open .sp-wrap{max-height:160px}
+.hint-panel{background:var(--bg3);border:1px solid var(--border2);margin-bottom:14px;display:none}
+.hint-panel.active{display:block}
+.hint-header{padding:8px 13px;border-bottom:1px solid var(--border)}
+.hint-title{font-size:.69rem;color:var(--amber);letter-spacing:.15em}
+.hint-content{padding:12px 14px;font-size:.85rem;color:var(--text-mid);line-height:1.7}
+.hint-menu{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+.hint-menu-btn{font-family:var(--font-mono);font-size:.77rem;padding:6px 12px;border:1px solid var(--amber-dim);background:var(--amber-muted);color:var(--amber);cursor:pointer;letter-spacing:.06em;transition:all .15s}
+.hint-menu-btn:hover{background:var(--amber-dim)}
+.sz-btn{font-family:var(--font-mono);font-size:.69rem;padding:4px 8px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .15s}
+.sz-btn:hover,.sz-btn.active{border-color:var(--green-dim);color:var(--green)}
+.mobile-menu-btn{display:none}
+.sidebar-backdrop{display:none;position:fixed;inset:var(--top) 0 var(--foot) 0;background:rgba(0,0,0,.6);z-index:140}
+.sidebar-backdrop.show{display:block}
+.nota-ms{background:#fdfcf0;border:1px solid #c8b870;padding:22px 28px;font-family:"Times New Roman",serif;font-size:.92rem;color:#1a1a10;line-height:1.85;margin-bottom:12px}
+.nota-ms-pre{font-size:.69rem;color:#806030;letter-spacing:.15em;margin-bottom:14px;font-family:var(--font-mono)}
+.nota-ms p{margin-bottom:10px}
+
+.wifi-log{background:var(--bg3);border:1px solid var(--border2);margin-bottom:12px}
+.wifi-hdr{background:var(--bg4);padding:7px 12px;border-bottom:1px solid var(--border2);font-size:.69rem;color:var(--text-dim);letter-spacing:.15em}
+.wifi-row{padding:6px 12px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 140px 1fr;font-size:.85rem;color:var(--text)}
+.wifi-row:last-child{border-bottom:none}
+/* TOUR */
+.tour-overlay{position:fixed;inset:0;z-index:600;pointer-events:none;display:none}
+.tour-overlay.active{display:block;pointer-events:all}
+.tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+.tour-highlight{position:absolute;border:2px solid var(--amber);box-shadow:0 0 0 3px rgba(232,168,48,.25);transition:all .35s ease;pointer-events:none;z-index:2}
+.tour-tooltip{position:absolute;background:var(--bg2);border:1px solid var(--amber-dim);padding:16px 18px;width:270px;z-index:3;animation:fadein .2s ease}
+.tour-arrow-l::before,.tour-arrow-t::before,.tour-arrow-r::before{content:"";position:absolute;width:9px;height:9px;background:var(--bg2);transform:rotate(45deg)}
+.tour-arrow-l::before{left:-5px;top:20px;border-bottom:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-t::before{top:-5px;left:22px;border-top:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-r::before{right:-5px;top:20px;border-top:1px solid var(--amber-dim);border-right:1px solid var(--amber-dim)}
+.tour-num{font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:4px}
+.tour-title{font-family:var(--font-display);font-size:1rem;color:var(--text);letter-spacing:.08em;margin-bottom:7px}
+.tour-desc{font-size:.85rem;color:var(--text-mid);line-height:1.65;margin-bottom:13px}
+.tour-footer{display:flex;align-items:center;gap:7px}
+.tour-next{font-family:var(--font-mono);font-size:.77rem;padding:6px 13px;cursor:pointer;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);letter-spacing:.08em}
+.tour-next:hover{background:var(--amber-dim)}
+.tour-skip{font-family:var(--font-mono);font-size:.77rem;padding:6px 10px;cursor:pointer;background:transparent;border:1px solid var(--border2);color:var(--text-dim);letter-spacing:.06em}
+.tour-skip:hover{color:var(--text);border-color:var(--text-dim)}
+.tour-dots{display:flex;gap:4px;margin-left:auto}
+.tour-dot{width:5px;height:5px;border-radius:50%;background:var(--border2)}
+.tour-dot.on{background:var(--amber)}
+@media(max-width:1024px){:root{--sb:200px;--piz:300px}.sosp-grid{grid-template-columns:1fr 1fr}.case-meta{grid-template-columns:1fr 1fr 1fr;gap:8px}}
+@media(max-width:900px){:root{--sb:170px;--piz:280px}.docs-panel{padding:14px}.t-case,.t-badge{display:none}}
+@media(max-width:680px){:root{--top:84px;--foot:26px}.topbar{flex-wrap:wrap;height:auto;padding:8px 12px;gap:8px}.t-left,.t-right{width:100%;justify-content:space-between}.t-case,.t-badge,.t-status,.t-dot{display:none}.shell{position:relative}.sidebar{position:fixed;top:var(--top);left:0;bottom:var(--foot);width:78vw;max-width:300px;z-index:150;transform:translateX(-100%);transition:transform .25s ease;box-shadow:4px 0 20px rgba(0,0,0,.4)}.sidebar.mobile-open{transform:translateX(0)}.sidebar-backdrop{display:none;position:fixed;inset:var(--top) 0 var(--foot) 0;background:rgba(0,0,0,.6);z-index:140}.sidebar-backdrop.show{display:block}.docs-panel{padding:14px 14px 80px;min-width:0}.mobile-menu-btn{display:flex!important;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-family:var(--font-mono);font-size:.7rem;padding:6px 10px;cursor:pointer}.pizarra-panel.open{position:fixed;inset:var(--top) 0 var(--foot) 0;width:100%!important;min-width:0!important;z-index:160}.piz-inner{width:100%!important}.val-row{flex-direction:column;gap:6px}.val-check{padding:9px;width:100%}.enigma-row{flex-direction:column}.enigma-submit{padding:9px;width:100%}.carta{padding:18px 16px}}
+@media(max-width:380px){.sidebar{width:88vw}.case-meta{grid-template-columns:1fr}.sosp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+<div class="splash-backdrop"></div>
+<div class="splash-bgtext">CX</div>
+<div class="splash-casenum">CASO X · LA CENA DE LOS VIERNES · ARCHIVO_CERO</div>
+<div class="splash-content">
+  <div class="splash-pre">ARCHIVO_CERO · SISTEMA SEGURO</div>
+  <div class="splash-scan">// CARGANDO EXPEDIENTE...</div>
+  <div class="splash-title">LA CENA DE<br>LOS VIERNES</div>
+  <div class="splash-sub">Cinco amigos. Un departamento. Una noche que no debería haber terminado así.</div>
+  <div style="width:100%;max-width:340px;margin-bottom:24px">
+    <div style="font-size:0.69rem;color:var(--amber);letter-spacing:.15em;margin-bottom:8px;text-align:center">🎧 ESCUCHÁ EL AUDIO DISPARADOR Y, CUANDO TERMINE, INICIÁ LA INVESTIGACIÓN</div>
+    <div class="spotify-teaser" id="sp-splash" style="margin-bottom:0">
+      <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-splash')">
+        <svg class="sp-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        <span>▶ REPRODUCIR TEASER</span><span class="sp-arrow">▾</span>
+      </button>
+      <div class="sp-wrap"><iframe src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+  <div class="splash-meta">
+    <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">GRATUITO · X</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">30–40 min</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Media</div></div>
+  </div>
+  <button class="splash-btn" onclick="startCase()">▶ INICIAR INVESTIGACIÓN</button>
+  <div class="splash-warning">El cronómetro comienza al iniciar · Investigación individual o grupal</div>
+</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="t-left">
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ MENÚ</button>
+    <a href="#" class="t-logo" onclick="return false">ARCHIVO_CERO</a>
+    <span class="t-sep">//</span>
+    <span class="t-case">LA CENA DE LOS VIERNES</span>
+    <span class="t-badge">GRATUITO</span>
+  </div>
+  <div class="t-right">
+    <div class="timer-wrap"><span style="font-size:.77rem;color:var(--text-dim)">⏱</span><span class="timer-display" id="timerDisp">00:00</span></div>
+    <div class="t-dot"></div>
+    <span class="t-status">SISTEMA ACTIVO</span>
+    <button class="tbtn sz-btn" onclick="setSize('s')">A−</button>
+    <button class="tbtn sz-btn active" onclick="setSize('m')">A</button>
+    <button class="tbtn sz-btn" onclick="setSize('l')">A+</button>
+    <button class="tbtn" onclick="toggleMode()">◑</button>
+    <button class="tbtn amber" id="btnPiz" onclick="togglePiz()">📌 PIZARRA</button>
+    <button class="tbtn amber" onclick="openHints()">💡 PISTAS</button>
+  </div>
+</div>
+
+<!-- SHELL -->
+<div class="shell">
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
+<nav class="sidebar" id="sidebarEl">
+  <div class="sb-free" style="border-bottom:1px solid var(--border)">
+    <div class="sb-item" onclick="startTour()" style="color:var(--text-dim)"><span class="sb-icon">🔄</span>Ver tutorial de nuevo</div>
+  </div>
+  <div class="sb-free">
+    <div class="sb-free-label">// ACCESO LIBRE</div>
+    <div class="sb-item active" onclick="go('resumen')"><span class="sb-icon">▸</span>Resumen del caso</div>
+    <div class="sb-item" onclick="go('teaser')"><span class="sb-icon">▶</span>Audio disparador</div>
+    <div class="sb-item" onclick="go('instrucciones')"><span class="sb-icon">▸</span>Cómo investigar</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 1<span class="fb fb-open" id="badge1">ABIERTA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item" onclick="go('sospechosos')"><span class="sb-icon">◈</span>Sospechosos (×4)</div>
+      <div class="sb-item" onclick="go('cronologia')"><span class="sb-icon">▤</span>Cronología de la noche</div>
+      <div class="sb-item" onclick="go('informe-escena')"><span class="sb-icon">▤</span>Informe de la escena</div>
+      <div class="sb-item" onclick="go('apuntes-tomas')"><span class="sb-icon">✎</span>Apuntes de Tomás</div>
+      <div class="sb-item" style="color:var(--amber);border-left:2px solid var(--amber-dim)" onclick="openEnigmaModal(1)"><span class="sb-icon">⊛</span>Enigma 1 — ingresar clave</div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 2<span class="fb fb-locked" id="badge2">BLOQUEADA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-decl-sara"><span class="sb-icon">▤</span>Declaración Sara<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-martin"><span class="sb-icon">▤</span>Declaración Martín<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-julieta"><span class="sb-icon">▤</span>Declaración Julieta<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-nico"><span class="sb-icon">▤</span>Declaración Nicolás<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-sara"><span class="sb-icon">💬</span>Chat Tomás-Sara<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-martin"><span class="sb-icon">💬</span>Chat Tomás-Martín<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-julieta"><span class="sb-icon">💬</span>Chat Tomás-Julieta<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-nico"><span class="sb-icon">💬</span>Chat Tomás-Nico<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-notas-celular"><span class="sb-icon">✎</span>Notas celular de Tomás<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="enigma2-sb-item" style="color:var(--amber-dim);border-left:2px solid transparent"><span class="sb-icon">⊛</span>Enigma 2 — ingresar clave<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 3<span class="fb fb-locked" id="badge3">BLOQUEADA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-forense"><span class="sb-icon">▤</span>Informe forense<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-wifi"><span class="sb-icon">▤</span>Registro Wi-Fi<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-finales"><span class="sb-icon">💬</span>Mensajes finales<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-medicacion"><span class="sb-icon">▤</span>Análisis medicación<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-camara"><span class="sb-icon">▤</span>Cámara de seguridad<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">⊛ CIERRE</div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-validacion"><span class="sb-icon">✓</span>Resolver el caso<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div style="padding:8px 12px;border-top:1px solid var(--border)">
+    <button onclick="confirmReset()" style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;padding:6px;cursor:pointer;letter-spacing:.06em;transition:all .15s" onmouseover="this.style.color='var(--red)';this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--text-dim)';this.style.borderColor='var(--border2)'">↺ REINICIAR CASO</button>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-label">PROGRESO</div>
+    <div class="sb-prog-bar"><div class="sb-prog-fill" id="progFill" style="width:3%"></div></div>
+    <div class="sb-prog-pct" id="progPct">3%</div>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="content-area">
+<div class="docs-panel" id="docsPanel">
+<div class="breadcrumb"><span>ARCHIVO_CERO</span><span class="bc-sep">›</span><span id="bcFolder"></span><span class="bc-sep" id="bcFolderSep"></span><span id="bcCurrent">Resumen del caso</span></div>
+
+<!-- RESUMEN -->
+<div class="page active" id="page-resumen">
+  <div class="case-hdr">
+    <div class="case-hdr-top">
+      <div>
+        <div class="ch-ref">REF: AC-X · HOMICIDIO · CASO GRATUITO</div>
+        <div class="ch-title">LA CENA DE LOS VIERNES</div>
+        <div class="ch-sub">Caso Gratuito X — Archivo Cero</div>
+      </div>
+      <div class="ch-badge">EXP-X-2024</div>
+    </div>
+    <div class="case-meta">
+      <div><div class="cm-l">Víctima</div><div class="cm-v">Tomás Ferrer</div></div>
+      <div><div class="cm-l">Fallecimiento</div><div class="cm-v">Vie. 14 de agosto</div></div>
+      <div><div class="cm-l">Hora estimada</div><div class="cm-v">23:25 — 23:40</div></div>
+    </div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">SITUACIÓN INICIAL</span><span class="dc-ref">RES-X-00</span></div>
+    <div class="dc-body">
+      <p>Tomás Ferrer, 34 años, diseñador gráfico, organizaba una cena en su departamento todos los viernes desde hacía ocho años. Esa noche estaban los cuatro de siempre: Sara, Martín, Julieta y Nicolás.</p>
+      <p>A las 23:48, Valentina —la pareja de Tomás, a quien el grupo iba a conocer esa misma noche— entró al departamento con su llave. Los encontró a los cuatro en el living, relajados, charlando. Fue a la cocina a buscar a Tomás y lo encontró en el piso. Ya no respiraba.</p>
+      <p>La causa de muerte no fue inmediatamente obvia. Pero los análisis posteriores lo confirmaron: no fue natural.</p>
+      <p style="color:var(--green)">Cuatro personas estaban en el departamento esa noche. Todas dicen no haber visto nada. Tu objetivo: identificar <strong>quién</strong> lo hizo, <strong>cómo</strong> y <strong>qué lo llevó a actuar</strong>.</p>
+    </div>
+  </div>
+  <div class="nota"><span>⚠</span><span>El expediente tiene 3 carpetas que se desbloquean con enigmas. Algunos documentos contienen información falsa o contradictoria. Usá la <strong>Pizarra</strong> para cruzar datos.</span></div>
+</div>
+
+<!-- TEASER -->
+<div class="page" id="page-teaser">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">AUDIO DISPARADOR — LLAMADA AL 911</span><span class="dc-ref">EV-X-00 · AUDIO</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Grabación de la llamada de emergencia realizada desde el departamento la noche del hallazgo.</div>
+  </div>
+  <div class="spotify-teaser" id="sp-teaser">
+    <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-teaser')">
+      <svg class="sp-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      <span>▶ REPRODUCIR TEASER</span><span class="sp-arrow">▾</span>
+    </button>
+    <div class="sp-wrap"><iframe src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+  </div>
+  <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px">
+    <div style="background:var(--bg2);border:1px solid var(--border2)">
+      <div style="padding:7px 13px;border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;background:var(--bg4)">
+        <span style="font-family:var(--font-display);font-size:.75rem;color:var(--text-mid);letter-spacing:.12em">TRANSCRIPCIÓN · LLAMADA AL 911</span>
+        <span style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-dim)">EV-X-00 · AUDIO</span>
+      </div>
+      <div style="padding:8px 13px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">
+        <div><span>LLAMANTE </span><span style="color:var(--text-mid)">Valentina Suárez — pareja de la víctima</span></div>
+        <div><span>FECHA </span><span style="color:var(--text-mid)">Vie 14 ago · 23:52</span></div>
+      </div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)">
+        <p style="margin:0 0 10px"><strong style="color:var(--text)">OPERADOR:</strong> 911, ¿cuál es su emergencia?</p>
+        <p style="margin:0 0 10px;font-style:italic"><strong style="color:var(--amber);font-style:normal">VALENTINA:</strong> Mi... mi novio, no reacciona, no respira, por favor...</p>
+        <p style="margin:0 0 10px"><strong style="color:var(--text)">OPERADOR:</strong> Necesito que se calme y me diga la dirección exacta.</p>
+        <p style="margin:0 0 10px;font-style:italic"><strong style="color:var(--amber);font-style:normal">VALENTINA:</strong> Corrientes 3847, octavo B. Por favor manden algo ya, por favor.</p>
+        <p style="margin:0 0 10px"><strong style="color:var(--text)">OPERADOR:</strong> Ya está en camino la ambulancia. ¿Él está consciente?</p>
+        <p style="margin:0 0 10px;font-style:italic"><strong style="color:var(--amber);font-style:normal">VALENTINA:</strong> No, no, está tirado en el piso de la cocina, no se mueve. Yo entré y estaban todos en el living, charlando, tranquilos, y él no estaba con ellos, y lo fui a buscar y estaba así...</p>
+        <p style="margin:0 0 10px"><strong style="color:var(--text)">OPERADOR:</strong> ¿Hay alguien más con usted ahora?</p>
+        <p style="margin:0 0 10px;font-style:italic"><strong style="color:var(--amber);font-style:normal">VALENTINA:</strong> Sí, están todos acá. Estaban en el living, tan tranquilos, ¿cómo nadie se dio cuenta de nada? ¿Le habrá hecho algo alguno de ellos? No entiendo nada, perdón, no entiendo qué pasó.</p>
+        <p style="margin:0 0 10px"><strong style="color:var(--text)">OPERADOR:</strong> Señora, necesito que se mantenga tranquila. La ambulancia llega en minutos. ¿Puede intentar hacerle RCP mientras tanto?</p>
+        <p style="margin:0"><strong style="color:var(--amber);font-style:normal">VALENTINA:</strong> No sé cómo, no sé... por favor apúrense, por favor.</p>
+      </div>
+      <div style="padding:6px 13px 10px;display:flex;justify-content:flex-end"><span style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-dim)">transcripción automática · puede contener errores</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTRUCCIONES -->
+<div class="page" id="page-instrucciones">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-X</span></div>
+    <div class="dc-body">
+      <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong> que se desbloquean resolviendo enigmas. Cada enigma requiere cruzar información de más de un documento — no hay respuesta que venga de una sola fuente.</p>
+      <p><strong style="color:var(--red)">Atención:</strong> algunos documentos contienen información falsa o contradictoria. Parte del trabajo es detectar qué no cierra.</p>
+      <p>Usá la <strong style="color:var(--amber)">Pizarra</strong> para arrastrar tarjetas, conectarlas con hilos y registrar contradicciones. Se guarda automáticamente.</p>
+      <p>La validación final tiene <strong style="color:var(--green)">3 preguntas</strong>, una palabra cada una, sin acentos.</p>
+    </div>
+  </div>
+  <div class="nota red"><span>⚠</span><span>No todos los testimonios son honestos. Si algo no cierra con otro documento, anotalo — esa contradicción es parte de la respuesta.</span></div>
+</div>
+
+<!-- SOSPECHOSOS -->
+<div class="page" id="page-sospechosos">
+  <div class="doc-card" style="margin-bottom:14px">
+    <div class="dc-head"><span class="dc-title">PERFILES DE SOSPECHOSOS</span><span class="dc-ref">SOSP-X</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Las cuatro personas presentes en el departamento la noche del viernes 14 de agosto.</div>
+  </div>
+  <div class="sosp-grid">
+    <div class="sosp-card">
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1786712667/15_ioj9iv.png" alt="Sara Molina" loading="lazy"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Sara Molina</div>
+        <div class="sosp-role">Fotógrafa · 32 años</div>
+        <div class="sosp-dato">Amiga de Tomás desde la universidad. Probablemente la más cercana del grupo.</div>
+        <div class="sosp-dato">Tomás conocía un asunto laboral comprometedor que Sara prefería mantener en privado.</div>
+        <div class="sosp-dato">Relación con Tomás: cercana pero con tensiones recientes.</div>
+        <div class="sosp-coartada">COARTADA: <span>Dice que estuvo en el living hablando con Martín entre las 23:10 y las 23:35. Martín la confirma parcialmente.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1786712667/16_yjubl3.png" alt="Martín Acosta" loading="lazy"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Martín Acosta</div>
+        <div class="sosp-role">Sistemas · 35 años</div>
+        <div class="sosp-dato">Amigo de Tomás desde el colegio. El más tranquilo del grupo.</div>
+        <div class="sosp-dato">Tomás le había prestado una suma importante de dinero que Martín no había devuelto. Esa noche habían discutido por eso.</div>
+        <div class="sosp-dato">Trabaja en una empresa de tecnología hace cuatro años.</div>
+        <div class="sosp-coartada">COARTADA: <span>Dice que estuvo toda la noche en el living. Afirma que Sara estuvo con él sin moverse.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1786712667/17_nmdvvk.png" alt="Julieta Rivas" loading="lazy"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Julieta Rivas</div>
+        <div class="sosp-role">Diseñadora de interiores · 29 años</div>
+        <div class="sosp-dato">Amiga del grupo hace tres años. Ex pareja de Tomás durante ocho meses; terminaron hace dos años.</div>
+        <div class="sosp-dato">Conoce el departamento perfectamente. Esa noche preparó el postre.</div>
+        <div class="sosp-dato">Tomás había empezado a salir con alguien nuevo. Julieta no lo sabía hasta esa noche.</div>
+        <div class="sosp-coartada">COARTADA: <span>Dice que estuvo en la cocina preparando el postre entre las 22:50 y las 23:20, y luego en el balcón fumando.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1786712667/18_gltdxn.png" alt="Nicolás Ferraro" loading="lazy"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Nicolás Ferraro</div>
+        <div class="sosp-role">Diseñador · 33 años</div>
+        <div class="sosp-dato">Compañero de trabajo de Tomás. El más nuevo del grupo, incorporado hace dos años.</div>
+        <div class="sosp-dato">Tomás y Nico compartían un proyecto freelance. Tomás había descubierto algo que no le gustaba.</div>
+        <div class="sosp-dato">Fumador. Dice haber pasado parte de la noche en el balcón.</div>
+        <div class="sosp-coartada">COARTADA: <span>Dice que estuvo fumando en el balcón entre las 23:15 y las 23:30, luego volvió al living.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRONOLOGÍA -->
+<div class="page" id="page-cronologia">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CRONOLOGÍA — NOCHE DEL VIERNES 14 DE AGOSTO</span><span class="dc-ref">CRON-X</span></div>
+    <div class="dc-body" style="padding:0">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead><tr style="background:var(--bg4);font-size:.69rem;color:var(--text-dim);letter-spacing:.1em"><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">HORA</td><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">EVENTO</td><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">FUENTE</td></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">21:28</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Ingreso de cuatro personas al departamento 8°B. Registrado por cámara del pasillo.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Cámara edificio</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">22:30</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Tomás anuncia que tiene algo importante para decirles. Todos los presentes lo confirman.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Declaraciones</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">22:51</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de J. Rivas conectado a antena de cocina. Registro Wi-Fi.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:08</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Una persona sale del departamento hacia el pasillo de servicio. Regresa a las 23:14. Cámara del pasillo.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Cámara edificio</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:20</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de J. Rivas pasa a antena de living/balcón. Registro Wi-Fi.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:22</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de N. Ferraro conectado a antena de cocina. Registro Wi-Fi.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:27</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Foto tomada desde el departamento. Metadatos: ubicación balcón, 23:27.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Metadatos imagen</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:30</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de N. Ferraro vuelve a antena de living.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:31</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mensaje enviado desde el celular de Tomás Ferrer.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro celular</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:35</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de S. Molina registrado en antena de baño/pasillo.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:40</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dispositivo de J. Rivas vuelve a antena de living.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro Wi-Fi</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">23:48</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Valentina Suárez ingresa al departamento con su llave. Encuentra a Tomás sin vida en la cocina.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Cámara edificio / Declaración</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px">23:52</td><td style="color:var(--text);padding:6px 11px">Llamada al 911 desde el departamento 8°B.</td><td style="color:var(--text-dim);padding:6px 11px">Emergencias</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-informe-escena">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">DIVISIÓN HOMICIDIOS — POLICÍA DE LA CIUDAD</div>
+      <div class="inf-tit">INFORME PRELIMINAR DE LA ESCENA</div>
+      <div class="inf-sub">Redactado por agente de guardia · 15 de agosto · 01:20 a.m.</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Dirección:</span><span class="inf-v">Av. Corrientes 3847, 8°B, CABA</span></div>
+      <div class="inf-row"><span class="inf-k">Víctima:</span><span class="inf-v">Tomás Ferrer, 34 años. Diseñador gráfico.</span></div>
+      <div class="inf-row"><span class="inf-k">Hallado por:</span><span class="inf-v">Valentina Suárez, pareja de la víctima, 23:48 hs.</span></div>
+      <div class="inf-row"><span class="inf-k">Lugar del cuerpo:</span><span class="inf-v">Cocina. Tomás estaba en el piso, junto a la mesada. No había signos de violencia externa.</span></div>
+      <div class="inf-row"><span class="inf-k">Condición del departamento:</span><span class="inf-v">Sin señales de intrusión. Puerta principal cerrada desde adentro. Ventanas cerradas excepto la del balcón.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Objetos relevantes:</span><span class="inf-v">Pastillero de Tomás sobre la mesada de la cocina. Vaso con agua a su lado. Celular en el suelo, pantalla encendida.</span></div>
+      <div class="inf-row"><span class="inf-k">Cenicero en balcón:</span><span class="inf-v">Dos colillas de cigarrillo. Marca: Lucky Strike.</span></div>
+      <div class="inf-row"><span class="inf-k">Estado de los presentes:</span><span class="inf-v">Los cuatro estaban en el living al momento del hallazgo. Todos declararon no haber escuchado nada inusual.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">La causa de muerte no pudo determinarse en escena. Se derivaron muestras al laboratorio forense. El caso fue clasificado provisoriamente como muerte de causa a determinar.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APUNTES TOMÁS — ENIGMA 1 -->
+<div class="page" id="page-apuntes-tomas">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">APUNTES — ESCRITORIO DE TOMÁS FERRER</span><span class="dc-ref">AP-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Documentos y papeles hallados sobre el escritorio de Tomás durante el relevamiento policial.</div>
+  </div>
+  <div class="nota-ms">
+    <div class="nota-ms-pre">AGENDA PERSONAL — TAPA INTERNA</div>
+    <p>Inscripción manuscrita en la tapa interna de la agenda de Tomás, debajo de su nombre:</p>
+    <div style="margin-top:10px;font-family:var(--font-display);font-size:1.1rem;color:#403010;letter-spacing:.15em">T.F. — A→1</div>
+    <p style="font-size:.77rem;color:#806030;margin-top:8px">Sin más aclaraciones. Letra de Tomás.</p>
+  </div>
+  <div class="nota-ms">
+    <div class="nota-ms-pre">BLOC DE NOTAS — ÚLTIMA PÁGINA CON ANOTACIONES</div>
+    <p>Página con múltiples anotaciones en distintos momentos. Algunas tachadas.</p>
+    <div style="margin-top:12px;font-family:var(--font-mono);font-size:.85rem;color:#5a4010;line-height:2.2">
+      <div style="text-decoration:line-through;color:#a09060">08 · 05 · 12 · 15 · 14</div>
+      <div style="text-decoration:line-through;color:#a09060">16 · 09 · 03 · 08 · 15</div>
+      <div>22 · 25 · 11 · 23 · 04</div>
+      <div>09 · 14 · 20 · 21 · 15</div>
+      <div style="font-weight:600;color:#403010">03 · 05 · 14 · 01 ✓</div>
+    </div>
+  </div>
+  <div class="enigma-block">
+    <div class="enigma-label">// ENIGMA 1 — DESBLOQUEAR CARPETA 2</div>
+    <div class="enigma-row">
+      <input class="enigma-input" id="e1page" placeholder="_ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(1)">
+      <button class="enigma-submit" onclick="checkE(1)">VERIFICAR</button>
+    </div>
+    <div class="enigma-msg" id="e1pagemsg"></div>
+  </div>
+</div>
+
+<!-- DECL SARA -->
+<div class="page" id="page-decl-sara">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — SARA MOLINA</span><span class="dc-ref">DECL-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Declaración tomada el 15 de agosto. 02:15 a.m. División Homicidios.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Sara Molina — Declaración voluntaria</span><span>15 ago. · 02:15</span></div>
+    <p>Llegué a lo de Tomás cerca de las nueve y media. Éramos los cuatro de siempre.</p>
+    <p>Cuando Tomás dijo que tenía algo que contarnos, lo noté nervioso. Nico también se puso raro. Después supe que habían tenido algún problema de trabajo, pero en ese momento no le pregunté.</p>
+    <p>Desde las 23:10 más o menos estuve en el living con Martín. Tomás estaba en algún lado del departamento y Julieta estaba en la cocina con el postre. Nico apareció en el living cerca de las 23:30.</p>
+    <p>A las 23:35 fui al baño. Estuve cinco minutos, no más. Cuando volví al living estaban todos.</p>
+    <p>Nadie escuchó nada. Fue la chica con la que Tomás estaba saliendo la que lo encontró. Recién la íbamos a conocer esa noche.</p>
+    <div class="carta-firma">Sara Molina — DNI 32.441.887</div>
+  </div>
+</div>
+
+<!-- DECL MARTIN -->
+<div class="page" id="page-decl-martin">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — MARTÍN ACOSTA</span><span class="dc-ref">DECL-X-02</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Declaración tomada el 15 de agosto. 02:40 a.m. División Homicidios.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Martín Acosta — Declaración voluntaria</span><span>15 ago. · 02:40</span></div>
+    <p>Conozco a Tomás desde el colegio. Era mi mejor amigo. Lo que le pasó no tiene ningún sentido.</p>
+    <p>Es cierto que teníamos una deuda pendiente. Él me había prestado plata el año pasado y yo no se la había devuelto todavía. Esa noche lo mencionó. Discutimos un momento, pero nada grave.</p>
+    <p>Desde las 23:10 estuve en el living. Sara estuvo conmigo toda la noche, en ningún momento se movió. Los dos vimos cuando Nico volvió del balcón, cerca de las 23:30.</p>
+    <p>No escuché nada raro de la cocina. Tomás a veces se iba a revisar el teléfono o algo. No me preocupé.</p>
+    <div class="carta-firma">Martín Acosta — DNI 30.118.224</div>
+  </div>
+</div>
+
+<!-- DECL JULIETA -->
+<div class="page" id="page-decl-julieta">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — JULIETA RIVAS</span><span class="dc-ref">DECL-X-03</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Declaración tomada el 15 de agosto. 03:05 a.m. División Homicidios.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Julieta Rivas — Declaración voluntaria</span><span>15 ago. · 03:05</span></div>
+    <p>Terminé con Tomás hace dos años. Seguimos siendo amigos, aunque a veces era complicado. Esa noche me enteré de que estaba saliendo con alguien. Me lo dijo él mismo antes de la cena. No fue agradable escucharlo, pero tampoco fue un drama.</p>
+    <p>A las 22:50 me fui a la cocina a preparar el postre. Estuve ahí hasta las 23:20 aproximadamente. Después salí al balcón a fumar. Tengo una foto que saqué desde ahí esa noche, si eso sirve de algo.</p>
+    <p>Desde el balcón no vi nada raro. Volví al living a las 23:40 más o menos y ahí estaban todos.</p>
+    <p>La cocina estaba sola cuando me fui. Tomás no había entrado mientras yo estaba.</p>
+    <div class="carta-firma">Julieta Rivas — DNI 35.772.310</div>
+  </div>
+</div>
+
+<!-- DECL NICO -->
+<div class="page" id="page-decl-nico">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — NICOLÁS FERRARO</span><span class="dc-ref">DECL-X-04</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Declaración tomada el 15 de agosto. 03:30 a.m. División Homicidios.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Nicolás Ferraro — Declaración voluntaria</span><span>15 ago. · 03:30</span></div>
+    <p>Tomás y yo trabajábamos juntos en un proyecto freelance. Esa noche habíamos tenido una discusión sobre eso, sí. Cosas de trabajo, nada más. Estas cosas pasan.</p>
+    <p>Después de la discusión me fui al balcón a fumar. Estuve ahí desde las 23:15 hasta las 23:30, más o menos. Después volví al living y estuvimos todos juntos hasta que apareció ella, la novia de Tomás.</p>
+    <p>En ningún momento entré a la cocina después de las 23:00. Eso lo puedo asegurar.</p>
+    <p>No tengo idea de qué le pasó a Tomás. De verdad.</p>
+    <div class="carta-firma">Nicolás Ferraro — DNI 33.509.641</div>
+  </div>
+</div>
+
+<!-- CHAT TOMÁS-SARA -->
+<div class="page" id="page-mensajes-sara">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — TOMÁS FERRER / SARA MOLINA</span><span class="dc-ref">MSG-X-SARA</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Conversación recuperada del celular de Tomás. Período: agosto.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">S</div><div><div class="wa-name">Sara</div><div class="wa-last">última vez hoy</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Martes 11 agosto</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sara, necesito que hablemos de lo del estudio Belén. Sé lo que pasó con las fotos.<div class="wa-time">19:14 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Tomás no es lo que pensás. Puedo explicarlo.<div class="wa-time">19:22</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">El viernes hablamos. Quiero escucharte antes de hacer nada.<div class="wa-time">19:25 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Gracias. De verdad.<div class="wa-time">19:27</div></div></div>
+      <div class="wa-date"><span>Miércoles 12 agosto</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">Oye, te mandé algo pero lo escribí con tu código del secundario. Fijate en las notas.<div class="wa-time">23:47</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">jajaja hace años que no usaba eso. Lo miro.<div class="wa-time">23:52 ✓✓</div></div></div>
+      <div class="wa-date"><span>Viernes 14 agosto</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Sigo siendo la primera en llegar?<div class="wa-time">20:45</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí, a las 9 y media. Traé algo para tomar si querés.<div class="wa-time">20:47 ✓✓</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT TOMÁS-MARTÍN -->
+<div class="page" id="page-mensajes-martin">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — TOMÁS FERRER / MARTÍN ACOSTA</span><span class="dc-ref">MSG-X-MARTIN</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Conversación recuperada del celular de Tomás. Período: agosto.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">M</div><div><div class="wa-name">Martín</div><div class="wa-last">última vez hoy</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Jueves 6 agosto</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Martín, necesito que me devuelvas la plata. Ya pasó un año.<div class="wa-time">11:30 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Lo sé, Tomi. Dame hasta fin de mes. Tengo un pago que entra.<div class="wa-time">11:45</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Me dijiste lo mismo el mes pasado. El viernes lo hablamos.<div class="wa-time">11:47 ✓✓</div></div></div>
+      <div class="wa-date"><span>Jueves 13 agosto</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">Oye, ¿todo bien para mañana? ¿Necesitás que lleve algo?<div class="wa-time">18:00</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí, todo bien. Trae vino si podés. Y pensá lo que te dije.<div class="wa-time">18:05 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Ya sé. Hablamos mañana.<div class="wa-time">18:08</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT TOMÁS-JULIETA -->
+<div class="page" id="page-mensajes-julieta">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — TOMÁS FERRER / JULIETA RIVAS</span><span class="dc-ref">MSG-X-JULIETA</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Conversación recuperada del celular de Tomás. Período: agosto.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">J</div><div><div class="wa-name">Juli</div><div class="wa-last">última vez hoy</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Miércoles 12 agosto</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Hacemos la cena del viernes en tu casa como siempre?<div class="wa-time">12:10</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí. Tengo ganas de vernos a todos. Hay algo que quiero contarles.<div class="wa-time">12:15 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Todo bien?<div class="wa-time">12:17</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí, todo bien. O casi todo. El viernes te cuento.<div class="wa-time">12:19 ✓✓</div></div></div>
+      <div class="wa-date"><span>Jueves 13 agosto</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Juli, una cosa. El viernes también te cuento algo más personal. Quería avisarte antes que a los otros.<div class="wa-time">21:03 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Qué pasó?<div class="wa-time">21:10</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Nada malo. Estoy saliendo con alguien. No quería que te enteraras en el momento sin aviso.<div class="wa-time">21:12 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Ok. Gracias por decirme.<div class="wa-time">21:30</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MENSAJES TOMÁS-NICO -->
+<div class="page" id="page-mensajes-nico">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">MENSAJES — TOMÁS FERRER / NICOLÁS FERRARO</span><span class="dc-ref">MSG-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Conversación recuperada del celular de Tomás. Período: agosto.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">N</div><div><div class="wa-name">Nico</div><div class="wa-last">última vez hoy</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Lunes 10 agosto</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Nico necesito que revisemos los números del proyecto. Hay algo que no me cierra.<div class="wa-time">14:35 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Todo está bien, Tomi. Ya te mando el resumen actualizado.<div class="wa-time">14:50</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Ya lo vi. Igual hay algo que no coincide. El viernes hablamos en persona.<div class="wa-time">15:02 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Dale, sin drama.<div class="wa-time">15:08</div></div></div>
+      <div class="wa-date"><span>Viernes 14 agosto</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Esta noche necesito que me expliques algunas cosas del proyecto.<div class="wa-time">18:03 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Tranquilo. Hablamos.<div class="wa-time">18:20</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Tenemos que hablar ahora. Vení a la cocina.<div class="wa-time">23:31 ✓✓</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTAS CELULAR TOMÁS — ENIGMA 2 -->
+<div class="page" id="page-notas-celular">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTAS — CELULAR DE TOMÁS FERRER</span><span class="dc-ref">NC-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Contenido de la app de notas del celular de Tomás. Recuperado por la División Homicidios.</div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "IDEAS PROYECTO"</span><span class="dc-ref">NC-X-02</span></div>
+    <div class="dc-body"><p style="color:var(--text-dim)">Paleta de colores: azul 220, verde 140, gris 60. Tipografía display para títulos. Revisar entrega semana que viene.</p></div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "LLAMAR"</span><span class="dc-ref">NC-X-03</span></div>
+    <div class="dc-body"><p style="color:var(--text-dim)">— Plomero martes<br>— Renovar seguro auto<br>— Escribirle a mamá</p></div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "★"</span><span class="dc-ref">NC-X-04</span></div>
+    <div class="dc-body">
+      <p style="color:var(--text-dim);font-size:.85rem;margin-bottom:12px">Nota sin título. Creada el 13 de agosto, 23:47. Una sola línea.</p>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:16px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--green);letter-spacing:.3em">XLXRMZ</div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "SARA — TEMA PENDIENTE"</span><span class="dc-ref">NC-X-05</span></div>
+    <div class="dc-body"><p style="color:var(--text-dim)">Hablar con Sara sobre el contrato de Estudio Belén. Ella sabe que sé. Ver si lo resuelve antes de que yo tenga que decir algo.</p></div>
+  </div>
+  <div class="enigma-block">
+    <div class="enigma-label">// ENIGMA 2 — DESBLOQUEAR CARPETA 3</div>
+    <div class="enigma-row">
+      <input class="enigma-input" id="e2page" placeholder="_ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(2)">
+      <button class="enigma-submit" onclick="checkE(2)">VERIFICAR</button>
+    </div>
+    <div class="enigma-msg" id="e2pagemsg"></div>
+  </div>
+</div>
+
+<!-- FORENSE -->
+<div class="page" id="page-forense">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">CUERPO MÉDICO FORENSE — CIUDAD DE BUENOS AIRES</div>
+      <div class="inf-tit">INFORME DE AUTOPSIA — TOMÁS FERRER</div>
+      <div class="inf-sub">Emitido el 16 de agosto · Uso reservado</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Fallecido:</span><span class="inf-v">Tomás Ferrer, 34 años</span></div>
+      <div class="inf-row"><span class="inf-k">Hora estimada de muerte:</span><span class="inf-v">Entre las 23:25 y las 23:40 del viernes 14 de agosto</span></div>
+      <div class="inf-row"><span class="inf-k">Causa de muerte:</span><span class="inf-v">Paro cardiorrespiratorio por interacción medicamentosa grave</span></div>
+      <div class="inf-row"><span class="inf-k">Medicación habitual:</span><span class="inf-v">Propranolol 40mg (hipertensión). Tomada diariamente, última dosis de la noche entre 23:00 y 23:30.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Hallazgo principal:</span><span class="inf-v" style="color:var(--red)">Se detectó en sangre presencia de Verapamilo (bloqueante de canales de calcio). Esta sustancia, combinada con Propranolol, puede producir un bloqueo cardíaco severo con riesgo de muerte. Tomás no tenía prescripción de Verapamilo.</span></div>
+      <div class="inf-row"><span class="inf-k">Mecanismo:</span><span class="inf-v">La víctima ingirió Verapamilo creyendo que era su medicación habitual. La reacción fue rápida dado que tenía el estómago vacío y la dosis era alta.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">Conclusión: La muerte no fue natural. La presencia de una sustancia no prescripta en la medicación de la víctima indica intervención externa. Se confirma homicidio.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WIFI -->
+<div class="page" id="page-wifi">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">REGISTRO WI-FI — EDIFICIO AV. CORRIENTES 3847</span><span class="dc-ref">WIFI-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Registro de conexiones al router del departamento 8°B. Solicitado por División Homicidios. Cada dispositivo conectado registra la antena más cercana — living o cocina.</div>
+  </div>
+  <div class="wifi-log">
+    <div class="wifi-hdr">// CONEXIONES — VIERNES 14 DE AGOSTO — DEPTO 8°B</div>
+    <div class="wifi-row" style="background:var(--bg4);font-size:.69rem;color:var(--text-dim)"><span>HORA</span><span>DISPOSITIVO</span><span>ANTENA MÁS CERCANA</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">21:30</span><span>iPhone — S. Molina</span><span style="color:var(--text-dim)">Living</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">21:31</span><span>Samsung — M. Acosta</span><span style="color:var(--text-dim)">Living</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">21:33</span><span>iPhone — J. Rivas</span><span style="color:var(--text-dim)">Living</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">21:35</span><span>iPhone — N. Ferraro</span><span style="color:var(--text-dim)">Living</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">22:51</span><span>iPhone — J. Rivas</span><span style="color:var(--text-dim)">Cocina</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">23:20</span><span>iPhone — J. Rivas</span><span style="color:var(--text-dim)">Living / Balcón</span></div>
+    <div class="wifi-row" style="background:rgba(232,68,68,.05)"><span style="color:var(--text-dim)">23:22</span><span style="color:#e89090">iPhone — N. Ferraro</span><span style="color:#e89090">Cocina</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">23:30</span><span>iPhone — N. Ferraro</span><span style="color:var(--text-dim)">Living</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">23:35</span><span>iPhone — S. Molina</span><span style="color:var(--text-dim)">Baño / Pasillo</span></div>
+    <div class="wifi-row"><span style="color:var(--text-dim)">23:40</span><span>iPhone — J. Rivas</span><span style="color:var(--text-dim)">Living</span></div>
+  </div>
+</div>
+
+<!-- MENSAJES FINALES -->
+<div class="page" id="page-mensajes-finales">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">MENSAJES FINALES — CELULAR DE TOMÁS FERRER</span><span class="dc-ref">MSG-X-02</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Últimos mensajes enviados y recibidos. Recuperados por División Homicidios.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">N</div><div><div class="wa-name">Nico</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-msg out"><div class="wa-bubble">Tenemos que hablar ahora. Vení a la cocina.<div class="wa-time">23:31 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble" style="color:#808080;font-style:italic">Sin respuesta</div></div>
+    </div>
+  </div>
+  <div class="doc-card" style="margin-top:8px">
+    <div class="dc-head"><span class="dc-title">MENSAJE PROGRAMADO — ENVIADO AUTOMÁTICAMENTE A LAS 00:00</span><span class="dc-ref">MSG-X-03</span></div>
+    <div class="dc-body">
+      <p style="color:var(--text-dim);font-size:.85rem;margin-bottom:10px">Tomás tenía configurado un mensaje para enviarse automáticamente a las 00:00 del sábado a un contacto de confianza.</p>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;font-style:italic;color:var(--text-mid);font-size:.92rem;line-height:1.7">
+        "Si estás leyendo esto, es porque algo salió mal. Revisá la carpeta compartida del proyecto. Mirá los números de agosto y comparalos con los resúmenes que me mandaron. Vas a entender."
+      </div>
+      <p style="font-size:.77rem;color:var(--text-dim);margin-top:8px">Destinatario: contacto identificado como "Diego — Abogado"</p>
+    </div>
+  </div>
+</div>
+
+<!-- MEDICACIÓN -->
+<div class="page" id="page-medicacion">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">LABORATORIO FORENSE — ANÁLISIS DE SUSTANCIAS</div>
+      <div class="inf-tit">ANÁLISIS DEL PASTILLERO — TOMÁS FERRER</div>
+      <div class="inf-sub">16 de agosto · Confidencial</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Objeto analizado:</span><span class="inf-v">Pastillero semanal hallado en mesada de cocina. 7 compartimentos, uno por día.</span></div>
+      <div class="inf-row"><span class="inf-k">Compartimento "VIE":</span><span class="inf-v" style="color:var(--red)">Contenía 2 comprimidos de Verapamilo 120mg. No coincide con la prescripción de Propranolol 40mg del paciente.</span></div>
+      <div class="inf-row"><span class="inf-k">Compartimentos restantes:</span><span class="inf-v">Propranolol 40mg. Coinciden con prescripción.</span></div>
+      <div class="inf-row"><span class="inf-k">Origen del Verapamilo:</span><span class="inf-v">Medicamento de uso común para arritmias y presión. No requiere receta especial. Compatible con presentación genérica.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">El compartimento del viernes fue intervenido. Alguien reemplazó la medicación habitual de Tomás por Verapamilo en una dosis suficiente para provocar una reacción letal combinada con su Propranolol.</div>
+      <div class="inf-nota">El pastillero era cargado por el propio Tomás o por alguien con acceso regular al departamento. No hay evidencia de intrusión externa.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CÁMARA -->
+<div class="page" id="page-camara">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CÁMARA DE SEGURIDAD — PASILLO 8° PISO</span><span class="dc-ref">CAM-X-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Fragmentos del registro de la cámara del pasillo del piso 8°. Solicitado por División Homicidios.</div>
+  </div>
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">ADMINISTRACIÓN DEL EDIFICIO — REGISTRO DE CÁMARAS</div>
+      <div class="inf-tit">RESUMEN DE ACTIVIDAD — PISO 8° · VIERNES 14 DE AGOSTO</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">21:28</span><span class="inf-v">Ingreso de 4 personas al depto 8°B. Identificadas como los cuatro invitados.</span></div>
+      <div class="inf-row"><span class="inf-k">23:08</span><span class="inf-v" style="color:var(--red)">Una persona sale del depto 8°B hacia el pasillo de servicio. Regresa al depto 8°B a las 23:14. Imagen parcial: hombre, remera oscura.</span></div>
+      <div class="inf-row"><span class="inf-k">23:48</span><span class="inf-v">Ingreso de una persona adicional al depto 8°B. Llama al 911 a las 23:52.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">El movimiento registrado a las 23:08 no fue declarado por ninguno de los presentes. El pasillo de servicio da acceso a las escaleras y al cuarto de instalaciones donde se almacenan, entre otras cosas, objetos dejados por vecinos para descartar —entre ellos, un botiquín con medicamentos vencidos, con los prospectos todavía adentro.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VALIDACIÓN -->
+<div class="page" id="page-validacion">
+  <div class="doc-card" style="margin-bottom:14px">
+    <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-X</span></div>
+    <div class="dc-body" style="font-size:12px;color:var(--text-mid)">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula.</div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">01</div>
+    <div class="val-label">¿QUIÉN mató a Tomás Ferrer?</div>
+    <div class="val-row"><input class="val-input" id="v1" placeholder="_ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(1)"><button class="val-check" onclick="checkV(1)">VERIFICAR</button></div>
+    <div class="val-fb" id="f1"></div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">02</div>
+    <div class="val-label">¿CÓMO lo hizo? (el método)</div>
+    <div class="val-row"><input class="val-input" id="v2" placeholder="_ _ _ _ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(2)"><button class="val-check" onclick="checkV(2)">VERIFICAR</button></div>
+    <div class="val-fb" id="f2"></div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">03</div>
+    <div class="val-label">¿QUÉ descubrió la persona culpable que la llevó a actuar?</div>
+    <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
+    <div class="val-fb" id="f3"></div>
+  </div>
+  <div class="submit-wrap" id="submitWrap">
+    <button class="submit-btn" onclick="cerrarCaso()">⊛ CERRAR EL CASO →</button>
+  </div>
+  <div id="caseStamp" style="display:none;margin-top:24px">
+    <div style="text-align:center;padding:32px 20px;background:var(--bg2);border:1px solid var(--border2);margin-bottom:12px">
+      <svg viewBox="0 0 340 180" width="100%" height="auto" style="opacity:.85;transform:rotate(-8deg);max-width:480px">
+        <ellipse cx="170" cy="90" rx="162" ry="82" fill="none" stroke="#c82020" stroke-width="7"/>
+        <ellipse cx="170" cy="90" rx="148" ry="68" fill="none" stroke="#c82020" stroke-width="2"/>
+        <text x="170" y="68" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="22" fill="#c82020" letter-spacing="10">CASO</text>
+        <text x="170" y="108" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="38" fill="#c82020" letter-spacing="5" font-weight="bold">RESUELTO</text>
+        <text x="170" y="132" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="12" fill="#c82020" letter-spacing="7">ARCHIVO_CERO · X</text>
+      </svg>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border2);padding:18px;margin-bottom:12px">
+      <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:8px">TIEMPO DE INVESTIGACIÓN</div>
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--amber);letter-spacing:.2em;margin-bottom:16px" id="stampTime">--:--</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿QUIÉN?</div>
+          <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">NICOLAS</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿CÓMO?</div>
+          <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">MEDICACION</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿DETONANTE?</div>
+          <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">PROYECTO</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:12px">
+      <button onclick="openShareCard()" style="flex:1;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-display);font-size:12px;padding:13px;cursor:pointer;letter-spacing:.1em">📸 COMPARTIR EN REDES</button>
+      <button onclick="confirmReset()" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-display);font-size:12px;padding:13px;cursor:pointer;letter-spacing:.1em" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text-dim)'">✕ CERRAR EXPEDIENTE</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /docs-panel -->
+
+<!-- PIZARRA -->
+<div class="pizarra-panel" id="pizPanel">
+  <div class="piz-inner">
+    <div class="piz-topbar">
+      <span class="piz-title">PIZARRA DE INVESTIGACIÓN</span>
+      <div class="piz-topbar-btns">
+        <button class="piz-btn" id="btnFs" onclick="toggleFs()">⤢</button>
+        <button class="piz-btn" onclick="togglePiz()">✕</button>
+      </div>
+    </div>
+    <div class="piz-tools">
+      <button class="piz-tool" onclick="addCard('nota',40,40,'Nueva nota')"><span class="dot" style="background:#f8e860"></span>Nota</button>
+      <button class="piz-tool" onclick="addCard('sospechoso',40,40,'Sospechoso')"><span class="dot" style="background:#ffd090"></span>Sospechoso</button>
+      <button class="piz-tool" onclick="addCard('pista',40,40,'Pista')"><span class="dot" style="background:#b8f0b0"></span>Pista</button>
+      <button class="piz-tool" onclick="addCard('hipotesis',40,40,'Hipótesis')"><span class="dot" style="background:#c8b8f8"></span>Hipótesis</button>
+      <button class="piz-tool" id="lineBtn" onclick="toggleLineMode()">✏ Conectar</button>
+      <button class="piz-tool" onclick="clearLines()">✕ Hilos</button>
+      <button class="piz-tool" onclick="clearBoard()">🗑 Todo</button>
+    </div>
+    <div class="piz-canvas-wrap">
+      <div class="piz-canvas" id="pizCanvas" onclick="handleCanvasClick(event)">
+        <svg class="piz-svg" id="pizSvg"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /content-area -->
+</div><!-- /shell -->
+
+<div class="footer">
+  <span>CASO GRATUITO X — LA CENA DE LOS VIERNES</span>
+  <span>archivo0.com.ar</span>
+  <span>@archivocero0</span>
+</div>
+
+<!-- TOUR -->
+<div class="tour-overlay" id="tourOverlay">
+  <div class="tour-backdrop" onclick="skipTour()"></div>
+  <div class="tour-highlight" id="tourHL"></div>
+  <div class="tour-tooltip" id="tourTT">
+    <div class="tour-num" id="tourNum"></div>
+    <div class="tour-title" id="tourTitle"></div>
+    <div class="tour-desc" id="tourDesc"></div>
+    <div class="tour-footer">
+      <button class="tour-next" id="tourNext" onclick="tourStep()">SIGUIENTE →</button>
+      <button class="tour-skip" onclick="skipTour()">SALTAR</button>
+      <div class="tour-dots" id="tourDots"></div>
+    </div>
+  </div>
+</div>
+
+<!-- RESET MODAL -->
+<div id="resetModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--red);padding:26px 28px;width:380px;max-width:95vw;text-align:center">
+    <div style="font-family:var(--font-display);font-size:.92rem;color:var(--red);letter-spacing:.12em;margin-bottom:14px">⚠ REINICIAR EL CASO</div>
+    <div style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin-bottom:22px">Esto va a borrar tu progreso: carpetas desbloqueadas, pistas usadas y notas de la pizarra.<br><br><strong style="color:var(--text)">¿Confirmás que querés empezar de cero?</strong></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="closeResetModal()" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:11px;cursor:pointer">CANCELAR</button>
+      <button onclick="doReset()" style="flex:1;background:var(--red-muted);border:1px solid var(--red);color:var(--red);font-family:var(--font-mono);font-size:.77rem;padding:11px;cursor:pointer">SÍ, REINICIAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ENIGMA MODAL -->
+<div id="enigmaModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--amber-dim);padding:22px;max-width:420px;width:90%">
+    <div style="font-family:var(--font-display);font-size:.92rem;color:var(--amber);letter-spacing:.12em;margin-bottom:14px" id="enigmaModalTitle"></div>
+    <p style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin-bottom:16px" id="enigmaModalText"></p>
+    <div id="enigmaModalMsg" style="display:none;font-size:11px;padding:7px 10px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:7px">
+      <input id="enigmaModalInput" style="flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1rem;padding:9px 12px;letter-spacing:.2em;text-transform:uppercase;outline:none" placeholder="PALABRA" onkeydown="if(event.key==='Enter')submitEnigmaModal()">
+      <button onclick="submitEnigmaModal()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.85rem;padding:0 16px;cursor:pointer">OK</button>
+    </div>
+    <button onclick="closeEnigmaModal()" style="margin-top:12px;background:none;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:6px 14px;cursor:pointer;width:100%">CANCELAR</button>
+  </div>
+</div>
+
+<!-- HINTS MODAL -->
+<div id="hintsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:22px;max-width:480px;width:90%;max-height:80vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <span style="font-family:var(--font-display);font-size:1rem;color:var(--amber);letter-spacing:.12em">// SISTEMA DE PISTAS</span>
+      <button onclick="closeHints()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:1.2rem">✕</button>
+    </div>
+    <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:16px">Usá las pistas solo si te trabás. No resuelven el caso — orientan la dirección.</p>
+    <div class="hint-menu">
+      <button onclick="requestHint(1)" class="hint-menu-btn">💡 Pista — Carpeta 1</button>
+      <button onclick="requestHint(2)" class="hint-menu-btn">💡 Pista — Carpeta 2</button>
+      <button onclick="requestHint(3)" class="hint-menu-btn">💡 Pista — Carpeta 3</button>
+    </div>
+    <div class="hint-panel" id="hintPanel">
+      <div class="hint-header"><span class="hint-title" id="hintTitle">PISTA</span></div>
+      <div class="hint-content" id="hintContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SHARE MODAL -->
+<div id="shareModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:22px;max-width:360px;width:90%;text-align:center">
+    <div style="font-family:var(--font-display);font-size:.85rem;color:var(--green);letter-spacing:.15em;margin-bottom:14px">IMAGEN PARA HISTORIA DE INSTAGRAM</div>
+    <canvas id="shareCanvas" width="1080" height="1920" style="width:100%;max-width:280px;border:1px solid var(--border2);margin-bottom:16px"></canvas>
+    <a id="shareLink" download="caso-x-la-cena-de-los-viernes.png" style="display:block;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:.85rem;padding:11px;letter-spacing:.12em;text-decoration:none;margin-bottom:10px">⬇ DESCARGAR (1080×1920)</a>
+    <div style="font-size:.77rem;color:var(--text-dim);margin-bottom:14px">Subila y etiquetá <strong style="color:var(--amber)">@archivocero0</strong> 🔍</div>
+    <button onclick="closeShareCard()" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:9px;cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- CASO MODAL -->
+<div id="casoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:400;align-items:center;justify-content:center;padding:16px">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:24px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto">
+    <div style="font-family:var(--font-display);font-size:1.08rem;color:var(--green);letter-spacing:.15em;margin-bottom:4px">CASO CERRADO</div>
+    <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:20px">LA CENA DE LOS VIERNES — ARCHIVO CERO</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿QUIÉN?</div>
+        <div style="font-family:var(--font-display);font-size:13px;color:var(--green);letter-spacing:.1em">NICOLAS</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿CÓMO?</div>
+        <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">MEDICACION</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿DETONANTE?</div>
+        <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">PROYECTO</div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border2);padding:16px;margin-bottom:16px;font-size:.85rem;line-height:1.75;color:var(--text)">
+      <p style="margin-bottom:12px"><strong style="color:var(--green)">Nicolás Ferraro mató a Tomás Ferrer reemplazando su medicación.</strong> Tomás tenía hipertensión y tomaba Propranolol cada noche. Nico, que conocía su rutina y había estado en la cocina durante la cena, reemplazó los comprimidos del compartimento del viernes por Verapamilo — un medicamento que, combinado con Propranolol, puede producir un bloqueo cardíaco fatal. Tomás tomó lo que creyó que era su medicación habitual y colapsó media hora después.</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--amber)">El detonante fue el proyecto.</strong> Tomás había descubierto que Nico desviaba dinero — transferencias que no aparecían en los resúmenes compartidos. Esa noche había decidido confrontarlo frente a todos. Nico lo sabía. El mensaje de las 23:31 — "Tenemos que hablar ahora. Vení a la cocina" — muestra que Tomás lo citó después de haber tomado la medicación, sin saber lo que ya había pasado.</p>
+      <p><strong style="color:var(--text-mid)">Las pistas que lo descartaron:</strong> Julieta tiene foto del balcón a las 23:27 — la exonera del período crítico. Sara fue al baño a las 23:35, después de la muerte. Martín estuvo en el living pero su contradicción con Sara solo indica que uno de los dos miente sobre el baño — no los conecta con la cocina. El registro Wi-Fi muestra a Nico en la cocina a las 23:22, cuando declaró no haber entrado. La cámara del pasillo lo registra saliendo a las 23:08 — cuando fue a buscar el Verapamilo al cuarto de instalaciones.</p>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);padding:12px;margin-bottom:16px;text-align:center">
+      <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px">TIEMPO DE INVESTIGACIÓN</div>
+      <div style="font-family:var(--font-display);font-size:1.69rem;color:var(--amber);letter-spacing:.2em" id="finalTime">--:--</div>
+    </div>
+    <div style="border:1px solid var(--amber-dim);background:var(--amber-muted);padding:14px;margin-bottom:16px">
+      <div style="font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:6px">MÁS CASOS EN ARCHIVO CERO</div>
+      <div style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:14px">Este fue el caso gratuito. Los casos completos tienen más evidencia, más sospechosos y enigmas más complejos.</div>
+      <a href="https://archivo0.com.ar" target="_blank" rel="noopener" style="display:inline-block;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-display);font-size:.85rem;padding:10px 22px;letter-spacing:.1em;text-decoration:none">VER CASOS COMPLETOS →</a>
+    </div>
+    <button onclick="closeCasoModal()" style="width:100%;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:13px;padding:13px;cursor:pointer;letter-spacing:.15em">✓ CERRAR INFORME →</button>
+  </div>
+</div>
+
+<script>
+// ═══ NAV ═══
+const pageNames={resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cómo investigar',sospechosos:'Sospechosos','cronologia':'Cronología','informe-escena':'Informe de la escena','apuntes-tomas':'Apuntes de Tomás','decl-sara':'Declaración Sara','decl-martin':'Declaración Martín','decl-julieta':'Declaración Julieta','decl-nico':'Declaración Nicolás','mensajes-sara':'Chat Tomás-Sara','mensajes-martin':'Chat Tomás-Martín','mensajes-julieta':'Chat Tomás-Julieta','mensajes-nico':'Chat Tomás-Nico','notas-celular':'Notas celular de Tomás','forense':'Informe forense','wifi':'Registro Wi-Fi','mensajes-finales':'Mensajes finales','medicacion':'Análisis medicación','camara':'Cámara de seguridad',validacion:'Resolver el caso'};
+const progMap={resumen:3,teaser:6,instrucciones:8,sospechosos:14,cronologia:20,'informe-escena':24,'apuntes-tomas':34,'decl-sara':40,'decl-martin':47,'decl-julieta':54,'decl-nico':61,'mensajes-sara':63,'mensajes-martin':65,'mensajes-julieta':67,'mensajes-nico':69,'notas-celular':73,'forense':80,'wifi':85,'mensajes-finales':89,'medicacion':93,'camara':96,validacion:98};
+const folderMap={resumen:0,teaser:0,instrucciones:0,sospechosos:1,cronologia:1,'informe-escena':1,'apuntes-tomas':1,'decl-sara':2,'decl-martin':2,'decl-julieta':2,'decl-nico':2,'mensajes-sara':2,'mensajes-martin':2,'mensajes-julieta':2,'mensajes-nico':2,'notas-celular':2,'forense':3,'wifi':3,'mensajes-finales':3,'medicacion':3,'camara':3,validacion:4};
+const visited=new Set(['resumen']);
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  const p=document.getElementById('page-'+id);if(p)p.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(i=>{if(i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id)i.classList.add('active')});
+  document.getElementById('bcCurrent').textContent=pageNames[id]||id;
+  const f=folderMap[id];const el=document.getElementById('bcFolder');const sep=document.getElementById('bcFolderSep');
+  if(el){if(!f){el.textContent='';if(sep)sep.textContent=''}else if(f===4){el.textContent='⊛ CIERRE';if(sep)sep.textContent='›'}else{el.textContent='📁 CARPETA '+f+' / 3';if(sep)sep.textContent='›'}}
+  visited.add(id);
+  document.querySelectorAll('.sb-item').forEach(i=>{if((i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id)&&!i.classList.contains('locked'))i.classList.add('visited')});
+  const pct=Math.max(...[...visited].map(v=>progMap[v]||0));
+  document.getElementById('progFill').style.width=pct+'%';document.getElementById('progPct').textContent=pct+'%';
+  saveState();if(isMobile())closeMobileSidebar();
+  document.getElementById('docsPanel').scrollTop=0;
+}
+function toggleSB(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('open')}
+
+// ═══ ENIGMAS ═══
+const ENIGMAS={1:'CENA',2:'COCINA'};
+let unlocked={1:false,2:false};
+
+function checkE(n){
+  const ids=['e'+n+'sb','e'+n+'page'];
+  let val='';
+  for(const id of ids){const el=document.getElementById(id);if(el&&el.value.trim())val=el.value.trim()}
+  val=val.toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const ok=val===ENIGMAS[n];
+  const msgIds=['e'+n+'sbmsg','e'+n+'pagemsg'];
+  msgIds.forEach(id=>{const el=document.getElementById(id);if(el){el.className='enigma-msg '+(ok?'ok':'err');el.textContent=ok?'✓ Correcto — Carpeta '+(n+1)+' desbloqueada.':'✗ Incorrecto. Revisá los documentos.';el.style.display='block'}});
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.value=val});
+  if(ok&&!unlocked[n]){unlocked[n]=true;n===1?unlock2():unlock3();saveState()}
+}
+
+function unlock2(){
+  ['decl-sara','decl-martin','decl-julieta','decl-nico','mensajes-sara','mensajes-martin','mensajes-julieta','mensajes-nico','notas-celular'].forEach(id=>{
+    const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge2');b.className='fb fb-open';b.textContent='ABIERTA';
+  const e2=document.getElementById('enigma2-sb-item');
+  if(e2){e2.classList.remove('locked');e2.style.color='var(--amber)';e2.style.borderLeft='2px solid var(--amber-dim)';e2.setAttribute('onclick',"openEnigmaModal(2)");const lk=e2.querySelector('.sb-lock');if(lk)lk.remove()}
+}
+function unlock3(){
+  ['forense','wifi','mensajes-finales','medicacion','camara','validacion'].forEach(id=>{
+    const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge3');b.className='fb fb-open';b.textContent='ABIERTA';
+}
+
+// ═══ VALIDACIÓN ═══
+const ANSWERS={1:'NICOLAS',2:'MEDICACION',3:'PROYECTO'};
+const correct={1:false,2:false,3:false};
+function checkV(n){
+  const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById('f'+n);
+  if(val===ANSWERS[n]){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
+  else{fb.className='val-fb err';fb.textContent='✗ No es correcto.'}
+}
+function cerrarCaso(){
+  document.getElementById('submitWrap').style.display='none';
+  document.getElementById('progFill').style.width='100%';document.getElementById('progPct').textContent='100%';
+  clearInterval(timerInterval);
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  document.getElementById('finalTime').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  document.getElementById('casoModal').style.display='flex';
+}
+function closeCasoModal(){
+  document.getElementById('casoModal').style.display='none';
+  const stamp=document.getElementById('caseStamp');
+  if(stamp){
+    stamp.style.display='block';
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    const t=document.getElementById('stampTime');
+    if(t)t.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    document.getElementById('submitWrap').style.display='none';
+    stamp.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+document.getElementById('casoModal').addEventListener('click',function(e){if(e.target===this)closeCasoModal()});
+
+// ═══ TIMER ═══
+let timerSeconds=0,timerInterval=null,timerStarted=false;
+function startTimer(){if(timerStarted)return;timerStarted=true;timerInterval=setInterval(()=>{timerSeconds++;const m=Math.floor(timerSeconds/60),s=timerSeconds%60;const d=document.getElementById('timerDisp');d.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;if(timerSeconds>3600)d.classList.add('urgent')},1000)}
+function startCase(){document.getElementById('splash').classList.add('hidden');startTimer();loadState();go('resumen');setTimeout(startTour,600)}
+
+// ═══ STATE ═══
+function saveState(){try{localStorage.setItem('ac_x_st',JSON.stringify({unlocked,visited:[...visited]}))}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('ac_x_st')||'{}');if(s.unlocked){if(s.unlocked[1]){unlocked[1]=true;unlock2()}if(s.unlocked[2]){unlocked[2]=true;unlock3()}}if(s.visited)s.visited.forEach(v=>visited.add(v))}catch(e){}}
+
+// ═══ PIZARRA ═══
+let pizOpen=false,pizFs=false;
+function togglePiz(){pizOpen=!pizOpen;document.getElementById('pizPanel').classList.toggle('open',pizOpen);document.getElementById('btnPiz').classList.toggle('active',pizOpen);setTimeout(drawLines,50)}
+function toggleFs(){pizFs=!pizFs;const pp=document.getElementById('pizPanel');pp.classList.toggle('fullscreen',pizFs);document.getElementById('btnFs').textContent=pizFs?'⤡':'⤢';setTimeout(drawLines,50)}
+let cards=[],lines=[],cardId=0,lineMode=false,lineStart=null,dragging=null,dragOx=0,dragOy=0;
+function seedBoard(){}
+function addCard(type,x,y,text){
+  const canvas=document.getElementById('pizCanvas');const id='c'+(++cardId);const div=document.createElement('div');
+  div.className='cork-card card-'+type;div.id=id;div.style.left=x+'px';div.style.top=y+'px';
+  const labels={nota:'NOTA',sospechoso:'SOSPECHOSO',pista:'PISTA',hipotesis:'HIPÓTESIS'};
+  const chinche=document.createElement('div');chinche.className='cork-chinche';
+  const head=document.createElement('div');head.className='cork-card-head';
+  const span=document.createElement('span');span.textContent=labels[type]||type.toUpperCase();
+  const del=document.createElement('span');del.className='cork-del';del.textContent='✕';
+  del.addEventListener('click',function(){deleteCard(id)});
+  head.appendChild(span);head.appendChild(del);
+  const body=document.createElement('div');body.className='cork-card-body';body.contentEditable='true';
+  body.innerHTML=text.replace(/[\n]/g,'<br>');
+  div.appendChild(chinche);div.appendChild(head);div.appendChild(body);
+  canvas.appendChild(div);makeDraggable(div);cards.push({id,type,x,y});return div;
+}
+function deleteCard(id){const el=document.getElementById(id);if(el)el.remove();lines=lines.filter(l=>l.a!==id&&l.b!==id);drawLines()}
+function makeDraggable(el){
+  el.addEventListener('mousedown',function(e){if(e.target.hasAttribute('contenteditable')||e.target.classList.contains('cork-del'))return;e.preventDefault();dragging=el;const r=el.getBoundingClientRect();dragOx=e.clientX-r.left;dragOy=e.clientY-r.top});
+  el.addEventListener('touchstart',function(e){if(e.target.hasAttribute('contenteditable')||e.target.classList.contains('cork-del'))return;dragging=el;const t=e.touches[0];const r=el.getBoundingClientRect();dragOx=t.clientX-r.left;dragOy=t.clientY-r.top},{passive:true});
+}
+document.addEventListener('mousemove',function(e){if(!dragging)return;const pr=dragging.parentElement.getBoundingClientRect();dragging.style.left=Math.max(0,e.clientX-pr.left-dragOx)+'px';dragging.style.top=Math.max(0,e.clientY-pr.top-dragOy)+'px';drawLines()});
+document.addEventListener('mouseup',function(){dragging=null});
+document.addEventListener('touchmove',function(e){if(!dragging)return;const t=e.touches[0];const pr=dragging.parentElement.getBoundingClientRect();dragging.style.left=Math.max(0,t.clientX-pr.left-dragOx)+'px';dragging.style.top=Math.max(0,t.clientY-pr.top-dragOy)+'px';drawLines()},{passive:true});
+document.addEventListener('touchend',function(){dragging=null});
+function toggleLineMode(){lineMode=!lineMode;lineStart=null;document.getElementById('lineBtn').classList.toggle('active',lineMode)}
+function handleCanvasClick(e){if(!lineMode)return;const card=e.target.closest('.cork-card');if(!card)return;if(!lineStart){lineStart=card.id;card.classList.add('selected')}else{if(lineStart!==card.id)lines.push({a:lineStart,b:card.id});document.getElementById(lineStart)?.classList.remove('selected');lineStart=null;drawLines()}}
+function clearLines(){lines=[];drawLines()}
+function clearBoard(){document.querySelectorAll('.cork-card').forEach(c=>c.remove());cards=[];lines=[];cardId=0;drawLines()}
+function drawLines(){
+  const svg=document.getElementById('pizSvg');if(!svg)return;svg.innerHTML='';
+  lines.forEach(l=>{
+    const a=document.getElementById(l.a),b=document.getElementById(l.b);if(!a||!b)return;
+    const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),pr=svg.getBoundingClientRect();
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',ar.left+ar.width/2-pr.left);line.setAttribute('y1',ar.top+ar.height/2-pr.top);
+    line.setAttribute('x2',br.left+br.width/2-pr.left);line.setAttribute('y2',br.top+br.height/2-pr.top);
+    line.setAttribute('stroke','#c03030');line.setAttribute('stroke-width','2');line.setAttribute('stroke-dasharray','4,3');line.setAttribute('opacity','0.7');
+    svg.appendChild(line);
+  });
+}
+
+// ═══ HINTS ═══
+const HINTS={
+  1:'Tomás tenía una forma propia de anotar cosas. En su escritorio dejó dos elementos que, leídos juntos, forman una clave. Uno es una referencia, el otro son números.',
+  2:'Tomás mencionó alguna vez que tenía un truco desde el secundario para escribir cosas que no quería que cualquiera leyera. La nota "★" en su celular lo usa. Pensá en el abecedario.',
+  3:'Alguien dice que no estuvo en la cocina después de cierta hora. Los dispositivos registran otra cosa. Cruzá las declaraciones con el registro de Wi-Fi y la cámara del pasillo.'
+};
+function openHints(){document.getElementById('hintsModal').style.display='flex'}
+function closeHints(){document.getElementById('hintsModal').style.display='none'}
+function requestHint(n){document.getElementById('hintTitle').textContent='PISTA — CARPETA '+n;document.getElementById('hintContent').textContent=HINTS[n];document.getElementById('hintPanel').classList.add('active')}
+document.getElementById('hintsModal').addEventListener('click',function(e){if(e.target===this)closeHints()});
+
+// ═══ ENIGMA MODAL ═══
+const ENIGMA_TEXTS={
+  1:'Hay una clave escondida entre los papeles de Tomás.',
+  2:'Hay una nota en el celular de Tomás que no está en texto claro.'
+};
+let currentEnigmaN=0;
+function openEnigmaModal(n){
+  currentEnigmaN=n;
+  document.getElementById('enigmaModalTitle').textContent='// ENIGMA '+n+' — DESBLOQUEAR CARPETA '+(n+1);
+  document.getElementById('enigmaModalText').textContent=ENIGMA_TEXTS[n];
+  document.getElementById('enigmaModalInput').value='';
+  const msg=document.getElementById('enigmaModalMsg');msg.style.display='none';
+  document.getElementById('enigmaModal').style.display='flex';
+  setTimeout(()=>document.getElementById('enigmaModalInput').focus(),50);
+}
+function closeEnigmaModal(){document.getElementById('enigmaModal').style.display='none'}
+function submitEnigmaModal(){
+  const val=document.getElementById('enigmaModalInput').value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const ok=val===ENIGMAS[currentEnigmaN];
+  const msg=document.getElementById('enigmaModalMsg');msg.style.display='block';
+  if(ok){msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim);margin-bottom:10px';msg.textContent='✓ Correcto — Carpeta '+(currentEnigmaN+1)+' desbloqueada.';if(!unlocked[currentEnigmaN]){unlocked[currentEnigmaN]=true;currentEnigmaN===1?unlock2():unlock3();saveState()}setTimeout(closeEnigmaModal,1200)}
+  else{msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a;margin-bottom:10px';msg.textContent='✗ Incorrecto. Revisá los documentos.'}
+}
+document.getElementById('enigmaModal').addEventListener('click',function(e){if(e.target===this)closeEnigmaModal()});
+
+// ═══ SHARE ═══
+function openShareCard(){
+  drawShareCard();
+  const canvas=document.getElementById('shareCanvas');
+  setTimeout(()=>{document.getElementById('shareLink').href=canvas.toDataURL('image/png')},100);
+  document.getElementById('shareModal').style.display='flex';
+}
+function closeShareCard(){document.getElementById('shareModal').style.display='none'}
+document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareCard()});
+function drawShareCard(){
+  const cv=document.getElementById('shareCanvas');const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
+  ctx.fillStyle='#09100d';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(61,255,122,.035)';for(let i=0;i<500;i++){ctx.beginPath();ctx.arc(Math.random()*W,Math.random()*H,1.5,0,Math.PI*2);ctx.fill()}
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=5;ctx.strokeRect(48,48,W-96,H-96);
+  ctx.strokeStyle='#1a6b38';ctx.lineWidth=6;const cl=70;
+  [[68,68,1,1],[W-68,68,-1,1],[68,H-68,1,-1],[W-68,H-68,-1,-1]].forEach(([x,y,dx,dy])=>{ctx.beginPath();ctx.moveTo(x,y+cl*dy);ctx.lineTo(x,y);ctx.lineTo(x+cl*dx,y);ctx.stroke()});
+  ctx.fillStyle='#3a5040';ctx.font='26px "Share Tech Mono",monospace';ctx.textAlign='center';ctx.fillText('ARCHIVO_CERO · SISTEMA SEGURO',W/2,148);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,172);ctx.lineTo(W-120,172);ctx.stroke();
+  ctx.fillStyle='#1a1205';ctx.fillRect(W/2-200,202,400,54);ctx.strokeStyle='#4a3208';ctx.lineWidth=1;ctx.strokeRect(W/2-200,202,400,54);
+  ctx.fillStyle='#e8a830';ctx.font='22px "Share Tech Mono",monospace';ctx.fillText('CASO GRATUITO X · INVESTIGACIÓN',W/2,236);
+  ctx.fillStyle='#3dff7a';ctx.font='bold 68px "Share Tech Mono",monospace';ctx.fillText('LA CENA DE',W/2,400);ctx.fillText('LOS VIERNES',W/2,490);
+  ctx.fillStyle='#2e5038';ctx.font='24px "Share Tech Mono",monospace';ctx.fillText('UNA INVESTIGACIÓN DE ARCHIVO CERO',W/2,570);
+  ctx.strokeStyle='#152512';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(120,620+i*7);ctx.lineTo(W-120,620+i*7);ctx.stroke()}
+  ctx.save();ctx.translate(W/2,920);ctx.rotate(-8*Math.PI/180);
+  ctx.strokeStyle='#c82020';ctx.lineWidth=11;ctx.beginPath();ctx.ellipse(0,0,330,165,0,0,Math.PI*2);ctx.stroke();
+  ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(0,0,304,139,0,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle='#c82020';ctx.textAlign='center';ctx.font='38px "Share Tech Mono",monospace';ctx.fillText('CASO',0,-28);ctx.font='bold 66px "Share Tech Mono",monospace';ctx.fillText('RESUELTO',0,48);ctx.restore();
+  ctx.fillStyle='#0d1a10';ctx.fillRect(120,1195,W-240,200);ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.strokeRect(120,1195,W-240,200);
+  ctx.fillStyle='#506050';ctx.font='26px "Share Tech Mono",monospace';ctx.textAlign='center';ctx.fillText('TIEMPO DE INVESTIGACIÓN',W/2,1252);
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  ctx.fillStyle='#e8a830';ctx.font='bold 88px "Share Tech Mono",monospace';ctx.fillText((m<10?'0':'')+m+':'+(s<10?'0':'')+s,W/2,1358);
+  ctx.fillStyle='#0a1410';ctx.fillRect(W/2-145,1460,290,52);ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.strokeRect(W/2-145,1460,290,52);
+  ctx.fillStyle='#3a5040';ctx.font='22px "Share Tech Mono",monospace';ctx.fillText('DIFICULTAD · MEDIA',W/2,1493);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,1570);ctx.lineTo(W-120,1570);ctx.stroke();
+  ctx.fillStyle='#3dff7a';ctx.font='bold 36px "Share Tech Mono",monospace';ctx.fillText('¿PODÉS RESOLVERLO?',W/2,1658);
+  ctx.fillStyle='#3a5040';ctx.font='26px "Share Tech Mono",monospace';ctx.fillText('archivo0.com.ar — CASO GRATUITO',W/2,1740);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,1780);ctx.lineTo(W-120,1780);ctx.stroke();
+  ctx.fillStyle='#3dff7a';ctx.font='28px "Share Tech Mono",monospace';ctx.fillText('@archivocero0',W/2,1848);
+}
+
+// ═══ SPOTIFY ═══
+function toggleSpotify(id){const el=document.getElementById(id);el.classList.toggle('open');const btn=el.querySelector('.btn-spotify-toggle');if(btn)btn.setAttribute('aria-expanded',el.classList.contains('open'))}
+
+// ═══ RESET ═══
+function confirmReset(){document.getElementById('resetModal').style.display='flex'}
+function closeResetModal(){document.getElementById('resetModal').style.display='none'}
+function doReset(){try{localStorage.removeItem('ac_x_st')}catch(e){}location.reload()}
+document.getElementById('resetModal').addEventListener('click',function(e){if(e.target===this)closeResetModal()});
+
+// ═══ MODE / SIZE ═══
+function toggleMode(){document.documentElement.classList.toggle('light')}
+function setSize(s){document.documentElement.className=document.documentElement.className.replace(/sz-\w/,'');document.documentElement.classList.add('sz-'+s);document.querySelectorAll('.sz-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick').includes("'"+s+"'")));try{localStorage.setItem('ac_sz',s)}catch(e){}}
+(function(){try{const s=localStorage.getItem('ac_sz');if(s)setSize(s)}catch(e){}})();
+
+// ═══ MOBILE ═══
+function isMobile(){return window.innerWidth<=680}
+function toggleMobileSidebar(){document.getElementById('sidebarEl').classList.toggle('mobile-open');document.getElementById('sidebarBackdrop').classList.toggle('show')}
+function closeMobileSidebar(){document.getElementById('sidebarEl').classList.remove('mobile-open');document.getElementById('sidebarBackdrop').classList.remove('show')}
+
+// ═══ TOUR ═══
+const TOUR_STEPS=[
+  {target:()=>document.querySelector('.t-right'),arrow:'tour-arrow-t',offset:{top:'below',left:'align-right'},title:'Navegación superior',desc:'Acá arriba tenés el cronómetro ⏱, las pistas 💡, el tamaño de letra (A A A), modo claro/oscuro, y la Pizarra 📌.'},
+  {target:()=>document.getElementById('btnPiz'),arrow:'tour-arrow-t',offset:{top:'below',left:'align-right'},title:'La pizarra',desc:'Tomá notas, arrastrá tarjetas y conectalas con hilos. Tu espacio de trabajo durante la investigación.'},
+  {target:()=>document.getElementById('sidebarEl'),arrow:'tour-arrow-l',offset:{top:60,left:'right'},title:'Navegación lateral',desc:'Todos los documentos organizados en carpetas. Las carpetas 2 y 3 están bloqueadas — se desbloquean resolviendo enigmas.'},
+  {target:()=>document.getElementById('page-resumen'),arrow:'tour-arrow-t',offset:{top:80,left:20},title:'¡A investigar!',desc:'Empezá por el Resumen y explorá la Carpeta 1. Resolvé el Enigma 1 para avanzar. Buena suerte.',isLast:true}
+];
+let tourI=0;
+function startTour(){tourI=0;renderTourStep();document.getElementById('tourOverlay').classList.add('active')}
+function skipTour(){document.getElementById('tourOverlay').classList.remove('active')}
+function tourStep(){const step=TOUR_STEPS[tourI];if(step&&step.action)step.action();tourI++;if(tourI>=TOUR_STEPS.length){skipTour();return}setTimeout(renderTourStep,350)}
+function renderTourStep(){
+  const step=TOUR_STEPS[tourI];if(!step)return;
+  const el=step.target();if(!el)return;
+  document.getElementById('tourDots').innerHTML=TOUR_STEPS.map((_,i)=>'<div class="tour-dot'+(i===tourI?' on':'')+'"></div>').join('');
+  document.getElementById('tourNum').textContent='PASO '+(tourI+1)+' DE '+TOUR_STEPS.length;
+  document.getElementById('tourTitle').textContent=step.title;
+  document.getElementById('tourDesc').textContent=step.desc;
+  document.getElementById('tourNext').textContent=step.isLast?'EMPEZAR →':'SIGUIENTE →';
+  const hl=document.getElementById('tourHL');const r=el.getBoundingClientRect();
+  hl.style.top=(r.top-4)+'px';hl.style.left=(r.left-4)+'px';hl.style.width=(r.width+8)+'px';hl.style.height=(r.height+8)+'px';
+  const tt=document.getElementById('tourTT');tt.className='tour-tooltip '+step.arrow;
+  const pad=14;let ttTop,ttLeft;
+  if(step.offset.top==='below'){ttTop=r.bottom+pad}else if(step.offset.left==='right'){ttTop=r.top}else{ttTop=r.top+step.offset.top}
+  if(step.offset.left==='right'){ttLeft=r.right+pad}else if(step.offset.left==='align-right'){ttLeft=r.right-270}else{ttLeft=r.left+step.offset.left}
+  ttTop=Math.max(10,Math.min(ttTop,window.innerHeight-200));ttLeft=Math.max(10,Math.min(ttLeft,window.innerWidth-285));
+  tt.style.top=ttTop+'px';tt.style.left=ttLeft+'px';
+}
+</script>
+</body>
+</html>
