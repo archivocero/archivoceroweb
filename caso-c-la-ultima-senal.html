@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIVO_CERO // Caso C — La Última Señal</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px}html.sz-s{font-size:11px}html.sz-m{font-size:13px}html.sz-l{font-size:16px}
+:root{
+  --bg:#09100d;--bg2:#0d1510;--bg3:#111a14;--bg4:#151f17;
+  --border:#1a2a1e;--border2:#243529;
+  --green:#3dff7a;--green-dim:#1a6b38;--green-muted:#0f2a1a;
+  --amber:#e8a830;--amber-dim:#5a3f08;--amber-muted:#1e1508;
+  --red:#e84444;--red-muted:#2a0f0f;
+  --text:#c8d9cc;--text-dim:#6f8a72;--text-mid:#8aab90;
+  --locked-text:#2d4535;--locked:#1a2a1e;
+  --font-mono:"IBM Plex Mono",monospace;--font-display:"Share Tech Mono",monospace;--font-sans:"IBM Plex Sans",sans-serif;
+  --top:48px;--foot:32px;--sb:230px;--piz:33vw;
+}
+html.light{--bg:#e8e0d0;--bg2:#ddd5c4;--bg3:#d2c9b8;--bg4:#c8bfac;--border:#b8ad98;--border2:#a8a088;--green:#1a6b38;--green-dim:#0f4020;--green-muted:#c8ddc8;--amber:#8a5a00;--amber-dim:#c49030;--amber-muted:#f0e0b0;--red:#9b1010;--red-muted:#f0d0d0;--text:#1a1a14;--text-dim:#52483a;--text-mid:#3a3428;--locked-text:#a09080;--locked:#d2c9b8}
+.docs-panel{cursor:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\'%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'7\' fill=\'none\' stroke=\'%233dff7a\' stroke-width=\'2\'/%3E%3Cline x1=\'15\' y1=\'15\' x2=\'21\' y2=\'21\' stroke=\'%233dff7a\' stroke-width=\'2\' stroke-linecap=\'round\'/%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'1\' fill=\'%233dff7a\'/%3E%3C/svg%3E") 10 10,zoom-in}
+.splash{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;padding:24px 16px}
+.splash-backdrop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 65% 20%,rgba(61,255,122,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 90% at 10% 80%,rgba(232,168,48,.05) 0%,transparent 55%)}
+.splash-bgtext{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:var(--font-display);font-size:clamp(8rem,32vw,26rem);color:rgba(61,255,122,.008);pointer-events:none;user-select:none;line-height:1;white-space:nowrap}
+.splash-casenum{position:absolute;top:7rem;right:2rem;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.3em;color:rgba(61,255,122,.25);writing-mode:vertical-rl;pointer-events:none}
+.splash-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.splash.hidden{display:none}
+.splash-pre{font-size:.85rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:18px}
+.splash-scan{font-size:0.69rem;color:var(--green-dim);letter-spacing:.2em;margin-bottom:30px;animation:blink 1.8s infinite}
+.splash-title{font-family:var(--font-display);font-size:clamp(24px,4.5vw,48px);color:var(--green);letter-spacing:.1em;text-align:center;line-height:1.15;margin-bottom:14px;animation:flicker 7s infinite}
+@keyframes flicker{0%,89%,100%{opacity:1;text-shadow:0 0 18px rgba(61,255,122,.25)}89.3%{opacity:.3;text-shadow:none}89.9%{opacity:1;text-shadow:0 0 22px rgba(61,255,122,.35)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.splash-sub{font-size:1rem;color:var(--text-mid);letter-spacing:.04em;text-align:center;max-width:480px;line-height:1.7;margin-bottom:32px}
+.splash-meta{display:flex;gap:28px;margin-bottom:36px}
+.splash-meta-item{text-align:center}
+.splash-meta-label{font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px}
+.splash-meta-val{font-size:.85rem;color:var(--text)}
+.splash-btn{font-family:var(--font-display);font-size:1.08rem;color:var(--green);border:1px solid var(--green-dim);background:var(--green-muted);padding:14px 36px;cursor:pointer;letter-spacing:.2em;transition:all .2s}
+.splash-btn:hover{background:var(--green-dim)}
+.splash-warning{font-size:.85rem;color:var(--text-dim);margin-top:22px;letter-spacing:.06em}
+.sp-icon{width:16px;height:16px;fill:var(--green);flex-shrink:0}
+.timer-wrap{display:flex;align-items:center;gap:6px}
+.timer-display{font-family:var(--font-display);font-size:1rem;color:var(--amber);letter-spacing:.15em;min-width:52px}
+.timer-display.urgent{color:var(--red);animation:blink .8s infinite}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:1rem;display:flex;flex-direction:column;transition:background .3s,color .3s}
+.topbar{height:var(--top);display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;z-index:100}
+.t-left{display:flex;align-items:center;gap:12px}
+.t-logo{font-family:var(--font-display);font-size:1.08rem;color:var(--green);letter-spacing:.12em;text-decoration:none}
+.t-sep{color:var(--border2)}.t-case{font-size:.85rem;color:var(--text-dim);letter-spacing:.1em}
+.t-badge{font-size:.69rem;padding:3px 8px;border:1px solid var(--amber-dim);color:var(--amber);background:var(--amber-muted);letter-spacing:.12em}
+.t-right{display:flex;align-items:center;gap:10px}
+.t-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:blink 2.5s infinite}
+.t-status{font-size:.69rem;color:var(--text-dim);letter-spacing:.1em}
+.tbtn{font-family:var(--font-mono);font-size:.77rem;border:1px solid var(--border2);background:transparent;padding:5px 11px;cursor:pointer;letter-spacing:.06em;color:var(--text-dim);transition:all .15s}
+.tbtn:hover{border-color:var(--text-dim);color:var(--text)}
+.tbtn.amber{color:var(--amber);border-color:var(--amber-dim)}
+.tbtn.amber:hover,.tbtn.amber.active{background:var(--amber-muted);border-color:var(--amber)}
+.shell{flex:1;display:flex;overflow:hidden;height:calc(100vh - var(--top) - var(--foot))}
+.sidebar{width:var(--sb);background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--border2)}
+.sb-free{padding:6px 0;border-bottom:1px solid var(--border)}
+.sb-free-label{padding:7px 14px 4px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em}
+.sb-section{border-bottom:1px solid var(--border)}
+.sb-head{padding:8px 14px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
+.sb-head::before{content:"▸";font-size:.62rem;color:var(--green-dim);transition:transform .15s;flex-shrink:0}
+.sb-head.open::before{transform:rotate(90deg)}
+.fb{font-size:.62rem;padding:1px 6px;letter-spacing:.08em;margin-left:auto;flex-shrink:0}
+.fb-open{background:var(--green-muted);color:var(--green);border:1px solid var(--green-dim)}
+.fb-locked{background:var(--locked);color:var(--locked-text);border:1px solid var(--locked-text)}
+.sb-items{display:none}.sb-items.open{display:block}
+.sb-item{display:flex;align-items:center;gap:7px;padding:6px 14px 6px 22px;font-size:.85rem;color:var(--text-mid);cursor:pointer;border-left:2px solid transparent;transition:all .1s}
+.sb-item:hover{background:var(--bg3);color:var(--text)}
+.sb-item.active{background:var(--bg3);color:var(--green);border-left-color:var(--green)}
+.sb-item.locked{color:var(--locked-text);cursor:not-allowed;pointer-events:none}
+.sb-item.visited:not(.active){color:var(--green-dim)}
+.sb-icon{font-size:.77rem;width:12px;text-align:center;flex-shrink:0}
+.sb-lock{font-size:.69rem;color:var(--locked-text);margin-left:auto}
+.sb-prog{margin-top:auto;border-top:1px solid var(--border);padding:10px 14px}
+.sb-prog-label{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px}
+.sb-prog-bar{height:2px;background:var(--border)}
+.sb-prog-fill{height:100%;background:var(--green-dim);transition:width .4s}
+.sb-prog-pct{font-size:.69rem;color:var(--green-dim);margin-top:3px}
+.content-area{flex:1;display:flex;overflow:hidden;position:relative;min-width:0}
+.docs-panel{flex:1;overflow-y:auto;overflow-x:hidden;padding:22px 28px;background:var(--bg);min-width:320px;overscroll-behavior:contain}
+.docs-panel::-webkit-scrollbar{width:8px}.docs-panel::-webkit-scrollbar-track{background:var(--bg2)}.docs-panel::-webkit-scrollbar-thumb{background:var(--green-dim);border-radius:2px}
+.breadcrumb{font-size:.77rem;color:var(--text-dim);letter-spacing:.08em;margin-bottom:18px;display:flex;align-items:center;gap:5px}
+.bc-sep{color:var(--green-dim)}
+.page{display:none;max-width:660px;animation:fadein .18s ease}.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.pizarra-panel{width:0;background:var(--bg2);border-left:1px solid var(--border);overflow:hidden;flex-shrink:0;display:flex;flex-direction:column;transition:width .2s ease}
+.pizarra-panel.open{width:var(--piz);min-width:var(--piz);max-width:var(--piz)}
+.pizarra-panel.fullscreen{position:fixed;inset:var(--top) 0 var(--foot) 0;width:100%!important;z-index:200}
+.piz-inner{width:var(--piz);height:100%;display:flex;flex-direction:column;overflow:hidden}
+.pizarra-panel.fullscreen .piz-inner{width:100%}
+.piz-topbar{padding:9px 12px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.piz-title{font-size:.69rem;color:var(--amber);letter-spacing:.18em}
+.piz-topbar-btns{display:flex;gap:6px}
+.piz-btn{font-family:var(--font-mono);font-size:.69rem;padding:4px 8px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);transition:all .15s}
+.piz-btn:hover{border-color:var(--text-dim);color:var(--text)}
+.piz-tools{display:flex;gap:5px;padding:8px 10px;border-bottom:1px solid var(--border);flex-wrap:wrap;flex-shrink:0}
+.piz-tool{font-family:var(--font-mono);font-size:.69rem;padding:4px 9px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-dim);display:flex;align-items:center;gap:4px;transition:all .15s}
+.piz-tool:hover{background:var(--bg3);color:var(--text)}
+.piz-tool.active{border-color:var(--amber);color:var(--amber);background:var(--amber-muted)}
+.piz-tool .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.piz-canvas-wrap{flex:1;overflow:hidden;position:relative}
+.piz-canvas{width:100%;height:100%;position:relative;background:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'4\' height=\'4\'%3E%3Crect width=\'4\' height=\'4\' fill=\'%23c8a060\'/%3E%3Ccircle cx=\'1\' cy=\'1\' r=\'.7\' fill=\'%23b08840\' opacity=\'.5\'/%3E%3C/svg%3E");overflow:hidden;cursor:default}
+.piz-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.cork-card{position:absolute;min-width:130px;max-width:190px;box-shadow:2px 3px 10px rgba(0,0,0,.45);cursor:grab;user-select:none;z-index:10}
+.cork-card:active{cursor:grabbing;z-index:50}
+.cork-card.selected{box-shadow:0 0 0 2px var(--amber),3px 4px 14px rgba(0,0,0,.55);z-index:40}
+.cork-chinche{width:12px;height:12px;border-radius:50%;position:absolute;top:-6px;left:50%;transform:translateX(-50%);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
+.cork-card-head{padding:5px 8px 4px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.12);display:flex;justify-content:space-between;align-items:center;cursor:grab}
+.cork-card-body{padding:7px 8px;font-size:.85rem;font-family:var(--font-sans);color:#2a2010;line-height:1.5;min-height:36px;word-break:break-word}
+.cork-card-body[contenteditable="true"]{outline:none;cursor:text}
+.cork-del{font-size:.77rem;color:#999;cursor:pointer;padding:0 1px;line-height:1;flex-shrink:0}
+.cork-del:hover{color:#c00}
+.card-nota{background:#fefbe8;border:1px solid #d4c060}.card-nota .cork-card-head{background:#f8e860;color:#5a3800}.card-nota .cork-chinche{background:#d03030}
+.card-sospechoso{background:#fff4ea;border:1px solid #d4a060}.card-sospechoso .cork-card-head{background:#ffd090;color:#4a1800}.card-sospechoso .cork-chinche{background:#b04000}
+.card-pista{background:#edfaea;border:1px solid #80c080}.card-pista .cork-card-head{background:#b8f0b0;color:#1a3810}.card-pista .cork-chinche{background:#207020}
+.card-hipotesis{background:#f0eeff;border:1px solid #a090d8}.card-hipotesis .cork-card-head{background:#c8b8f8;color:#201050}.card-hipotesis .cork-chinche{background:#5030b0}
+.footer{height:var(--foot);background:var(--bg2);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:.69rem;color:var(--text-dim);letter-spacing:.08em;flex-shrink:0;z-index:50}
+.case-hdr{border:1px solid var(--border2);background:var(--bg2);padding:18px 22px;margin-bottom:18px}
+.case-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.ch-ref{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px}
+.ch-title{font-family:var(--font-display);font-size:1.69rem;color:var(--green);letter-spacing:.08em}
+.ch-sub{font-size:.85rem;color:var(--text-mid);margin-top:4px;line-height:1.5}
+.ch-badge{font-size:.69rem;padding:3px 9px;border:1px solid var(--border2);color:var(--text-dim);white-space:nowrap}
+.case-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cm-l{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px}
+.cm-v{font-size:.92rem;color:var(--text)}
+.doc-card{border:1px solid var(--border2);background:var(--bg2);margin-bottom:12px}
+.dc-head{padding:8px 13px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.dc-title{font-size:.69rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
+.dc-ref{font-size:.69rem;color:var(--green-dim)}
+.dc-body{padding:14px 16px;line-height:1.85;font-size:.92rem;color:var(--text)}
+.dc-body p{margin-bottom:11px}.dc-body p:last-child{margin-bottom:0}
+.nota{border:1px solid var(--amber-dim);background:var(--amber-muted);padding:9px 13px;font-size:.85rem;color:var(--amber);letter-spacing:.03em;line-height:1.6;margin-bottom:12px;display:flex;gap:9px;align-items:flex-start}
+.nota.red{border-color:#5a1a1a;background:var(--red-muted);color:var(--red)}
+.informe{background:var(--bg3);border:1px solid var(--border2);margin-bottom:12px}
+.inf-hdr{background:var(--bg4);padding:12px 16px;border-bottom:1px solid var(--border2);text-align:center}
+.inf-org{font-size:.69rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:2px}
+.inf-tit{font-size:1rem;color:var(--text);letter-spacing:.1em;font-weight:500}
+.inf-sub{font-size:.77rem;color:var(--text-dim);margin-top:2px}
+.inf-body{padding:14px 16px}
+.inf-row{display:flex;gap:8px;margin-bottom:7px;font-size:.92rem}
+.inf-k{color:var(--text-dim);width:200px;flex-shrink:0}.inf-v{color:var(--text)}
+.inf-sep{border:none;border-top:1px solid var(--border);margin:10px 0}
+.inf-nota{font-size:.85rem;color:var(--text-mid);font-style:italic;line-height:1.7;margin-bottom:8px}
+.wa-shell{background:#1a1a2e;font-family:-apple-system,"Segoe UI",sans-serif;margin-bottom:12px;border:1px solid #2a2a4a}
+.wa-bar{background:#075e54;color:white;padding:8px 13px;display:flex;align-items:center;gap:9px}
+.wa-av{width:32px;height:32px;border-radius:50%;background:#128c7e;display:flex;align-items:center;justify-content:center;font-size:.92rem;font-weight:600;color:white;flex-shrink:0}
+.wa-name{font-size:1rem;font-weight:500}.wa-last{font-size:.77rem;opacity:.75}
+.wa-msgs{padding:10px 8px;background:#0d1117}
+.wa-msg{margin-bottom:4px;display:flex}.wa-msg.out{justify-content:flex-end}
+.wa-bubble{max-width:74%;padding:6px 9px 4px;border-radius:8px;line-height:1.5;font-size:.92rem;color:#e0e0e0}
+.wa-msg.in .wa-bubble{background:#1e2d3d;border-top-left-radius:0}
+.wa-msg.out .wa-bubble{background:#1a3a2a;border-top-right-radius:0}
+.wa-time{font-size:.77rem;color:#606060;text-align:right;margin-top:2px}
+.wa-date{text-align:center;margin:7px 0;font-size:.77rem;color:#505050}
+.wa-date span{background:#1a1a2e;padding:2px 9px;border-radius:10px}
+.carta{background:#f5f0e6;color:#1a1a1a;padding:30px 38px;font-family:"Times New Roman",serif;font-size:1rem;line-height:1.85;border:1px solid #ddd;margin-bottom:12px}
+.carta-head{display:flex;justify-content:space-between;margin-bottom:20px;font-size:.85rem;color:#555}
+.carta p{margin-bottom:12px}
+.carta-firma{margin-top:22px;font-style:italic;color:#444}
+.sosp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sosp-card{background:var(--bg2);border:1px solid var(--border2);overflow:hidden}
+.sosp-photo{aspect-ratio:4/5;background:var(--bg4);overflow:hidden;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.sosp-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.sosp-initial{font-family:var(--font-display);font-size:2.5rem;color:var(--green-dim);opacity:.5}
+.sosp-info{padding:10px}
+.sosp-name{font-size:.92rem;color:var(--text);letter-spacing:.05em;margin-bottom:2px}
+.sosp-role{font-size:.77rem;color:var(--text-dim);margin-bottom:8px}
+.sosp-dato{font-size:.77rem;color:var(--text-mid);margin-bottom:3px;line-height:1.4}
+.sosp-coartada{font-size:.69rem;color:var(--amber);border-top:1px solid var(--border);padding-top:7px;margin-top:7px;line-height:1.5}
+.sosp-coartada span{color:var(--text-mid)}
+.cipher-wrap{background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;margin:12px 0}
+.cipher-label{font-size:.69rem;color:var(--green-dim);letter-spacing:.15em;margin-bottom:8px}
+.cipher-txt{font-family:var(--font-display);font-size:1.38rem;color:var(--green);letter-spacing:.25em}
+.enigma-block{background:var(--amber-muted);border:1px solid var(--amber-dim);padding:14px 16px;margin-top:14px}
+.enigma-label{font-size:.69rem;color:var(--amber);letter-spacing:.15em;margin-bottom:10px}
+.enigma-row{display:flex;gap:7px}
+.enigma-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:9px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.enigma-input:focus{border-color:var(--green-dim)}
+.enigma-submit{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.85rem;padding:0 16px;cursor:pointer;white-space:nowrap}
+.enigma-submit:hover{background:var(--green-dim)}
+.enigma-msg{font-size:.85rem;margin-top:8px;padding:6px 10px;display:none}
+.enigma-msg.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.enigma-msg.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+.val-section{background:var(--bg2);border:1px solid var(--border2);padding:18px;margin-bottom:14px}
+.val-q{font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:8px}
+.val-label{font-size:.92rem;color:var(--text);margin-bottom:10px;line-height:1.5}
+.val-row{display:flex;gap:7px;margin-bottom:6px}
+.val-input{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:9px 12px;letter-spacing:.25em;text-transform:uppercase;outline:none}
+.val-input:focus{border-color:var(--green-dim)}
+.val-check{background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.77rem;padding:0 14px;cursor:pointer;white-space:nowrap;letter-spacing:.06em}
+.val-check:hover{background:var(--green-dim)}
+.val-fb{font-size:.77rem;padding:4px 8px;display:none}
+.val-fb.ok{display:block;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim)}
+.val-fb.err{display:block;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a}
+.submit-wrap{display:none;margin-top:16px}.submit-wrap.show{display:block}
+.submit-btn{width:100%;background:var(--green-muted);border:1px solid var(--green);color:var(--green);font-family:var(--font-display);font-size:1.08rem;padding:14px;cursor:pointer;letter-spacing:.2em;transition:all .2s}
+.spotify-teaser{border:1px solid var(--border2);background:var(--bg2);overflow:hidden;margin-bottom:12px}
+.spotify-teaser:hover{border-color:var(--green-dim)}
+.btn-spotify-toggle{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:.77rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);padding:12px 14px;text-align:left}
+.btn-spotify-toggle:hover{color:var(--green);background:var(--green-muted)}
+.sp-arrow{font-size:.62rem;margin-left:auto;transition:transform .2s}
+.spotify-teaser.open .sp-arrow{transform:rotate(180deg)}
+.sp-wrap{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.spotify-teaser.open .sp-wrap{max-height:160px}
+.hint-panel{background:var(--bg3);border:1px solid var(--border2);margin-bottom:14px;display:none}
+.hint-panel.active{display:block}
+.hint-header{padding:8px 13px;border-bottom:1px solid var(--border)}
+.hint-title{font-size:.69rem;color:var(--amber);letter-spacing:.15em}
+.hint-content{padding:12px 14px;font-size:.85rem;color:var(--text-mid);line-height:1.7}
+.hint-menu{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+.hint-menu-btn{font-family:var(--font-mono);font-size:.77rem;padding:6px 12px;border:1px solid var(--amber-dim);background:var(--amber-muted);color:var(--amber);cursor:pointer;letter-spacing:.06em;transition:all .15s}
+.hint-menu-btn:hover{background:var(--amber-dim)}
+.sz-btn{font-family:var(--font-mono);font-size:.69rem;padding:4px 8px;border:1px solid var(--border2);background:transparent;color:var(--text-dim);cursor:pointer;transition:all .15s}
+.sz-btn:hover,.sz-btn.active{border-color:var(--green-dim);color:var(--green)}
+.mobile-menu-btn{display:none}
+.sidebar-backdrop{display:none;position:fixed;inset:var(--top) 0 var(--foot) 0;background:rgba(0,0,0,.6);z-index:140}
+.sidebar-backdrop.show{display:block}
+.nota-ms{background:#fdfcf0;border:1px solid #c8b870;padding:22px 28px;font-family:"Times New Roman",serif;font-size:.92rem;color:#1a1a10;line-height:1.85;margin-bottom:12px}
+.nota-ms-pre{font-size:.69rem;color:#806030;letter-spacing:.15em;margin-bottom:14px;font-family:var(--font-mono)}
+.nota-ms p{margin-bottom:10px}
+
+.wifi-log{background:var(--bg3);border:1px solid var(--border2);margin-bottom:12px}
+.wifi-hdr{background:var(--bg4);padding:7px 12px;border-bottom:1px solid var(--border2);font-size:.69rem;color:var(--text-dim);letter-spacing:.15em}
+.wifi-row{padding:6px 12px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 140px 1fr;font-size:.85rem;color:var(--text)}
+.wifi-row:last-child{border-bottom:none}
+/* TOUR */
+.tour-overlay{position:fixed;inset:0;z-index:600;pointer-events:none;display:none}
+.tour-overlay.active{display:block;pointer-events:all}
+.tour-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
+.tour-highlight{position:absolute;border:2px solid var(--amber);box-shadow:0 0 0 3px rgba(232,168,48,.25);transition:all .35s ease;pointer-events:none;z-index:2}
+.tour-tooltip{position:absolute;background:var(--bg2);border:1px solid var(--amber-dim);padding:16px 18px;width:270px;z-index:3;animation:fadein .2s ease}
+.tour-arrow-l::before,.tour-arrow-t::before,.tour-arrow-r::before{content:"";position:absolute;width:9px;height:9px;background:var(--bg2);transform:rotate(45deg)}
+.tour-arrow-l::before{left:-5px;top:20px;border-bottom:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-t::before{top:-5px;left:22px;border-top:1px solid var(--amber-dim);border-left:1px solid var(--amber-dim)}
+.tour-arrow-r::before{right:-5px;top:20px;border-top:1px solid var(--amber-dim);border-right:1px solid var(--amber-dim)}
+.tour-num{font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:4px}
+.tour-title{font-family:var(--font-display);font-size:1rem;color:var(--text);letter-spacing:.08em;margin-bottom:7px}
+.tour-desc{font-size:.85rem;color:var(--text-mid);line-height:1.65;margin-bottom:13px}
+.tour-footer{display:flex;align-items:center;gap:7px}
+.tour-next{font-family:var(--font-mono);font-size:.77rem;padding:6px 13px;cursor:pointer;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);letter-spacing:.08em}
+.tour-next:hover{background:var(--amber-dim)}
+.tour-skip{font-family:var(--font-mono);font-size:.77rem;padding:6px 10px;cursor:pointer;background:transparent;border:1px solid var(--border2);color:var(--text-dim);letter-spacing:.06em}
+.tour-skip:hover{color:var(--text);border-color:var(--text-dim)}
+.tour-dots{display:flex;gap:4px;margin-left:auto}
+.tour-dot{width:5px;height:5px;border-radius:50%;background:var(--border2)}
+.tour-dot.on{background:var(--amber)}
+@media(max-width:1024px){:root{--sb:200px;--piz:300px}.sosp-grid{grid-template-columns:1fr 1fr}.case-meta{grid-template-columns:1fr 1fr 1fr;gap:8px}}
+@media(max-width:900px){:root{--sb:170px;--piz:280px}.docs-panel{padding:14px}.t-case,.t-badge{display:none}}
+@media(max-width:680px){:root{--top:84px;--foot:26px}.topbar{flex-wrap:wrap;height:auto;padding:8px 12px;gap:8px}.t-left,.t-right{width:100%;justify-content:space-between}.t-case,.t-badge,.t-status,.t-dot{display:none}.shell{position:relative}.sidebar{position:fixed;top:var(--top);left:0;bottom:var(--foot);width:78vw;max-width:300px;z-index:150;transform:translateX(-100%);transition:transform .25s ease;box-shadow:4px 0 20px rgba(0,0,0,.4)}.sidebar.mobile-open{transform:translateX(0)}.sidebar-backdrop{display:none;position:fixed;inset:var(--top) 0 var(--foot) 0;background:rgba(0,0,0,.6);z-index:140}.sidebar-backdrop.show{display:block}.docs-panel{padding:14px 14px 80px;min-width:0}.mobile-menu-btn{display:flex!important;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-family:var(--font-mono);font-size:.7rem;padding:6px 10px;cursor:pointer}.pizarra-panel.open{position:fixed;inset:var(--top) 0 var(--foot) 0;width:100%!important;min-width:0!important;z-index:160}.piz-inner{width:100%!important}.val-row{flex-direction:column;gap:6px}.val-check{padding:9px;width:100%}.enigma-row{flex-direction:column}.enigma-submit{padding:9px;width:100%}.carta{padding:18px 16px}}
+@media(max-width:380px){.sidebar{width:88vw}.case-meta{grid-template-columns:1fr}.sosp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+<div class="splash-backdrop"></div>
+<div class="splash-bgtext">X</div>
+<div class="splash-casenum">CASO C · LA ÚLTIMA SEÑAL · ARCHIVO_CERO</div>
+<div class="splash-content">
+  <div class="splash-pre">ARCHIVO_CERO · SISTEMA SEGURO</div>
+  <div class="splash-scan">// CARGANDO EXPEDIENTE...</div>
+  <div class="splash-title">LA ÚLTIMA<br>SEÑAL</div>
+  <div class="splash-sub">Once minutos. Ciudades incomunicadas. Una organización que dice protegernos.</div>
+  <div style="width:100%;max-width:340px;margin-bottom:24px">
+    <div style="font-size:0.69rem;color:var(--amber);letter-spacing:.15em;margin-bottom:8px;text-align:center">🎧 ESCUCHÁ LA TRANSMISIÓN INTERCEPTADA Y, CUANDO TERMINE, INICIÁ LA INVESTIGACIÓN</div>
+    <div class="spotify-teaser" id="sp-splash" style="margin-bottom:0">
+      <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-splash')">
+        <svg class="sp-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        <span>▶ REPRODUCIR TEASER</span><span class="sp-arrow">▾</span>
+      </button>
+      <div class="sp-wrap"><iframe src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+  <div class="splash-meta">
+    <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">C</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">60–90 min</div></div>
+    <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Alta</div></div>
+  </div>
+  <button class="splash-btn" onclick="startCase()">▶ INICIAR INVESTIGACIÓN</button>
+  <div class="splash-warning">El cronómetro comienza al iniciar · Investigación individual o grupal</div>
+</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="t-left">
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ MENÚ</button>
+    <a href="#" class="t-logo" onclick="return false">ARCHIVO_CERO</a>
+    <span class="t-sep">//</span>
+    <span class="t-case">LA ÚLTIMA SEÑAL</span>
+    <span class="t-badge">CASO C</span>
+  </div>
+  <div class="t-right">
+    <div class="timer-wrap"><span style="font-size:.77rem;color:var(--text-dim)">⏱</span><span class="timer-display" id="timerDisp">00:00</span></div>
+    <div class="t-dot"></div>
+    <span class="t-status">SISTEMA ACTIVO</span>
+    <button class="tbtn sz-btn" onclick="setSize('s')">A−</button>
+    <button class="tbtn sz-btn active" onclick="setSize('m')">A</button>
+    <button class="tbtn sz-btn" onclick="setSize('l')">A+</button>
+    <button class="tbtn" onclick="toggleMode()">◑</button>
+    <button class="tbtn amber" id="btnPiz" onclick="togglePiz()">📌 PIZARRA</button>
+    <button class="tbtn amber" onclick="openHints()">💡 PISTAS</button>
+  </div>
+</div>
+
+<!-- SHELL -->
+<div class="shell">
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeMobileSidebar()"></div>
+<nav class="sidebar" id="sidebarEl">
+  <div class="sb-free" style="border-bottom:1px solid var(--border)">
+    <div class="sb-item" onclick="startTour()" style="color:var(--text-dim)"><span class="sb-icon">🔄</span>Ver tutorial de nuevo</div>
+  </div>
+  <div class="sb-free">
+    <div class="sb-free-label">// ACCESO LIBRE</div>
+    <div class="sb-item active" onclick="go('resumen')"><span class="sb-icon">▸</span>Resumen del caso</div>
+    <div class="sb-item" onclick="go('teaser')"><span class="sb-icon">▶</span>Transmisión interceptada</div>
+    <div class="sb-item" onclick="go('instrucciones')"><span class="sb-icon">▸</span>Cómo investigar</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 1<span class="fb fb-open" id="badge1">ABIERTA</span></div>
+    <div class="sb-items open">
+      <div class="sb-item" onclick="go('personas')"><span class="sb-icon">◈</span>Personas de interés (×4)</div>
+      <div class="sb-item" onclick="go('cronologia')"><span class="sb-icon">▤</span>Cronología — últimos días de Mara</div>
+      <div class="sb-item" onclick="go('celulas')"><span class="sb-icon">◈</span>Células y comunicados</div>
+      <div class="sb-item" onclick="go('informe-desaparicion')"><span class="sb-icon">▤</span>Informe de la desaparición</div>
+      <div class="sb-item" onclick="go('apuntes-mara')"><span class="sb-icon">✎</span>Apuntes de Mara</div>
+      <div class="sb-item" style="color:var(--amber);border-left:2px solid var(--amber-dim)" onclick="openEnigmaModal(1)"><span class="sb-icon">⊛</span>Enigma 1 — ingresar clave</div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head" title="Bloqueada: resolvé el enigma 1 para abrirla" onclick="toggleSB(this)">📁 CARPETA 2<span class="fb fb-locked" id="badge2">BLOQUEADA</span></div>
+    <div class="sb-items">
+      <div class="sb-item locked" id="item-decl-lia"><span class="sb-icon">▤</span>Declaración Lía Serrano<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-aaron"><span class="sb-icon">▤</span>Declaración Aarón Castex<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-valeria"><span class="sb-icon">▤</span>Declaración Valeria Núñez<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-decl-francisco"><span class="sb-icon">▤</span>Declaración Francisco Vidal<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-chat-lia"><span class="sb-icon">💬</span>Chat Mara-Lía<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-chat-valeria"><span class="sb-icon">💬</span>Chat Mara-Valeria<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-chat-francisco"><span class="sb-icon">💬</span>Chat Mara-Francisco<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-ficha-defensa"><span class="sb-icon">▤</span>Ficha de Defensa — NODO<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mapa-energia"><span class="sb-icon">🗺</span>Mapa de consumo eléctrico<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-memo-aaron"><span class="sb-icon">▤</span>Memo interno — Castex<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-frecuencias"><span class="sb-icon">📻</span>Frecuencias — sintonizador<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-notas-mara"><span class="sb-icon">✎</span>Notas de Mara<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="enigma2-sb-item" style="color:var(--amber-dim);border-left:2px solid transparent"><span class="sb-icon">⊛</span>Enigma 2 — ingresar clave<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head" title="Bloqueada: resolvé el enigma 2 para abrirla" onclick="toggleSB(this)">📁 CARPETA 3<span class="fb fb-locked" id="badge3">BLOQUEADA</span></div>
+    <div class="sb-items">
+      <div class="sb-item locked" id="item-registros"><span class="sb-icon">▤</span>Análisis de registros<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-accesos"><span class="sb-icon">▤</span>Registro de accesos — NODO<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-mensajes-finales"><span class="sb-icon">💬</span>Mensajes finales<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-informe-nodo"><span class="sb-icon">▤</span>Informe técnico — NODO<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-transmision"><span class="sb-icon">▤</span>Transmisión interceptada<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-reconstruccion"><span class="sb-icon">⏱</span>Reconstrucción del evento<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-espectrograma"><span class="sb-icon">〰</span>Espectrograma — 14:02:17<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="item-terminal"><span class="sb-icon">▮</span>Terminal — dispositivo de Mara<span class="sb-lock">🔒</span></div>
+      <div class="sb-item locked" id="enigma3-sb-item" style="color:var(--amber-dim);border-left:2px solid transparent"><span class="sb-icon">⊛</span>Enigma 3 — descifrar dispositivo<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-head open" onclick="toggleSB(this)">⊛ CIERRE</div>
+    <div class="sb-items open">
+      <div class="sb-item locked" id="item-validacion"><span class="sb-icon">✓</span>Resolver el caso<span class="sb-lock">🔒</span></div>
+    </div>
+  </div>
+  <div style="padding:8px 12px;border-top:1px solid var(--border)">
+    <button onclick="confirmReset()" style="width:100%;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;padding:6px;cursor:pointer;letter-spacing:.06em;transition:all .15s" onmouseover="this.style.color='var(--red)';this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--text-dim)';this.style.borderColor='var(--border2)'">↺ REINICIAR CASO</button>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-label">PROGRESO</div>
+    <div class="sb-prog-bar"><div class="sb-prog-fill" id="progFill" style="width:3%"></div></div>
+    <div class="sb-prog-pct" id="progPct">3%</div>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="content-area">
+<div class="docs-panel" id="docsPanel">
+<div class="breadcrumb"><span>ARCHIVO_CERO</span><span class="bc-sep">›</span><span id="bcFolder"></span><span class="bc-sep" id="bcFolderSep"></span><span id="bcCurrent">Resumen del caso</span></div>
+<!-- RESUMEN -->
+<div class="page active" id="page-resumen">
+  <div class="case-hdr">
+    <div class="case-hdr-top">
+      <div>
+        <div class="ch-ref">REF: AC-C · DESAPARICIÓN · CONSPIRACIÓN</div>
+        <div class="ch-title">LA ÚLTIMA SEÑAL</div>
+        <div class="ch-sub">Caso C — Archivo Cero</div>
+      </div>
+      <div class="ch-badge">EXP-C-2048</div>
+    </div>
+    <div class="case-meta">
+      <div><div class="cm-l">Desaparecida</div><div class="cm-v">Mara Vidal</div></div>
+      <div><div class="cm-l">Última vez vista</div><div class="cm-v">13 dic. 2047</div></div>
+      <div><div class="cm-l">Estado</div><div class="cm-v">Sin paradero</div></div>
+    </div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">SITUACIÓN INICIAL</span><span class="dc-ref">RES-C-00</span></div>
+    <div class="dc-body">
+      <p>Año 2048. Hace seis años, durante exactamente 11 minutos, las comunicaciones del planeta colapsaron: internet, telefonía, satélites. Quedó registrado oficialmente como <strong>Evento 2042</strong>; la gente lo llama <strong>Los 11 Minutos</strong>. Y en ese lapso millones de dispositivos recibieron el mismo mensaje: <strong>NO RESPONDAN</strong>. Nadie supo quién lo envió ni cómo llegó a todos a la vez.</p>
+      <p>Después del evento, las grandes ciudades fueron cerradas y reorganizadas como células independientes. Cada una con su gobierno, su energía, sus registros. Ninguna puede comunicarse libremente con otra. El único vínculo autorizado es una organización llamada <strong>X</strong>.</p>
+      <p>Mara Vidal era técnica de recuperación de datos en X. Después de ocho meses investigando por su cuenta, en diciembre de 2047 dejó de presentarse a trabajar. X sostiene que abandonó su puesto voluntariamente. Su familia dice que es imposible.</p>
+      <p style="color:var(--green)">Ahora una transmisión clandestina menciona su nombre. Tu objetivo: descubrir <strong>qué ocultaba X</strong>, <strong>qué desencadenó el colapso</strong> y <strong>para qué lo usaron después</strong>.</p>
+    </div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">LA INVESTIGACIÓN</span><span class="dc-ref">RES-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;line-height:1.9;color:var(--text-mid)">
+      <p style="margin:0 0 10px;color:var(--text)">Empieza con una pregunta aparentemente sencilla: <strong>¿quién envió el mensaje "NO RESPONDAN"?</strong></p>
+      <p style="margin:0">Pero a medida que aparecen archivos, registros, transmisiones y testimonios, la pregunta cambia:<br>· ¿Qué era realmente NODO?<br>· ¿Qué ocurrió durante esos 11 minutos?<br>· ¿Por qué X necesitaba controlar las comunicaciones entre las ciudades?<br>· ¿Por qué existen registros que contradicen la cronología oficial?<br>· ¿Qué descubrió Mara antes de desaparecer?<br>· ¿Quién es realmente Lía?<br>· Y, sobre todo: <strong style="color:var(--amber)">¿a quién estaba dirigido el mensaje "NO RESPONDAN"?</strong></p>
+    </div>
+  </div>
+  <div class="nota"><span>⚠</span><span>El expediente tiene 3 carpetas. Dos enigmas abren las carpetas 2 y 3, y un tercero abre una terminal con lo que Mara copió. Lo que hay adentro abre el cierre del caso. Algunos documentos contienen información falsa o contradictoria. Usá la <strong>Pizarra</strong> para cruzar datos.</span></div>
+</div>
+
+<!-- TEASER -->
+<div class="page" id="page-teaser">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">AUDIO DISPARADOR — TRANSMISIÓN INTERCEPTADA</span><span class="dc-ref">EV-C-00 · AUDIO</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Transmisión clandestina captada en una frecuencia no autorizada. La señal se corta antes del final.</div>
+  </div>
+  <div class="spotify-teaser" id="sp-teaser">
+    <button class="btn-spotify-toggle" onclick="toggleSpotify('sp-teaser')">
+      <svg class="sp-icon" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      <span>▶ REPRODUCIR TEASER</span><span class="sp-arrow">▾</span>
+    </button>
+    <div class="sp-wrap"><iframe src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+  </div>
+  <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px">
+    <div style="background:var(--bg2);border:1px solid var(--border2)">
+      <div style="padding:7px 13px;border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;background:var(--bg4)">
+        <span style="font-family:var(--font-display);font-size:.75rem;color:var(--text-mid);letter-spacing:.12em">TRANSCRIPCIÓN · TRANSMISIÓN CLANDESTINA</span>
+        <span style="font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">EV-C-00 · AUDIO</span>
+      </div>
+      <div style="padding:8px 13px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">
+        <div><span>ORIGEN </span><span style="color:var(--text-mid)">No identificado</span></div>
+        <div><span>VOZ </span><span style="color:var(--text-mid)">Femenina</span></div>
+      </div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)">
+        <p style="margin:0 0 10px;font-style:italic">"Nos dijeron que las ciudades estaban aisladas para protegernos."</p>
+        <p style="margin:0 0 10px;font-style:italic">"Nos mintieron."</p>
+        <p style="margin:0 0 10px;font-style:italic">"Si estás escuchando esto, significa que encontraste un archivo que nunca debería haber existido."</p>
+        <p style="margin:0 0 10px;font-style:italic">"Buscá a Mara Vidal."</p>
+        <p style="margin:0 0 10px;font-style:italic">"Ella descubrió qué pasó durante los 11 minutos."</p>
+        <p style="margin:0 0 10px;font-style:italic">"Y si todavía sigue ahí afuera… no podemos permitir que X la encuentre primero."</p>
+        <p style="margin:0 0 10px;color:var(--text-dim)">[ Interferencia. La señal se corta. ]</p>
+        <p style="margin:0 0 10px;font-style:italic">"Si recibís una transmisión…"</p>
+        <p style="margin:0;font-style:italic">"NO RESPONDAS."</p>
+      </div>
+      <div style="padding:6px 13px 10px;display:flex;justify-content:flex-end"><span style="font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">transcripción automática · puede contener errores</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTRUCCIONES -->
+<div class="page" id="page-instrucciones">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-C</span></div>
+    <div class="dc-body">
+      <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong>. Dos enigmas abren las carpetas 2 y 3, y un tercero abre una terminal con lo que Mara copió: de ahí sale el cierre. Cada enigma requiere cruzar información de más de un documento — no hay respuesta que venga de una sola fuente.</p>
+      <p><strong style="color:var(--red)">Atención:</strong> algunos documentos contienen información falsa o contradictoria. Parte del trabajo es detectar qué no cierra. Prestá especial atención a los <strong>horarios</strong>.</p>
+      <p>Usá la <strong style="color:var(--amber)">Pizarra</strong> para arrastrar tarjetas, conectarlas con hilos y registrar contradicciones. Se guarda automáticamente.</p>
+      <p>Atención: algunos documentos no están escritos. Se sintonizan, se ordenan, se ajustan o se teclean. La validación final tiene <strong style="color:var(--green)">3 preguntas</strong>, una palabra cada una, sin acentos.</p>
+    </div>
+  </div>
+  <div class="nota red"><span>⚠</span><span>No todos los testimonios son honestos, y X controla qué documentos llegan hasta vos. Si algo no cierra con otro documento, anotalo — esa contradicción es parte de la respuesta.</span></div>
+</div>
+
+<!-- PERSONAS DE INTERÉS -->
+<div class="page" id="page-personas">
+  <div class="doc-card" style="margin-bottom:14px">
+    <div class="dc-head"><span class="dc-title">PERSONAS DE INTERÉS</span><span class="dc-ref">PERS-C</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Las cuatro personas con información relevante sobre la desaparición de Mara Vidal.</div>
+  </div>
+  <div class="sosp-grid">
+    <div class="sosp-card">
+      <div class="sosp-photo" style="position:relative"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg4);font-family:var(--font-display);font-size:2.4rem;color:var(--green-dim);letter-spacing:.1em">LS</div><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1792507980/20_u1mjzz.png" alt="Retrato de Lía Serrano" loading="lazy" style="position:relative" onerror="this.style.display='none'"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Lía Serrano</div>
+        <div class="sosp-role">Ex técnica de comunicaciones de X · 38 años</div>
+        <div class="sosp-dato">Trabajó nueve años en X. Ayudó a construir el sistema que mantiene conectadas las ciudades.</div>
+        <div class="sosp-dato">Desapareció de la red dos meses antes que Mara. X la considera una terrorista informativa.</div>
+        <div class="sosp-dato">Transmite desde puntos cambiantes de la red. Dice que quiere devolverle la verdad a la población.</div>
+        <div class="sosp-coartada">ESTADO: <span>Paradero desconocido. Es la voz de la transmisión clandestina. Nadie sabe si quiere liberar a las ciudades o algo peor.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo" style="position:relative"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg4);font-family:var(--font-display);font-size:2.4rem;color:var(--green-dim);letter-spacing:.1em">AC</div><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1792507980/21_zocpnf.png" alt="Retrato de Aarón Castex" loading="lazy" style="position:relative" onerror="this.style.display='none'"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Aarón Castex</div>
+        <div class="sosp-role">Director de Registros de X · 54 años</div>
+        <div class="sosp-dato">Jefe directo de Mara. Firmó el informe oficial que dice que ella abandonó su puesto voluntariamente.</div>
+        <div class="sosp-dato">Es de las personas con más antigüedad en X. Tiene acceso total a los archivos de recuperación de datos.</div>
+        <div class="sosp-dato">Impecable, medido, nunca levanta la voz.</div>
+        <div class="sosp-coartada">VERSIÓN: <span>Dice que no tuvo contacto con Mara en sus últimas semanas y que su salida fue una decisión personal.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo" style="position:relative"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg4);font-family:var(--font-display);font-size:2.4rem;color:var(--green-dim);letter-spacing:.1em">VN</div><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1792507981/22_xaompg.png" alt="Retrato de Valeria Núñez" loading="lazy" style="position:relative" onerror="this.style.display='none'"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Valeria Núñez</div>
+        <div class="sosp-role">Técnica de recuperación de datos · 29 años</div>
+        <div class="sosp-dato">Compañera de Mara durante tres años. La última persona en hablar con ella.</div>
+        <div class="sosp-dato">Después de la desaparición fue trasladada a otra división, sin explicación.</div>
+        <div class="sosp-dato">Habla poco y mira siempre hacia la puerta.</div>
+        <div class="sosp-coartada">VERSIÓN: <span>Dice que Mara estaba asustada, pero no de X: de lo que había encontrado.</span></div>
+      </div>
+    </div>
+    <div class="sosp-card">
+      <div class="sosp-photo" style="position:relative"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg4);font-family:var(--font-display);font-size:2.4rem;color:var(--green-dim);letter-spacing:.1em">FV</div><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1792507981/23_ungdem.png" alt="Retrato de Francisco Vidal" loading="lazy" style="position:relative" onerror="this.style.display='none'"></div>
+      <div class="sosp-info">
+        <div class="sosp-name">Francisco Vidal</div>
+        <div class="sosp-role">Electricista · 31 años</div>
+        <div class="sosp-dato">Hermano menor de Mara. Presentó la denuncia por su desaparición.</div>
+        <div class="sosp-dato">Recibió un mensaje de ella pocos días antes de que dejara de responder.</div>
+        <div class="sosp-dato">No tiene acceso a ningún sistema de X. Su búsqueda es completamente externa.</div>
+        <div class="sosp-coartada">VERSIÓN: <span>No cree la versión oficial. Contactó a Lía por su cuenta, sin saber en quién confiar.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CRONOLOGÍA -->
+<div class="page" id="page-cronologia">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CRONOLOGÍA — ÚLTIMOS DÍAS DE MARA VIDAL</span><span class="dc-ref">CRON-C</span></div>
+    <div class="dc-body" style="padding:0">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead><tr style="background:var(--bg4);font-size:.69rem;color:var(--text-dim);letter-spacing:.1em"><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">FECHA</td><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">EVENTO</td><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">FUENTE</td></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">13 abr. 2047</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mara recupera un archivo dañado de la central y nota que su hora no coincide con el registro oficial.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Notas de Mara</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">Jul. 2047</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Encuentra referencias a una red anterior al evento que ningún informe oficial menciona.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Notas de Mara</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">Nov. 2047</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mara se reúne en secreto, dos veces, con Lía Serrano, ex integrante de X.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Declaración</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">2 dic. 2047</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mara solicita acceso a los archivos de la central de comunicaciones del evento de 2042.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro de accesos</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">5 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Valeria nota que Mara trabaja hasta tarde y evita hablar de lo que está recuperando.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Declaración</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">9 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mara le escribe a su hermano Francisco. Le pide no contarle a nadie de X.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Chat</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">11 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Último acceso registrado de Mara al sistema central de archivos.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro de accesos</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">12 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Se emite una orden de "reubicación administrativa" a nombre de Mara.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Informe oficial</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">13 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mara no se presenta a trabajar. Nadie vuelve a verla.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Informe oficial</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">14 dic.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Francisco denuncia la desaparición. X responde que abandonó su puesto voluntariamente.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Informe oficial</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px">Ago. 2048</td><td style="color:var(--text);padding:6px 11px">Comienza a circular una transmisión clandestina que menciona su nombre.</td><td style="color:var(--text-dim);padding:6px 11px">Transmisión</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- CÉLULAS Y COMUNICADOS -->
+<div class="page" id="page-celulas">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">X — DIRECCIÓN DE COORDINACIÓN</div>
+      <div class="inf-tit">CÉLULAS URBANAS — REGISTRO CON ENLACE ACTIVO</div>
+      <div class="inf-sub">Información para personal autorizado</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Célula 01 — Buenos Aires:</span><span class="inf-v">Administración, investigación y comunicaciones.</span></div>
+      <div class="inf-row"><span class="inf-k">Célula 02 — Córdoba:</span><span class="inf-v">Producción energética.</span></div>
+      <div class="inf-row"><span class="inf-k">Célula 03 — Rosario:</span><span class="inf-v">Producción alimentaria.</span></div>
+      <div class="inf-row"><span class="inf-k">Célula 04 — Mendoza:</span><span class="inf-v">Agua y agricultura.</span></div>
+      <div class="inf-row"><span class="inf-k">Célula 05 — Mar del Plata:</span><span class="inf-v">Infraestructura y logística.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">Este registro lista únicamente las células con enlace activo. No consta cuántas existen en total. Los habitantes de cada célula reciben información solo sobre la propia.</div>
+    </div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:14px;margin-bottom:12px">
+    <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:8px">// MAPA DE ENLACES CONOCIDOS</div>
+    <svg viewBox="0 0 400 230" width="100%" style="max-width:520px;display:block;margin:0 auto">
+      <g stroke="var(--green-dim)" stroke-width="1.2" fill="none">
+        <line x1="200" y1="115" x2="70" y2="40"/><line x1="200" y1="115" x2="330" y2="40"/>
+        <line x1="200" y1="115" x2="60" y2="190"/><line x1="200" y1="115" x2="340" y2="190"/>
+        <line x1="200" y1="115" x2="200" y2="30"/>
+      </g>
+      <g stroke="var(--text-dim)" stroke-width="1" stroke-dasharray="4 4" fill="none">
+        <line x1="200" y1="115" x2="130" y2="215"/><line x1="200" y1="115" x2="280" y2="215"/>
+      </g>
+      <circle cx="200" cy="115" r="20" fill="var(--bg3)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="200" y="120" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="16" fill="var(--amber)">X</text>
+      <g font-family="Share Tech Mono,monospace" font-size="9" fill="var(--green)" text-anchor="middle">
+        <circle cx="200" cy="30" r="9" fill="var(--bg3)" stroke="var(--green-dim)"/><text x="200" y="16">01 BUENOS AIRES</text>
+        <circle cx="70" cy="40" r="9" fill="var(--bg3)" stroke="var(--green-dim)"/><text x="70" y="26">02 CÓRDOBA</text>
+        <circle cx="330" cy="40" r="9" fill="var(--bg3)" stroke="var(--green-dim)"/><text x="330" y="26">03 ROSARIO</text>
+        <circle cx="60" cy="190" r="9" fill="var(--bg3)" stroke="var(--green-dim)"/><text x="60" y="212">04 MENDOZA</text>
+        <circle cx="340" cy="190" r="9" fill="var(--bg3)" stroke="var(--green-dim)"/><text x="340" y="212">05 MAR DEL PLATA</text>
+      </g>
+      <g font-family="Share Tech Mono,monospace" font-size="12" fill="var(--text-dim)" text-anchor="middle">
+        <circle cx="130" cy="215" r="9" fill="none" stroke="var(--text-dim)" stroke-dasharray="3 3"/><text x="130" y="219">?</text>
+        <circle cx="280" cy="215" r="9" fill="none" stroke="var(--text-dim)" stroke-dasharray="3 3"/><text x="280" y="219">?</text>
+      </g>
+    </svg>
+    <div style="font-size:.77rem;color:var(--text-mid);text-align:center;margin-top:6px">Línea continua: enlace confirmado. Línea punteada: posible célula sin registro.</div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">COMUNICADOS OFICIALES — TRES CÉLULAS</span><span class="dc-ref">COM-C-01</span></div>
+    <div class="dc-body" style="padding:0">
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead><tr style="background:var(--bg4);font-size:.69rem;color:var(--text-dim);letter-spacing:.1em"><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">CÉLULA · FECHA</td><td style="padding:7px 11px;border-bottom:1px solid var(--border2)">COMUNICADO DEL GOBIERNO LOCAL</td></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">Córdoba · 3 mar. 2046</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">"La fragmentación garantiza la supervivencia. Toda consulta sobre otras células deberá canalizarse a través de X." <span style="color:var(--text-mid)">— Circular n.º 10</span></td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">Rosario · 19 jul. 2046</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">"La fragmentación garantiza la supervivencia. Toda consulta sobre otras células deberá canalizarse a través de X." <span style="color:var(--text-mid)">— Circular n.º 6</span></td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px">Mendoza · 8 nov. 2046</td><td style="color:var(--text);padding:6px 11px">"La fragmentación garantiza la supervivencia. Toda consulta sobre otras células deberá canalizarse a través de X." <span style="color:var(--text-mid)">— Circular n.º 5</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- INFORME DE LA DESAPARICIÓN -->
+<div class="page" id="page-informe-desaparicion">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">X — DIVISIÓN DE PERSONAL · CÉLULA 01 BUENOS AIRES</div>
+      <div class="inf-tit">INFORME DE BAJA VOLUNTARIA — MARA VIDAL</div>
+      <div class="inf-sub">Firmado por A. Castex · 14 de diciembre de 2047</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Empleada:</span><span class="inf-v">Mara Vidal, 33 años. Técnica de recuperación de datos, nivel 4.</span></div>
+      <div class="inf-row"><span class="inf-k">Última presencia:</span><span class="inf-v">11 de diciembre de 2047, sector de archivos históricos.</span></div>
+      <div class="inf-row"><span class="inf-k">Motivo declarado:</span><span class="inf-v">Abandono voluntario del puesto. Sin notificación previa.</span></div>
+      <div class="inf-row"><span class="inf-k">Denunciante:</span><span class="inf-v">Francisco Vidal (hermano). La denuncia fue desestimada.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Pertenencias:</span><span class="inf-v">Su estación de trabajo fue vaciada el 12 de diciembre. No se registró inventario.</span></div>
+      <div class="inf-row"><span class="inf-k">Orden de reubicación:</span><span class="inf-v">Emitida el 12 de diciembre, un día <em>antes</em> de la ausencia.</span></div>
+      <div class="inf-row"><span class="inf-k">Estado de la investigación:</span><span class="inf-v">Cerrada por la Dirección de Registros.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">Se recomienda no dar curso a pedidos de información de familiares ni de terceros. El caso queda archivado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APUNTES DE MARA — ENIGMA 1 -->
+<div class="page" id="page-apuntes-mara">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">APUNTES — ESTACIÓN DE TRABAJO DE MARA VIDAL</span><span class="dc-ref">AP-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Papeles recuperados de la estación de trabajo de Mara antes de que fuera vaciada.</div>
+  </div>
+  <div class="nota-ms">
+    <div class="nota-ms-pre">LIBRETA DE CAMPO — TAPA INTERNA</div>
+    <p>Inscripción manuscrita en la tapa interna de la libreta de Mara, debajo de sus iniciales:</p>
+    <div style="margin-top:10px;font-family:var(--font-display);font-size:1.1rem;color:#403010;letter-spacing:.15em">M.V. — A→1</div>
+    <p style="font-size:.77rem;color:#806030;margin-top:8px">Sin más aclaraciones. Letra de Mara.</p>
+  </div>
+  <div class="nota-ms">
+    <div class="nota-ms-pre">LIBRETA DE CAMPO — ÚLTIMA PÁGINA CON ANOTACIONES</div>
+    <p>Página con varias columnas de números, anotadas en distintos momentos. Algunas tachadas.</p>
+    <div style="margin-top:12px;font-family:var(--font-mono);font-size:.85rem;color:#5a4010;line-height:2.2">
+      <div style="text-decoration:line-through;color:#a09060">13 · 01 · 18 · 01</div>
+      <div style="text-decoration:line-through;color:#a09060">24 · 20 · 05 · 26 · 14</div>
+      <div>21 · 08 · 11 · 04 · 19 · 02</div>
+      <div>12 · 03 · 16 · 22 · 07</div>
+      <div style="font-weight:600;color:#403010">15 · 18 · 09 · 07 · 05 · 14 ✓</div>
+    </div>
+  </div>
+  <div class="enigma-block">
+    <div class="enigma-label">// ENIGMA 1 — DESBLOQUEAR CARPETA 2</div>
+    <div class="enigma-row">
+      <input class="enigma-input" id="e1page" placeholder="_ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(1)">
+      <button class="enigma-submit" onclick="checkE(1)">VERIFICAR</button>
+    </div>
+    <div class="enigma-msg" id="e1pagemsg"></div>
+  </div>
+</div>
+
+<!-- DECL LÍA -->
+<div class="page" id="page-decl-lia">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">ENTREVISTA — LÍA SERRANO</span><span class="dc-ref">DECL-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Entrevista realizada por canal cifrado. 12 de agosto de 2048. Ubicación del entrevistado: no verificable.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Lía Serrano — Entrevista</span><span>12 ago. 2048 · 23:10</span></div>
+    <p>Trabajé nueve años en comunicaciones de X. Ayudé a construir la red que conecta las ciudades, así que sé exactamente cuánto cuesta mantenerla en silencio.</p>
+    <p>Me fui cuando empecé a encontrar referencias a algo llamado NODO. Aparecía en planos y presupuestos. Y las fechas eran anteriores a 2042. Pregunté, y a las dos semanas mi credencial estaba revocada.</p>
+    <p>A Mara la conocí en el turno de noche, hace años. Nos vimos dos veces en noviembre, a escondidas. Mara descubrió la verdad sobre lo que pasó durante Los 11 Minutos, y X lleva seis años ocultándola. Ella había encontrado una lectura horaria que no cerraba. Quería esperar a entender todo antes de publicar. Yo no. Yo creo que la gente tiene derecho a saber ya.</p>
+    <p>Mi teoría es simple: X fabricó todo el evento para quedarse con las ciudades. No creo que haya existido una señal real. Creo que se inventaron un enemigo.</p>
+    <p>Para esa fecha mi credencial ya estaba revocada. No toqué ningún sistema de X.</p>
+    <p>No sé dónde está Mara. Si lo supiera, no estaría transmitiendo, estaría yendo a buscarla. Y si alguien me dice que quiero hacer daño, que me explique qué es peor: mentirle a todas las ciudades o decirles la verdad.</p>
+    <div class="carta-firma">Lía Serrano — sin documento verificable</div>
+  </div>
+</div>
+
+<!-- DECL AARÓN -->
+<div class="page" id="page-decl-aaron">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — AARÓN CASTEX</span><span class="dc-ref">DECL-C-02</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Declaración tomada el 12 de agosto de 2048. Oficina de la Dirección de Registros, Célula 01.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Aarón Castex — Declaración</span><span>12 ago. 2048 · 11:00</span></div>
+    <p>Mara Vidal era una técnica competente que tomó una decisión personal. Lamento que su familia no pueda aceptarlo. No tuve contacto con ella durante sus últimas semanas en el puesto.</p>
+    <p>La orden de reubicación era un trámite rutinario, preparado hacía tiempo. Nada tuvo que ver con la salida de Mara.</p>
+    <p>Sobre NODO: fue un proyecto militar experimental de 2038, cancelado antes del evento. Es historia cerrada. X nació en 2042 para coordinar la supervivencia de las ciudades. Yo estaba presente cuando se creó. O mejor dicho, cuando se reorganizó todo.</p>
+    <p>El evento fue un ataque externo. Eso es lo que sabemos y lo que importa. La fragmentación de las ciudades es lo que nos mantiene vivos.</p>
+    <div class="carta-firma">Aarón Castex — Director de Registros, X</div>
+  </div>
+</div>
+
+<!-- DECL VALERIA -->
+<div class="page" id="page-decl-valeria">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — VALERIA NÚÑEZ</span><span class="dc-ref">DECL-C-03</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Declaración tomada el 12 de agosto de 2048. Lugar de encuentro fuera de las instalaciones de X.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Valeria Núñez — Declaración</span><span>12 ago. 2048 · 19:40</span></div>
+    <p>Trabajé con Mara tres años. Era la persona más metódica que conocí. Por eso me di cuenta de que algo andaba mal: dejó de ordenar sus archivos.</p>
+    <p>La noche del 11 de diciembre me fui a las diez y media y ella se quedó. Antes de irme la vi copiar algo en un dispositivo físico, uno chico. No me dijo qué. Me dijo: "Todo el mundo mira lo que llegó. Nadie mira lo que salió."</p>
+    <p>En el sector hay una teoría que nadie dice en voz alta: que la señal llegó antes de ser enviada, que vino de otro momento. Yo la anoté porque Mara me pidió una lista de lecturas de dispositivos civiles. Algunos teléfonos registraron el mensaje a las 14:01:52. Otros a las 14:03:40. No sé qué significa.</p>
+    <p>Al día siguiente su estación estaba vacía y yo recibí un traslado a otra división. Intenté consultar los registros de su cuenta y me rechazaron por falta de permisos. Nunca me dieron un motivo. Eso sí: me dejaron en un puesto más tranquilo, lejos de todo.</p>
+    <p>No tengo miedo de decir esto ahora. Tengo miedo de haberlo dicho antes de tiempo.</p>
+    <div class="carta-firma">Valeria Núñez — Legajo 4471</div>
+  </div>
+</div>
+
+<!-- DECL FRANCISCO -->
+<div class="page" id="page-decl-francisco">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">DECLARACIÓN — FRANCISCO VIDAL</span><span class="dc-ref">DECL-C-04</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Declaración tomada el 13 de agosto de 2048. Domicilio de la familia Vidal.</div>
+  </div>
+  <div class="carta">
+    <div class="carta-head"><span>Francisco Vidal — Declaración</span><span>13 ago. 2048 · 17:20</span></div>
+    <p>Mara es mi hermana mayor. Me crió, básicamente. No se va sin avisar. Nunca.</p>
+    <p>El 9 de diciembre me escribió que había encontrado algo y que no se lo contara a nadie de X. Yo no conozco a nadie de X, pero entendí lo que quería decir. Me pidió que guardara su tablet vieja, la que había dejado en lo de mamá.</p>
+    <p>En 2041 trabajé en mantenimiento eléctrico en un edificio de Parque Patricios que figuraba clausurado desde hacía años. Tenía la luz encendida, alimentación redundante y baterías nuevas. Nadie sabía para qué. Después de ver lo de Mara, me acordé de ese lugar.</p>
+    <p>Cuando X me dijo que se había ido por su cuenta, supe que mentían. Fui a la policía de la célula y me dijeron que no tenían jurisdicción sobre asuntos de X.</p>
+    <p>Hace unos meses empecé a escuchar la voz de Lía en una radio vieja. No sé si confiar. Pero es la única que dice lo que yo pienso.</p>
+    <div class="carta-firma">Francisco Vidal — DNI 36.220.145</div>
+  </div>
+</div>
+
+<!-- CHAT MARA-LÍA -->
+<div class="page" id="page-chat-lia">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — MARA VIDAL / LÍA SERRANO</span><span class="dc-ref">MSG-C-LIA</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Conversación recuperada de la tablet de Mara. Canal cifrado. Período: octubre a diciembre de 2047.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">L</div><div><div class="wa-name">Lía</div><div class="wa-last">canal cifrado</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Jueves 20 noviembre</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">Dejé X porque vi referencias a algo llamado NODO. Anterior a 2042.<div class="wa-time">22:14</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Yo encontré lo mismo. Mismo nombre, otros papeles.<div class="wa-time">22:20 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">No confíes en nadie del cuarto piso.<div class="wa-time">22:21</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">¿Ni en Aarón?<div class="wa-time">22:23 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Menos en Aarón.<div class="wa-time">22:24</div></div></div>
+      <div class="wa-date"><span>Viernes 28 noviembre</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">Probé la señal hace un rato, en la 91.7. ¿Me escuchaste?<div class="wa-time">21:30</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí. Se oía bien. Pero esperá, por favor.<div class="wa-time">21:34 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Esperar es lo que hicimos seis años.<div class="wa-time">21:35</div></div></div>
+      <div class="wa-date"><span>Lunes 8 diciembre</span></div>
+      <div class="wa-msg in"><div class="wa-bubble">Si lo publicás, yo transmito. Hay gente esperando.<div class="wa-time">21:02</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Todavía no. Falta entender qué pasó a las 14:02.<div class="wa-time">21:10 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">No importa qué pasó. Importa quién lo tapó.<div class="wa-time">21:11</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Sí importa, Lía. Si no entendemos qué había del otro lado, la verdad puede ser peor que la mentira.<div class="wa-time">21:15 ✓✓</div></div></div>
+      <div class="wa-date"><span>Miércoles 10 diciembre</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Te dejé algo en mis notas. Usé el código del espejo, el del turno de noche.<div class="wa-time">23:30 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Hace años que no lo uso. Lo busco.<div class="wa-time">23:41</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT MARA-VALERIA -->
+<div class="page" id="page-chat-valeria">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — MARA VIDAL / VALERIA NÚÑEZ</span><span class="dc-ref">MSG-C-VAL</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Conversación recuperada de la tablet de Mara. Mensajería interna. Período: diciembre de 2047.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">V</div><div><div class="wa-name">Vale</div><div class="wa-last">mensajería interna</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Viernes 5 diciembre</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Vale, ¿me pasás el índice de CC-2042 parte 3?<div class="wa-time">16:40 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Está restringido, Mara. Nivel 7.<div class="wa-time">16:44</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Pasame igual el índice, no el contenido.<div class="wa-time">16:45 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Qué estás buscando?<div class="wa-time">16:52</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Un error de reloj. O no.<div class="wa-time">16:53 ✓✓</div></div></div>
+      <div class="wa-date"><span>Jueves 11 diciembre</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Si mañana no me ves, pedile a Fran que busque mis notas.<div class="wa-time">23:40 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">No digas eso. ¿Dónde estás?<div class="wa-time">23:42</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Mara?<div class="wa-time">23:58</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT MARA-FRANCISCO -->
+<div class="page" id="page-chat-francisco">
+  <div class="doc-card" style="margin-bottom:8px">
+    <div class="dc-head"><span class="dc-title">CHAT — MARA VIDAL / FRANCISCO VIDAL</span><span class="dc-ref">MSG-C-FRAN</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Conversación proporcionada por Francisco Vidal. Período: diciembre de 2047.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">F</div><div><div class="wa-name">Fran</div><div class="wa-last">última vez 9 dic.</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-date"><span>Martes 9 diciembre</span></div>
+      <div class="wa-msg out"><div class="wa-bubble">Fran. Encontré algo. No se lo cuentes a nadie de X.<div class="wa-time">20:05 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">¿Estás bien?<div class="wa-time">20:08</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Todavía no sé. Guardá mi tablet vieja, la que dejé en lo de mamá. Está todo en las notas.<div class="wa-time">20:10 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble">Mara, me asustás.<div class="wa-time">20:11</div></div></div>
+      <div class="wa-msg out"><div class="wa-bubble">Perdón. Te quiero. En unos días te explico todo.<div class="wa-time">20:14 ✓✓</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FICHA DE DEFENSA -->
+<div class="page" id="page-ficha-defensa">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">MINISTERIO DE DEFENSA — REGISTRO DE PROYECTOS CLASIFICADOS</div>
+      <div class="inf-tit">FICHA — PROYECTO NODO</div>
+      <div class="inf-sub">Copia hallada en el archivo de la Dirección de Registros</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Nombre:</span><span class="inf-v">NODO.</span></div>
+      <div class="inf-row"><span class="inf-k">Tipo:</span><span class="inf-v">Sistema experimental de comunicaciones de campo.</span></div>
+      <div class="inf-row"><span class="inf-k">Incorporación al programa de Defensa:</span><span class="inf-v">2038.</span></div>
+      <div class="inf-row"><span class="inf-k">Estado:</span><span class="inf-v">Cancelado en 2039. Infraestructura desmantelada.</span></div>
+      <div class="inf-row"><span class="inf-k">Clasificación:</span><span class="inf-v">Reservado. Sin relación con eventos posteriores.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">La ficha no registra la fecha de origen del proyecto ni quién lo desarrolló antes de 2038.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MEMO AARÓN -->
+<div class="page" id="page-memo-aaron">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">X — DIRECCIÓN DE REGISTROS · USO INTERNO</div>
+      <div class="inf-tit">MEMORÁNDUM — REUBICACIÓN ADMINISTRATIVA</div>
+      <div class="inf-sub">De: A. Castex · Fecha: 12 de diciembre de 2047 · 00:30</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Asunto:</span><span class="inf-v">Cierre de acceso y reubicación — M. Vidal, nivel 4.</span></div>
+      <div class="inf-row"><span class="inf-k">Instrucción 1:</span><span class="inf-v">Revocar todos los accesos de la empleada a partir de la fecha. Vaciar estación de trabajo antes del inicio del turno.</span></div>
+      <div class="inf-row"><span class="inf-k">Instrucción 2:</span><span class="inf-v">Tratar el caso como baja voluntaria. No dar curso a pedidos de información de familiares ni de terceros.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Instrucción 3:</span><span class="inf-v" style="color:var(--red)">Toda referencia horaria del evento deberá consolidarse en 14:03:00. Quedan sin efecto las lecturas del sector satelital y de la central, por desfase de reloj.</span></div>
+      <div class="inf-row"><span class="inf-k">Distribución:</span><span class="inf-v">Seguridad interna. Personal de archivos nivel 7.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">Este memorándum no debe archivarse en el legajo de la empleada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTAS DE MARA — ENIGMA 2 -->
+<div class="page" id="page-notas-mara">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTAS — TABLET DE MARA VIDAL</span><span class="dc-ref">NC-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Contenido de la app de notas de la tablet vieja de Mara, entregada por su hermano Francisco.</div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "PENDIENTES"</span><span class="dc-ref">NC-C-02</span></div>
+    <div class="dc-body"><p style="color:var(--text-mid)">— Cumpleaños de Fran, jueves<br>— Pagar la cuota del filtro de agua<br>— Llamar a mamá</p></div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "14:02"</span><span class="dc-ref">NC-C-03</span></div>
+    <div class="dc-body"><p style="color:var(--text-mid)">No busquen qué ocurrió a las 14:03. El error está en 14:02. Tres lecturas, tres relojes. Comparar central, satélite y registro oficial. Alguien ordenó que coincidieran.</p></div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "★"</span><span class="dc-ref">NC-C-04</span></div>
+    <div class="dc-body">
+      <p style="color:var(--text-mid);font-size:.85rem;margin-bottom:12px">Nota sin título. Creada el 10 de diciembre, 23:28. Una sola línea.</p>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:16px;text-align:center">
+        <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--green);letter-spacing:.3em">ZMGVH</div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "MISMAS FRASES"</span><span class="dc-ref">NC-C-06</span></div>
+    <div class="dc-body"><p style="color:var(--text-mid)">Córdoba, Rosario, Mendoza. Mismo comunicado, misma coma. Tres gobiernos que no pueden hablarse entre sí y escriben igual. Lo único que cambia es el número de circular, y no tiene lógica: 10, 6, 5, en orden de fecha. Eso no es numeración. Leído de corrido parece un dial. Los protocolos también son idénticos. Demasiada coincidencia. Alguien los escribió a todos.</p></div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">NOTA: "SI ME PASA ALGO"</span><span class="dc-ref">NC-C-05</span></div>
+    <div class="dc-body"><p style="color:var(--text-mid)">Fran sabe dónde está la tablet. Lía sabe leer el espejo. Valeria sabe qué copié. Ninguno sabe todo. Eso es a propósito.</p></div>
+  </div>
+  <div class="enigma-block">
+    <div class="enigma-label">// ENIGMA 2 — DESBLOQUEAR CARPETA 3</div>
+    <div class="enigma-row">
+      <input class="enigma-input" id="e2page" placeholder="_ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(2)">
+      <button class="enigma-submit" onclick="checkE(2)">VERIFICAR</button>
+    </div>
+    <div class="enigma-msg" id="e2pagemsg"></div>
+  </div>
+</div>
+
+<!-- FRECUENCIAS -->
+<div class="page" id="page-frecuencias">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">SINTONIZADOR — BANDA LIBRE</span><span class="dc-ref">FRQ-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Receptor de campo recuperado de la estación de Mara. Rango: 88.0 a 108.0 MHz. Algunas emisiones solo se captan en la frecuencia exacta. La emisión oficial de X se capta en 88.5. Mara dejó el receptor encendido en su estación.</div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:16px;margin-bottom:12px">
+    <div style="text-align:center;margin-bottom:10px">
+      <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px">FM · MHz</div>
+      <div id="tuneFreq" style="font-family:var(--font-display);font-size:2.6rem;color:var(--green);letter-spacing:.12em">98.0</div>
+    </div>
+    <div style="height:6px;background:var(--bg4);border:1px solid var(--border2);margin-bottom:14px"><div id="tuneBar" style="height:100%;width:0%;background:var(--green-dim);transition:width .15s"></div></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="tuneStep(-0.1)" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);padding:8px 12px;cursor:pointer">−0.1</button>
+      <input type="range" id="tuneSlider" min="88.0" max="108.0" step="0.1" value="98.0" oninput="tuneUpdate()" style="flex:1;accent-color:var(--green)">
+      <button onclick="tuneStep(0.1)" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);padding:8px 12px;cursor:pointer">+0.1</button>
+    </div>
+  </div>
+  <div id="tuneOut" style="background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;min-height:150px;font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)"></div>
+</div>
+
+<!-- MAPA DE CONSUMO -->
+<div class="page" id="page-mapa-energia">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">MAPA DE CONSUMO ELÉCTRICO — DÍA DEL EVENTO</span><span class="dc-ref">MAP-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Consumo registrado a las 14:00 del día del Evento 2042, según la red de distribución de cada célula. Tocá un punto para ver su ficha y marcá los que te parezcan sospechosos. Un edificio clausurado no debería consumir energía.</div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:12px;margin-bottom:12px">
+    <svg id="energySvg" viewBox="0 0 400 295" width="100%" style="max-width:560px;display:block;margin:0 auto;background:var(--bg3);border:1px solid var(--border2)"></svg>
+    <div id="energyStatus" style="font-family:var(--font-mono);font-size:.77rem;color:var(--text-mid);text-align:center;margin-top:8px">Marcados: 0</div>
+    <div id="energyList" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px;margin-top:12px"></div>
+  </div>
+  <div id="energyInfo" style="background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;min-height:120px;font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)">Seleccioná un punto del mapa.</div>
+  <div style="margin-top:10px;text-align:right"><button onclick="energyReset()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.69rem;padding:6px 12px;cursor:pointer;letter-spacing:.08em">↺ BORRAR MARCAS</button></div>
+</div>
+
+<!-- RECONSTRUCCIÓN DEL EVENTO -->
+<div class="page" id="page-reconstruccion">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">RECONSTRUCCIÓN DEL EVENTO</span><span class="dc-ref">REC-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Ordená en la línea de tiempo los hechos que ocurrieron entre la primera señal y el colapso. Tocá un hecho para seleccionarlo y luego tocá el lugar donde va. Hay hechos que no pertenecen a esta ventana.</div>
+  </div>
+  <div id="recSlots" style="display:grid;gap:6px;margin-bottom:12px"></div>
+  <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:6px">// HECHOS DISPONIBLES</div>
+  <div id="recPool" style="display:grid;gap:6px;margin-bottom:12px"></div>
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="recVerify()" style="flex:1;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:12px;padding:11px;cursor:pointer;letter-spacing:.12em">VERIFICAR ORDEN</button>
+    <button onclick="recReset()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-display);font-size:12px;padding:11px 16px;cursor:pointer;letter-spacing:.1em">↺</button>
+  </div>
+  <div id="recMsg" style="font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)"></div>
+</div>
+
+<!-- ESPECTROGRAMA -->
+<div class="page" id="page-espectrograma">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">ESPECTROGRAMA — SEÑAL DE LAS 14:02:17</span><span class="dc-ref">ESP-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Captura del satélite SAT-7 del momento en que se detectó la señal externa. El espectro está saturado de ruido. Ajustá el umbral de sensibilidad hasta que algo se separe del fondo: la señal lleva una marca incrustada.</div>
+  </div>
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:12px;margin-bottom:12px">
+    <canvas id="specCanvas" width="600" height="240" style="width:100%;display:block;background:#000;border:1px solid var(--border2)"></canvas>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+      <span style="font-size:.69rem;color:var(--text-dim);letter-spacing:.12em">UMBRAL</span>
+      <input type="range" id="specThr" min="0" max="100" value="0" oninput="specRender()" style="flex:1;accent-color:var(--green)">
+      <span id="specThrVal" style="font-family:var(--font-display);font-size:.85rem;color:var(--green);min-width:36px;text-align:right">0.00</span>
+    </div>
+  </div>
+</div>
+
+<!-- TERMINAL -->
+<div class="page" id="page-terminal">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">TERMINAL — DISPOSITIVO DE MARA</span><span class="dc-ref">TRM-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Contenido del dispositivo que Mara copió. Acceso restringido: requiere la cuenta usada en la copia y una clave. Escribí <strong style="color:var(--green)">ayuda</strong> para ver los comandos.</div>
+  </div>
+  <div style="background:#050805;border:1px solid var(--border2);padding:12px;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:var(--green)">
+    <div id="termOut" style="height:300px;overflow-y:auto;white-space:pre-wrap;word-break:break-word"></div>
+    <div style="display:flex;gap:6px;align-items:center;border-top:1px solid var(--border2);margin-top:8px;padding-top:8px">
+      <span style="color:var(--amber)">&gt;</span>
+      <input id="termIn" autocomplete="off" autocapitalize="off" spellcheck="false" style="flex:1;background:transparent;border:none;outline:none;color:var(--green);font-family:var(--font-mono);font-size:.85rem" onkeydown="if(event.key==='Enter')termRun()">
+    </div>
+  </div>
+</div>
+
+<!-- ANÁLISIS DE REGISTROS -->
+<div class="page" id="page-registros">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">ARCHIVO 2042 — ANÁLISIS COMPARATIVO DE LECTURAS</div>
+      <div class="inf-tit">LOS ONCE MINUTOS — TRES RELOJES</div>
+      <div class="inf-sub">Reconstrucción a partir de archivos recuperados · Uso reservado</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Registro oficial de X:</span><span class="inf-v">14:03:00 — TRANSMISIÓN INICIADA.</span></div>
+      <div class="inf-row"><span class="inf-k">Central de comunicaciones CC-2042:</span><span class="inf-v">14:02:41 — TRANSMISIÓN RECIBIDA.</span></div>
+      <div class="inf-row"><span class="inf-k">Satélite SAT-7 (declarado fuera de servicio):</span><span class="inf-v" style="color:var(--red)">14:02:17 — SEÑAL DETECTADA.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Lecturas de dispositivos civiles:</span><span class="inf-v">El mensaje NO RESPONDAN figura recibido entre 14:01:52 y 14:03:40, según el dispositivo. Dispersión: 108 segundos.</span></div>
+      <div class="inf-row"><span class="inf-k">Hipótesis descartada:</span><span class="inf-v">Una señal que viaja en el tiempo explicaría lecturas anteriores al evento. No es necesaria. La dispersión es compatible con relojes sobrescritos: durante el colapso, la red experimental emitió una sincronización forzada que alteró las marcas horarias de millones de dispositivos y de varios registros.</span></div>
+      <div class="inf-row"><span class="inf-k">Hallazgo:</span><span class="inf-v">Las tres lecturas oficiales no son contradictorias entre sí: describen eventos distintos. 14:02:17 es algo que entra. 14:02:41 es algo que sale. 14:03:00 es el colapso.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">La orden de consolidar todo en 14:03:00 elimina de la historia el lapso entre la primera señal y el colapso, en el que alguien tomó una decisión.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRO DE ACCESOS -->
+<div class="page" id="page-accesos">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">REGISTRO DE ACCESOS — SISTEMA CENTRAL DE ARCHIVOS</span><span class="dc-ref">ACC-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Extracto del registro de accesos de la Célula 01. Período: diciembre de 2047. Recuperado de un servidor de respaldo.</div>
+  </div>
+  <div class="wifi-log">
+    <div class="wifi-hdr">// MARTES 2 DE DICIEMBRE DE 2047</div>
+    <div class="wifi-row" style="background:var(--bg4);font-size:.69rem;color:var(--text-dim)"><span>HORA</span><span>USUARIO</span><span>ACCIÓN</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">09:14</span><span>M. Vidal</span><span style="color:var(--text-mid)">Solicitud CC-2042, partes 1 y 2 — Concedido</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">09:52</span><span>M. Vidal</span><span style="color:var(--text-mid)">Solicitud CC-2042, parte 3 — Denegado (nivel 7)</span></div>
+  </div>
+  <div class="wifi-log">
+    <div class="wifi-hdr">// JUEVES 11 DE DICIEMBRE DE 2047</div>
+    <div class="wifi-row" style="background:var(--bg4);font-size:.69rem;color:var(--text-dim)"><span>HORA</span><span>USUARIO</span><span>ACCIÓN</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">22:47</span><span>M. Vidal</span><span style="color:var(--text-mid)">Lectura NODO / registro 14:02 — Concedido (credencial: L. Serrano, estado: revocada)</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">23:05</span><span>M. Vidal</span><span style="color:var(--text-mid)">Copia a dispositivo externo — Registrada</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">23:20</span><span>No identificado</span><span style="color:var(--text-mid)">Intento de acceso externo, credencial L. Serrano — Bloqueado</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">23:21</span><span>Sistema</span><span style="color:var(--text-mid)">Alerta de seguridad: acceso externo con credencial revocada — notificada a A. Castex</span></div>
+  </div>
+  <div class="wifi-log">
+    <div class="wifi-hdr">// VIERNES 12 DE DICIEMBRE DE 2047</div>
+    <div class="wifi-row" style="background:var(--bg4);font-size:.69rem;color:var(--text-dim)"><span>HORA</span><span>USUARIO</span><span>ACCIÓN</span></div>
+    <div class="wifi-row" style="background:rgba(232,68,68,.05)"><span style="color:var(--text-dim)">00:12</span><span style="color:#e89090">A. Castex</span><span style="color:#e89090">Acceso a estación de M. Vidal — Historial de sesión eliminado</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">00:30</span><span>A. Castex</span><span style="color:var(--text-mid)">Emisión de memorándum de reubicación</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">07:50</span><span>A. Castex</span><span style="color:var(--text-mid)">Traslado de V. Núñez a Archivo Pasivo — categoría 4 → 5</span></div>
+    <div class="wifi-row"><span style="color:var(--text-mid)">08:40</span><span>V. Núñez</span><span style="color:var(--text-mid)">Consulta de cuenta M. Vidal — Denegado (sin permisos)</span></div>
+  </div>
+</div>
+
+<!-- MENSAJES FINALES -->
+<div class="page" id="page-mensajes-finales">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">MENSAJES FINALES — TABLET DE MARA VIDAL</span><span class="dc-ref">MSG-C-02</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Últimos mensajes registrados antes de la desaparición.</div>
+  </div>
+  <div class="wa-shell">
+    <div class="wa-bar"><div class="wa-av">V</div><div><div class="wa-name">Vale</div></div></div>
+    <div class="wa-msgs">
+      <div class="wa-msg out"><div class="wa-bubble">Si mañana no me ves, pedile a Fran que busque mis notas.<div class="wa-time">23:40 ✓✓</div></div></div>
+      <div class="wa-msg in"><div class="wa-bubble" style="color:#808080;font-style:italic">Mara? — sin respuesta</div></div>
+    </div>
+  </div>
+  <div class="doc-card" style="margin-top:8px">
+    <div class="dc-head"><span class="dc-title">MENSAJE PROGRAMADO — ENVIADO AUTOMÁTICAMENTE EL 14 DE DICIEMBRE</span><span class="dc-ref">MSG-C-03</span></div>
+    <div class="dc-body">
+      <p style="color:var(--text-mid);font-size:.85rem;margin-bottom:10px">Mara había configurado un mensaje diferido para su hermano, que se envió un día después de su desaparición. Adjunto: <strong style="color:var(--amber)">DISPOSITIVO_MV.enc</strong> (archivo cifrado).</p>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:14px 16px;font-style:italic;color:var(--text-mid);font-size:.92rem;line-height:1.7">
+        "Fran, si leés esto es porque no pude volver. No me fui. Todos creen que importa lo que llegó ese día. Importa lo que mandamos nosotros. "No respondan" no era un aviso para la gente: era para quien respondiera. NODO existía antes de que existiera X. Perdoname por no habértelo dicho. Adjunto lo que copié. Está cifrado: la clave es el tiempo que borraron, los segundos entre la primera señal y el comienzo oficial. Cuidate de todos, incluso de los que dicen ayudar."
+      </div>
+      <p style="font-size:.77rem;color:var(--text-mid);margin-top:8px">Destinatario: Francisco Vidal</p>
+    </div>
+  </div>
+  <div class="enigma-block">
+    <div class="enigma-label">// ENIGMA 3 — DESCIFRAR EL DISPOSITIVO · DESBLOQUEAR LA TERMINAL</div>
+    <div class="enigma-row">
+      <input class="enigma-input" id="e3page" placeholder="_ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(3)">
+      <button class="enigma-submit" onclick="checkE(3)">VERIFICAR</button>
+    </div>
+    <div class="enigma-msg" id="e3pagemsg"></div>
+  </div>
+</div>
+
+<!-- INFORME TÉCNICO NODO -->
+<div class="page" id="page-informe-nodo">
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">RECUPERACIÓN DE DATOS — ANÁLISIS DE ARQUITECTURA</div>
+      <div class="inf-tit">NODO — RED EXPERIMENTAL DE COMUNICACIONES AUTÓNOMAS</div>
+      <div class="inf-sub">Reconstrucción a partir de planos y registros presupuestarios · Confidencial</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">Creación:</span><span class="inf-v">2036. Proyecto civil con financiamiento parcial del área de Defensa.</span></div>
+      <div class="inf-row"><span class="inf-k">Objetivo:</span><span class="inf-v">Mantener conectados los sistemas críticos aunque las redes convencionales dejaran de existir.</span></div>
+      <div class="inf-row"><span class="inf-k">Cierre oficial:</span><span class="inf-v">2039.</span></div>
+      <div class="inf-row"><span class="inf-k">Estado real:</span><span class="inf-v" style="color:var(--red)">Operativa hasta 2042. Los nodos físicos siguieron consumiendo energía bajo la partida "mantenimiento de infraestructura".</span></div>
+      <div class="inf-row"><span class="inf-k">Equipo fundador:</span><span class="inf-v">Incluye a A. Castex (coordinación de registros). El mismo equipo dio origen a X.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">Registro interno NODO:</span><span class="inf-v">14:02:17 — recepción de señal externa. Origen: desconocido.<br>14:02:38 — consola de Dirección solicita respuesta.<br>14:02:41 — respuesta enviada.<br>14:02:58 — mensaje entrante: NO RESPONDAN.<br>14:03:00 — inicio del colapso.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">Se descarta que NODO fuera un sistema exclusivamente militar: Defensa se incorporó en 2038, dos años después de su creación, y su operación siempre fue civil. Se descarta que la señal haya sido un ataque convencional: nadie atacó nada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSMISIÓN INTERCEPTADA -->
+<div class="page" id="page-transmision">
+  <div class="doc-card">
+    <div class="dc-head"><span class="dc-title">CANAL INTERNO DE X — FRAGMENTOS</span><span class="dc-ref">TRX-C-01</span></div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-mid)">Fragmentos de audio del canal interno de la central, recuperados por Lía Serrano. Día del evento, 2042.</div>
+  </div>
+  <div class="informe">
+    <div class="inf-hdr">
+      <div class="inf-org">CENTRAL DE COMUNICACIONES — GRABACIÓN AUTOMÁTICA</div>
+      <div class="inf-tit">TRANSCRIPCIÓN PARCIAL — 14:02 A 14:20</div>
+    </div>
+    <div class="inf-body">
+      <div class="inf-row"><span class="inf-k">14:02:21</span><span class="inf-v">Operador: Estamos recibiendo algo por NODO. No es de ninguna red nuestra.</span></div>
+      <div class="inf-row"><span class="inf-k">14:02:35</span><span class="inf-v">Operador: ¿Respondemos?</span></div>
+      <div class="inf-row"><span class="inf-k">14:02:38</span><span class="inf-v" style="color:var(--red)">Voz masculina: Respondan. Yo me hago cargo. — Identificado: A. Castex.</span></div>
+      <div class="inf-row"><span class="inf-k">14:02:58</span><span class="inf-v">Operador: Entró un mensaje. Dice... "No respondan". Ya respondimos.</span></div>
+      <div class="inf-row"><span class="inf-k">14:03:00</span><span class="inf-v">[ fallan todos los sistemas del canal ]</span></div>
+      <hr class="inf-sep">
+      <div class="inf-row"><span class="inf-k">14:14:07</span><span class="inf-v">Voz masculina: Escúchenme todos. Nadie dice que respondimos. Nadie.</span></div>
+      <div class="inf-row"><span class="inf-k">14:19:40</span><span class="inf-v" style="color:var(--red)">Voz masculina: Cuando los gobiernos pregunten, la recomendación es una sola: cerrar las ciudades. Una por una. Que cada una crea que es la única que sobrevivió. Nosotros administramos el resto.</span></div>
+      <hr class="inf-sep">
+      <div class="inf-nota">La decisión que los gobiernos presentaron después como propia fue sugerida por X en los primeros veinte minutos.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VALIDACIÓN -->
+<div class="page" id="page-validacion">
+  <div class="doc-card" style="margin-bottom:14px">
+    <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-C</span></div>
+    <div class="dc-body" style="font-size:12px;color:var(--text-mid)">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula.</div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">01</div>
+    <div class="val-label">¿QUÉ era la red que X ocultó?</div>
+    <div class="val-row"><input class="val-input" id="v1" placeholder="_ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(1)"><button class="val-check" onclick="checkV(1)">VERIFICAR</button></div>
+    <div class="val-fb" id="f1"></div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">02</div>
+    <div class="val-label">¿QUÉ desencadenó el colapso de 2042?</div>
+    <div class="val-row"><input class="val-input" id="v2" placeholder="_ _ _ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(2)"><button class="val-check" onclick="checkV(2)">VERIFICAR</button></div>
+    <div class="val-fb" id="f2"></div>
+  </div>
+  <div class="val-section">
+    <div class="val-q">03</div>
+    <div class="val-label">¿PARA QUÉ usó X el desastre después? <span style="color:var(--text-mid);font-size:.8em">(lo que pasó a ejercer sobre las ciudades)</span></div>
+    <div class="val-row"><input class="val-input" id="v3" placeholder="_ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(3)"><button class="val-check" onclick="checkV(3)">VERIFICAR</button></div>
+    <div class="val-fb" id="f3"></div>
+  </div>
+  <div class="submit-wrap" id="submitWrap">
+    <button class="submit-btn" onclick="cerrarCaso()">⊛ CERRAR EL CASO →</button>
+  </div>
+  <div id="caseStamp" style="display:none;margin-top:24px">
+    <div style="text-align:center;padding:32px 20px;background:var(--bg2);border:1px solid var(--border2);margin-bottom:12px">
+      <svg viewBox="0 0 340 180" width="100%" style="opacity:.85;transform:rotate(-8deg);max-width:480px">
+        <ellipse cx="170" cy="90" rx="162" ry="82" fill="none" stroke="#c82020" stroke-width="7"/>
+        <ellipse cx="170" cy="90" rx="148" ry="68" fill="none" stroke="#c82020" stroke-width="2"/>
+        <text x="170" y="68" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="22" fill="#c82020" letter-spacing="10">CASO</text>
+        <text x="170" y="108" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="38" fill="#c82020" letter-spacing="5" font-weight="bold">RESUELTO</text>
+        <text x="170" y="132" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="12" fill="#c82020" letter-spacing="7">ARCHIVO_CERO · C</text>
+      </svg>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border2);padding:18px;margin-bottom:12px">
+      <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:8px">TIEMPO DE INVESTIGACIÓN</div>
+      <div style="font-family:var(--font-display);font-size:2rem;color:var(--amber);letter-spacing:.2em;margin-bottom:16px" id="stampTime">--:--</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿LA RED?</div>
+          <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">NODO</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿EL DETONANTE?</div>
+          <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">RESPUESTA</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿EL PROPÓSITO?</div>
+          <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">CONTROL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREGUNTA EXTRA -->
+    <div style="background:var(--bg2);border:1px solid var(--border2);padding:14px 16px;margin-bottom:12px">
+      <div style="font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:8px">// PREGUNTA EXTRA</div>
+      <div style="font-size:.9rem;color:var(--text);margin-bottom:10px">¿Quién dejó a Mara expuesta ante Castex?</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button onclick="answerExtra('LIA')" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);font-size:12px;padding:10px;cursor:pointer;letter-spacing:.1em">LÍA</button>
+        <button onclick="answerExtra('VALERIA')" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);font-size:12px;padding:10px;cursor:pointer;letter-spacing:.1em">VALERIA</button>
+        <button onclick="answerExtra('FRANCISCO')" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);font-size:12px;padding:10px;cursor:pointer;letter-spacing:.1em">FRANCISCO</button>
+        <button onclick="answerExtra('NADIE')" style="background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);font-size:12px;padding:10px;cursor:pointer;letter-spacing:.1em">NADIE: LO SUPO SOLO</button>
+      </div>
+      <div id="extraFb" style="margin-top:10px;font-size:.85rem;line-height:1.7;color:var(--text-mid)"></div>
+    </div>
+    <!-- BONUS: TRANSMISIÓN FINAL -->
+    <div id="bonusSignal" style="background:var(--bg2);border:1px solid var(--amber-dim);margin-bottom:12px">
+      <div style="padding:7px 13px;border-bottom:1px solid var(--amber-dim);background:var(--amber-muted);font-family:var(--font-display);font-size:.75rem;color:var(--amber);letter-spacing:.14em">// ARCHIVO RECUPERADO — MARA VIDAL · AUDIO</div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)">
+        <p style="margin:0 0 8px;font-style:italic">"Si estás escuchando esto, significa que encontraste el registro de las 14:02."</p>
+        <p style="margin:0 0 8px;font-style:italic">"X no creó las ciudades. Las ciudades fueron creadas para ocultar algo. No están aisladas entre sí."</p>
+        <p style="margin:0 0 8px;font-style:italic">"Están aisladas de nosotros."</p>
+        <p style="margin:0 0 8px;color:var(--text-mid)">[ interferencia ]</p>
+        <p style="margin:0 0 8px;font-style:italic">"Esperá..."</p>
+        <p style="margin:0 0 8px;color:var(--text-mid)">[ silencio ]</p>
+        <p style="margin:0 0 8px;font-style:italic;color:var(--amber)">"Hay alguien conectado."</p>
+        <p style="margin:0;color:var(--text-mid)">[ fin del audio ]</p>
+      </div>
+      <div id="signalPrompt" style="padding:14px 16px;border-top:1px solid var(--border2);text-align:center">
+        <div style="font-family:var(--font-display);font-size:.85rem;color:var(--green);letter-spacing:.2em;margin-bottom:4px">CONEXIÓN DETECTADA</div>
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:12px">ORIGEN: DESCONOCIDO · DURACIÓN: 00:11</div>
+        <div style="font-size:.85rem;color:var(--text);margin-bottom:12px">¿DESEA RESPONDER?</div>
+        <div style="display:flex;gap:10px">
+          <button onclick="answerSignal(true)" style="flex:1;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:13px;padding:11px;cursor:pointer;letter-spacing:.15em">[ SÍ ]</button>
+          <button onclick="answerSignal(false)" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-mid);font-family:var(--font-display);font-size:13px;padding:11px;cursor:pointer;letter-spacing:.15em">[ NO ]</button>
+        </div>
+      </div>
+      <div id="signalResult" style="display:none;padding:16px;border-top:1px solid var(--border2);text-align:center;font-family:var(--font-mono);font-size:.85rem;line-height:1.8"></div>
+      <div id="finalArchive" style="display:none;padding:14px 16px;border-top:1px solid var(--amber-dim);font-family:var(--font-mono);font-size:.85rem;line-height:1.8;color:var(--text-mid)">
+        <div style="font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:8px">ÚLTIMO ARCHIVO RECUPERADO · ORIGEN: 2039</div>
+        <p style="margin:0 0 8px;font-style:italic;color:var(--amber)">"Si están escuchando esto, significa que la primera prueba falló."</p>
+        <p style="margin:0 0 8px;font-style:italic;color:var(--amber)">"No intenten establecer contacto."</p>
+        <p style="margin:0 0 8px;font-style:italic;color:var(--amber)">"La segunda prueba ya comenzó."</p>
+        <p style="margin:0;color:var(--text-mid)">[ fin del archivo ]</p>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-bottom:12px">
+      <button onclick="openShareCard()" style="flex:1;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-display);font-size:12px;padding:13px;cursor:pointer;letter-spacing:.1em">📸 COMPARTIR EN REDES</button>
+      <button onclick="confirmReset()" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-display);font-size:12px;padding:13px;cursor:pointer;letter-spacing:.1em" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text-dim)'">✕ CERRAR EXPEDIENTE</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /docs-panel -->
+
+<!-- PIZARRA -->
+<div class="pizarra-panel" id="pizPanel">
+  <div class="piz-inner">
+    <div class="piz-topbar">
+      <span class="piz-title">PIZARRA DE INVESTIGACIÓN</span>
+      <div class="piz-topbar-btns">
+        <button class="piz-btn" id="btnFs" onclick="toggleFs()">⤢</button>
+        <button class="piz-btn" onclick="togglePiz()">✕</button>
+      </div>
+    </div>
+    <div class="piz-tools">
+      <button class="piz-tool" onclick="addCard('nota',40,40,'Nueva nota')"><span class="dot" style="background:#f8e860"></span>Nota</button>
+      <button class="piz-tool" onclick="addCard('sospechoso',40,40,'Persona')"><span class="dot" style="background:#ffd090"></span>Persona</button>
+      <button class="piz-tool" onclick="addCard('pista',40,40,'Pista')"><span class="dot" style="background:#b8f0b0"></span>Pista</button>
+      <button class="piz-tool" onclick="addCard('hipotesis',40,40,'Hipótesis')"><span class="dot" style="background:#c8b8f8"></span>Hipótesis</button>
+      <button class="piz-tool" id="lineBtn" onclick="toggleLineMode()">✏ Conectar</button>
+      <button class="piz-tool" onclick="clearLines()">✕ Hilos</button>
+      <button class="piz-tool" onclick="clearBoard()">🗑 Todo</button>
+    </div>
+    <div class="piz-canvas-wrap">
+      <div class="piz-canvas" id="pizCanvas" onclick="handleCanvasClick(event)">
+        <svg class="piz-svg" id="pizSvg"></svg>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /content-area -->
+</div><!-- /shell -->
+
+<div class="footer">
+  <span>CASO C — LA ÚLTIMA SEÑAL</span>
+  <span>archivo0.com.ar</span>
+  <span>@archivocero0</span>
+</div>
+
+<!-- TOUR -->
+<div class="tour-overlay" id="tourOverlay">
+  <div class="tour-backdrop" onclick="skipTour()"></div>
+  <div class="tour-highlight" id="tourHL"></div>
+  <div class="tour-tooltip" id="tourTT">
+    <div class="tour-num" id="tourNum"></div>
+    <div class="tour-title" id="tourTitle"></div>
+    <div class="tour-desc" id="tourDesc"></div>
+    <div class="tour-footer">
+      <button class="tour-next" id="tourNext" onclick="tourStep()">SIGUIENTE →</button>
+      <button class="tour-skip" onclick="skipTour()">SALTAR</button>
+      <div class="tour-dots" id="tourDots"></div>
+    </div>
+  </div>
+</div>
+
+<!-- RESET MODAL -->
+<div id="resetModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--red);padding:26px 28px;width:380px;max-width:95vw;text-align:center">
+    <div style="font-family:var(--font-display);font-size:.92rem;color:var(--red);letter-spacing:.12em;margin-bottom:14px">⚠ REINICIAR EL CASO</div>
+    <div style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin-bottom:22px">Esto va a borrar tu progreso: carpetas desbloqueadas, pistas usadas y notas de la pizarra.<br><br><strong style="color:var(--text)">¿Confirmás que querés empezar de cero?</strong></div>
+    <div style="display:flex;gap:10px">
+      <button onclick="closeResetModal()" style="flex:1;background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:11px;cursor:pointer">CANCELAR</button>
+      <button onclick="doReset()" style="flex:1;background:var(--red-muted);border:1px solid var(--red);color:var(--red);font-family:var(--font-mono);font-size:.77rem;padding:11px;cursor:pointer">SÍ, REINICIAR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ENIGMA MODAL -->
+<div id="enigmaModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--amber-dim);padding:22px;max-width:420px;width:90%">
+    <div style="font-family:var(--font-display);font-size:.92rem;color:var(--amber);letter-spacing:.12em;margin-bottom:14px" id="enigmaModalTitle"></div>
+    <p style="font-size:.85rem;color:var(--text-mid);line-height:1.7;margin-bottom:16px" id="enigmaModalText"></p>
+    <div id="enigmaModalMsg" style="display:none;font-size:11px;padding:7px 10px;margin-bottom:10px"></div>
+    <div style="display:flex;gap:7px">
+      <input id="enigmaModalInput" style="flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);font-size:1rem;padding:9px 12px;letter-spacing:.2em;text-transform:uppercase;outline:none" placeholder="PALABRA" onkeydown="if(event.key==='Enter')submitEnigmaModal()">
+      <button onclick="submitEnigmaModal()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:.85rem;padding:0 16px;cursor:pointer">OK</button>
+    </div>
+    <button onclick="closeEnigmaModal()" style="margin-top:12px;background:none;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:6px 14px;cursor:pointer;width:100%">CANCELAR</button>
+  </div>
+</div>
+
+<!-- HINTS MODAL -->
+<div id="hintsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:22px;max-width:480px;width:90%;max-height:80vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <span style="font-family:var(--font-display);font-size:1rem;color:var(--amber);letter-spacing:.12em">// SISTEMA DE PISTAS</span>
+      <button onclick="closeHints()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:1.2rem">✕</button>
+    </div>
+    <p style="font-size:.85rem;color:var(--text-mid);margin-bottom:16px">Usá las pistas solo si te trabás. No resuelven el caso — orientan la dirección.</p>
+    <div class="hint-menu">
+      <button onclick="requestHint(1)" class="hint-menu-btn">💡 Pista — Carpeta 1</button>
+      <button onclick="requestHint(2)" class="hint-menu-btn">💡 Pista — Carpeta 2</button>
+      <button onclick="requestHint(3)" class="hint-menu-btn">💡 Pista — Carpeta 3</button>
+    </div>
+    <div class="hint-panel" id="hintPanel">
+      <div class="hint-header"><span class="hint-title" id="hintTitle">PISTA</span></div>
+      <div class="hint-content" id="hintContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SHARE MODAL -->
+<div id="shareModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:400;align-items:center;justify-content:center">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:22px;max-width:360px;width:90%;text-align:center">
+    <div style="font-family:var(--font-display);font-size:.85rem;color:var(--green);letter-spacing:.15em;margin-bottom:14px">IMAGEN PARA HISTORIA DE INSTAGRAM</div>
+    <canvas id="shareCanvas" width="1080" height="1920" style="width:100%;max-width:280px;border:1px solid var(--border2);margin-bottom:16px"></canvas>
+    <a id="shareLink" download="caso-c-la-ultima-senal.png" style="display:block;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:.85rem;padding:11px;letter-spacing:.12em;text-decoration:none;margin-bottom:10px">⬇ DESCARGAR (1080×1920)</a>
+    <div style="font-size:.77rem;color:var(--text-dim);margin-bottom:14px">Subila y etiquetá <strong style="color:var(--amber)">@archivocero0</strong> 🔍</div>
+    <button onclick="closeShareCard()" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:.77rem;padding:9px;cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- CASO MODAL -->
+<div id="casoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:400;align-items:center;justify-content:center;padding:16px">
+  <div style="background:var(--bg2);border:1px solid var(--border2);padding:24px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto">
+    <div style="font-family:var(--font-display);font-size:1.08rem;color:var(--green);letter-spacing:.15em;margin-bottom:4px">CASO CERRADO</div>
+    <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:20px">LA ÚLTIMA SEÑAL — ARCHIVO CERO</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿LA RED?</div>
+        <div style="font-family:var(--font-display);font-size:13px;color:var(--green);letter-spacing:.1em">NODO</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿EL DETONANTE?</div>
+        <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">RESPUESTA</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿EL PROPÓSITO?</div>
+        <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.1em">CONTROL</div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border2);padding:16px;margin-bottom:16px;font-size:.85rem;line-height:1.75;color:var(--text)">
+      <p style="margin-bottom:12px"><strong style="color:var(--green)">La red era NODO.</strong> Una red experimental de comunicaciones autónomas, creada en 2036 y cerrada oficialmente en 2039, pero que siguió funcionando en secreto. No era un arma ni un fenómeno sobrenatural: era una red humana, construida por el mismo equipo que después dio origen a X.</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--amber)">Lo que provocó el colapso fue una respuesta.</strong> A las 14:02:17, NODO recibió una señal de origen desconocido. Veinticuatro segundos después, por orden de Aarón Castex, X respondió. Diecisiete segundos más tarde llegó el mensaje NO RESPONDAN: no estaba dirigido a la población sino a quien contestara la llamada, es decir, a X. A las 14:03:00 las comunicaciones del mundo empezaron a caer. Las lecturas "imposibles" no eran viajes en el tiempo: eran relojes sobrescritos durante el colapso.</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--text)">X usó el desastre para tener el control.</strong> En lugar de admitir lo que había hecho, empujó a los gobiernos a cerrar las ciudades una por una, se quedó con la administración de las comunicaciones y borró los 43 segundos en los que se tomó la decisión. Mara lo descubrió, y por eso la hicieron desaparecer.</p>
+      <p style="margin-bottom:12px"><strong style="color:var(--text)">Quién expuso a Mara no fue un traidor.</strong> A las 23:20 del 11 de diciembre alguien intentó entrar desde afuera con la credencial revocada de Lía. Saltó una alerta a las 23:21 y Castex actuó a las 00:12. El traslado y ascenso de Valeria se firmó recién a las 07:50, cuando Castex ya había actuado: no fue el pago por una delación. Fue la urgencia de Lía la que dejó a Mara a la vista.</p>
+      <p><strong style="color:var(--text-mid)">Las pistas que descartaron las otras hipótesis:</strong> NODO tuvo financiamiento de Defensa, pero su operación fue civil, así que no era un sistema militar. X no inventó el evento: lo manipuló y lo ocultó. Y Lía transmite desde la propia red de X, pero qué es lo que busca realmente sigue abierto.</p>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);padding:12px;margin-bottom:16px;text-align:center">
+      <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px">TIEMPO DE INVESTIGACIÓN</div>
+      <div style="font-family:var(--font-display);font-size:1.69rem;color:var(--amber);letter-spacing:.2em" id="finalTime">--:--</div>
+    </div>
+    <div style="border:1px solid var(--amber-dim);background:var(--amber-muted);padding:14px;margin-bottom:16px">
+      <div style="font-size:.69rem;color:var(--amber);letter-spacing:.2em;margin-bottom:6px">MÁS CASOS EN ARCHIVO CERO</div>
+      <div style="font-size:.85rem;color:var(--text-mid);line-height:1.6;margin-bottom:14px">Seguí investigando con el resto de los expedientes de Archivo Cero.</div>
+      <a href="https://archivo0.com.ar" target="_blank" rel="noopener" style="display:inline-block;background:var(--amber-muted);border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-display);font-size:.85rem;padding:10px 22px;letter-spacing:.1em;text-decoration:none">VER MÁS CASOS →</a>
+    </div>
+    <button onclick="closeCasoModal()" style="width:100%;background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-display);font-size:13px;padding:13px;cursor:pointer;letter-spacing:.15em">✓ CERRAR INFORME →</button>
+  </div>
+</div>
+
+<script>
+// ═══ NAV ═══
+const pageNames={resumen:'Resumen',teaser:'Transmisión interceptada',instrucciones:'Cómo investigar',personas:'Personas de interés',cronologia:'Cronología',celulas:'Células y comunicados','informe-desaparicion':'Informe de la desaparición','apuntes-mara':'Apuntes de Mara','decl-lia':'Declaración Lía Serrano','decl-aaron':'Declaración Aarón Castex','decl-valeria':'Declaración Valeria Núñez','decl-francisco':'Declaración Francisco Vidal','chat-lia':'Chat Mara-Lía','chat-valeria':'Chat Mara-Valeria','chat-francisco':'Chat Mara-Francisco','ficha-defensa':'Ficha de Defensa — NODO','memo-aaron':'Memo interno — Castex','notas-mara':'Notas de Mara',frecuencias:'Frecuencias — sintonizador','mapa-energia':'Mapa de consumo eléctrico',reconstruccion:'Reconstrucción del evento',espectrograma:'Espectrograma — 14:02:17',terminal:'Terminal — dispositivo de Mara',registros:'Análisis de registros',accesos:'Registro de accesos — NODO','mensajes-finales':'Mensajes finales','informe-nodo':'Informe técnico — NODO',transmision:'Transmisión interceptada',validacion:'Resolver el caso'};
+const progMap={resumen:3,teaser:6,instrucciones:8,personas:14,cronologia:20,celulas:22,'informe-desaparicion':25,'apuntes-mara':32,'decl-lia':38,'decl-aaron':44,'decl-valeria':50,'decl-francisco':56,'chat-lia':60,'chat-valeria':64,'chat-francisco':68,'ficha-defensa':70,'memo-aaron':73,'notas-mara':76,frecuencias:78,'mapa-energia':75,reconstruccion:88,espectrograma:91,terminal:95,registros:82,accesos:86,'mensajes-finales':90,'informe-nodo':94,transmision:97,validacion:98};
+const folderMap={resumen:0,teaser:0,instrucciones:0,personas:1,cronologia:1,celulas:1,'informe-desaparicion':1,'apuntes-mara':1,'decl-lia':2,'decl-aaron':2,'decl-valeria':2,'decl-francisco':2,'chat-lia':2,'chat-valeria':2,'chat-francisco':2,'ficha-defensa':2,'memo-aaron':2,'notas-mara':2,frecuencias:2,'mapa-energia':2,reconstruccion:3,espectrograma:3,terminal:3,registros:3,accesos:3,'mensajes-finales':3,'informe-nodo':3,transmision:3,validacion:4};
+const visited=new Set(['resumen']);
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  const p=document.getElementById('page-'+id);if(p)p.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(i=>{if(i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id)i.classList.add('active')});
+  document.getElementById('bcCurrent').textContent=pageNames[id]||id;
+  const f=folderMap[id];const el=document.getElementById('bcFolder');const sep=document.getElementById('bcFolderSep');
+  if(el){if(!f){el.textContent='';if(sep)sep.textContent=''}else if(f===4){el.textContent='⊛ CIERRE';if(sep)sep.textContent='›'}else{el.textContent='📁 CARPETA '+f+' / 3';if(sep)sep.textContent='›'}}
+  visited.add(id);
+  document.querySelectorAll('.sb-item').forEach(i=>{if((i.getAttribute('onclick')==="go('"+id+"')"||i.id==='item-'+id)&&!i.classList.contains('locked'))i.classList.add('visited')});
+  const pct=Math.max(...[...visited].map(v=>progMap[v]||0));
+  document.getElementById('progFill').style.width=pct+'%';document.getElementById('progPct').textContent=pct+'%';
+  saveState();if(isMobile())closeMobileSidebar();
+  document.getElementById('docsPanel').scrollTop=0;
+  if(id==='espectrograma')specRender();
+}
+function toggleSB(h){if(h.querySelector('.fb-locked'))return;h.classList.toggle('open');h.nextElementSibling.classList.toggle('open')}
+function openSB(badgeId){const hd=document.getElementById(badgeId).closest('.sb-head');hd.classList.add('open');hd.nextElementSibling.classList.add('open')}
+
+// ═══ ENIGMAS ═══
+const ENIGMAS={1:'ORIGEN',2:'ANTES',3:'43'};
+const ENIG_ALT={3:['43','CUARENTA Y TRES','CUARENTAYTRES']};
+function enigOk(n,val){return (ENIG_ALT[n]||[ENIGMAS[n]]).includes(val)}
+function enigOkMsg(n){return n===3?'✓ Dispositivo descifrado — terminal desbloqueada.':'✓ Correcto — Carpeta '+(n+1)+' desbloqueada.'}
+function unlockBy(n){n===1?unlock2():n===2?unlock3():unlockTerminal()}
+let unlocked={1:false,2:false,3:false,4:false};
+
+function checkE(n){
+  const ids=['e'+n+'sb','e'+n+'page'];
+  let val='';
+  for(const id of ids){const el=document.getElementById(id);if(el&&el.value.trim())val=el.value.trim()}
+  val=val.toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const ok=enigOk(n,val);
+  const msgIds=['e'+n+'sbmsg','e'+n+'pagemsg'];
+  msgIds.forEach(id=>{const el=document.getElementById(id);if(el){el.className='enigma-msg '+(ok?'ok':'err');el.textContent=ok?enigOkMsg(n):'✗ Incorrecto. Revisá los documentos.';el.style.display='block'}});
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.value=val});
+  if(ok&&!unlocked[n]){unlocked[n]=true;unlockBy(n);saveState()}
+}
+
+function unlock2(){
+  ['decl-lia','decl-aaron','decl-valeria','decl-francisco','chat-lia','chat-valeria','chat-francisco','ficha-defensa','memo-aaron','notas-mara','frecuencias','mapa-energia'].forEach(id=>{
+    const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge2');b.className='fb fb-open';b.textContent='ABIERTA';openSB('badge2');
+  const e2=document.getElementById('enigma2-sb-item');
+  if(e2){e2.classList.remove('locked');e2.style.color='var(--amber)';e2.style.borderLeft='2px solid var(--amber-dim)';e2.setAttribute('onclick',"openEnigmaModal(2)");const lk=e2.querySelector('.sb-lock');if(lk)lk.remove()}
+}
+function unlock3(){
+  ['registros','accesos','mensajes-finales','informe-nodo','transmision','reconstruccion','espectrograma'].forEach(id=>{
+    const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+  });
+  const b=document.getElementById('badge3');b.className='fb fb-open';b.textContent='ABIERTA';openSB('badge3');
+  const e3=document.getElementById('enigma3-sb-item');
+  if(e3){e3.classList.remove('locked');e3.style.color='var(--amber)';e3.style.borderLeft='2px solid var(--amber-dim)';e3.setAttribute('onclick',"openEnigmaModal(3)");const lk=e3.querySelector('.sb-lock');if(lk)lk.remove()}
+}
+function unlockTerminal(){
+  const el=document.getElementById('item-terminal');
+  if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('terminal')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+}
+function unlockCierre(){
+  const el=document.getElementById('item-validacion');
+  if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('validacion')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
+}
+
+// ═══ VALIDACIÓN ═══
+const ANSWERS={1:'NODO',2:'RESPUESTA',3:'CONTROL'};
+const ALT={1:['NODO'],2:['RESPUESTA','CONTESTACION','LLAMADA','RESPONDER','RESPUESTAS'],3:['CONTROL','PODER','CONTROLAR','ENCUBRIMIENTO','AISLAMIENTO','OCULTAMIENTO','DOMINIO']};
+const correct={1:false,2:false,3:false};
+function checkV(n){
+  const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const fb=document.getElementById('f'+n);
+  if(ALT[n].includes(val)){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
+  else{fb.className='val-fb err';fb.textContent='✗ No es correcto.'}
+}
+function cerrarCaso(){
+  document.getElementById('submitWrap').style.display='none';
+  document.getElementById('progFill').style.width='100%';document.getElementById('progPct').textContent='100%';
+  clearInterval(timerInterval);
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  document.getElementById('finalTime').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  document.getElementById('casoModal').style.display='flex';
+}
+function closeCasoModal(){
+  document.getElementById('casoModal').style.display='none';
+  const stamp=document.getElementById('caseStamp');
+  if(stamp){
+    stamp.style.display='block';
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    const t=document.getElementById('stampTime');
+    if(t)t.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    document.getElementById('submitWrap').style.display='none';
+    stamp.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+document.getElementById('casoModal').addEventListener('click',function(e){if(e.target===this)closeCasoModal()});
+
+// ═══ TIMER ═══
+let timerSeconds=0,timerInterval=null,timerStarted=false;
+function startTimer(){if(timerStarted)return;timerStarted=true;timerInterval=setInterval(()=>{timerSeconds++;const m=Math.floor(timerSeconds/60),s=timerSeconds%60;const d=document.getElementById('timerDisp');d.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;if(timerSeconds>3600)d.classList.add('urgent')},1000)}
+function startCase(){document.getElementById('splash').classList.add('hidden');startTimer();loadState();go('resumen');setTimeout(startTour,600)}
+
+// ═══ STATE ═══
+function saveState(){try{localStorage.setItem('ac_c_st',JSON.stringify({unlocked,visited:[...visited]}))}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('ac_c_st')||'{}');if(s.unlocked){if(s.unlocked[1]){unlocked[1]=true;unlock2()}if(s.unlocked[2]){unlocked[2]=true;unlock3()}if(s.unlocked[3]){unlocked[3]=true;unlockTerminal()}if(s.unlocked[4]){unlocked[4]=true;unlockCierre()}}if(s.visited)s.visited.forEach(v=>visited.add(v))}catch(e){}}
+
+// ═══ PIZARRA ═══
+let pizOpen=false,pizFs=false;
+function togglePiz(){pizOpen=!pizOpen;document.getElementById('pizPanel').classList.toggle('open',pizOpen);document.getElementById('btnPiz').classList.toggle('active',pizOpen);setTimeout(drawLines,50)}
+function toggleFs(){pizFs=!pizFs;const pp=document.getElementById('pizPanel');pp.classList.toggle('fullscreen',pizFs);document.getElementById('btnFs').textContent=pizFs?'⤡':'⤢';setTimeout(drawLines,50)}
+let cards=[],lines=[],cardId=0,lineMode=false,lineStart=null,dragging=null,dragOx=0,dragOy=0;
+function seedBoard(){}
+function addCard(type,x,y,text){
+  const canvas=document.getElementById('pizCanvas');const id='c'+(++cardId);const div=document.createElement('div');
+  div.className='cork-card card-'+type;div.id=id;div.style.left=x+'px';div.style.top=y+'px';
+  const labels={nota:'NOTA',sospechoso:'PERSONA',pista:'PISTA',hipotesis:'HIPÓTESIS'};
+  const chinche=document.createElement('div');chinche.className='cork-chinche';
+  const head=document.createElement('div');head.className='cork-card-head';
+  const span=document.createElement('span');span.textContent=labels[type]||type.toUpperCase();
+  const del=document.createElement('span');del.className='cork-del';del.textContent='✕';
+  del.addEventListener('click',function(){deleteCard(id)});
+  head.appendChild(span);head.appendChild(del);
+  const body=document.createElement('div');body.className='cork-card-body';body.contentEditable='true';
+  body.innerHTML=text.replace(/[\n]/g,'<br>');
+  div.appendChild(chinche);div.appendChild(head);div.appendChild(body);
+  canvas.appendChild(div);makeDraggable(div);cards.push({id,type,x,y});return div;
+}
+function deleteCard(id){const el=document.getElementById(id);if(el)el.remove();lines=lines.filter(l=>l.a!==id&&l.b!==id);drawLines()}
+function makeDraggable(el){
+  el.addEventListener('mousedown',function(e){if(e.target.hasAttribute('contenteditable')||e.target.classList.contains('cork-del'))return;e.preventDefault();dragging=el;const r=el.getBoundingClientRect();dragOx=e.clientX-r.left;dragOy=e.clientY-r.top});
+  el.addEventListener('touchstart',function(e){if(e.target.hasAttribute('contenteditable')||e.target.classList.contains('cork-del'))return;dragging=el;const t=e.touches[0];const r=el.getBoundingClientRect();dragOx=t.clientX-r.left;dragOy=t.clientY-r.top},{passive:true});
+}
+document.addEventListener('mousemove',function(e){if(!dragging)return;const pr=dragging.parentElement.getBoundingClientRect();dragging.style.left=Math.max(0,e.clientX-pr.left-dragOx)+'px';dragging.style.top=Math.max(0,e.clientY-pr.top-dragOy)+'px';drawLines()});
+document.addEventListener('mouseup',function(){dragging=null});
+document.addEventListener('touchmove',function(e){if(!dragging)return;const t=e.touches[0];const pr=dragging.parentElement.getBoundingClientRect();dragging.style.left=Math.max(0,t.clientX-pr.left-dragOx)+'px';dragging.style.top=Math.max(0,t.clientY-pr.top-dragOy)+'px';drawLines()},{passive:true});
+document.addEventListener('touchend',function(){dragging=null});
+function toggleLineMode(){lineMode=!lineMode;lineStart=null;document.getElementById('lineBtn').classList.toggle('active',lineMode)}
+function handleCanvasClick(e){if(!lineMode)return;const card=e.target.closest('.cork-card');if(!card)return;if(!lineStart){lineStart=card.id;card.classList.add('selected')}else{if(lineStart!==card.id)lines.push({a:lineStart,b:card.id});document.getElementById(lineStart)?.classList.remove('selected');lineStart=null;drawLines()}}
+function clearLines(){lines=[];drawLines()}
+function clearBoard(){document.querySelectorAll('.cork-card').forEach(c=>c.remove());cards=[];lines=[];cardId=0;drawLines()}
+function drawLines(){
+  const svg=document.getElementById('pizSvg');if(!svg)return;svg.innerHTML='';
+  lines.forEach(l=>{
+    const a=document.getElementById(l.a),b=document.getElementById(l.b);if(!a||!b)return;
+    const ar=a.getBoundingClientRect(),br=b.getBoundingClientRect(),pr=svg.getBoundingClientRect();
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',ar.left+ar.width/2-pr.left);line.setAttribute('y1',ar.top+ar.height/2-pr.top);
+    line.setAttribute('x2',br.left+br.width/2-pr.left);line.setAttribute('y2',br.top+br.height/2-pr.top);
+    line.setAttribute('stroke','#c03030');line.setAttribute('stroke-width','2');line.setAttribute('stroke-dasharray','4,3');line.setAttribute('opacity','0.7');
+    svg.appendChild(line);
+  });
+}
+
+// ═══ HINTS ═══
+const HINTS={
+  1:'Mara tenía una forma propia de anotar. En su libreta dejó dos elementos que, leídos juntos, forman una clave. Uno es una referencia, el otro son números.',
+  2:'Mara le dijo a Lía que escribió su nota con "el código del espejo". La nota "★" de su tablet lo usa. Pensá en el abecedario, pero no leído de la forma habitual.',
+  3:'Alguien ordenó que tres relojes coincidieran. Cruzá el análisis de registros, el informe de NODO y el canal interno de X. Y la clave del dispositivo de Mara es un lapso: restá la primera señal anómala del comienzo oficial. Ya en la terminal, la cuenta sale del registro de accesos y la clave, de la propia señal.'
+};
+function openHints(){document.getElementById('hintsModal').style.display='flex'}
+function closeHints(){document.getElementById('hintsModal').style.display='none'}
+function requestHint(n){document.getElementById('hintTitle').textContent='PISTA — CARPETA '+n;document.getElementById('hintContent').textContent=HINTS[n];document.getElementById('hintPanel').classList.add('active')}
+document.getElementById('hintsModal').addEventListener('click',function(e){if(e.target===this)closeHints()});
+
+// ═══ ENIGMA MODAL ═══
+const ENIGMA_TEXTS={
+  1:'Hay una clave escondida entre los papeles de Mara.',
+  2:'Hay una nota en la tablet de Mara que no está en texto claro.',
+  3:'Mara adjuntó un dispositivo cifrado. Su clave es un número: los segundos que borraron.'
+};
+let currentEnigmaN=0;
+function openEnigmaModal(n){
+  currentEnigmaN=n;
+  document.getElementById('enigmaModalTitle').textContent=n===3?'// ENIGMA 3 — DESCIFRAR EL DISPOSITIVO':'// ENIGMA '+n+' — DESBLOQUEAR CARPETA '+(n+1);
+  document.getElementById('enigmaModalText').textContent=ENIGMA_TEXTS[n];
+  document.getElementById('enigmaModalInput').value='';
+  const msg=document.getElementById('enigmaModalMsg');msg.style.display='none';
+  document.getElementById('enigmaModal').style.display='flex';
+  setTimeout(()=>document.getElementById('enigmaModalInput').focus(),50);
+}
+function closeEnigmaModal(){document.getElementById('enigmaModal').style.display='none'}
+function submitEnigmaModal(){
+  const val=document.getElementById('enigmaModalInput').value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const ok=enigOk(currentEnigmaN,val);
+  const msg=document.getElementById('enigmaModalMsg');msg.style.display='block';
+  if(ok){msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim);margin-bottom:10px';msg.textContent=enigOkMsg(currentEnigmaN);if(!unlocked[currentEnigmaN]){unlocked[currentEnigmaN]=true;unlockBy(currentEnigmaN);saveState()}setTimeout(closeEnigmaModal,1200)}
+  else{msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a;margin-bottom:10px';msg.textContent='✗ Incorrecto. Revisá los documentos.'}
+}
+document.getElementById('enigmaModal').addEventListener('click',function(e){if(e.target===this)closeEnigmaModal()});
+
+// ═══ SHARE ═══
+function openShareCard(){
+  drawShareCard();
+  const canvas=document.getElementById('shareCanvas');
+  setTimeout(()=>{document.getElementById('shareLink').href=canvas.toDataURL('image/png')},100);
+  document.getElementById('shareModal').style.display='flex';
+}
+function closeShareCard(){document.getElementById('shareModal').style.display='none'}
+document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareCard()});
+function drawShareCard(){
+  const cv=document.getElementById('shareCanvas');const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;
+  ctx.fillStyle='#09100d';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(61,255,122,.035)';for(let i=0;i<500;i++){ctx.beginPath();ctx.arc(Math.random()*W,Math.random()*H,1.5,0,Math.PI*2);ctx.fill()}
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=5;ctx.strokeRect(48,48,W-96,H-96);
+  ctx.strokeStyle='#1a6b38';ctx.lineWidth=6;const cl=70;
+  [[68,68,1,1],[W-68,68,-1,1],[68,H-68,1,-1],[W-68,H-68,-1,-1]].forEach(([x,y,dx,dy])=>{ctx.beginPath();ctx.moveTo(x,y+cl*dy);ctx.lineTo(x,y);ctx.lineTo(x+cl*dx,y);ctx.stroke()});
+  ctx.fillStyle='#3a5040';ctx.font='26px "Share Tech Mono",monospace';ctx.textAlign='center';ctx.fillText('ARCHIVO_CERO · SISTEMA SEGURO',W/2,148);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,172);ctx.lineTo(W-120,172);ctx.stroke();
+  ctx.fillStyle='#1a1205';ctx.fillRect(W/2-200,202,400,54);ctx.strokeStyle='#4a3208';ctx.lineWidth=1;ctx.strokeRect(W/2-200,202,400,54);
+  ctx.fillStyle='#e8a830';ctx.font='22px "Share Tech Mono",monospace';ctx.fillText('CASO C · INVESTIGACIÓN',W/2,236);
+  ctx.fillStyle='#3dff7a';ctx.font='bold 68px "Share Tech Mono",monospace';ctx.fillText('LA ÚLTIMA',W/2,400);ctx.fillText('SEÑAL',W/2,490);
+  ctx.fillStyle='#2e5038';ctx.font='24px "Share Tech Mono",monospace';ctx.fillText('UNA INVESTIGACIÓN DE ARCHIVO CERO',W/2,570);
+  ctx.strokeStyle='#152512';ctx.lineWidth=1;for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(120,620+i*7);ctx.lineTo(W-120,620+i*7);ctx.stroke()}
+  ctx.save();ctx.translate(W/2,920);ctx.rotate(-8*Math.PI/180);
+  ctx.strokeStyle='#c82020';ctx.lineWidth=11;ctx.beginPath();ctx.ellipse(0,0,330,165,0,0,Math.PI*2);ctx.stroke();
+  ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(0,0,304,139,0,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle='#c82020';ctx.textAlign='center';ctx.font='38px "Share Tech Mono",monospace';ctx.fillText('CASO',0,-28);ctx.font='bold 66px "Share Tech Mono",monospace';ctx.fillText('RESUELTO',0,48);ctx.restore();
+  ctx.fillStyle='#0d1a10';ctx.fillRect(120,1195,W-240,200);ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.strokeRect(120,1195,W-240,200);
+  ctx.fillStyle='#506050';ctx.font='26px "Share Tech Mono",monospace';ctx.textAlign='center';ctx.fillText('TIEMPO DE INVESTIGACIÓN',W/2,1252);
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  ctx.fillStyle='#e8a830';ctx.font='bold 88px "Share Tech Mono",monospace';ctx.fillText((m<10?'0':'')+m+':'+(s<10?'0':'')+s,W/2,1358);
+  ctx.fillStyle='#0a1410';ctx.fillRect(W/2-145,1460,290,52);ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.strokeRect(W/2-145,1460,290,52);
+  ctx.fillStyle='#3a5040';ctx.font='22px "Share Tech Mono",monospace';ctx.fillText('DIFICULTAD · ALTA',W/2,1493);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,1570);ctx.lineTo(W-120,1570);ctx.stroke();
+  ctx.fillStyle='#3dff7a';ctx.font='bold 36px "Share Tech Mono",monospace';ctx.fillText('¿PODÉS RESOLVERLO?',W/2,1658);
+  ctx.fillStyle='#3a5040';ctx.font='26px "Share Tech Mono",monospace';ctx.fillText('archivo0.com.ar',W/2,1740);
+  ctx.strokeStyle='#1e3525';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(120,1780);ctx.lineTo(W-120,1780);ctx.stroke();
+  ctx.fillStyle='#3dff7a';ctx.font='28px "Share Tech Mono",monospace';ctx.fillText('@archivocero0',W/2,1848);
+}
+
+// ═══ SINTONIZADOR ═══
+const STATIONS=[
+  {f:88.5,name:'RADIO X — EMISIÓN OFICIAL',tag:'Emisión abierta · se repite cada hora',lines:['Buenas noches. Les habla Radio X, la voz de la coordinación entre células.','La fragmentación garantiza la supervivencia.','Toda consulta sobre otras células deberá canalizarse a través de X.','Gracias por su cooperación. Esta emisión se repite en una hora.']},
+  {f:91.7,name:'EMISORA NO REGISTRADA',tag:'Grabación del 28 de noviembre de 2047 · alcance corto',lines:['Prueba. Prueba. Si alguien me escucha, no se asuste.','Trabajé en la red que conecta las ciudades. Hay algo del evento que nos contaron mal.','Todavía no puedo decir más. Hay alguien que está terminando de entender lo que pasó, y prefiero esperar a que lo tenga completo.','Si alguien del turno de noche me está escuchando, acuérdese del espejo. La A es la Z, la B es la Y. Así escribíamos lo que no queríamos que leyera cualquiera.','Si no vuelvo a transmitir, es que ya no es seguro. Si vuelvo, es que ya lo tenemos todo.']},
+  {f:106.5,name:'TRANSMISIÓN SIN IDENTIFICAR',tag:'Grabación del 2 de agosto de 2048 · emisión interrumpida',lines:['Mara no quería encenderlo. Yo sí.','NODO sigue ahí. Cada nodo físico, cada repetidor. Solo hace falta energía y alguien que sepa dónde.','Si lo reactivamos, las ciudades vuelven a hablarse. Todas, a la vez, sin X en el medio.','Me preguntan qué pasa si sale mal. Ya salió mal una vez.','[ interferencia ] ...esta vez sabemos qué es lo que no hay que contestar.']}
+];
+function tuneNoise(n){const c='░▒▓█▌▐¦·:;';let s='';for(let i=0;i<n;i++)s+=c[Math.floor(Math.random()*c.length)];return s}
+function tuneGarble(t,q){return t.split('').map(ch=>ch===' '?' ':(Math.random()<q?'░':ch)).join('')}
+function tuneUpdate(){
+  const sl=document.getElementById('tuneSlider');if(!sl)return;
+  const v=parseFloat(sl.value);
+  document.getElementById('tuneFreq').textContent=v.toFixed(1);
+  let best=null,bd=99;STATIONS.forEach(s=>{const d=Math.abs(s.f-v);if(d<bd){bd=d;best=s}});
+  document.getElementById('tuneBar').style.width=Math.round(Math.max(0,1-bd)*100)+'%';
+  const out=document.getElementById('tuneOut');
+  if(bd<0.05){
+    out.innerHTML='<div style="color:var(--green);letter-spacing:.12em;font-size:.77rem;margin-bottom:2px">● SEÑAL ESTABLE — '+best.name+'</div><div style="color:var(--text-mid);font-size:.69rem;margin-bottom:10px">'+best.tag+'</div>'+best.lines.map(l=>'<p style="margin:0 0 8px;font-style:italic">"'+l+'"</p>').join('')+(best.f===106.5?'<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border2)"><div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.12em;margin-bottom:8px">// INTERFERENCIA DEBAJO DE LA VOZ</div><div style="display:flex;align-items:center;gap:12px"><div id="morseLamp" style="width:18px;height:18px;border-radius:50%;background:var(--bg4);border:1px solid var(--border2)"></div><button id="morseBtn" onclick="morsePlay()" style="background:transparent;border:1px solid var(--amber-dim);color:var(--amber);font-family:var(--font-mono);font-size:.77rem;padding:7px 12px;cursor:pointer">▶ Escuchar la interferencia</button></div><details style="margin-top:8px;font-size:.77rem;color:var(--text-dim)"><summary style="cursor:pointer">Ver el patrón (accesibilidad)</summary><div style="margin-top:6px;letter-spacing:.1em;color:var(--text-mid)">'+morsePattern()+'</div></details></div>':'');
+  }else if(bd<0.5){
+    out.innerHTML='<div style="color:var(--amber);letter-spacing:.12em;font-size:.77rem;margin-bottom:10px">◐ SEÑAL DÉBIL — ajustá de a 0.1</div><p style="margin:0;font-style:italic">'+tuneGarble(best.lines[0],0.25+bd)+'</p>';
+  }else{
+    out.innerHTML='<div style="color:var(--text-dim);letter-spacing:.12em;font-size:.77rem;margin-bottom:10px">○ SIN SEÑAL</div><p style="margin:0;color:var(--text-mid)">'+tuneNoise(46)+'<br>'+tuneNoise(38)+'<br>'+tuneNoise(52)+'</p>';
+  }
+}
+function tuneStep(d){const sl=document.getElementById('tuneSlider');sl.value=(Math.round((parseFloat(sl.value)+d)*10)/10).toFixed(1);tuneUpdate()}
+tuneUpdate();
+
+// ═══ MAPA DE CONSUMO ═══
+const ENERGY_NODES=[
+  {id:'BA-1',cell:'01 Buenos Aires',name:'Parque Patricios — ex sala de repetidores',x:268,y:150,status:'Clausurado (2039)',kw:412,nodo:true},
+  {id:'BA-2',cell:'01 Buenos Aires',name:'Retiro — sala de control 3',x:322,y:126,status:'Activo',kw:380,nodo:false},
+  {id:'BA-3',cell:'01 Buenos Aires',name:'Barracas — depósito fluvial',x:306,y:184,status:'Clausurado (2040)',kw:0,nodo:false},
+  {id:'CB-1',cell:'02 Córdoba',name:'Planta Sur — antigua usina',x:150,y:128,status:'Clausurado (2039)',kw:357,nodo:true},
+  {id:'CB-2',cell:'02 Córdoba',name:'Centro — distribución',x:192,y:90,status:'Activo',kw:610,nodo:false},
+  {id:'RS-1',cell:'03 Rosario',name:'Zona Norte — estación 4',x:205,y:160,status:'Clausurado (2039)',kw:391,nodo:true},
+  {id:'RS-2',cell:'03 Rosario',name:'Puerto — silo 9',x:238,y:200,status:'Clausurado (2041)',kw:0,nodo:false},
+  {id:'MZ-1',cell:'04 Mendoza',name:'Maipú — repetidor de ladera',x:48,y:168,status:'Clausurado (2039)',kw:344,nodo:true},
+  {id:'MZ-2',cell:'04 Mendoza',name:'Estación de bombeo 2',x:92,y:128,status:'Activo',kw:820,nodo:false},
+  {id:'MP-1',cell:'05 Mar del Plata',name:'Puerto Frío — cámara de enfriamiento',x:308,y:246,status:'Clausurado (2039)',kw:366,nodo:true},
+  {id:'MP-2',cell:'05 Mar del Plata',name:'Faro — sala de máquinas',x:354,y:214,status:'Clausurado (2040)',kw:0,nodo:false}
+];
+let energyMarks=new Set(),energySel=null;
+function energyDraw(){
+  const svg=document.getElementById('energySvg');if(!svg)return;
+  const NS='http://www.w3.org/2000/svg';let html='';
+  [['01',330,108],['02',150,76],['03',215,232],['04',62,104],['05',330,276]].forEach(c=>{html+='<text x="'+c[1]+'" y="'+c[2]+'" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="10" style="fill:var(--text-mid)">CÉLULA '+c[0]+'</text>'});
+  ENERGY_NODES.forEach(n=>{
+    const m=energyMarks.has(n.id),s=energySel===n.id;
+    html+='<g style="cursor:pointer" onclick="energySelect(\''+n.id+'\')"><circle cx="'+n.x+'" cy="'+n.y+'" r="'+(s?14:12)+'" style="fill:'+(m?'var(--amber)':'var(--bg4)')+';stroke:'+(s?'var(--amber)':'var(--green-dim)')+';stroke-width:'+(s?2.5:1.5)+'"/><text x="'+n.x+'" y="'+(n.y+3)+'" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="8.5" style="fill:'+(m?'#000':'var(--green)')+';pointer-events:none">'+n.id+'</text></g>';
+  });
+  svg.innerHTML=html;
+  const lst=document.getElementById('energyList');
+  if(lst)lst.innerHTML=ENERGY_NODES.map(n=>{const m=energyMarks.has(n.id),s=energySel===n.id;return '<button onclick="energySelect(\''+n.id+'\')" style="text-align:left;cursor:pointer;padding:8px 10px;background:'+(m?'var(--amber-muted)':'var(--bg3)')+';border:1px solid '+(s?'var(--amber)':(m?'var(--amber-dim)':'var(--border2)'))+';color:var(--text-mid);font-family:var(--font-mono);font-size:.77rem;line-height:1.4"><strong style="color:'+(m?'var(--amber)':'var(--green)')+'">'+n.id+'</strong> · '+n.name+(m?' ✓':'')+'</button>'}).join('');
+  document.getElementById('energyStatus').textContent='Marcados: '+energyMarks.size;
+}
+function energySelect(id){
+  energySel=id;const n=ENERGY_NODES.find(x=>x.id===id);const m=energyMarks.has(id);
+  document.getElementById('energyInfo').innerHTML='<div style="color:var(--green);letter-spacing:.1em;margin-bottom:4px">'+n.id+' — '+n.name+'</div><div>Célula: '+n.cell+'</div><div>Estado oficial: '+n.status+'</div><div>Consumo a las 14:00: <strong style="color:var(--text)">'+n.kw+' kW</strong></div><button onclick="energyToggle(\''+id+'\')" style="margin-top:10px;background:'+(m?'var(--amber-muted)':'transparent')+';border:1px solid '+(m?'var(--amber-dim)':'var(--border2)')+';color:'+(m?'var(--amber)':'var(--text-mid)')+';font-family:var(--font-mono);font-size:.77rem;padding:7px 12px;cursor:pointer">'+(m?'✓ Marcado como sospechoso (tocar para quitar)':'Marcar como sospechoso')+'</button>';
+  energyDraw();
+}
+function energyToggle(id){
+  if(energyMarks.has(id))energyMarks.delete(id);else energyMarks.add(id);
+  energySelect(id);energyCheck();
+}
+function energyCheck(){
+  const st=document.getElementById('energyStatus');
+  const real=ENERGY_NODES.filter(n=>n.nodo).map(n=>n.id);
+  if(energyMarks.size===real.length){
+    const ok=real.every(i=>energyMarks.has(i));
+    st.innerHTML=ok?'<span style="color:var(--green)">Patrón confirmado: un edificio clausurado por célula, todos con consumo sostenido entre 340 y 420 kW. Alguien mantuvo estos edificios encendidos. Coincide con lo que contó Francisco sobre Parque Patricios.</span>':'<span style="color:var(--amber)">Marcados: '+energyMarks.size+'. Esta selección no forma ningún patrón claro.</span>';
+  }
+}
+function energyReset(){energyMarks=new Set();energySel=null;document.getElementById('energyInfo').textContent='Seleccioná un punto del mapa.';energyDraw()}
+energyDraw();
+
+// ═══ RECONSTRUCCIÓN DEL EVENTO ═══
+const REC_CARDS={
+  a:{t:'Se recibe una señal externa en NODO',time:'14:02:17',ord:1},
+  b:{t:'La consola de Dirección solicita respuesta',time:'14:02:38',ord:2},
+  c:{t:'Se envía la respuesta',time:'14:02:41',ord:3},
+  d:{t:'Entra el mensaje NO RESPONDAN',time:'14:02:58',ord:4},
+  e:{t:'Comienza el colapso de las comunicaciones',time:'14:03:00',ord:5},
+  f:{t:'X recomienda a los gobiernos cerrar las ciudades',time:'14:19:40',ord:0},
+  g:{t:'Mara detecta que la hora no coincide con el registro oficial',time:'13 abr. 2047',ord:0}
+};
+const REC_POOL_ORDER=['d','g','b','f','e','a','c'];
+let recSlots=[null,null,null,null,null],recSel=null,recDone=false;
+function recDraw(){
+  const sl=document.getElementById('recSlots'),pl=document.getElementById('recPool');if(!sl)return;
+  sl.innerHTML=recSlots.map((id,i)=>'<div onclick="recPlace('+i+')" style="cursor:pointer;display:flex;gap:10px;align-items:center;padding:10px 12px;background:'+(id?'var(--bg3)':'var(--bg2)')+';border:1px '+(id?'solid var(--green-dim)':'dashed var(--border2)')+';font-size:.85rem;color:'+(id?'var(--text)':'var(--text-dim)')+'"><span style="font-family:var(--font-display);color:var(--amber);min-width:18px">'+(i+1)+'</span><span>'+(id?REC_CARDS[id].t:'— tocá un hecho y luego este lugar —')+'</span></div>').join('');
+  pl.innerHTML=REC_POOL_ORDER.filter(id=>!recSlots.includes(id)).map(id=>'<div onclick="recSelect(\''+id+'\')" style="cursor:pointer;padding:10px 12px;background:'+(recSel===id?'var(--amber-muted)':'var(--bg3)')+';border:1px solid '+(recSel===id?'var(--amber-dim)':'var(--border2)')+';font-size:.85rem;color:var(--text-mid)">'+REC_CARDS[id].t+'</div>').join('');
+}
+function recSelect(id){recSel=(recSel===id?null:id);recDraw()}
+function recPlace(i){
+  if(recDone)return;
+  if(recSel){recSlots[i]=recSel;recSel=null}
+  else if(recSlots[i]){recSlots[i]=null}
+  recDraw();
+}
+function recReset(){recSlots=[null,null,null,null,null];recSel=null;recDone=false;document.getElementById('recMsg').innerHTML='';recDraw()}
+function recVerify(){
+  const msg=document.getElementById('recMsg');
+  if(recSlots.some(x=>!x)){msg.innerHTML='<span style="color:var(--amber)">Completá los cinco lugares.</span>';return}
+  if(recSlots.some(id=>REC_CARDS[id].ord===0)){msg.innerHTML='<span style="color:var(--amber)">Hay hechos que no pertenecen a esta ventana de tiempo.</span>';return}
+  if(!recSlots.every((id,i)=>REC_CARDS[id].ord===i+1)){msg.innerHTML='<span style="color:var(--red)">El orden no coincide con los registros.</span>';return}
+  recDone=true;msg.innerHTML='<div style="color:var(--green);letter-spacing:.12em;margin-bottom:8px">● ORDEN CONFIRMADO — REPRODUCIENDO</div><div id="recPlay"></div>';
+  const toSec=t=>{const p=t.split(':').map(Number);return p[0]*3600+p[1]*60+p[2]};
+  const first=toSec(REC_CARDS[recSlots[0]].time),last=toSec(REC_CARDS[recSlots[4]].time);
+  recSlots.forEach((id,i)=>{
+    setTimeout(()=>{const el=document.getElementById('recPlay');if(el)el.innerHTML+='<div style="margin-bottom:6px"><span style="color:var(--amber)">'+REC_CARDS[id].time+'</span> — '+REC_CARDS[id].t+(i>0?' <span style="color:var(--text-dim)">(+'+(toSec(REC_CARDS[id].time)-first)+' s)</span>':'')+'</div>'},i*800);
+  });
+  setTimeout(()=>{const el=document.getElementById('recPlay');if(el)el.innerHTML+='<div style="margin-top:10px;padding:10px 12px;border:1px solid var(--amber-dim);background:var(--amber-muted);color:var(--amber)">Entre la primera señal y el colapso pasaron '+(last-first)+' segundos. Y la respuesta salió antes de que llegara el aviso.</div>'},5*800);
+}
+recDraw();
+
+// ═══ ESPECTROGRAMA ═══
+let specCache=null;
+function specBuild(){
+  const cols=150,rows=60,inten=new Float32Array(cols*rows);
+  let s=2039;const rnd=()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+  for(let i=0;i<inten.length;i++)inten[i]=rnd()*0.58;
+  [12,13,38,39].forEach(r=>{for(let c=0;c<cols;c++)inten[r*cols+c]=0.5+rnd()*0.07});
+  try{
+    const oc=document.createElement('canvas');oc.width=cols;oc.height=rows;const o=oc.getContext('2d');
+    o.fillStyle='#fff';o.font='bold 52px monospace';o.textAlign='center';o.textBaseline='middle';o.fillText('2039',cols/2,rows/2+2);
+    const d=o.getImageData(0,0,cols,rows).data;
+    if(d)for(let i=0;i<cols*rows;i++)if(d[i*4+3]>128)inten[i]=0.8+rnd()*0.1;
+  }catch(e){}
+  return{cols,rows,inten};
+}
+function specRender(){
+  const c=document.getElementById('specCanvas');if(!c)return;
+  const thr=parseInt(document.getElementById('specThr').value,10)/100;
+  document.getElementById('specThrVal').textContent=thr.toFixed(2);
+  try{
+    const ctx=c.getContext('2d');if(!ctx||!ctx.fillRect)return;
+    if(!specCache)specCache=specBuild();
+    const {cols,rows,inten}=specCache,cw=c.width/cols,ch=c.height/rows;
+    ctx.fillStyle='#000';ctx.fillRect(0,0,c.width,c.height);
+    for(let r=0;r<rows;r++)for(let k=0;k<cols;k++){
+      const v=inten[r*cols+k];
+      if(v>=thr){const g=150+Math.round(((v*997)%1)*30);ctx.fillStyle='rgb('+Math.round(g*0.25)+','+g+','+Math.round(g*0.45)+')';ctx.fillRect(k*cw,r*ch,cw+0.5,ch+0.5)}
+    }
+  }catch(e){}
+}
+
+// ═══ TERMINAL ═══
+const TERM_FILES={
+  'leeme.txt':'Si llegaste hasta acá, entendiste que la hora importa.\nCopié lo que pude antes de que cerraran mi acceso.\nNo confíen en el orden oficial de los hechos.\nPrimero llegó algo. Después contestamos. Después se apagó todo.\n— M.V.',
+  'nodos.txt':'NODOS FÍSICOS DE LA RED\nN-01  Buenos Aires — Parque Patricios (ex sala de repetidores)\nN-02  Córdoba — Planta Sur\nN-03  Rosario — Zona Norte\nN-04  Mendoza — Maipú (repetidor de ladera)\nN-05  Mar del Plata — Puerto Frío\nN-06  [sin ubicar]\nN-07  [sin ubicar]\n\nEstado según X: clausurados.\nEstado real: alimentados y en espera.',
+  'lecturas.csv':'dispositivo,hora_registrada\ntel-0412,14:01:52\ntel-0977,14:02:30\ntel-1203,14:02:58\ntel-2231,14:03:00\ntel-3380,14:03:12\ntel-4016,14:03:40\n\nNota: la dispersión no es un viaje en el tiempo. Alguien sobrescribió los relojes.',
+  'verdad.txt':'Esto es todo lo que tengo.\nLas tres preguntas que importan las tenés que responder vos: qué era la red, qué provocó lo que pasó y para qué lo usaron después.\nSi las respondés bien, el expediente se cierra.\n— M.V.',
+  'canal.txt':'CANAL DE MANTENIMIENTO DE NODO: 106.5 MHz\n\nLos números de circular de las células no son numeración: son la frecuencia de control de la red, repartida en tres comunicados para que ninguno la contenga completa.\n\nQuien transmite en 106.5 transmite dentro de NODO. X no puede bloquear ese canal sin apagar su propia red.\n\nAnoté algo más: debajo de la voz hay ruido con estructura. Alguien más escucha ese canal.'
+};
+let termAuth=false,termFails=0;
+function termPrint(t,color){const o=document.getElementById('termOut');if(!o)return;const d=document.createElement('div');d.textContent=t;if(color)d.style.color=color;o.appendChild(d);o.scrollTop=o.scrollHeight}
+function termInit(){const o=document.getElementById('termOut');if(!o)return;o.innerHTML='';termAuth=false;termFails=0;termPrint('DISPOSITIVO_MV.enc — descifrado','var(--text-dim)');termPrint('ACCESO RESTRINGIDO. Use: login <usuario> <clave>','var(--amber)');termPrint('Pista: la cuenta usada en la copia. La clave está en la marca incrustada de la señal.','var(--text-dim)');termPrint('')}
+function termRun(){
+  const inp=document.getElementById('termIn');const raw=inp.value.trim();inp.value='';if(!raw)return;
+  termPrint('> '+raw,'var(--amber)');
+  const parts=raw.split(/\s+/),cmd=parts[0].toLowerCase();
+  const names=Object.keys(TERM_FILES);
+  if(cmd==='ayuda'){termPrint('Comandos: ayuda · login <usuario> <clave> · listar · abrir <n° o nombre> · limpiar')}
+  else if(cmd==='limpiar'){const o=document.getElementById('termOut');o.innerHTML=''}
+  else if(cmd==='login'){
+    const u=(parts[1]||'').toUpperCase().replace(/[^A-Z]/g,''),p=parts[2]||'';
+    if((u==='LSERRANO'||u==='SERRANO')&&p==='2039'){termAuth=true;termPrint('Credencial aceptada. Bienvenida, L. Serrano. (cuenta revocada por X)','var(--green)');termPrint('Use "listar" para ver los archivos.')}
+    else{termFails++;termPrint('Credencial rechazada.'+(termFails>=3?' Revisá el registro de accesos y la señal de las 14:02:17.':''),'var(--red)')}
+  }
+  else if(!termAuth){termPrint('Acceso denegado. Inicie sesión con login <usuario> <clave>.','var(--red)')}
+  else if(cmd==='listar'){names.forEach((n,i)=>termPrint((i+1)+'  '+n))}
+  else if(cmd==='abrir'){
+    const a=(parts[1]||'').toLowerCase();let name=names[parseInt(a,10)-1]||names.find(n=>n===a||n.split('.')[0]===a);
+    if(!name)termPrint('Archivo no encontrado.','var(--red)');else{termPrint('— '+name+' —','var(--text-dim)');termPrint(TERM_FILES[name]);if(name==='verdad.txt'&&!unlocked[4]){unlocked[4]=true;unlockCierre();saveState();termPrint('[ cierre del caso desbloqueado ]','var(--amber)')}}
+  }
+  else termPrint('Comando no reconocido. Escriba "ayuda".','var(--red)');
+}
+termInit();
+
+// ═══ MORSE (106.5) ═══
+const MORSE_MAP={A:'.-',D:'-..',E:'.',N:'-.',O:'---',P:'.--.',R:'.-.',S:'...'};
+const MORSE_TEXT='NO RESPONDAN';
+function morsePattern(){return MORSE_TEXT.split(' ').map(w=>w.split('').map(l=>MORSE_MAP[l].replace(/\./g,'·').replace(/-/g,'−')).join(' ')).join('  /  ')}
+let morseBusy=false;
+function morsePlay(){
+  if(morseBusy)return;morseBusy=true;
+  const unit=0.11,sched=[];let t=0.2;
+  MORSE_TEXT.split(' ').forEach((w,wi)=>{
+    w.split('').forEach((l,li)=>{
+      MORSE_MAP[l].split('').forEach((s,si)=>{const d=s==='.'?unit:unit*3;sched.push([t,d]);t+=d+unit});
+      t+=unit*2;
+    });
+    t+=unit*4;
+  });
+  let ac=null;try{const AC=window.AudioContext||window.webkitAudioContext;if(AC){ac=new AC();if(ac.resume)ac.resume()}}catch(e){ac=null}
+  const lamp=()=>document.getElementById('morseLamp');
+  sched.forEach(([st,d])=>{
+    setTimeout(()=>{const l=lamp();if(l)l.style.background='var(--amber)'},st*1000);
+    setTimeout(()=>{const l=lamp();if(l)l.style.background='var(--bg4)'},(st+d)*1000);
+    if(ac){try{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=620;g.gain.value=0.0001;o.connect(g);g.connect(ac.destination);const now=ac.currentTime+st;g.gain.setValueAtTime(0.0001,now);g.gain.exponentialRampToValueAtTime(0.25,now+0.01);g.gain.setValueAtTime(0.25,now+d-0.01);g.gain.exponentialRampToValueAtTime(0.0001,now+d);o.start(now);o.stop(now+d+0.02)}catch(e){}}
+  });
+  setTimeout(()=>{morseBusy=false;const b=document.getElementById('morseBtn');if(b)b.disabled=false},(t+0.3)*1000);
+  const b=document.getElementById('morseBtn');if(b)b.disabled=true;
+}
+
+function answerExtra(who){
+  const fb=document.getElementById('extraFb');
+  fb.innerHTML=who==='LIA'
+    ?'<span style="color:var(--green)">✓ Fue la urgencia de Lía.</span> Su intento de acceso externo de las 23:20 disparó la alerta de las 23:21. Que lo haya hecho sin querer o porque no podía esperar es algo que el expediente no resuelve.'
+    :'<span style="color:var(--red)">✗ No.</span> Revisá el registro de accesos entre las 23:20 y las 00:12, y quién firmó cada cosa y a qué hora.';
+}
+
+// ═══ SEÑAL FINAL (BONUS) ═══
+function answerSignal(yes){
+  document.getElementById('signalPrompt').style.display='none';
+  const r=document.getElementById('signalResult');r.style.display='block';
+  r.innerHTML=yes
+    ?'<div style="color:var(--amber);letter-spacing:.15em;margin-bottom:8px">ENVIANDO RESPUESTA...</div><div style="color:var(--red);margin-bottom:8px">[ ERROR ]</div><div style="color:var(--text-mid)">No hay nadie del otro lado de la línea.<br>Hay alguien conectado desde antes.</div>'
+    :'<div style="color:var(--green);letter-spacing:.15em;margin-bottom:8px">CONEXIÓN CERRADA</div><div style="color:var(--text-mid)">El registro indica que la señal sigue activa.<br>Esta vez, nadie respondió. Veremos cuánto dura.</div>';
+  setTimeout(()=>{const a=document.getElementById('finalArchive');if(a)a.style.display='block'},900);
+}
+
+// ═══ SPOTIFY ═══
+function toggleSpotify(id){const el=document.getElementById(id);el.classList.toggle('open');const btn=el.querySelector('.btn-spotify-toggle');if(btn)btn.setAttribute('aria-expanded',el.classList.contains('open'))}
+
+// ═══ RESET ═══
+function confirmReset(){document.getElementById('resetModal').style.display='flex'}
+function closeResetModal(){document.getElementById('resetModal').style.display='none'}
+function doReset(){try{localStorage.removeItem('ac_c_st')}catch(e){}location.reload()}
+document.getElementById('resetModal').addEventListener('click',function(e){if(e.target===this)closeResetModal()});
+
+// ═══ MODE / SIZE ═══
+function toggleMode(){document.documentElement.classList.toggle('light')}
+function setSize(s){document.documentElement.className=document.documentElement.className.replace(/sz-\w/,'');document.documentElement.classList.add('sz-'+s);document.querySelectorAll('.sz-btn').forEach(b=>b.classList.toggle('active',b.getAttribute('onclick').includes("'"+s+"'")));try{localStorage.setItem('ac_sz',s)}catch(e){}}
+(function(){try{const s=localStorage.getItem('ac_sz');if(s)setSize(s)}catch(e){}})();
+
+// ═══ MOBILE ═══
+function isMobile(){return window.innerWidth<=680}
+function toggleMobileSidebar(){document.getElementById('sidebarEl').classList.toggle('mobile-open');document.getElementById('sidebarBackdrop').classList.toggle('show')}
+function closeMobileSidebar(){document.getElementById('sidebarEl').classList.remove('mobile-open');document.getElementById('sidebarBackdrop').classList.remove('show')}
+
+// ═══ TOUR ═══
+const TOUR_STEPS=[
+  {target:()=>document.querySelector('.t-right'),arrow:'tour-arrow-t',offset:{top:'below',left:'align-right'},title:'Navegación superior',desc:'Acá arriba tenés el cronómetro ⏱, las pistas 💡, el tamaño de letra (A A A), modo claro/oscuro, y la Pizarra 📌.'},
+  {target:()=>document.getElementById('btnPiz'),arrow:'tour-arrow-t',offset:{top:'below',left:'align-right'},title:'La pizarra',desc:'Tomá notas, arrastrá tarjetas y conectalas con hilos. Tu espacio de trabajo durante la investigación.'},
+  {target:()=>document.getElementById('sidebarEl'),arrow:'tour-arrow-l',offset:{top:60,left:'right'},title:'Navegación lateral',desc:'Todos los documentos organizados en carpetas. Las carpetas 2 y 3 están bloqueadas — se desbloquean resolviendo enigmas.'},
+  {target:()=>document.getElementById('page-resumen'),arrow:'tour-arrow-t',offset:{top:80,left:20},title:'¡A investigar!',desc:'Empezá por el Resumen y explorá la Carpeta 1. Resolvé el Enigma 1 para avanzar. Buena suerte.',isLast:true}
+];
+let tourI=0;
+function startTour(){tourI=0;renderTourStep();document.getElementById('tourOverlay').classList.add('active')}
+function skipTour(){document.getElementById('tourOverlay').classList.remove('active')}
+function tourStep(){const step=TOUR_STEPS[tourI];if(step&&step.action)step.action();tourI++;if(tourI>=TOUR_STEPS.length){skipTour();return}setTimeout(renderTourStep,350)}
+function renderTourStep(){
+  const step=TOUR_STEPS[tourI];if(!step)return;
+  const el=step.target();if(!el)return;
+  document.getElementById('tourDots').innerHTML=TOUR_STEPS.map((_,i)=>'<div class="tour-dot'+(i===tourI?' on':'')+'"></div>').join('');
+  document.getElementById('tourNum').textContent='PASO '+(tourI+1)+' DE '+TOUR_STEPS.length;
+  document.getElementById('tourTitle').textContent=step.title;
+  document.getElementById('tourDesc').textContent=step.desc;
+  document.getElementById('tourNext').textContent=step.isLast?'EMPEZAR →':'SIGUIENTE →';
+  const hl=document.getElementById('tourHL');const r=el.getBoundingClientRect();
+  hl.style.top=(r.top-4)+'px';hl.style.left=(r.left-4)+'px';hl.style.width=(r.width+8)+'px';hl.style.height=(r.height+8)+'px';
+  const tt=document.getElementById('tourTT');tt.className='tour-tooltip '+step.arrow;
+  const pad=14;let ttTop,ttLeft;
+  if(step.offset.top==='below'){ttTop=r.bottom+pad}else if(step.offset.left==='right'){ttTop=r.top}else{ttTop=r.top+step.offset.top}
+  if(step.offset.left==='right'){ttLeft=r.right+pad}else if(step.offset.left==='align-right'){ttLeft=r.right-270}else{ttLeft=r.left+step.offset.left}
+  ttTop=Math.max(10,Math.min(ttTop,window.innerHeight-200));ttLeft=Math.max(10,Math.min(ttLeft,window.innerWidth-285));
+  tt.style.top=ttTop+'px';tt.style.left=ttLeft+'px';
+}
+</script>
+</body>
+</html>
