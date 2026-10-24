@@ -655,11 +655,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div class="nota-ms-pre">LIBRETA DE CAMPO — ÚLTIMA PÁGINA CON ANOTACIONES</div>
     <p>Página con varias columnas de números, anotadas en distintos momentos. Algunas tachadas.</p>
     <div style="margin-top:12px;font-family:var(--font-mono);font-size:.85rem;color:#5a4010;line-height:2.2">
-      <div style="text-decoration:line-through;color:#a09060">13 · 01 · 18 · 01</div>
+      <div style="text-decoration:line-through;color:#a09060">13 · 01 · 19 · 01</div>
       <div style="text-decoration:line-through;color:#a09060">24 · 20 · 05 · 26 · 14</div>
       <div>21 · 08 · 11 · 04 · 19 · 02</div>
       <div>12 · 03 · 16 · 22 · 07</div>
-      <div style="font-weight:600;color:#403010">15 · 18 · 09 · 07 · 05 · 14 ✓</div>
+      <div style="font-weight:600;color:#403010">16 · 19 · 09 · 07 · 05 · 14 ✓</div>
     </div>
   </div>
   <div class="enigma-block">
@@ -1871,6 +1871,53 @@ function renderTourStep(){
   ttTop=Math.max(10,Math.min(ttTop,window.innerHeight-200));ttLeft=Math.max(10,Math.min(ttLeft,window.innerWidth-285));
   tt.style.top=ttTop+'px';tt.style.left=ttLeft+'px';
 }
+</script>
+<script>window.KIT_CFG={id:"c",code:"EXP-C",name:"LA ÚLTIMA SEÑAL",rank:[50,90],chats:["chat-","mensajes"],unlocks:[["unlock2","CARPETA 2"],["unlock3","CARPETA 3"],["unlockTerminal","DISPOSITIVO"]],stamps:[["informe-desaparicion","CONFIDENCIAL","#c82020"],["informe-nodo","CONFIDENCIAL","#c82020"],["accesos","EVIDENCIA","#e8a830"],["memo-aaron","INTERNO","#e8a830"],["ficha-defensa","RESERVADO","#c82020"]],redact:/^(Denunciante|Distribución)/};
+/* ARCHIVO CERO · KIT BASE — requiere window.KIT_CFG={id,code,name,rank:[a,b],chats:[prefijos de páginas de chat],unlocks:[[fn,label]],stamps:[[page,text,color]],redact:RegExp} */
+(function(){
+const C=window.KIT_CFG,$=i=>document.getElementById(i);
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const st=document.createElement('style');st.textContent='#boot{display:none;position:fixed;inset:0;z-index:700;background:#030705;color:var(--green);font:.9rem var(--font-mono);padding:12vh 8vw;flex-direction:column;gap:8px;cursor:pointer}.bootstamp{position:absolute;right:10vw;bottom:14vh;border:4px solid #c82020;color:#c82020;padding:6px 22px;font:2rem var(--font-display);letter-spacing:.2em;transform:rotate(-7deg) scale(1.6);opacity:0;transition:all .25s}.bootstamp.on{opacity:.9;transform:rotate(-7deg) scale(1)}.sb-item.new:after{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);margin-left:auto}#nudge{display:none;position:fixed;right:16px;bottom:44px;z-index:420;background:var(--bg2);border:1px solid var(--amber-dim);padding:10px 12px;font-size:.8rem;color:var(--text-mid);align-items:center;gap:10px}.btnx{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);font:inherit;padding:3px 9px;cursor:pointer}#decOv{display:none;position:fixed;inset:0;z-index:600;background:rgba(5,10,7,.94);flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--green)}#decOv pre{font-size:.7rem;color:var(--green-dim);margin:16px 0;text-align:center}#decOv u{display:block;width:260px;height:4px;background:var(--border2)}#decOv i{display:block;height:100%;width:0;background:var(--green)}.rd{background:#000;color:#000;cursor:pointer;padding:0 3px}.rd.on{background:transparent;color:inherit}mark{background:rgba(232,168,48,.35);color:inherit;cursor:pointer}#selTip{display:none;position:fixed;z-index:450;gap:4px}#selTip button{background:var(--bg2);border:1px solid var(--amber-dim);color:var(--amber);font:.77rem var(--font-mono);padding:5px 9px;cursor:pointer}.stampx{position:absolute;right:14px;top:10px;transform:rotate(-8deg);border:3px solid;padding:1px 10px;font:1rem var(--font-display);letter-spacing:.15em;opacity:.5;pointer-events:none}';st.textContent+='@keyframes kitb{50%{opacity:.2}}.wa-typing .wa-bubble{padding:10px 14px}.wa-typing span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--text-dim);animation:kitb 1s infinite}.wa-typing span:nth-child(2){animation-delay:.2s}.wa-typing span:nth-child(3){animation-delay:.4s}';document.head.appendChild(st);
+document.body.insertAdjacentHTML('beforeend','<div id="boot"></div><div id="decOv"><div id="decT"></div><pre></pre><u><i></i></u></div><div id="nudge"><span>¿Trabado? Las pistas pueden orientarte.</span><button class="btnx" onclick="openHints();this.parentNode.style.display=\'none\'">💡 Ver pistas</button></div>');
+let AC,mute=ls.g('ac_mute')==='1';
+function sfx(k){if(mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const P={tick:[[900,.03]],msg:[[620,.05]],ok:[[520,.1],[780,.16]],err:[[160,.2]],stamp:[[110,.12],[70,.2]]}[k]||[];let t=AC.currentTime;P.forEach(a=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=a[0];o.type=(k=='err'||k=='stamp')?'square':'sine';g.gain.setValueAtTime(.04,t);g.gain.exponentialRampToValueAtTime(.0001,t+a[1]);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+a[1]);t+=a[1]*.8})}catch(e){}}
+const bs=document.createElement('button');bs.className='tbtn';bs.id='btnSnd';bs.textContent=mute?'🔇':'🔊';bs.onclick=()=>{mute=!mute;ls.s('ac_mute',mute?'1':'0');bs.textContent=mute?'🔇':'🔊'};
+const tr=document.querySelector('.t-right');tr.insertAdjacentElement('afterbegin',bs);
+tr.insertAdjacentHTML('afterbegin','<span id="seenC" title="Archivos revisados" style="font-size:.77rem;color:var(--text-dim)"></span>');
+const SK='ac_'+C.id+'_seen',SEEN=new Set();try{JSON.parse(ls.g(SK)||'[]').forEach(x=>SEEN.add(x))}catch(e){}
+const sbId=i=>{const m=(i.getAttribute('onclick')||'').match(/go\('([^']+)'\)/);return m?m[1]:(i.id.indexOf('item-')===0?i.id.slice(5):null)};
+const sbAll=()=>[...document.querySelectorAll('.sb-item')].filter(sbId);
+function seenUp(){const a=sbAll();a.forEach(i=>i.classList.toggle('new',!SEEN.has(sbId(i))&&!i.classList.contains('locked')));$('seenC').textContent='📂 '+a.filter(i=>SEEN.has(sbId(i))).length+'/'+a.length;ls.s(SK,JSON.stringify([...SEEN]))}
+const chatSeen=new Set();
+function chatAnim(id){if(chatSeen.has(id)||!(C.chats||[]).some(x=>id.indexOf(x)===0))return;const p=$('page-'+id),box=p&&p.querySelector('.wa-msgs');if(!box)return;chatSeen.add(id);const items=[...box.children];items.forEach(e=>e.style.display='none');let i=0,skip=false;p.addEventListener('click',()=>{skip=true});(function nx(){if(i>=items.length)return;const e=items[i++],inc=e.classList.contains('in');const show=()=>{e.style.display='';box.scrollTop=box.scrollHeight;sfx('msg');setTimeout(nx,skip?0:(e.classList.contains('wa-date')?200:450))};if(inc&&!skip){const t=document.createElement('div');t.className='wa-msg in wa-typing';t.innerHTML='<div class="wa-bubble"><span></span><span></span><span></span></div>';e.before(t);setTimeout(()=>{t.remove();show()},800)}else show()})()}
+const _go=window.go;window.go=function(id){_go(id);SEEN.add(id);seenUp();sfx('tick');chatAnim(id)};
+function dec(l,cb){const o=$('decOv'),bar=o.querySelector('i'),tx=o.querySelector('pre');o.style.display='flex';$('decT').textContent='DESCIFRANDO '+l+'…';let p=0;const iv=setInterval(()=>{p+=4+Math.random()*6;tx.textContent=Array.from({length:6},()=>Array.from({length:28},()=>'0123456789ABCDEF'[Math.random()*16|0]).join(' ')).join('\n');bar.style.width=Math.min(p,100)+'%';sfx('tick');if(p>=100){clearInterval(iv);o.style.display='none';cb();sfx('ok')}},90)}
+C.unlocks.forEach(u=>{const o=window[u[0]];if(!o)return;window[u[0]]=function(){if(window.__live)dec(u[1],()=>{o();seenUp()});else{o();seenUp()}}});
+const _ls=window.loadState;window.loadState=function(){window.__live=false;_ls();window.__live=true};
+function ambient(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();const b=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate),d=b.getChannelData(0);let l=0;for(let i=0;i<d.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;d[i]=l*3.5}const s=AC.createBufferSource();s.buffer=b;s.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=500;const g=AC.createGain();g.gain.value=0;const o=AC.createOscillator();o.frequency.value=55;const og=AC.createGain();og.gain.value=.25;s.connect(f);f.connect(g);o.connect(og);og.connect(g);g.connect(AC.destination);s.start();o.start();setInterval(()=>{g.gain.value=mute?0:.035},300)}catch(e){}}
+function boot(cb){const o=$('boot');o.style.display='flex';o.innerHTML='<div class="bootstamp" id="bst">CASO ABIERTO</div>';ambient();const L=['> ARCHIVO CERO · sistema de acceso','> verificando credenciales… OK','> '+C.code+' · '+C.name,'> cargando '+sbAll().length+' documentos…','> acceso concedido'];let i=0,done=false;const end=()=>{if(done)return;done=true;o.style.display='none';cb()};o.onclick=end;(function n(){if(done)return;if(i<L.length){const p=document.createElement('div');p.textContent=L[i++];o.insertBefore(p,o.lastChild);sfx('msg');setTimeout(n,480)}else{$('bst').classList.add('on');sfx('stamp');setTimeout(end,1100)}})()}
+const _sc=window.startCase;window.startCase=function(){boot(_sc)};
+const FAIL={};function fail(n){if((FAIL[n]=(FAIL[n]||0)+1)>=3){const z=$('nudge');z.style.display='flex';setTimeout(()=>{z.style.display='none'},9000)}}
+const _cE=window.checkE;window.checkE=function(n){_cE(n);const ok=!!unlocked[n];sfx(ok?'ok':'err');if(!ok)fail(n)};
+const _sm=window.submitEnigmaModal;if(_sm)window.submitEnigmaModal=function(){const n=currentEnigmaN;_sm();const ok=$('enigmaModalMsg').textContent.indexOf('✓')>-1;sfx(ok?'ok':'err');if(!ok)fail(n)};
+const _cV=window.checkV;window.checkV=function(n){_cV(n);sfx(correct[n]?'ok':'err')};
+let hintsN=0;const hf=window.requestHint?'requestHint':'openHints',_hf=window[hf];window[hf]=function(){hintsN++;_hf.apply(null,arguments)};
+const RK=['Aprendiz','Detective','Inspector'];
+const _cc=window.cerrarCaso;window.cerrarCaso=function(){_cc();sfx('stamp');const sc=timerSeconds/60+5*hintsN,r=sc<=C.rank[0]?2:sc<=C.rank[1]?1:0;const best=Math.max(r,RK.indexOf(ls.g('ac_rank')||'Aprendiz'));ls.s('ac_rank',RK[best]);ls.s('ac_rank_n',(+ls.g('ac_rank_n')||0)+1);const t=$('finalTime');if(t&&!$('rankLine'))t.parentElement.insertAdjacentHTML('afterend','<div id="rankLine" style="margin:10px 0;text-align:center;color:var(--amber);font-family:var(--font-display);letter-spacing:.1em">RANGO · '+RK[r].toUpperCase()+' · '+hintsN+' pista(s)</div>')};
+const rk=ls.g('ac_rank'),sm=document.querySelector('.splash-meta-item');if(rk&&sm)sm.parentElement.insertAdjacentHTML('beforeend','<div class="splash-meta-item"><div class="splash-meta-label">TU RANGO</div><div class="splash-meta-val">'+rk+'</div></div>');
+const _dr=window.doReset;if(_dr)window.doReset=function(){ls.s(SK,'[]');_dr()};
+C.stamps.forEach(a=>{const e=document.querySelector('#page-'+a[0]+' .informe,#page-'+a[0]+' .doc-card');if(e){e.style.position='relative';e.insertAdjacentHTML('beforeend','<div class="stampx" style="color:'+a[2]+'">'+a[1]+'</div>')}});
+document.querySelectorAll('.carta-firma').forEach(e=>e.innerHTML=e.innerHTML.replace(/DNI ([\d.]+)/,'DNI <span class="rd">$1</span>'));
+document.querySelectorAll('.inf-row').forEach(r=>{const k=r.querySelector('.inf-k'),v=r.querySelector('.inf-v');if(k&&v&&C.redact.test(k.textContent))v.innerHTML='<span class="rd">'+v.innerHTML+'</span>'});
+const tip=document.createElement('div');tip.id='selTip';tip.innerHTML='<button id="hlB">🖍 Resaltar</button><button id="hpB">📌 Pizarra</button>';document.body.appendChild(tip);
+let selTxt='',selR=null;const dp=$('docsPanel');
+['mouseup','touchend'].forEach(ev=>dp.addEventListener(ev,()=>setTimeout(()=>{const s=getSelection(),t=s.toString().trim();if(t.length<4||!s.rangeCount){tip.style.display='none';return}selTxt=t;selR=s.getRangeAt(0).cloneRange();const r=selR.getBoundingClientRect();tip.style.display='flex';tip.style.left=Math.max(8,r.left)+'px';tip.style.top=Math.max(8,r.top-38)+'px'},10)));
+tip.addEventListener('mousedown',e=>e.preventDefault());
+$('hlB').onclick=()=>{try{selR.surroundContents(document.createElement('mark'))}catch(e){}tip.style.display='none';getSelection().removeAllRanges();sfx('tick')};
+$('hpB').onclick=()=>{if(!pizOpen)togglePiz();addCard('nota',20+Math.random()*60|0,20+Math.random()*60|0,selTxt.slice(0,220));tip.style.display='none';getSelection().removeAllRanges();sfx('ok')};
+dp.addEventListener('click',e=>{const t=e.target;if(t.tagName=='MARK')t.replaceWith(...t.childNodes);else if(t.classList.contains('rd')){t.classList.toggle('on');sfx('tick')}});
+seenUp();
+})();
 </script>
 </body>
 </html>
