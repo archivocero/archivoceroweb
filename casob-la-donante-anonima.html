@@ -355,8 +355,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 .tour-dot.on{background:var(--amber)}
 @media(max-width:680px){.tour-tooltip{width:90vw;max-width:280px}}
 .sp-icon{width:16px;height:16px;fill:var(--green);flex-shrink:0}
+.nota-ms{font-family:'Caveat',cursive!important;font-size:1.3rem!important;line-height:1.5;background:#e4d9b0!important;color:#2a2418!important;padding:16px 18px;box-shadow:0 2px 10px rgba(0,0,0,.45);transform:rotate(-.4deg)}.nota-ms *{color:#2a2418!important}.nota-ms .nota-ms-pre{font:.68rem var(--font-mono)!important;color:#6b5f3a!important;letter-spacing:.1em}
+.x2-box{background:var(--bg2);border:1px solid var(--border2);padding:12px;margin-bottom:14px;font-size:.78rem;color:var(--text-mid)}.x2-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:10px}.x2-cal b{font-weight:400;text-align:center;color:var(--text-dim);font-size:.68rem}.x2-cal button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);padding:7px 0;cursor:pointer;font:inherit}.x2-cal button.e{border-color:var(--amber-dim);color:var(--amber)}.x2-cal button.on{outline:1px solid var(--amber)}.x2-det{min-height:3em;font-family:'Caveat',cursive;font-size:1.4rem;color:#e4d9b0}.x2-row{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:center;margin:5px 0}.x2-tr{position:relative;height:16px;background:var(--bg3)}.x2-tr i{position:absolute;top:3px;height:10px;background:var(--text-dim);min-width:5px}.x2-tr i.d{background:var(--amber)}.x2-tr b.al{display:none;position:absolute;top:0;height:16px;background:repeating-linear-gradient(45deg,rgba(58,154,90,.45) 0 4px,transparent 4px 8px);border:1px dashed #3a9a5a}#x2v.al-on .x2-tr b.al{display:block}@keyframes x2sh{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}.x2-shake{animation:x2sh .3s}.sb-head:has(.fb-locked){cursor:not-allowed;opacity:.75}.x2-tr.hl i.s{outline:2px solid #e84444}.x2-g{display:grid;grid-template-columns:24px repeat(5,1fr);gap:3px;max-width:300px;margin:8px 0}.x2-g span,.x2-g button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);text-align:center;padding:5px 0;font:inherit}.x2-g button{cursor:pointer;color:var(--amber)}
 </style>
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet"></head>
 <body>
 
 <!-- SPLASH -->
@@ -386,8 +388,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
     <div class="splash-meta">
       <div class="splash-meta-item"><div class="splash-meta-label">CASO</div><div class="splash-meta-val">INTERACTIVO B</div></div>
-      <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">60–90 min</div></div>
-      <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Media-alta</div></div>
+      <div class="splash-meta-item"><div class="splash-meta-label">DURACIÓN</div><div class="splash-meta-val">60–75 min</div></div>
+      <div class="splash-meta-item"><div class="splash-meta-label">DIFICULTAD</div><div class="splash-meta-val">Media</div></div>
     </div>
     <button class="splash-btn" onclick="startCase()">▶ INICIAR INVESTIGACIÓN</button>
     <div class="splash-warning">El cronómetro comienza al iniciar · Investigación individual o grupal</div>
@@ -440,24 +442,31 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     </div>
   </div>
   <div class="sb-section">
-    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 2<span class="fb fb-locked" id="badge2">BLOQUEADA</span></div>
-    <div class="sb-items open">
+    <div class="sb-head" onclick="toggleSB(this)">📁 CARPETA 2<span class="fb fb-locked" id="badge2">BLOQUEADA</span></div>
+    <div class="sb-items">
       <div class="sb-item locked" id="item-registro-visitas"><span class="sb-icon">▤</span>Registro de visitas<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-tasacion"><span class="sb-icon">▤</span>Informe de tasación<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-email-drault"><span class="sb-icon">✉</span>Correos de Drault<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-whatsapp-valentina"><span class="sb-icon">◉</span>Chat Valentina<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-testimonio-pereyra"><span class="sb-icon">▤</span>Testimonio Pereyra<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-agenda-nora"><span class="sb-icon">▤</span>Agenda de Nora<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-testimonio-saez"><span class="sb-icon">▤</span>Testimonio Saez<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-correo-museo"><span class="sb-icon">✉</span>Correo al museo<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-testimonio-brest"><span class="sb-icon">▤</span>Declaración de Brest<span class="sb-lock">🔒</span></div>
+
       <div class="sb-item locked" id="item-apuntes-nora"><span class="sb-icon">✎</span>Apuntes de Nora<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="enigma2-sb-item" style="color:var(--amber-dim);border-left:2px solid transparent"><span class="sb-icon">⊛</span>Enigma 2 — ingresar clave<span class="sb-lock">🔒</span></div>
     </div>
   </div>
   <div class="sb-section">
-    <div class="sb-head open" onclick="toggleSB(this)">📁 CARPETA 3<span class="fb fb-locked" id="badge3">BLOQUEADA</span></div>
-    <div class="sb-items open">
+    <div class="sb-head" onclick="toggleSB(this)">📁 CARPETA 3<span class="fb fb-locked" id="badge3">BLOQUEADA</span></div>
+    <div class="sb-items">
       <div class="sb-item locked" id="item-historial-medico"><span class="sb-icon">▤</span>Historial médico<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-nota-nora"><span class="sb-icon">✎</span>Nota de Nora<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-carta-saez"><span class="sb-icon">✉</span>Correo de Saez<span class="sb-lock">🔒</span></div>
       <div class="sb-item locked" id="item-contrato"><span class="sb-icon">▤</span>Contrato donación<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-registro-llamadas"><span class="sb-icon">▤</span>Registro de llamadas<span class="sb-lock">🔒</span></div>
+<div class="sb-item locked" id="item-testimonio-carmen"><span class="sb-icon">▤</span>Declaración cuidadora<span class="sb-lock">🔒</span></div>
     </div>
   </div>
   <div class="sb-section">
@@ -486,7 +495,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="case-hdr">
     <div class="case-hdr-top">
       <div>
-        <div class="ch-ref">REF: AC-IB · SUSTITUCIÓN / HOMICIDIO · CASO INTERACTIVO</div>
+        <div class="ch-ref">REF: AC-IB · ARTE / HOMICIDIO · CASO INTERACTIVO</div>
         <div class="ch-title">LA DONANTE ANÓNIMA</div>
         <div class="ch-sub">Caso Interactivo B — Archivo Cero</div>
       </div>
@@ -503,7 +512,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div class="dc-body">
       <p>Nora Acevedo, 78 años, coleccionista privada de arte argentino del siglo XX, donó su colección completa al Museo Municipal de Arte de Buenos Aires. Firmó el contrato el 15 de septiembre. El 3 de octubre murió de una arritmia cardíaca. Causa oficial: natural.</p>
       <p>El 12 de octubre, durante el inventario de ingreso, el museo descubrió que tres de las obras más valiosas de la colección son falsificaciones. Los originales no aparecen. Alguien los sustituyó antes de que llegaran al museo.</p>
-      <p>El tasador contratado para valuar la colección realizó cuatro visitas al domicilio de Nora durante septiembre. Fue el único con acceso técnico y tiempo suficiente para realizar el cambio.</p>
+      <p>El tasador contratado para valuar la colección realizó cuatro visitas al domicilio de Nora durante septiembre.</p>
       <p style="color:var(--green)">Seis personas tenían acceso a la colección o al entorno de Nora. Tu objetivo: identificar <strong>quién</strong> está detrás de lo que pasó, <strong>cómo</strong> lo hizo y <strong>qué descubrió la persona culpable que la llevó a actuar</strong>.</p>
     </div>
   </div>
@@ -546,7 +555,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="doc-card">
     <div class="dc-head"><span class="dc-title">CÓMO INVESTIGAR</span><span class="dc-ref">INST-IB</span></div>
     <div class="dc-body">
-      <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong> que se desbloquean resolviendo enigmas. Cada enigma requiere cruzar información de más de un documento — no hay respuesta que venga de una sola fuente.</p>
+      <p>El expediente tiene <strong style="color:var(--amber)">3 carpetas</strong> que se desbloquean resolviendo enigmas. Los enigmas piden cruzar lo que dicen los documentos: ninguna respuesta aparece servida.</p>
       <p><strong style="color:var(--red)">Atención:</strong> algunos documentos contienen errores deliberados o información manipulada por los propios involucrados. Parte del trabajo es detectar qué no cierra.</p>
       <p>Usá la <strong style="color:var(--amber)">Pizarra</strong> para arrastrar tarjetas, conectarlas con hilos y registrar contradicciones. Se guarda automáticamente.</p>
       <p>La validación final tiene <strong style="color:var(--green)">3 preguntas</strong>, una palabra cada una, sin acentos.</p>
@@ -569,7 +578,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="sosp-role">Tasador de arte · 52 años</div>
         <div class="sosp-dato">Contratado por el museo para valuar la colección. Cuatro visitas al domicilio de Nora en septiembre.</div>
         <div class="sosp-dato">Especialista en arte argentino del siglo XX. Trabaja de forma independiente hace 18 años.</div>
-        <div class="sosp-dato">Especialista en arte argentino del siglo XX. Matrícula CTAT-0884. Trayectoria independiente sin antecedentes conocidos.</div>
+        <div class="sosp-dato">Matrícula CTAT-0884. Trayectoria independiente sin antecedentes conocidos.</div>
         <div class="sosp-coartada">COARTADA: <span>Congreso de tasadores en Rosario, 27–28 sep. Verificado parcialmente.</span></div>
       </div>
     </div>
@@ -592,7 +601,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="sosp-dato">Agente de Nora durante 15 años. Perdió una comisión del 8% cuando ella decidió donar en lugar de vender.</div>
         <div class="sosp-dato">Acceso histórico al domicilio. Conocía cada obra de memoria.</div>
         <div class="sosp-dato">Contactos en el mercado privado de arte argentino.</div>
-        <div class="sosp-coartada">COARTADA: <span>Reunión en São Paulo, 8–14 sep. Pasajes y hotel verificados.</span></div>
+        <div class="sosp-coartada">COARTADA: <span>Reunión en São Paulo, 14–19 sep. Pasajes y hotel verificados.</span></div>
       </div>
     </div>
     <div class="sosp-card">
@@ -612,8 +621,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="sosp-name">Dr. Osvaldo Pereyra</div>
         <div class="sosp-role">Médico de cabecera · 67 años</div>
         <div class="sosp-dato">Médico de Nora desde hace 20 años. Prescribía su medicación cardíaca (Digoxina).</div>
-        <div class="sosp-dato">Acceso frecuente al domicilio. Única visita no programada: 29 de septiembre.</div>
-        <div class="sosp-dato">Deuda de juego no confirmada. Vínculo con Drault no aclarado.</div>
+        <div class="sosp-dato">Acceso frecuente al domicilio.</div>
+        <div class="sosp-dato">Deuda de juego no confirmada.</div>
         <div class="sosp-coartada">COARTADA: <span>Consultorio todos los días laborales. Agenda verificable.</span></div>
       </div>
     </div>
@@ -623,7 +632,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <div class="sosp-name">Guillermo Saez</div>
         <div class="sosp-role">Abogado · 55 años</div>
         <div class="sosp-dato">Redactó el contrato de donación. Sabía el valor exacto de cada obra y los plazos de transferencia.</div>
-        <div class="sosp-dato">Contacto profesional previo con Drault. Vínculo confirmado por correos.</div>
         <div class="sosp-dato">Fue el nexo entre Nora y el museo durante todo el proceso.</div>
         <div class="sosp-coartada">COARTADA: <span>Viaje a Córdoba, 20–25 sep. Confirmado por cliente.</span></div>
       </div>
@@ -646,14 +654,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">8 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Segunda visita de Drault. Fotografía y documentación de las obras.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro visitas</td></tr>
           <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">12 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Tercera visita: Drault + Inés Varela. Inspección técnica detallada. 4h 30min.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro visitas</td></tr>
           <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">15 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Firma del contrato de donación. Saez, Nora y directora del museo presentes.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Contrato</td></tr>
-          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">18 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Cuarta visita de Drault. "Inventario final" — solo. 3h 20min.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro visitas</td></tr>
-          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">22 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Nora contacta a Claudia Brest para solicitar una pericia independiente.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Agenda Nora</td></tr>
-          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">24 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Drault envía correo al museo mencionando conversación con Saez sobre plazos. Mismo día: Saez escribe a destinatario no identificado.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Correos</td></tr>
-          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">29 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dr. Pereyra visita a Nora. Visita no programada, sin llamado previo registrado. Ajuste de medicación.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Historial médico</td></tr>
-          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">1 oct.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Nora cancela la visita de Claudia Brest. Justificación: "malestar general".</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Agenda Nora</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">18 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Cuarta visita de Drault. "Inventario final". 3h 20min.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro visitas</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">22 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Nora contacta a Claudia Brest para solicitar una pericia independiente.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Agenda Nora · Testimonio Brest</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">24 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Drault envía correo al museo mencionando conversación con Saez sobre plazos.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Correos</td></tr>
+<tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">24 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Mismo día: Saez escribe a un destinatario no identificado.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Correos</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">26 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Drault llama al Dr. Pereyra (14 min).</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Registro llamadas</td></tr>
+<tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">29 sep.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Dr. Pereyra visita a Nora. Visita no programada, sin llamado previo registrado. Ajuste de medicación.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Historial médico</td></tr>
+          <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">1 oct.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Nora cancela la visita de Claudia Brest. Justificación: "malestar general".</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Agenda Nora · Testimonio Brest</td></tr>
           <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px;border-bottom:1px solid var(--border)">3 oct.</td><td style="color:var(--text);padding:6px 11px;border-bottom:1px solid var(--border)">Nora Acevedo fallece. Causa oficial: arritmia cardíaca. Cuidadora la encuentra a las 08:15.</td><td style="color:var(--text-dim);padding:6px 11px;border-bottom:1px solid var(--border)">Informe médico</td></tr>
           <tr><td style="color:var(--text-dim);white-space:nowrap;padding:6px 11px">12 oct.</td><td style="color:var(--text);padding:6px 11px">El museo completa el inventario de ingreso y descubre las tres falsificaciones. Denuncia policial.</td><td style="color:var(--text-dim);padding:6px 11px">Informe museo</td></tr>
-        </tbody>
+        <tr id="crLk"><td colspan="3" style="padding:8px 11px;color:var(--text-dim);font-size:.78rem"></td></tr></tbody>
       </table>
     </div>
   </div>
@@ -707,20 +717,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <table style="width:100%;border-collapse:collapse;font-size:.85rem">
         <thead><tr style="background:var(--bg4);font-size:.69rem;color:var(--text-dim)"><td style="padding:6px 10px">CÓDIGO</td><td style="padding:6px 10px">OBRA</td><td style="padding:6px 10px">ARTISTA</td><td style="padding:6px 10px">AÑO</td></tr></thead>
         <tbody>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">33·11·43·13·35</td><td style="padding:5px 10px;color:var(--text)"><em>Paisaje bonaerense</em></td><td style="padding:5px 10px;color:var(--text)">Spilimbergo</td><td style="padding:5px 10px;color:var(--text-dim)">1944</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">33·11·14·15·43·11</td><td style="padding:5px 10px;color:var(--text)"><em>Composición en azul</em></td><td style="padding:5px 10px;color:var(--text)">Lozza</td><td style="padding:5px 10px;color:var(--text-dim)">1958</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">35·32·15·35</td><td style="padding:5px 10px;color:var(--text)"><em>Mujer en reposo</em></td><td style="padding:5px 10px;color:var(--text)">Berni</td><td style="padding:5px 10px;color:var(--text-dim)">1953</td></tr>
           <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">12·11·43·34·24·55</td><td style="padding:5px 10px;color:var(--text)"><em>Sin título</em></td><td style="padding:5px 10px;color:var(--text)">Mac Entyre</td><td style="padding:5px 10px;color:var(--text-dim)">1962</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">33·15·42·11·43</td><td style="padding:5px 10px;color:var(--text)"><em>Composición en azul</em></td><td style="padding:5px 10px;color:var(--text)">Lozza</td><td style="padding:5px 10px;color:var(--text-dim)">1958</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">44·32·25·13·21</td><td style="padding:5px 10px;color:var(--text)"><em>Retrato de mujer</em></td><td style="padding:5px 10px;color:var(--text)">Grete Stern</td><td style="padding:5px 10px;color:var(--text-dim)">1949</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">23·51·14·32</td><td style="padding:5px 10px;color:var(--text)"><em>Paisaje bonaerense</em></td><td style="padding:5px 10px;color:var(--text)">Spilimbergo</td><td style="padding:5px 10px;color:var(--text-dim)">1944</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">15·22·43·41</td><td style="padding:5px 10px;color:var(--text)"><em>Figura en rojo</em></td><td style="padding:5px 10px;color:var(--text)">Castagnino</td><td style="padding:5px 10px;color:var(--text-dim)">1951</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">31·14·52·35</td><td style="padding:5px 10px;color:var(--text)"><em>Mujer en reposo</em></td><td style="padding:5px 10px;color:var(--text)">Berni</td><td style="padding:5px 10px;color:var(--text-dim)">1953</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">41·32·14·53</td><td style="padding:5px 10px;color:var(--text)"><em>Abstracción geométrica</em></td><td style="padding:5px 10px;color:var(--text)">Hlito</td><td style="padding:5px 10px;color:var(--text-dim)">1957</td></tr>
-          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">23·51·14·32·45</td><td style="padding:5px 10px;color:var(--text)"><em>Puerto al atardecer</em></td><td style="padding:5px 10px;color:var(--text)">Quinquela Martín</td><td style="padding:5px 10px;color:var(--text-dim)">1948</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">45·15·32·11</td><td style="padding:5px 10px;color:var(--text)"><em>Figura en rojo</em></td><td style="padding:5px 10px;color:var(--text)">Castagnino</td><td style="padding:5px 10px;color:var(--text-dim)">1951</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">32·15·34·45·15</td><td style="padding:5px 10px;color:var(--text)"><em>Retrato de mujer</em></td><td style="padding:5px 10px;color:var(--text)">Grete Stern</td><td style="padding:5px 10px;color:var(--text-dim)">1949</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">32·24·15·34·55·35</td><td style="padding:5px 10px;color:var(--text)"><em>Abstracción geométrica</em></td><td style="padding:5px 10px;color:var(--text)">Hlito</td><td style="padding:5px 10px;color:var(--text-dim)">1957</td></tr>
+          <tr style="border-bottom:1px solid var(--border)"><td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-dim)">41·24·34·13·15·32</td><td style="padding:5px 10px;color:var(--text)"><em>Puerto al atardecer</em></td><td style="padding:5px 10px;color:var(--text)">Quinquela Martín</td><td style="padding:5px 10px;color:var(--text-dim)">1948</td></tr>
           <tr><td style="padding:5px 10px;color:var(--text-dim);font-size:.77rem" colspan="4">... 15 obras adicionales catalogadas ...</td></tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="enigma-block">
+  <div class="x2-box"><div>Herramienta · grilla de Nora (fila + columna)</div><div class="x2-g" id="x2g"></div><input id="x2i" placeholder="12 11 43…" oninput="x2D()" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--green);font-family:var(--font-display);padding:5px 8px"><div id="x2o" style="font-family:var(--font-display);font-size:1.2rem;letter-spacing:.25em;color:var(--green);margin-top:6px"></div></div><div class="enigma-block">
     <div class="enigma-label">// ENIGMA 1 — DESBLOQUEAR CARPETA 2</div>
     <div class="enigma-row">
       <input class="enigma-input" id="e1page" placeholder="_ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkE(1)">
@@ -731,7 +741,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 </div>
 
 <!-- REGISTRO VISITAS -->
-<div class="page" id="page-registro-visitas">
+<div class="page" id="page-registro-visitas"><div class="x2-box"><div>Visitas al domicilio · 1 sep – 3 oct (el ancho es la duración)</div><div id="x2v" style="margin:8px 0"></div><button class="btnx" onclick="x2H()">Resaltar visitas sin otro visitante</button> <button class="btnx" onclick="x2A()">Ver coartadas</button><div style="margin-top:6px;color:var(--text-dim)">Franja verde: coartada declarada por cada persona.</div><div id="x2s" style="margin-top:8px"></div></div>
   <div class="doc-card">
     <div class="dc-head"><span class="dc-title">REGISTRO DE VISITAS — DOMICILIO ACEVEDO</span><span class="dc-ref">REG-IB-01</span></div>
     <div class="dc-body" style="padding:0">
@@ -741,8 +751,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="reg-row"><span>10 sep.</span><span>Valentina Acevedo</span><span>Visita familiar. Almuerzo con Nora. 1h 45min</span></div>
       <div class="reg-row"><span>12 sep. · 09:00</span><span>H. Drault + I. Varela</span><span>Tercera visita. Inspección técnica con restauradora. Duración: 4h 30min</span></div>
       <div class="reg-row"><span>15 sep.</span><span>Guillermo Saez</span><span>Firma del contrato de donación</span></div>
-      <div class="reg-row"><span>18 sep. · 14:00</span><span>Hernán Drault</span><span>Cuarta visita. "Inventario final". Solo. Duración: 3h 20min</span></div>
-      <div class="reg-row"><span>20 sep.</span><span>Marcos Leal</span><span>Última visita registrada del agente</span></div>
+      <div class="reg-row"><span>18 sep. · 14:00</span><span>Hernán Drault</span><span>Cuarta visita. "Inventario final". Duración: 3h 20min</span></div>
+      <div class="reg-row"><span>20 sep.</span><span>Marcos Leal</span><span>Última visita registrada del agente. Duración: 35min. Presente la cuidadora.</span></div>
       <div class="reg-row"><span>29 sep. · 17:45</span><span>Dr. Osvaldo Pereyra</span><span>Visita domiciliaria. Sin cita previa. Sin llamado de Nora ese día.</span></div>
       <div class="reg-row"><span>3 oct. · 08:15</span><span>Carmen Díaz (cuidadora)</span><span>Encuentra a Nora sin vida. Llama a emergencias.</span></div>
     </div>
@@ -755,7 +765,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div class="inf-hdr">
       <div class="inf-org">DRAULT TASACIONES — ARTE ARGENTINO SIGLO XX</div>
       <div class="inf-tit">INFORME DE TASACIÓN — COLECCIÓN ACEVEDO</div>
-      <div class="inf-sub">Emitido por Hernán Drault · 20 de septiembre</div>
+      <div class="inf-sub">Emitido por Hernán Drault · 19 de septiembre</div>
     </div>
     <div class="inf-body">
       <div class="inf-row"><span class="inf-k">Comitente:</span><span class="inf-v">Museo Municipal de Arte de Buenos Aires</span></div>
@@ -782,7 +792,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="email-shell">
     <div class="email-bar"><span>BANDEJA ENTRADA — Museo Municipal de Arte</span><span>3 correos</span></div>
     <div class="email-hdr">
-      <div class="email-hdr-row"><strong>De:</strong> hernandraul.tasaciones@gmail.com</div>
+      <div class="email-hdr-row"><strong>De:</strong> hernandrault.tasaciones@gmail.com</div>
       <div class="email-hdr-row"><strong>Para:</strong> cmendez@museomunicipal.gob.ar</div>
       <div class="email-hdr-row"><strong>Fecha:</strong> 5 de agosto</div>
       <div class="email-subject">RE: Tasación colección Acevedo — confirmación</div>
@@ -796,7 +806,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="email-shell">
     <div class="email-bar"><span>BANDEJA ENTRADA — Museo Municipal de Arte</span></div>
     <div class="email-hdr">
-      <div class="email-hdr-row"><strong>De:</strong> hernandraul.tasaciones@gmail.com</div>
+      <div class="email-hdr-row"><strong>De:</strong> hernandrault.tasaciones@gmail.com</div>
       <div class="email-hdr-row"><strong>Para:</strong> cmendez@museomunicipal.gob.ar</div>
       <div class="email-hdr-row"><strong>Fecha:</strong> 19 de septiembre</div>
       <div class="email-subject">Informe de tasación — envío final</div>
@@ -810,7 +820,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div class="email-shell">
     <div class="email-bar"><span>BANDEJA ENTRADA — Museo Municipal de Arte</span></div>
     <div class="email-hdr">
-      <div class="email-hdr-row"><strong>De:</strong> hernandraul.tasaciones@gmail.com</div>
+      <div class="email-hdr-row"><strong>De:</strong> hernandrault.tasaciones@gmail.com</div>
       <div class="email-hdr-row"><strong>Para:</strong> cmendez@museomunicipal.gob.ar</div>
       <div class="email-hdr-row"><strong>Fecha:</strong> 24 de septiembre</div>
       <div class="email-subject">RE: Plazos de transferencia</div>
@@ -872,13 +882,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   </div>
   <div class="nota-ms">
     <div class="nota-ms-pre">APUNTES — HOJA 1/2 · ESCRITURA MANUSCRITA DIGITALIZADA</div>
-    <p>Hay algo que no está bien con las obras. Desde que volvieron de la tercera inspección noto diferencias. El barniz de la Mac Entyre tiene otro brillo. La Lozza parece reciente. Puede ser mi imaginación.</p>
+    <p>Hay algo que no está bien con las obras. Desde la cuarta inspección noto diferencias. El barniz de la Mac Entyre tiene otro brillo. La Lozza parece reciente. Puede ser mi imaginación.</p>
     <p>Llamé a Claudia Brest. Viene el 1 de octubre. No quiero decirle a nadie hasta que ella lo confirme.</p>
     <p>Marcos me preguntó por qué cancelé la visita con el tasador de seguros. Le dije que no era necesaria. No quiero que nadie sepa que algo puede estar mal.</p>
   </div>
   <div class="nota-ms">
     <div class="nota-ms-pre">APUNTES — HOJA 2/2 · ESCRITURA MANUSCRITA DIGITALIZADA</div>
-    <p>Si llego a tener razón en lo que sospecho, esta palabra describe lo que hicieron con mis obras.</p>
+    <p>Dejo escrita una palabra para quien llegue hasta acá.</p>
     <p>Si esto cae en manos equivocadas antes de que yo pueda hablar, que quien lo encuentre sepa: todo al revés, como en el espejo.</p>
     <div class="cifrado">XLKRZ</div>
   </div>
@@ -915,13 +925,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="inf-nota">Conclusión forense: La muerte no puede descartarse como provocada. Se investiga intoxicación por sobredosis crónica de Digoxina. La acumulación del fármaco es consistente con administración sostenida de dosis elevadas en los días previos al fallecimiento.</div>
     </div>
   </div>
-</div>
+<div class="x2-box"><div>Digoxina · mg por día (fuente: historia clínica)</div><svg viewBox="0 0 300 150" style="width:100%;margin-top:6px" role="img"><title>Dosis de digoxina: habitual, ajuste del 29 de septiembre y dosis compatible con el nivel hallado</title><g font-family="monospace" font-size="10" fill="#8aab90"><rect x="30" y="127" width="60" height="23" fill="#8aab90"/><text x="38" y="122">0,25</text><rect x="120" y="116" width="60" height="34" fill="#e8a830"/><text x="128" y="111">0,375</text><rect x="210" y="82" width="60" height="68" fill="#c82020"/><rect x="210" y="59" width="60" height="23" fill="#c82020" opacity=".45"/><text x="206" y="54">0,75 – 1,0</text><line x1="20" y1="116" x2="285" y2="116" stroke="#e8a830" stroke-dasharray="4 3"/><text x="22" y="143" font-size="9">habitual</text><text x="110" y="143" font-size="9">ajuste 29/9</text><text x="196" y="143" font-size="9">compatible con 3,8 ng/mL</text></g></svg><div style="margin-top:6px">La línea punteada marca lo prescripto el 29 de septiembre. El nivel hallado corresponde a una dosis muy superior.</div></div></div>
 
 <!-- NOTA NORA -->
 <div class="page" id="page-nota-nora">
   <div class="doc-card">
     <div class="dc-head"><span class="dc-title">NOTA — CAJÓN DEL ESCRITORIO DE NORA</span><span class="dc-ref">NM-IB-01</span></div>
-    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Nota manuscrita hallada en el cajón cerrado con llave del escritorio. La cuidadora entregó la llave a la investigación. Fecha estimada: 23–25 sep.</div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Nota manuscrita hallada en el cajón cerrado con llave del escritorio. La cuidadora entregó la llave a la investigación. Fecha estimada: 25–26 sep.</div>
   </div>
   <div class="nota-ms">
     <div class="nota-ms-pre">NOTA MANUSCRITA — CAJÓN ESCRITORIO</div>
@@ -937,13 +947,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 <div class="page" id="page-carta-saez">
   <div class="doc-card">
     <div class="dc-head"><span class="dc-title">CORREO ELECTRÓNICO — GUILLERMO SAEZ</span><span class="dc-ref">CS-IB-01</span></div>
-    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Correo hallado en la bandeja enviada del servidor del estudio jurídico de Saez. Destinatario: <strong>[REDACTADO]</strong>. Fecha: 24 de septiembre.</div>
+    <div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Correo hallado en la bandeja enviada del servidor del estudio jurídico de Saez. Destinatario: <strong><span style="font-family:var(--font-mono)"><span style="background:#000;color:#000;user-select:none">xxxxxxxxxxxxxx</span>@gmail.com</span></strong>. Fecha: 24 de septiembre.</div>
   </div>
   <div class="email-shell">
     <div class="email-bar"><span>BANDEJA ENVIADOS — SAEZ &amp; ASOCIADOS</span><span>Recuperado por instrucción judicial</span></div>
     <div class="email-hdr">
       <div class="email-hdr-row"><strong>De:</strong> gsaez@saezasociados.com.ar</div>
-      <div class="email-hdr-row"><strong>Para:</strong> [REDACTADO]</div>
+      <div class="email-hdr-row"><strong>Para:</strong> <span style="font-family:var(--font-mono)"><span style="background:#000;color:#000;user-select:none">xxxxxxxxxxxxxx</span>@gmail.com</span></div>
       <div class="email-hdr-row"><strong>Fecha:</strong> 24 de septiembre · 18:42</div>
       <div class="email-subject">El asunto Acevedo</div>
     </div>
@@ -978,14 +988,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 </div>
 
 <!-- VALIDACIÓN -->
-<div class="page" id="page-validacion">
+<div class="page" id="page-agenda-nora"><div class="doc-card"><div class="dc-head"><span class="dc-title">AGENDA DE NORA ACEVEDO</span><span class="dc-ref">AG-IB-01</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Agenda personal de Nora, septiembre y octubre. Tocá un día para ver qué anotó.</div></div><div class="x2-box"><div id="agBox"></div><div class="x2-det" id="agDet">Elegí un día.</div></div></div><div class="page" id="page-testimonio-saez"><div class="doc-card"><div class="dc-head"><span class="dc-title">TESTIMONIO — GUILLERMO SAEZ</span><span class="dc-ref">TEST-IB-S</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Declaración recogida el 14 de octubre. Abogado de Nora Acevedo.</div></div><div class="x2-box" style="font-size:.88rem;line-height:1.75;color:var(--text)"><p>El 1 de julio Nora me comunicó su decisión de donar la colección al museo. El 15 de julio me puse en contacto con la dirección para iniciar el proceso formal, y redacté el contrato que se firmó el 15 de septiembre.</p><p>Para la tasación previa recomendé al museo a Hernán Drault, con quien había trabajado antes. Después de la firma, Nora me preguntó si el contrato era definitivo. Le expliqué que la donación era irrevocable. También me comentó que le inquietaba el barniz de algunas obras; le dije que podía ser la luz.</p><p>El 24 de septiembre hablé con Drault sobre los plazos de transferencia. No sabía que Nora hubiera contactado a otro perito.</p><p style="color:var(--text-dim)">Dr. Guillermo Saez — Saez &amp; Asociados</p></div></div><div class="page" id="page-correo-museo"><div class="doc-card"><div class="dc-head"><span class="dc-title">CORREO — SAEZ AL MUSEO</span><span class="dc-ref">CM-IB-01</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Correo del 15 de julio que inicia el proceso formal de donación.</div></div><div class="x2-box" style="font-size:.88rem;line-height:1.75;color:var(--text)"><div style="color:var(--text-dim);margin-bottom:8px">De: gsaez@saezasociados.com.ar<br>Para: cmendez@museomunicipal.gob.ar<br>Fecha: 15 de julio<br>Asunto: Donación Colección Acevedo — inicio de proceso</div><p>Estimada Clara: soy Guillermo Saez, abogado de la señora Nora Acevedo. El 1 de julio mi clienta me comunicó su decisión de donar la totalidad de su colección al museo, y quisiera iniciar el proceso formal.</p><p>Entiendo que el museo requiere una tasación previa. Sugiero al Lic. Hernán Drault (CTAT-0884), con quien he trabajado anteriormente y que conoce el arte argentino del siglo XX.</p><p>Quedo a disposición. G. Saez</p></div></div><div class="page" id="page-testimonio-brest"><div class="doc-card"><div class="dc-head"><span class="dc-title">DECLARACIÓN — CLAUDIA BREST</span><span class="dc-ref">TEST-IB-B</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Perita independiente. Declaración recogida el 15 de octubre.</div></div><div class="x2-box" style="font-size:.88rem;line-height:1.75;color:var(--text)"><p>Soy perita en arte moderno argentino y trabajo de forma independiente. El 22 de septiembre me llamó por teléfono Nora Acevedo. No nos conocíamos: había llegado a mí por una colega.</p><p>Me pidió que viera personalmente algunas obras de su colección. Había notado un cambio en el barniz de una y algo raro en el aspecto de otra, y no quería que nadie lo supiera antes de que yo las revisara. Me pidió absoluta discreción.</p><p>Me contó que, de pasada, le había dicho a su abogado que quería «una segunda mirada» sobre las obras, sin darle mi nombre. Acordamos que yo iría el 1 de octubre por la mañana.</p><p>Ese día, a primera hora, Nora me escribió que no se sentía bien y que cancelaba. Quedamos en reprogramar para la semana siguiente. No hubo semana siguiente. Nunca vi las obras.</p><p style="color:var(--text-dim)">Claudia Brest — Perita en arte</p></div></div><div class="page" id="page-testimonio-carmen"><div class="doc-card"><div class="dc-head"><span class="dc-title">DECLARACIÓN — CARMEN DÍAZ</span><span class="dc-ref">TEST-IB-C</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Cuidadora de Nora Acevedo. Declaración recogida el 14 de octubre.</div></div><div class="x2-box" style="font-size:.88rem;line-height:1.75;color:var(--text)"><p>Cuido a la señora Nora hace seis años. Yo le preparaba la medicación todos los domingos en un pastillero semanal, siguiendo la receta del doctor Pereyra.</p><p>El domingo 29 de septiembre el doctor llegó a las 17:45 sin avisar. La señora no lo había llamado. Me pidió que los dejara solos. Cuando salió, me dijo que había ajustado la dosis y que, por lo delicado del cambio, él mismo se encargaría del pastillero esa semana. Yo no lo toqué desde entonces.</p><p>El 20 de septiembre vino el señor Marcos, el agente. Estuve presente los 35 minutos; hablaron de la salud de la señora y de nada más.</p><p>El 3 de octubre la encontré a las 8:15, en su cama. Llamé a emergencias.</p><p style="color:var(--text-dim)">Carmen Díaz</p></div></div><div class="page" id="page-registro-llamadas"><div class="doc-card"><div class="dc-head"><span class="dc-title">REGISTRO DE LLAMADAS — LÍNEA DE HERNÁN DRAULT</span><span class="dc-ref">LLAM-IB-01</span></div><div class="dc-body" style="font-size:.85rem;color:var(--text-dim)">Período 15 de septiembre – 5 de octubre. Solicitado por la fiscalía. Se listan las llamadas con personas del caso.</div></div><div class="x2-box"><table style="width:100%%;border-collapse:collapse;font-size:.82rem"><thead><tr style="color:var(--text-dim);font-size:.69rem;letter-spacing:.1em"><td style="padding:6px 8px;border-bottom:1px solid var(--border2)">FECHA</td><td style="padding:6px 8px;border-bottom:1px solid var(--border2)">CONTACTO</td><td style="padding:6px 8px;border-bottom:1px solid var(--border2)">TIPO</td><td style="padding:6px 8px;border-bottom:1px solid var(--border2)">DURACIÓN</td><td style="padding:6px 8px;border-bottom:1px solid var(--border2)">ANTENA</td></tr></thead><tbody><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">24 sep. · 16:47</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Guillermo Saez</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Saliente</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">11 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">24 sep. · 19:20</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">N. Acevedo (fijo)</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Saliente</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">3 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">26 sep. · 21:12</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Dr. O. Pereyra</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Saliente</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">14 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">28 sep. · 22:05</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Dr. O. Pereyra</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Entrante</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">2 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Rosario</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">29 sep. · 19:40</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Dr. O. Pereyra</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Entrante</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">6 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">1 oct. · 10:20</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Guillermo Saez</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Entrante</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">4 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr><tr><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">3 oct. · 11:05</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Guillermo Saez</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">Saliente</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">2 min</td><td style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text)">CABA</td></tr></tbody></table></div></div><div class="page" id="page-validacion">
   <div class="doc-card" style="margin-bottom:14px">
     <div class="dc-head"><span class="dc-title">CIERRE DEL CASO — VALIDACIÓN FINAL</span><span class="dc-ref">VAL-IB</span></div>
     <div class="dc-body" style="font-size:12px;color:var(--text-mid)">Tres preguntas. Una palabra cada una. Sin acentos, en mayúscula.</div>
   </div>
   <div class="val-section">
     <div class="val-q">01</div>
-    <div class="val-label">¿QUIÉN realizó la sustitución de las obras?</div>
+    <div class="val-label">¿QUIÉN está detrás de lo que le pasó a las obras?</div>
     <div class="val-row"><input class="val-input" id="v1" placeholder="_ _ _ _ _ _ _" maxlength="20" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkV(1)"><button class="val-check" onclick="checkV(1)">VERIFICAR</button></div>
     <div class="val-fb" id="f1"></div>
   </div>
@@ -1179,7 +1189,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div style="border:1px solid var(--border2);padding:16px;margin-bottom:16px;font-size:.85rem;line-height:1.75;color:var(--text)">
       <p style="margin-bottom:12px"><strong style="color:var(--green)">Las obras fueron sustituidas por Hernán Drault, el tasador.</strong> Su acceso técnico y el tiempo que pasó a solas con la colección le permitió cambiar las tres piezas más valiosas por copias de alta calidad. La tercera visita (12 sep), con Inés Varela presente, fue de inspección. La cuarta (18 sep), coordinada por Drault sin testigos, fue la oportunidad que necesitaba: casi cuatro horas a solas con las obras, después de que el contrato ya estaba firmado y antes de que el museo las recibiera.</p>
       <p style="margin-bottom:12px"><strong style="color:var(--amber)">El detonante fue descubrir que Nora solicitó una pericia independiente.</strong> El 22 de septiembre, Nora contactó a Claudia Brest. Saez se enteró y lo comunicó a Drault el 24. Si la pericia se realizaba antes del 15 de octubre, las sustituciones quedarían al descubierto. Drault actuó rápido: Pereyra —con quien tenía un vínculo— visitó a Nora el 29 de septiembre y manipuló su medicación. Nora canceló la pericia el 1 de octubre. Murió el 3.</p>
-      <p><strong style="color:var(--text-mid)">Los descartables:</strong> Valentina tenía motivo pero coartada sólida y sin conocimiento técnico. Marcos Leal estaba en São Paulo durante el período crítico. Inés Varela solo estuvo en la tercera visita, coordinada por Drault. Saez fue cómplice: filtró la información de la pericia. Pereyra ejecutó la parte médica bajo presión. Pero la mente y el acceso fueron siempre de Drault.</p>
+      <p><strong style="color:var(--text-mid)">Los descartables:</strong> Valentina tenía motivo pero ningún conocimiento técnico, y su incongruencia con la visita del 20 de septiembre no la vincula con las obras ni con la medicación. Marcos Leal estaba en São Paulo durante la cuarta visita, y su única visita posterior fue breve y con la cuidadora presente. Inés Varela solo estuvo en la tercera visita, coordinada por Drault. Saez fue cómplice: filtró la información de la pericia. Pereyra ejecutó la parte médica bajo presión. Pero la mente y el acceso fueron siempre de Drault.</p>
     </div>
     <div style="background:var(--bg3);border:1px solid var(--border2);padding:12px;margin-bottom:16px;text-align:center">
       <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:4px">TIEMPO DE INVESTIGACIÓN</div>
@@ -1196,7 +1206,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
 <script>
 // ═══ NAV ═══
-const pageNames={resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cómo investigar',sospechosos:'Perfiles de sospechosos',cronologia:'Cronología','informe-museo':'Informe del museo',inventario:'Inventario colección','registro-visitas':'Registro de visitas',tasacion:'Informe de tasación','email-drault':'Correos de Drault','whatsapp-valentina':'Chat Valentina','testimonio-pereyra':'Testimonio Pereyra','apuntes-nora':'Apuntes de Nora','historial-medico':'Historial médico','nota-nora':'Nota de Nora','carta-saez':'Correo de Saez',contrato:'Contrato donación',validacion:'Resolver el caso'};
+const pageNames={'testimonio-brest':'Declaración de Brest','registro-llamadas':'Registro de llamadas','testimonio-carmen':'Declaración de la cuidadora','agenda-nora':'Agenda de Nora','testimonio-saez':'Testimonio Saez','correo-museo':'Correo al museo',resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cómo investigar',sospechosos:'Perfiles de sospechosos',cronologia:'Cronología','informe-museo':'Informe del museo',inventario:'Inventario colección','registro-visitas':'Registro de visitas',tasacion:'Informe de tasación','email-drault':'Correos de Drault','whatsapp-valentina':'Chat Valentina','testimonio-pereyra':'Testimonio Pereyra','apuntes-nora':'Apuntes de Nora','historial-medico':'Historial médico','nota-nora':'Nota de Nora','carta-saez':'Correo de Saez',contrato:'Contrato donación',validacion:'Resolver el caso'};
 const progMap={resumen:3,teaser:5,instrucciones:7,sospechosos:13,cronologia:20,'informe-museo':27,inventario:34,'registro-visitas':42,tasacion:50,'email-drault':57,'whatsapp-valentina':63,'testimonio-pereyra':69,'apuntes-nora':75,'historial-medico':82,'nota-nora':87,'carta-saez':92,contrato:95,validacion:97};
 const folderMap={resumen:0,teaser:0,instrucciones:0,sospechosos:1,cronologia:1,'informe-museo':1,inventario:1,'registro-visitas':2,tasacion:2,'email-drault':2,'whatsapp-valentina':2,'testimonio-pereyra':2,'apuntes-nora':2,'historial-medico':3,'nota-nora':3,'carta-saez':3,contrato:3,validacion:4};
 const visited=new Set(['resumen']);
@@ -1241,7 +1251,7 @@ function checkE(n){
 });
 
 function unlock2(){
-  ['registro-visitas','tasacion','email-drault','whatsapp-valentina','testimonio-pereyra','apuntes-nora'].forEach(id=>{
+  ['registro-visitas','tasacion','email-drault','whatsapp-valentina','testimonio-pereyra','apuntes-nora','agenda-nora','testimonio-saez','correo-museo','testimonio-brest'].forEach(id=>{
     const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
   });
   const b=document.getElementById('badge2');b.className='fb fb-open';b.textContent='ABIERTA';
@@ -1249,7 +1259,7 @@ function unlock2(){
   if(e2){e2.classList.remove('locked');e2.style.color='var(--amber)';e2.style.borderLeft='2px solid var(--amber-dim)';e2.setAttribute('onclick',"openEnigmaModal(2)");const lk=e2.querySelector('.sb-lock');if(lk)lk.remove()}
 }
 function unlock3(){
-  ['historial-medico','nota-nora','carta-saez','contrato','validacion'].forEach(id=>{
+  ['historial-medico','nota-nora','carta-saez','contrato','registro-llamadas','testimonio-carmen','validacion'].forEach(id=>{
     const el=document.getElementById('item-'+id);if(el){el.classList.remove('locked');el.setAttribute('onclick',"go('"+id+"')");const lk=el.querySelector('.sb-lock');if(lk)lk.remove()}
   });
   const b=document.getElementById('badge3');b.className='fb fb-open';b.textContent='ABIERTA';
@@ -1257,11 +1267,12 @@ function unlock3(){
 
 // ═══ VALIDACIÓN ═══
 const ANSWERS={1:'DRAULT',2:'SUSTITUCION',3:'PERICIA'};
+const ALT={2:['SUSTITUCIONES','SUSTITUIR','SUSTITUIDA','SUSTITUIDAS','COPIA','COPIAS','FALSIFICACION','FALSIFICACIONES','FALSIFICAR','CAMBIO','CAMBIAZO','REEMPLAZO','REEMPLAZAR','SUPLANTACION']};
 const correct={1:false,2:false,3:false};
 function checkV(n){
   const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const fb=document.getElementById('f'+n);
-  if(val===ANSWERS[n]){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
+  if(val===ANSWERS[n]||(ALT[n]||[]).indexOf(val)>-1){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
   else{fb.className='val-fb err';fb.textContent='✗ No es correcto.'}
 }
 function cerrarCaso(){
@@ -1367,7 +1378,7 @@ function drawLines(){
 
 // ═══ HINTS ═══
 const HINTS={
-  1:'Nora catalogó cada obra con un código. La grilla que encontraron entre sus papeles no es decorativa — tiene un uso concreto. Hay un código que, a diferencia de los otros, forma algo reconocible.',
+  1:'Nora catalogó cada obra con un código. La grilla que encontraron entre sus papeles no es decorativa — tiene un uso concreto. Todos los códigos dicen algo, pero uno solo tiene que ver con lo que descubrió el museo.',
   2:'Nora te dejó la clave en sus propias palabras. No busques un método complicado — el sistema está exactamente en la frase que ella misma escribió.',
   3:'Hay una fecha en la cronología que conecta a todas las piezas del caso. Mirá qué decidió hacer Nora ese día, y rastreá quién se enteró — y cuándo.'
 };
@@ -1496,6 +1507,77 @@ function doReset(){
   location.reload();
 }
 document.getElementById('resetModal').addEventListener('click',function(e){if(e.target===this)closeResetModal()});
+</script>
+<script>
+const X2=i=>document.getElementById(i);
+const AG={'9-1':'Visita de tasación · 15:30 — Drault','9-8':'Visita de tasación · 10:00 — Drault','9-10':'Almuerzo con Valentina. Control con el Dr. Pereyra.','9-12':'Tercera visita · 09:00 — Drault + I. Varela','9-15':'Firma del contrato de donación','9-18':'Cuarta visita · 14:00 — Drault','9-20':'Visita de Marcos','9-22':'Llamar a Claudia Brest — pericia independiente','10-1':'Claudia Brest — visita. CANCELADA: «malestar general».'};
+function agB(){let o='';[['SEPTIEMBRE',9,6,30],['OCTUBRE',10,1,12]].forEach(m=>{o+='<div style="margin:6px 0;color:var(--amber)">'+m[0]+'</div><div class="x2-cal">'+'LMXJVSD'.split('').map(d=>'<b>'+d+'</b>').join('')+'<span></span>'.repeat(m[2]);for(let d=1;d<=m[3];d++)o+='<button class="'+(AG[m[1]+'-'+d]?'e':'')+'" onclick="agS(this,'+m[1]+','+d+')">'+d+'</button>';o+='</div>'});X2('agBox').innerHTML=o}
+function agS(b,m,d){document.querySelectorAll('.x2-cal button.on').forEach(x=>x.classList.remove('on'));b.classList.add('on');X2('agDet').textContent=d+'/'+m+' — '+(AG[m+'-'+d]||'Sin anotaciones.')}
+function x2V(){const V=[['H. Drault',[[1,130,1],[8,180,1],[12,270,0],[18,200,1]],1,[27,28,'Rosario']],['I. Varela',[[12,270,0]],0,[23,27,'Taller del museo']],['V. Acevedo',[[10,105,0]],0,[25,30,'Mendoza']],['G. Saez',[[15,0,0]],0,[20,25,'Córdoba']],['M. Leal',[[20,35,0]],0,[14,19,'São Paulo']],['Dr. Pereyra',[[29,0,0]]],['C. Díaz',[[33,0,0]]]];let t=0,s=0,o='';V.forEach(v=>{o+='<div class="x2-row"><span>'+v[0]+'</span><div class="x2-tr" '+(v[2]?'id="x2d"':'')+'>'+v[1].map(a=>{if(v[2]){t+=a[1];if(a[2])s+=a[1]}return '<i class="'+(v[2]?'d ':'')+(a[2]?'s':'')+'" style="left:'+((a[0]-1)/32*100)+'%;width:'+(a[1]?a[1]/60*.9:.8)+'%" title="'+(a[0]>30?(a[0]-30)+' oct':a[0]+' sep')+(a[1]?' · '+Math.floor(a[1]/60)+'h '+a[1]%60+'min':'')+'"></i>'}).join('')+(v[3]?'<b class="al" style="left:'+((v[3][0]-1)/32*100)+'%;width:'+((v[3][1]-v[3][0]+1)/32*100)+'%" title="Coartada: '+v[3][2]+' ('+v[3][0]+'–'+v[3][1]+' sep)"></b>':'')+'</div></div>'});X2('x2v').innerHTML=o;const f=m=>Math.floor(m/60)+'h '+(m%60)+'min';X2('x2s').textContent='Horas de Drault en el domicilio: '+f(t)+' · sin otro visitante registrado: '+f(s)}
+function x2A(){X2('x2v').classList.toggle('al-on')}
+function x2H(){X2('x2d').classList.toggle('hl')}
+const X2G=['ABCDE','FGHIJ','KLMNO','PQRST','UVWXY'];
+function x2B(){let o='<span></span>'+[1,2,3,4,5].map(n=>'<span>'+n+'</span>').join('');X2G.forEach((r,i)=>{o+='<span>'+(i+1)+'</span>'+r.split('').map((c,j)=>'<button onclick="x2P('+(i+1)+(j+1)+')">'+(i==4&&j==4?'Y/Z':c)+'</button>').join('')});X2('x2g').innerHTML=o}
+function x2P(c){const i=X2('x2i');i.value=(i.value+' '+c).trim();x2D()}
+function x2D(){X2('x2o').textContent=X2('x2i').value.split(/\D+/).filter(Boolean).map(t=>{const r=+t[0]-1,c=+t[1]-1;return X2G[r]&&X2G[r][c]?(r==4&&c==4?'Y/Z':X2G[r][c]):'?'}).join('')}
+agB();x2V();x2B();
+window.toggleSB=function(hd){if(hd.querySelector('.fb-locked')){hd.classList.add('x2-shake');setTimeout(()=>hd.classList.remove('x2-shake'),350);return}hd.classList.toggle('open');hd.nextElementSibling.classList.toggle('open')};
+function x2Open(b){const e=X2(b);if(e){const hd=e.parentElement;hd.classList.add('open');hd.nextElementSibling.classList.add('open')}}
+const _o2=window.unlock2,_o3=window.unlock3;window.unlock2=function(){_o2();x2Open('badge2')};window.unlock3=function(){_o3();x2Open('badge3')};
+
+const CRST={'26 sep.':3,'1 jul.':2,'15 jul.':2,'22 sep.':2,'1 oct.':2,'29 sep.':3};
+const crR=[...document.querySelectorAll('#page-cronologia tbody tr')].filter(r=>r.id!=='crLk');
+crR.forEach((r,k)=>{const d=r.children[0].textContent.trim();r._st=CRST[d]||(d==='24 sep.'?(r.textContent.indexOf('Saez escribe')>-1?3:2):1)});
+function crUp(){const f=[1,typeof unlocked!=='undefined'&&unlocked[1],typeof unlocked!=='undefined'&&unlocked[2]];let o=0;crR.forEach(r=>{const hid=r._st>1&&!f[r._st-1];r.style.display=hid?'none':'';if(hid)o++});const c=X2('crLk');c.style.display=o?'':'none';c.firstElementChild.textContent='🔒 '+o+(o==1?' entrada se completa':' entradas se completan')+' al abrir nuevas carpetas.'}
+const _c2=window.unlock2,_c3=window.unlock3;window.unlock2=function(){_c2();crUp()};window.unlock3=function(){_c3();crUp()};crUp();
+
+</script>
+<script>window.KIT_CFG={id:"ib",code:"EXP-B",name:"LA DONANTE ANÓNIMA",rank:[45,75],chats:["whatsapp-"],unlocks:[["unlock2","CARPETA 2"],["unlock3","CARPETA 3"]],stamps:[["informe-museo","CONFIDENCIAL","#c82020"],["tasacion","CONFIDENCIAL","#c82020"],["historial-medico","CONFIDENCIAL","#c82020"],["registro-visitas","EVIDENCIA","#e8a830"],["contrato","ORIGINAL","#e8a830"],["registro-llamadas","EVIDENCIA","#e8a830"]],redact:/^(Paciente|Médico tratante)/};
+/* ARCHIVO CERO · KIT BASE — requiere window.KIT_CFG={id,code,name,rank:[a,b],start:'nombre de la función de inicio (def. startCase)',chats:[prefijos de páginas de chat],unlocks:[[fn,label]],stamps:[[page,text,color]],redact:RegExp} */
+(function(){
+const C=window.KIT_CFG,$=i=>document.getElementById(i);
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const st=document.createElement('style');st.textContent='#boot{display:none;position:fixed;inset:0;z-index:700;background:#030705;color:var(--green);font:.9rem var(--font-mono);padding:12vh 8vw;flex-direction:column;gap:8px;cursor:pointer}.bootstamp{position:absolute;right:10vw;bottom:14vh;border:4px solid #c82020;color:#c82020;padding:6px 22px;font:2rem var(--font-display);letter-spacing:.2em;transform:rotate(-7deg) scale(1.6);opacity:0;transition:all .25s}.bootstamp.on{opacity:.9;transform:rotate(-7deg) scale(1)}.sb-item.new:after{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);margin-left:auto}#nudge{display:none;position:fixed;right:16px;bottom:44px;z-index:420;background:var(--bg2);border:1px solid var(--amber-dim);padding:10px 12px;font-size:.8rem;color:var(--text-mid);align-items:center;gap:10px}.btnx{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);font:inherit;padding:3px 9px;cursor:pointer}#decOv{display:none;position:fixed;inset:0;z-index:600;background:rgba(5,10,7,.94);flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--green)}#decOv pre{font-size:.7rem;color:var(--green-dim);margin:16px 0;text-align:center}#decOv u{display:block;width:260px;height:4px;background:var(--border2)}#decOv i{display:block;height:100%;width:0;background:var(--green)}.rd{background:#000;color:#000;cursor:pointer;padding:0 3px}.rd.on{background:transparent;color:inherit}mark{background:rgba(232,168,48,.35);color:inherit;cursor:pointer}#selTip{display:none;position:fixed;z-index:450;gap:4px}#selTip button{background:var(--bg2);border:1px solid var(--amber-dim);color:var(--amber);font:.77rem var(--font-mono);padding:5px 9px;cursor:pointer}.stampx{position:absolute;right:14px;top:10px;transform:rotate(-8deg);border:3px solid;padding:1px 10px;font:1rem var(--font-display);letter-spacing:.15em;opacity:.5;pointer-events:none}';st.textContent+='@keyframes kitb{50%{opacity:.2}}.wa-typing .wa-bubble{padding:10px 14px}.wa-typing span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--text-dim);animation:kitb 1s infinite}.wa-typing span:nth-child(2){animation-delay:.2s}.wa-typing span:nth-child(3){animation-delay:.4s}';document.head.appendChild(st);
+document.body.insertAdjacentHTML('beforeend','<div id="boot"></div><div id="decOv"><div id="decT"></div><pre></pre><u><i></i></u></div><div id="nudge"><span>¿Trabado? Las pistas pueden orientarte.</span><button class="btnx" onclick="openHints();this.parentNode.style.display=\'none\'">💡 Ver pistas</button></div>');
+let AC,mute=ls.g('ac_mute')==='1';
+function sfx(k){if(mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const P={tick:[[900,.03]],msg:[[620,.05]],ok:[[520,.1],[780,.16]],err:[[160,.2]],stamp:[[110,.12],[70,.2]]}[k]||[];let t=AC.currentTime;P.forEach(a=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=a[0];o.type=(k=='err'||k=='stamp')?'square':'sine';g.gain.setValueAtTime(.04,t);g.gain.exponentialRampToValueAtTime(.0001,t+a[1]);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+a[1]);t+=a[1]*.8})}catch(e){}}
+const bs=document.createElement('button');bs.className='tbtn';bs.id='btnSnd';bs.textContent=mute?'🔇':'🔊';bs.onclick=()=>{mute=!mute;ls.s('ac_mute',mute?'1':'0');bs.textContent=mute?'🔇':'🔊'};
+const tr=document.querySelector('.t-right');tr.insertAdjacentElement('afterbegin',bs);
+tr.insertAdjacentHTML('afterbegin','<span id="seenC" title="Archivos revisados" style="font-size:.77rem;color:var(--text-dim)"></span>');
+const SK='ac_'+C.id+'_seen',SEEN=new Set();try{JSON.parse(ls.g(SK)||'[]').forEach(x=>SEEN.add(x))}catch(e){}
+const sbId=i=>{const m=(i.getAttribute('onclick')||'').match(/go\('([^']+)'\)/);return m?m[1]:(i.id.indexOf('item-')===0?i.id.slice(5):null)};
+const sbAll=()=>[...document.querySelectorAll('.sb-item')].filter(sbId);
+function seenUp(){const a=sbAll();a.forEach(i=>i.classList.toggle('new',!SEEN.has(sbId(i))&&!i.classList.contains('locked')));$('seenC').textContent='📂 '+a.filter(i=>SEEN.has(sbId(i))).length+'/'+a.length;ls.s(SK,JSON.stringify([...SEEN]))}
+const chatSeen=new Set();
+function chatAnim(id){if(chatSeen.has(id)||!(C.chats||[]).some(x=>id.indexOf(x)===0))return;const p=$('page-'+id),box=p&&p.querySelector('.wa-msgs');if(!box)return;chatSeen.add(id);const items=[...box.children];items.forEach(e=>e.style.display='none');let i=0,skip=false;p.addEventListener('click',()=>{skip=true});(function nx(){if(i>=items.length)return;const e=items[i++],inc=e.classList.contains('in');const show=()=>{e.style.display='';box.scrollTop=box.scrollHeight;sfx('msg');setTimeout(nx,skip?0:(e.classList.contains('wa-date')?200:450))};if(inc&&!skip){const t=document.createElement('div');t.className='wa-msg in wa-typing';t.innerHTML='<div class="wa-bubble"><span></span><span></span><span></span></div>';e.before(t);setTimeout(()=>{t.remove();show()},800)}else show()})()}
+const _go=window.go;window.go=function(id){_go(id);SEEN.add(id);seenUp();sfx('tick');chatAnim(id)};
+function dec(l,cb){const o=$('decOv'),bar=o.querySelector('i'),tx=o.querySelector('pre');o.style.display='flex';$('decT').textContent='DESCIFRANDO '+l+'…';let p=0;const iv=setInterval(()=>{p+=4+Math.random()*6;tx.textContent=Array.from({length:6},()=>Array.from({length:28},()=>'0123456789ABCDEF'[Math.random()*16|0]).join(' ')).join('\n');bar.style.width=Math.min(p,100)+'%';sfx('tick');if(p>=100){clearInterval(iv);o.style.display='none';cb();sfx('ok')}},90)}
+C.unlocks.forEach(u=>{const o=window[u[0]];if(!o)return;window[u[0]]=function(){if(window.__live)dec(u[1],()=>{o();seenUp()});else{o();seenUp()}}});
+const _ls=window.loadState;window.loadState=function(){window.__live=false;_ls();window.__live=true};
+function ambient(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();const b=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate),d=b.getChannelData(0);let l=0;for(let i=0;i<d.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;d[i]=l*3.5}const s=AC.createBufferSource();s.buffer=b;s.loop=true;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=500;const g=AC.createGain();g.gain.value=0;const o=AC.createOscillator();o.frequency.value=55;const og=AC.createGain();og.gain.value=.25;s.connect(f);f.connect(g);o.connect(og);og.connect(g);g.connect(AC.destination);s.start();o.start();setInterval(()=>{g.gain.value=mute?0:.035},300)}catch(e){}}
+function boot(cb){const o=$('boot');o.style.display='flex';o.innerHTML='<div class="bootstamp" id="bst">CASO ABIERTO</div>';ambient();const L=['> ARCHIVO CERO · sistema de acceso','> verificando credenciales… OK','> '+C.code+' · '+C.name,'> cargando '+sbAll().length+' documentos…','> acceso concedido'];let i=0,done=false;const end=()=>{if(done)return;done=true;o.style.display='none';cb();window.__live=true};o.onclick=end;(function n(){if(done)return;if(i<L.length){const p=document.createElement('div');p.textContent=L[i++];o.insertBefore(p,o.lastChild);sfx('msg');setTimeout(n,480)}else{$('bst').classList.add('on');sfx('stamp');setTimeout(end,1100)}})()}
+const SN=C.start||'startCase',_sc=window[SN];window[SN]=function(){boot(_sc)};
+const FAIL={};function fail(n){if((FAIL[n]=(FAIL[n]||0)+1)>=3){const z=$('nudge');z.style.display='flex';setTimeout(()=>{z.style.display='none'},9000)}}
+const _cE=window.checkE;window.checkE=function(n){_cE(n);const ok=!!unlocked[n];sfx(ok?'ok':'err');if(!ok)fail(n)};
+const _sm=window.submitEnigmaModal;if(_sm)window.submitEnigmaModal=function(){const n=currentEnigmaN;_sm();const ok=$('enigmaModalMsg').textContent.indexOf('✓')>-1;sfx(ok?'ok':'err');if(!ok)fail(n)};
+const _cV=window.checkV;window.checkV=function(n){_cV(n);sfx(correct[n]?'ok':'err')};
+let hintsN=0;const hs=new Set(),hf=window.requestHint?'requestHint':'openHints',_hf=window[hf];window[hf]=function(a){hs.add(a===undefined?Math.random():a);hintsN=hs.size;_hf.apply(null,arguments)};
+const RK=['Aprendiz','Detective','Inspector'];
+const _cc=window.cerrarCaso;window.cerrarCaso=function(){_cc();sfx('stamp');const sc=timerSeconds/60+5*hintsN,r=sc<=C.rank[0]?2:sc<=C.rank[1]?1:0;const best=Math.max(r,RK.indexOf(ls.g('ac_rank')||'Aprendiz'));ls.s('ac_rank',RK[best]);ls.s('ac_rank_n',(+ls.g('ac_rank_n')||0)+1);const t=$('finalTime'),mm=Math.floor(timerSeconds/60),ss=timerSeconds%60;if(!$('rankLine')){const rl='<div id="rankLine" style="margin:10px 0;text-align:center;color:var(--amber);font-family:var(--font-display);letter-spacing:.1em">RANGO · '+RK[r].toUpperCase()+(t?'':' · '+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss)+' · '+hintsN+' pista(s)</div>';if(t)t.parentElement.insertAdjacentHTML('afterend',rl);else $('casoModal').firstElementChild.insertAdjacentHTML('afterbegin',rl)}};
+const rk=ls.g('ac_rank'),sm=document.querySelector('.splash-meta-item');if(rk&&sm)sm.parentElement.insertAdjacentHTML('beforeend','<div class="splash-meta-item"><div class="splash-meta-label">TU RANGO</div><div class="splash-meta-val">'+rk+'</div></div>');
+const _dr=window.doReset;if(_dr)window.doReset=function(){ls.s(SK,'[]');_dr()};
+C.stamps.forEach(a=>{const e=document.querySelector('#page-'+a[0]+' .informe,#page-'+a[0]+' .doc-card');if(e){e.style.position='relative';e.insertAdjacentHTML('beforeend','<div class="stampx" style="color:'+a[2]+'">'+a[1]+'</div>')}});
+document.querySelectorAll('.carta-firma').forEach(e=>e.innerHTML=e.innerHTML.replace(/DNI ([\d.]+)/,'DNI <span class="rd">$1</span>'));
+document.querySelectorAll('.inf-row').forEach(r=>{const k=r.querySelector('.inf-k'),v=r.querySelector('.inf-v');if(k&&v&&C.redact.test(k.textContent))v.innerHTML='<span class="rd">'+v.innerHTML+'</span>'});
+const tip=document.createElement('div');tip.id='selTip';tip.innerHTML='<button id="hlB">🖍 Resaltar</button><button id="hpB">📌 Pizarra</button>';document.body.appendChild(tip);
+let selTxt='',selR=null;const dp=$('docsPanel');
+['mouseup','touchend'].forEach(ev=>dp.addEventListener(ev,()=>setTimeout(()=>{const s=getSelection(),t=s.toString().trim();if(t.length<4||!s.rangeCount){tip.style.display='none';return}selTxt=t;selR=s.getRangeAt(0).cloneRange();const r=selR.getBoundingClientRect();tip.style.display='flex';tip.style.left=Math.max(8,r.left)+'px';tip.style.top=Math.max(8,r.top-38)+'px'},10)));
+tip.addEventListener('mousedown',e=>e.preventDefault());
+$('hlB').onclick=()=>{try{selR.surroundContents(document.createElement('mark'))}catch(e){}tip.style.display='none';getSelection().removeAllRanges();sfx('tick')};
+$('hpB').onclick=()=>{if(!pizOpen)togglePiz();addCard('nota',20+Math.random()*60|0,20+Math.random()*60|0,selTxt.slice(0,220));tip.style.display='none';getSelection().removeAllRanges();sfx('ok')};
+dp.addEventListener('click',e=>{const t=e.target;if(t.tagName=='MARK')t.replaceWith(...t.childNodes);else if(t.classList.contains('rd')){t.classList.toggle('on');sfx('tick')}});
+seenUp();
+})();
 </script>
 </body>
 </html>
