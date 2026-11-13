@@ -14,9 +14,17 @@
  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Archivo Cero — Misterios para resolver</title>
+<script>
+  // Forzar HTTPS (respaldo por si el servidor no redirige)
+  if (location.protocol === 'http:' && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
+    location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+  }
+  // La intro se muestra una sola vez por sesión
+  try { if (sessionStorage.getItem('acIntroVista')) document.documentElement.classList.add('sin-intro'); } catch (e) {}
+</script>
+<title>Archivo Cero — Juegos de misterio para resolver en casa</title>
 <link rel="canonical" href="https://archivo0.com.ar/">
-<meta name="description" content="Archivo Cero: casos de misterio para resolver solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
+<meta name="description" content="Archivo Cero: juegos de misterio para resolver en casa, solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
 <meta name="theme-color" content="#0a0806">
 <link rel="icon" href="https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
 <link rel="apple-touch-icon" href="https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
@@ -24,18 +32,19 @@
 <meta property="og:url" content="https://archivo0.com.ar/">
 <meta property="og:site_name" content="Archivo Cero">
 <meta property="og:locale" content="es_AR">
-<meta property="og:title" content="Archivo Cero — Misterios para resolver">
-<meta property="og:description" content="Archivo Cero: casos de misterio para resolver solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
+<meta property="og:title" content="Archivo Cero — Juegos de misterio para resolver en casa">
+<meta property="og:description" content="Archivo Cero: juegos de misterio para resolver en casa, solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
 <meta property="og:image" content="https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
 <meta property="og:image:alt" content="Archivo Cero">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Archivo Cero — Misterios para resolver">
-<meta name="twitter:description" content="Archivo Cero: casos de misterio para resolver solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
+<meta name="twitter:title" content="Archivo Cero — Juegos de misterio para resolver en casa">
+<meta name="twitter:description" content="Archivo Cero: juegos de misterio para resolver en casa, solo o en grupo. Expedientes en PDF y casos interactivos 100% online. Investigá las pistas, conectá las evidencias y descubrí la verdad.">
 <meta name="twitter:image" content="https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Archivo Cero","url":"https://archivo0.com.ar/","logo":"https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg","sameAs":["https://www.instagram.com/archivocero0/"]}</script>
+<script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es un juego?","acceptedAnswer":{"@type":"Answer","text":"Sí: es un juego de investigación. Archivo Cero® te entrega los archivos de un caso —documentos, audios, imágenes— y vos reconstruís lo ocurrido. No es un juego tradicional: no hay puntos, niveles ni tiempo límite. Hay interpretación, análisis y deducción."}},{"@type":"Question","name":"¿Qué incluye cada caso y qué diferencia hay entre PDF e interactivo?","acceptedAnswer":{"@type":"Answer","text":"Depende del formato. Los casos en PDF son archivos descargables con diseño editorial: incluyen documentos digitales, fotografías, archivos protegidos, transcripciones de audios y un sistema de validación. Podés resolverlos en pantalla o imprimirlos, y jugarlos sin conexión una vez descargados. Los casos interactivos son 100% online: se juegan directo en la web, sin descargas, e incluyen carpetas de evidencia, enigmas desbloqueables y una pizarra para conectar pistas. Ponen el énfasis en la mecánica de investigación más que en el diseño visual, y no tienen versión imprimible. En ambos formatos, todo está diseñado para vivirse como una experiencia de investigación real."}},{"@type":"Question","name":"¿Dónde puedo jugarlo? ¿Necesito instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No hay que instalar nada: todo funciona desde el navegador. Los casos interactivos se juegan desde el celular, la tablet o la computadora. Los casos en PDF se descargan una sola vez y se pueden leer en cualquier dispositivo o imprimirse. Para revisar documentos y comparar pistas con comodidad, recomendamos una pantalla grande."}},{"@type":"Question","name":"¿Puedo jugarlo solo o necesito ser más de uno?","acceptedAnswer":{"@type":"Answer","text":"Depende de lo que prefieras. Los casos están diseñados para jugarse tanto en solitario como en grupo. Solos es una experiencia más intensa y personal. En grupo se arma una dinámica de debate y deducción que tiene su propio encanto."}},{"@type":"Question","name":"¿Desde qué edad se recomienda?","acceptedAnswer":{"@type":"Answer","text":"Recomendamos los casos a partir de los 16 años. Las historias incluyen muertes, desapariciones y temas adultos propios del género de misterio, sin contenido explícito."}},{"@type":"Question","name":"¿Por cuál caso me conviene empezar?","acceptedAnswer":{"@type":"Answer","text":"Por los dos gratuitos: el Caso #00 — El Manuscrito (PDF) y La Cena de los Viernes (interactivo). Así probás las dos modalidades sin costo y elegís cuál te gusta más. Después podés seguir en el orden que quieras: cada caso es una historia independiente. Los casos en PDF son de dificultad media y los interactivos pagos, de dificultad media-alta."}},{"@type":"Question","name":"¿Qué son los casos especiales?","acceptedAnswer":{"@type":"Answer","text":"Los casos especiales son ediciones únicas y eventuales que nacen de una colaboración con una organización, causa o referente real. Lo que los distingue es que parte del valor de cada compra se dona directamente a esa causa. Son casos inéditos, con su propia numeración (E·01, E·02…), diseñados para combinar narrativa inmersiva con impacto real."}},{"@type":"Question","name":"¿Qué medios de pago hay? ¿Hay devolución?","acceptedAnswer":{"@type":"Answer","text":"Las compras se hacen en nuestra tienda online, con los medios de pago que ofrece al finalizar la compra. Al tratarse de productos digitales de acceso inmediato, no hacemos devoluciones. Si tenés cualquier problema para acceder al material, escribinos a hola.archivocero@gmail.com y lo resolvemos."}},{"@type":"Question","name":"¿Cómo recibo el caso después de pagar?","acceptedAnswer":{"@type":"Answer","text":"Una vez confirmado el pago, recibís el enlace de acceso en tu correo de forma inmediata. Archivo Cero® es un producto digital: no se envía ningún objeto físico. Si el correo no aparece, revisá las carpetas de spam y promociones; si igual no lo encontrás, escribinos a hola.archivocero@gmail.com con el nombre y el correo que usaste en la compra y te lo reenviamos."}},{"@type":"Question","name":"¿Puedo regalar un caso?","acceptedAnswer":{"@type":"Answer","text":"Sí. Comprás el caso y le reenviás a la otra persona el correo con el acceso. Es un producto digital, así que llega al instante y no hay que coordinar envíos. Si necesitás ayuda para armar el regalo, escribinos."}},{"@type":"Question","name":"¿Hasta cuándo tengo acceso al caso?","acceptedAnswer":{"@type":"Answer","text":"El acceso no vence: el PDF queda descargado en tu dispositivo y el enlace del caso interactivo sigue funcionando sin límite de tiempo. Lo que sí puede vencer es el enlace del correo, así que te recomendamos descargar el PDF y guardar el enlace del caso apenas lo recibís, para acceder cuando quieras."}},{"@type":"Question","name":"¿Qué pasa si me trabo en un caso?","acceptedAnswer":{"@type":"Answer","text":"Los casos interactivos online incluyen hasta 3 pistas que podés usar cuando las necesites. Los casos en PDF no tienen pistas porque son de dificultad media. En cualquier caso, si tenés una consulta podés escribirnos a hola.archivocero@gmail.com."}},{"@type":"Question","name":"¿Se puede jugar más de una vez?","acceptedAnswer":{"@type":"Answer","text":"Sí, técnicamente podés volver a jugarlo. Pero al conocer las respuestas y el desarrollo de la historia, la experiencia pierde parte de su encanto. Lo ideal es avanzar con los otros casos disponibles una vez que resolviste uno."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,11 +55,12 @@
     --paper-dim: rgba(240,236,224,0.65);
     --paper-ghost: rgba(240,236,224,0.08);
     --red: #c0392b;
+    --red-text: #e2604f;
     --red-glow: rgba(192,57,43,0.18);
     --red-dim: rgba(192,57,43,0.4);
     --amber: #d4a017;
     --amber-dim: rgba(212,160,23,0.35);
-    --muted: #7a7060;
+    --muted: #9a907e;
     --border: rgba(240,236,224,0.09);
     --border-bright: rgba(240,236,224,0.18);
   }
@@ -109,7 +119,7 @@
   }
   .nav-right { display: flex; align-items: center; gap: 1rem; }
   .nav-cta {
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink); background: var(--paper);
     padding: 0.5rem 1.3rem; text-decoration: none; cursor: pointer;
@@ -144,8 +154,8 @@
   }
   .nav-dropdown.open { transform: translateY(0); pointer-events: all; }
   .dropdown-label {
-    font-family: "Space Mono", monospace; font-size: 0.75rem;
-    letter-spacing: 0.3em; text-transform: uppercase; color: var(--red);
+    font-family: "Courier Prime", monospace; font-size: 0.75rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--red-text);
     margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem;
   }
   .dropdown-label::before { content: "//"; color: rgba(240,236,224,0.15); }
@@ -158,7 +168,7 @@
     transition: color 0.2s, padding-left 0.3s; gap: 1rem;
   }
   .dropdown-nav a:hover { color: var(--amber); padding-left: 0.8rem; }
-  .nav-item-number { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.15em; color: var(--red); flex-shrink: 0; opacity: 1; }
+  .nav-item-number { font-family: "Courier Prime", monospace; font-size: 0.78rem; letter-spacing: 0.15em; color: var(--red-text); flex-shrink: 0; opacity: 1; }
   .nav-item-title { font-family: "Bebas Neue", cursive; font-size: clamp(1.8rem, 5vw, 3.2rem); letter-spacing: 0.05em; line-height: 1; flex: 1; }
   .nav-item-arrow { font-size: 0.85rem; color: rgba(240,236,224,0.65); flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
   .dropdown-nav a:hover .nav-item-arrow { color: var(--amber); transform: translateX(5px); }
@@ -168,7 +178,7 @@
     display: flex; gap: 2rem; flex-wrap: wrap; width: 100%;
   }
   .dropdown-footer a {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); text-decoration: none; transition: color 0.2s;
   }
@@ -177,81 +187,23 @@
   /* ── ITEMS DESHABILITADOS EN NAV ── */
   .dropdown-nav li.nav-item-disabled { position: relative; cursor: not-allowed; }
   .dropdown-nav li.nav-item-disabled a {
-    cursor: not-allowed; color: rgba(240,236,224,0.28);
+    cursor: not-allowed; color: rgba(240,236,224,0.55);
     pointer-events: none; position: relative; overflow: hidden;
   }
   .dropdown-nav li.nav-item-disabled .nav-item-title { position: relative; transition: opacity 0.25s; }
   .dropdown-nav li.nav-item-disabled .nav-item-number { opacity: 0.3; }
   .dropdown-nav li.nav-item-disabled .nav-item-arrow { opacity: 0.15; }
-  .nav-prox-overlay {
-    position: absolute; inset: 0; display: flex; align-items: center;
-    pointer-events: none; opacity: 0; transition: opacity 0.22s ease;
-  }
-  .nav-prox-overlay-text {
-    font-family: "Bebas Neue", cursive;
-    font-size: clamp(1.8rem, 5vw, 3.2rem);
-    letter-spacing: 0.08em; line-height: 1; color: var(--amber);
-    margin-left: calc(0.78rem + 1rem + 1.5ch);
-  }
-  .dropdown-nav li.nav-item-disabled:hover .nav-prox-overlay { opacity: 1; }
-  .dropdown-nav li.nav-item-disabled:hover a .nav-item-title { opacity: 0; }
+
+.dropdown-nav li.nav-item-disabled:hover a .nav-item-title { opacity: 0; }
   .dropdown-nav li.nav-item-disabled:hover a .nav-item-number { opacity: 0.18; }
 
   /* ── BOTONES DESHABILITADOS CON HOVER PRÓXIMAMENTE ── */
-  .btn-disabled {
-    position: relative; overflow: hidden;
-    cursor: not-allowed !important; pointer-events: all !important;
-    opacity: 0.42;
-    text-decoration: none;
-    display: inline-flex; align-items: center;
-  }
-  .btn-disabled::after { content: none !important; }
-  .btn-disabled .btn-prox-label {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--amber); background: rgba(11,9,7,0.88);
-    opacity: 0; transition: opacity 0.2s ease;
-    pointer-events: none;
-  }
-  .btn-disabled:hover { opacity: 1; transform: none !important; box-shadow: none !important; background: rgba(240,236,224,0.42) !important; }
-  .btn-disabled:hover .btn-prox-label { opacity: 1; }
-  /* variante para hero-btn */
-  .hero-btn-disabled {
-    position: relative; overflow: hidden;
-    cursor: not-allowed !important; pointer-events: all !important;
-    opacity: 0.38; text-decoration: none;
-  }
-  .hero-btn-disabled .btn-prox-label {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--amber); background: rgba(11,9,7,0.88);
-    opacity: 0; transition: opacity 0.2s ease;
-    pointer-events: none;
-  }
-  .hero-btn-disabled:hover { opacity: 1; transform: none !important; }
-  .hero-btn-disabled:hover .btn-prox-label { opacity: 1; }
-  /* variante para nav-cta */
-  .nav-cta-disabled {
-    position: relative; overflow: hidden;
-    cursor: not-allowed !important; opacity: 0.35;
-  }
-  .nav-cta-disabled .btn-prox-label {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--amber); background: rgba(11,9,7,0.92);
-    opacity: 0; transition: opacity 0.2s ease;
-    pointer-events: none;
-  }
-  .nav-cta-disabled:hover { opacity: 1; background: var(--paper) !important; transform: none !important; }
-  .nav-cta-disabled:hover .btn-prox-label { opacity: 1; }
 
-  /* ── PAGE SECTIONS ── */
+/* variante para hero-btn */
+
+/* variante para nav-cta */
+
+/* ── PAGE SECTIONS ── */
   .page-section { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .page-section.visible { display: block; }
   .page-section.animated { opacity: 1; transform: translateY(0); }
@@ -318,9 +270,9 @@
 
   .hero-case-num {
     position: absolute; top: 8rem; right: 2.5rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.3em; text-transform: uppercase;
-    color: rgba(240,236,224,0.28);
+    color: rgba(240,236,224,0.55);
     writing-mode: vertical-rl; text-orientation: mixed;
     animation: fadeIn 1.2s ease 0.8s both;
   }
@@ -328,8 +280,8 @@
   .hero-content { position: relative; z-index: 2; }
 
   .hero-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--red);
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--red-text);
     margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;
     animation: fadeUp 0.8s ease both;
   }
@@ -342,9 +294,8 @@
     animation: fadeUp 0.8s ease 0.12s both;
   }
   h1 em { font-style: normal; color: var(--red); display: block; }
-  h1 .title-stroke { -webkit-text-stroke: 1px rgba(240,236,224,0.42); color: transparent; }
 
-  .hero-divider {
+.hero-divider {
     width: 3rem; height: 1px; background: var(--red);
     margin: 2rem 0 1.5rem;
     animation: expandWidth 0.6s ease 0.4s both;
@@ -366,7 +317,7 @@
     margin-bottom: 2.5rem;
   }
   .hero-btn {
-    font-family: "Space Mono", monospace; font-size: 0.73rem;
+    font-family: "Courier Prime", monospace; font-size: 0.73rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; cursor: pointer; border: none;
     display: flex; align-items: center; justify-content: space-between;
@@ -390,15 +341,8 @@
   .hero-btn-ghost:hover { color: var(--paper); background: rgba(240,236,224,0.02); }
   .btn-arrow { font-size: 1rem; transition: transform 0.22s; flex-shrink: 0; }
   .hero-btn:hover .btn-arrow { transform: translateX(5px); }
-  .btn-tag {
-    font-size: 0.7rem; letter-spacing: 0.15em; opacity: 0.45;
-    background: rgba(240,236,224,0.07); padding: 0.22rem 0.55rem;
-    margin-left: auto; margin-right: 0.9rem;
-    text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
-    border: 1px solid rgba(240,236,224,0.12);
-  }
 
-  /* ── STATS BAND ── */
+/* ── STATS BAND ── */
   .hero-stats-band {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -413,7 +357,7 @@
   }
   .stat-item:last-child { border-right: none; }
   .stat-num { font-family: "Bebas Neue", cursive; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--paper); line-height: 1; display: block; }
-  .stat-label { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(180,170,155,0.85); display: block; margin-top: 0.35rem; line-height: 1.55; }
+  .stat-label { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(180,170,155,0.85); display: block; margin-top: 0.35rem; line-height: 1.55; }
 
   /* ── TICKER ── */
   .ticker {
@@ -433,9 +377,9 @@
     white-space: nowrap; width: max-content;
   }
   .ticker-item {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42); flex-shrink: 0;
+    color: rgba(240,236,224,0.68); flex-shrink: 0;
   }
   .ticker-item span { color: var(--amber); margin-right: 0.5rem; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -466,8 +410,8 @@
   .caso0-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .caso0-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .caso0-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.25em; text-transform: uppercase; color: var(--red);
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--red-text);
     margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem;
   }
   .caso0-eyebrow::before { content: "//"; color: rgba(240,236,224,0.2); }
@@ -513,8 +457,8 @@
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     background: rgba(0,0,0,0.15);
   }
-  .caso0-card-label { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); }
-  .caso0-card-badge { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.2rem 0.6rem; }
+  .caso0-card-label { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red-text); }
+  .caso0-card-badge { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.2rem 0.6rem; }
   .caso0-card-body { padding: 2rem; }
   .caso0-case-title { font-family: "Bebas Neue", cursive; font-size: 2.4rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.8rem; color: var(--paper); }
   .caso0-case-desc { font-size: 0.98rem; line-height: 1.75; color: rgba(240,236,224,0.65); margin-bottom: 1.5rem; }
@@ -522,7 +466,7 @@
   .teaser-link {
     display: flex; align-items: center; gap: 0.85rem; padding: 0.8rem 1rem;
     border: 1px solid rgba(240,236,224,0.28); text-decoration: none;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-dim);
     transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
@@ -535,8 +479,8 @@
     display: flex; gap: 1.2rem; flex-wrap: wrap; padding: 1rem 2rem;
     border-top: 1px solid rgba(192,57,43,0.2);
     background: rgba(0,0,0,0.2);
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,236,224,0.42);
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,236,224,0.68);
   }
   /* Variante interactiva (celeste) para sub-bloques dentro de caso0-card */
   .caso0-card-body-interactivo {
@@ -584,7 +528,7 @@
   .step-item:hover { background: rgba(212,160,23,0.06); }
   .step-item:last-child { border-right: none; }
   .step-num { font-family: "Bebas Neue", cursive; font-size: 4rem; line-height: 1; color: rgba(212,160,23,0.55); display: block; margin-bottom: 1.2rem; }
-  .step-icon { font-family: "Space Mono", monospace; font-size: 1.1rem; color: var(--amber); display: block; margin-bottom: 0.9rem; }
+  .step-icon { font-family: "Courier Prime", monospace; font-size: 1.1rem; color: var(--amber); display: block; margin-bottom: 0.9rem; }
   .step-title { font-family: "Bebas Neue", cursive; font-size: 1.45rem; letter-spacing: 0.05em; color: var(--paper); display: block; margin-bottom: 0.6rem; }
   .step-desc { font-size: 0.9rem; line-height: 1.8; color: rgba(240,236,224,0.65); }
 
@@ -643,17 +587,17 @@
     position: relative; z-index: 1;
   }
   .testimonio-nombre {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--paper);
   }
   .testimonio-caso {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
   }
-  .testimonio-caso-clasico { color: rgba(192,57,43,0.7); }
-  .testimonio-caso-especial { color: rgba(201,130,138,0.7); }
-  .testimonio-caso-interactivo { color: rgba(0,188,188,0.7); }
+  .testimonio-caso-clasico { color: var(--red-text); }
+  .testimonio-caso-especial { color: rgba(201,130,138,0.95); }
+
   @media (max-width: 900px) {
     .testimonios-grid { grid-template-columns: 1fr; gap: 1rem; }
     .testimonios-section { padding: 4rem 2rem; }
@@ -693,22 +637,16 @@
     color: var(--ink); background: var(--paper);
     padding: 0.35em 0.7em 0.3em;
   }
-  .pack-titulo-tag {
-    display: inline-block; margin: -0.6rem 0 1.2rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--amber); border: 1px solid rgba(212,160,23,0.45);
-    background: rgba(212,160,23,0.08); padding: 0.3rem 0.75rem;
-  }
+
   .pack-inner + .pack-inner { margin-top: 2rem; }
   .pack-precio-antes {
-    font-family: "Space Mono", monospace; font-size: 0.75rem;
+    font-family: "Courier Prime", monospace; font-size: 0.75rem;
     letter-spacing: 0.08em; color: rgba(240,236,224,0.55); margin-bottom: 0.5rem;
   }
   .pack-precio-antes s { color: rgba(192,57,43,0.9); text-decoration-thickness: 2px; }
   .pack-ahorro {
     align-self: flex-start; margin-top: 0.7rem;
-    font-family: "Space Mono", monospace; font-size: 0.72rem; font-weight: 700;
+    font-family: "Courier Prime", monospace; font-size: 0.72rem; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--amber); background: rgba(212,160,23,0.14);
     border: 1px solid rgba(212,160,23,0.5); padding: 0.35rem 0.7rem;
@@ -720,15 +658,15 @@
   }
   .pack-recomendado {
     position: absolute; top: 0; right: 0; z-index: 2;
-    font-family: "Space Mono", monospace; font-size: 0.72rem; font-weight: 700;
+    font-family: "Courier Prime", monospace; font-size: 0.72rem; font-weight: 700;
     letter-spacing: 0.15em; text-transform: uppercase;
     background: var(--amber); color: var(--ink); padding: 0.45rem 0.9rem;
   }
   .pack-precio { display: flex; flex-direction: column; gap: 0.2rem; }
   .pack-precio-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42);
+    color: rgba(240,236,224,0.68);
   }
   .pack-precio-valor {
     font-family: "Bebas Neue", cursive; font-size: 2.5rem;
@@ -741,9 +679,9 @@
   .pack-items { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
   .pack-grupo { display: flex; flex-direction: column; gap: 0.25rem; }
   .pack-grupo-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42); margin-bottom: 0.2rem;
+    color: rgba(240,236,224,0.68); margin-bottom: 0.2rem;
   }
   .pack-item {
     font-family: "Courier Prime", monospace; font-size: 0.88rem;
@@ -752,14 +690,14 @@
   .pack-solidario { font-size: 0.72rem; color: #c9828a; }
   .pack-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
   .pack-meta span {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42);
+    color: rgba(240,236,224,0.68);
     border: 1px solid rgba(240,236,224,0.1); padding: 0.3rem 0.7rem;
   }
   .pack-btn {
     display: inline-flex; align-items: center; gap: 1rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink); background: var(--amber);
     padding: 1rem 1.8rem; text-decoration: none;
@@ -787,7 +725,7 @@
     transition: border-color 0.2s, background 0.2s, transform 0.2s;
   }
   .perfil-item:hover { border-color: rgba(212,160,23,0.4); background: rgba(212,160,23,0.05); transform: translateX(4px); }
-  .perfil-icon { font-family: "Space Mono", monospace; font-size: 0.75rem; color: var(--amber); flex-shrink: 0; margin-top: 0.2rem; }
+  .perfil-icon { font-family: "Courier Prime", monospace; font-size: 0.75rem; color: var(--amber); flex-shrink: 0; margin-top: 0.2rem; }
   .perfil-text { font-size: 0.95rem; line-height: 1.65; color: rgba(240,236,224,0.65); }
   .perfil-text strong { color: var(--paper); font-size: 0.93rem; display: block; margin-bottom: 0.2rem; }
 
@@ -844,105 +782,8 @@
   .cta-banner-actions { display: flex; flex-direction: column; gap: 0.7rem; min-width: 260px; }
 
   /* ── WAITLIST ── */
-  .waitlist-section {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(135deg, rgba(212,160,23,0.04) 0%, rgba(192,57,43,0.04) 100%);
-    padding: 5rem 2.5rem;
-    position: relative; overflow: hidden;
-  }
-  .waitlist-section::before {
-    content: "LISTA";
-    position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
-    font-family: "Bebas Neue", cursive; font-size: clamp(6rem, 18vw, 14rem);
-    color: rgba(212,160,23,0.04); letter-spacing: 0.05em;
-    pointer-events: none; user-select: none; line-height: 1; white-space: nowrap;
-  }
-  .waitlist-inner {
-    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-  }
-  .waitlist-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber);
-    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem;
-  }
-  .waitlist-eyebrow::before { content: "//"; color: rgba(240,236,224,0.18); }
-  .waitlist-title {
-    font-family: "Bebas Neue", cursive;
-    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-    line-height: 0.97; letter-spacing: 0.03em; margin-bottom: 1.2rem;
-  }
-  .waitlist-title span { color: var(--amber); }
-  .waitlist-desc {
-    font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.65);
-    max-width: 42ch;
-  }
-  .waitlist-form-wrap { display: flex; flex-direction: column; gap: 1rem; }
-  .waitlist-form {
-    display: flex; flex-direction: column; gap: 0.7rem;
-  }
-  .waitlist-input-row { display: flex; gap: 0; }
-  .waitlist-input {
-    flex: 1;
-    font-family: "Courier Prime", monospace; font-size: 0.88rem;
-    letter-spacing: 0.04em;
-    background: rgba(240,236,224,0.04);
-    border: 1px solid rgba(240,236,224,0.18);
-    border-right: none;
-    color: var(--paper);
-    padding: 0.9rem 1.2rem;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    min-width: 0;
-  }
-  .waitlist-input::placeholder { color: rgba(240,236,224,0.28); }
-  .waitlist-input:focus {
-    border-color: rgba(212,160,23,0.55);
-    background: rgba(212,160,23,0.04);
-  }
-  .waitlist-submit {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink); background: var(--amber);
-    border: 1px solid var(--amber);
-    padding: 0.9rem 1.4rem;
-    cursor: pointer; white-space: nowrap;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    flex-shrink: 0;
-  }
-  .waitlist-submit:hover {
-    background: #e8b520;
-    transform: translateX(3px);
-    box-shadow: 0 4px 20px rgba(212,160,23,0.3);
-  }
-  .waitlist-submit:disabled {
-    opacity: 0.6; cursor: not-allowed; transform: none;
-  }
-  .waitlist-note {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.28); line-height: 1.7;
-  }
-  .waitlist-success {
-    display: none;
-    border: 1px solid rgba(74,222,128,0.35);
-    background: rgba(74,222,128,0.05);
-    padding: 1.2rem 1.5rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: #4ade80; line-height: 1.7;
-  }
-  .waitlist-success.visible { display: block; }
-  .waitlist-error {
-    display: none;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--red); margin-top: 0.3rem;
-  }
-  .waitlist-error.visible { display: block; }
 
-  /* ── INSTAGRAM ICON ── */
+/* ── INSTAGRAM ICON ── */
   .nav-ig {
     display: flex; align-items: center; justify-content: center;
     width: 34px; height: 34px;
@@ -953,20 +794,12 @@
   }
   .nav-ig:hover { border-color: rgba(240,236,224,0.42); background: rgba(240,236,224,0.05); }
   .nav-ig svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .footer-ig {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-ig:hover { color: var(--paper); }
-  .footer-ig svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
-  /* ── SECTIONS ── */
+/* ── SECTIONS ── */
   .section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
   .section-topbar { padding: 5rem 2.5rem 0; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
   .back-btn {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); background: none; border: none; cursor: pointer;
     display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s, transform 0.15s; padding: 0;
@@ -992,7 +825,7 @@
   }
 
   .section-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber);
     margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.8rem;
   }
@@ -1000,29 +833,9 @@
   h2 { font-family: "Bebas Neue", cursive; font-size: clamp(2.8rem, 6vw, 4.8rem); letter-spacing: 0.03em; line-height: 0.95; margin-bottom: 2.5rem; }
 
   /* ── BOTONES GENERALES ── */
-  .btn-primary {
-    font-family: "Space Mono", monospace; font-size: 0.72rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--paper); background: rgba(240,236,224,0.42);
-    padding: 0.95rem 1.8rem; text-decoration: none; border: none;
-    cursor: pointer; display: inline-flex; align-items: center; gap: 0.7rem;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s; white-space: nowrap;
-    backdrop-filter: blur(4px);
-  }
-  .btn-primary::after { content: "→"; }
-  .btn-primary:hover { background: rgba(212,160,23,0.45); transform: translateX(5px); box-shadow: 0 4px 24px rgba(212,160,23,0.2); }
-  .btn-secondary {
-    font-family: "Space Mono", monospace; font-size: 0.72rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--paper); background: transparent;
-    padding: 0.95rem 1.8rem; text-decoration: none;
-    border: 1px solid var(--border-bright); cursor: pointer;
-    display: inline-flex; align-items: center; gap: 0.7rem;
-    transition: border-color 0.2s, transform 0.15s; white-space: nowrap;
-  }
-  .btn-secondary:hover { border-color: rgba(240,236,224,0.42); transform: translateX(5px); }
-  .btn-block {
-    font-family: "Space Mono", monospace; font-size: 0.75rem;
+
+.btn-block {
+    font-family: "Courier Prime", monospace; font-size: 0.75rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--paper); background: rgba(240,236,224,0.42);
     padding: 1.2rem 1.7rem; text-decoration: none; border: none;
@@ -1037,6 +850,7 @@
   .que-es-lead strong { color: var(--paper); }
   /* ── FEATURES ROWS (¿Qué es?) ── */
   .features-cols-desktop { display: none; }
+  .features-rows {
     border: 1px solid rgba(192,57,43,0.25);
     margin-bottom: 4rem;
     box-shadow: 0 0 0 1px rgba(192,57,43,0.08), 0 4px 32px rgba(0,0,0,0.3);
@@ -1082,9 +896,9 @@
     .feature-row-right { padding: 1rem 1.5rem 1.5rem; }
   }
   .feature-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; justify-content: center; }
-  .ftag { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.32rem 0.75rem; border: 1px solid rgba(212,160,23,0.35); color: var(--amber); transition: border-color 0.2s, background 0.2s; }
+  .ftag { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.32rem 0.75rem; border: 1px solid rgba(212,160,23,0.35); color: var(--amber); transition: border-color 0.2s, background 0.2s; }
   .ftag:hover { border-color: rgba(212,160,23,0.6); background: rgba(212,160,23,0.06); }
-  .duracion-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.45rem 1rem; margin-top: 1.2rem; }
+  .duracion-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); border: 1px solid var(--amber-dim); padding: 0.45rem 1rem; margin-top: 1.2rem; }
   .sobre-banda {
     border: 1px solid rgba(120,20,14,0.45); padding: 2.5rem 2.8rem;
     display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center;
@@ -1094,10 +908,10 @@
     transition: background 0.3s;
   }
   .sobre-banda:hover { background: linear-gradient(135deg, rgba(120,20,14,0.55) 0%, rgba(90,12,8,0.65) 100%); }
-  .sobre-banda-label { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-weight: 700; }
+  .sobre-banda-label { font-family: "Courier Prime", monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); white-space: nowrap; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-weight: 700; }
   .sobre-banda p { font-size: 0.93rem; line-height: 1.88; color: rgba(240,236,224,0.65); }
   .sobre-banda strong { color: var(--paper); }
-  .cta-links { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
   .caso0-inline {
     margin: 4rem 0; border: 1px solid rgba(192,57,43,0.25);
     background: rgba(192,57,43,0.03); padding: 2.5rem; position: relative; overflow: hidden;
@@ -1108,51 +922,14 @@
     color: rgba(192,57,43,0.05); letter-spacing: 0.05em; pointer-events: none; user-select: none; line-height: 1;
   }
   .caso0-inline-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center; }
-  .caso0-inline-title { font-family: "Bebas Neue", cursive; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.7rem; display: block; }
+  .caso0-inline-title { font-family: "Bebas Neue", cursive; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red-text); margin-bottom: 0.7rem; display: block; }
   .caso0-inline h3 { font-family: "Bebas Neue", cursive; font-size: 2rem; letter-spacing: 0.03em; margin-bottom: 0.8rem; line-height: 1; }
-  .caso0-inline p { font-size: 0.85rem; line-height: 1.78; color: rgba(240,236,224,0.42); margin-bottom: 0; max-width: 45ch; }
+  .caso0-inline p { font-size: 0.85rem; line-height: 1.78; color: rgba(240,236,224,0.68); margin-bottom: 0; max-width: 45ch; }
   .caso0-inline-actions { display: flex; flex-direction: column; gap: 0.6rem; min-width: 200px; }
 
   /* ── SUSCRIPCIÓN ── */
-  .suscripcion-bg { background: linear-gradient(to bottom, rgba(240,236,224,0.018) 0%, transparent 30%); border-top: 1px solid var(--border); }
-  .suscripcion-lead { font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.88; color: rgba(240,236,224,0.65); max-width: 50ch; margin-bottom: 4rem; }
-  .precio-hero {
-    border: 1px solid rgba(212,160,23,0.4); padding: 3.5rem; margin-bottom: 3rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
-    background: linear-gradient(135deg, rgba(212,160,23,0.07) 0%, rgba(192,57,43,0.06) 100%); 
-    position: relative; overflow: hidden; transition: border-color 0.3s;
-    box-shadow: 0 0 0 1px rgba(212,160,23,0.12), 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(212,160,23,0.1);
-  }
-  .precio-hero:hover { border-color: rgba(212,160,23,0.65); }
-  .precio-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--amber), transparent 60%); }
-  .precio-hero::after { content: ""; position: absolute; top: 0; right: 0; width: 40%; height: 100%; background: linear-gradient(to left, rgba(212,160,23,0.06), transparent); pointer-events: none; }
-  .precio-eyebrow { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 1.3rem; }
-  .precio-valor { font-family: "Bebas Neue", cursive; font-size: clamp(3rem, 6vw, 5.2rem); line-height: 1; color: var(--paper); margin-bottom: 0.5rem; }
-  .precio-valor span { font-size: 1.2rem; color: var(--muted); font-family: "Space Mono", monospace; font-weight: normal; }
-  .precio-sub { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 2.5rem; display: block; }
-  .precio-features { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2.5rem; }
-  .precio-features li { font-size: 0.88rem; color: rgba(240,236,224,0.65); display: flex; align-items: flex-start; gap: 0.9rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border); }
-  .precio-features li:last-child { border-bottom: none; padding-bottom: 0; }
-  .precio-features li::before { content: "→"; color: var(--red); flex-shrink: 0; margin-top: 0.05rem; }
-  .precio-nota { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); margin-top: 1rem; line-height: 1.75; }
-  .suscripcion-caso0 {
-    border: 1px solid rgba(212,160,23,0.2); background: rgba(212,160,23,0.03);
-    padding: 2.5rem; margin-bottom: 3rem;
-    display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center;
-  }
-  .suscripcion-caso0-label { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.6rem; display: block; }
-  .suscripcion-caso0 h3 { font-family: "Bebas Neue", cursive; font-size: 1.7rem; letter-spacing: 0.03em; margin-bottom: 0.6rem; line-height: 1; }
-  .suscripcion-caso0 p { font-size: 0.83rem; line-height: 1.75; color: rgba(240,236,224,0.42); }
-  .suscripcion-faqs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(240,236,224,0.12); margin-bottom: 3rem; background: rgba(240,236,224,0.01); }
-  .sfaq-block { padding: 2.2rem 2rem; border-right: 1px solid rgba(240,236,224,0.08); transition: background 0.3s; position: relative; }
-  .sfaq-block::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, var(--amber), transparent); opacity: 0; transition: opacity 0.3s; }
-  .sfaq-block:hover { background: rgba(212,160,23,0.04); }
-  .sfaq-block:hover::before { opacity: 1; }
-  .sfaq-block:last-child { border-right: none; }
-  .sfaq-block h4 { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.9rem; }
-  .sfaq-block p { font-size: 0.82rem; line-height: 1.78; color: rgba(240,236,224,0.42); }
 
-  /* ── CASOS ── */
+/* ── CASOS ── */
   .casos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
   .caso-card {
     border: 1px solid var(--border); padding: 2rem; position: relative; overflow: hidden;
@@ -1161,14 +938,14 @@
   .caso-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(192,57,43,0.06) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
   .caso-card:hover { border-color: rgba(192,57,43,0.4); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
   .caso-card:hover::before { opacity: 1; }
-  .caso-tag { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.28rem 0.7rem; border: 1px solid; display: inline-block; margin-bottom: 1.2rem; }
-  .tag-rojo { color: var(--red); border-color: rgba(192,57,43,0.4); }
-  .tag-ambar { color: var(--amber); border-color: var(--amber-dim); }
+  .caso-tag { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.28rem 0.7rem; border: 1px solid; display: inline-block; margin-bottom: 1.2rem; }
+  .tag-rojo { color: var(--red-text); border-color: rgba(192,57,43,0.4); }
+
   .caso-card h3 { font-family: "Bebas Neue", cursive; font-size: 1.75rem; letter-spacing: 0.04em; line-height: 1.1; margin-bottom: 0.8rem; color: var(--paper); }
-  .caso-card p { font-size: 0.82rem; line-height: 1.75; color: rgba(240,236,224,0.42); margin-bottom: 1.4rem; }
-  .caso-meta { display: flex; gap: 1rem; flex-wrap: wrap; font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.65); }
+  .caso-card p { font-size: 0.82rem; line-height: 1.75; color: rgba(240,236,224,0.68); margin-bottom: 1.4rem; }
+
   .stamp { position: absolute; bottom: 1.4rem; right: 1.4rem; font-family: "Bebas Neue", cursive; font-size: 0.8rem; letter-spacing: 0.15em; color: rgba(46,107,62,0.55); border: 2px solid rgba(46,107,62,0.4); padding: 0.22rem 0.65rem; transform: rotate(-8deg); }
-  .stamp-pronto { color: rgba(192,57,43,0.5); border-color: rgba(192,57,43,0.4); }
+
   .stamp-rojo { color: rgba(192,57,43,0.7); border-color: rgba(192,57,43,0.5); }
   .stamp-interactivo { color: rgba(0,188,188,0.7); border-color: rgba(0,188,188,0.5); }
   .tag-interactivo { color: #00bcbc; border-color: rgba(0,188,188,0.3); background: rgba(0,188,188,0.06); }
@@ -1198,45 +975,9 @@
     background: linear-gradient(to right, #00bcbc, rgba(0,188,188,0.4), transparent);
     pointer-events: none;
   }
-  .caso-tarea { font-family: "Courier Prime", monospace; font-size: 0.82rem; color: rgba(240,236,224,0.42); margin-bottom: 1rem; font-style: italic; }
-  .btn-trailer-disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
-  .caso-card-disabled { opacity: 0.55; pointer-events: auto; cursor: not-allowed; position: relative; }
-  .caso-card-disabled .proximamente-overlay {
-    position: absolute; inset: 0;
-    background: rgba(192,57,43,0);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 0.8rem;
-    opacity: 0;
-    transition: background 0.3s ease, opacity 0.3s ease;
-    z-index: 10;
-    pointer-events: none;
-  }
-  .caso-card-disabled:hover .proximamente-overlay {
-    background: rgba(192,57,43,0.22);
-    opacity: 1;
-  }
-  .proximamente-overlay-text {
-    font-family: "Bebas Neue", cursive;
-    font-size: 2.2rem;
-    letter-spacing: 0.18em;
-    color: var(--paper);
-    text-shadow: 0 2px 20px rgba(192,57,43,0.6), 0 0 40px rgba(192,57,43,0.3);
-    transform: translateY(6px);
-    transition: transform 0.3s ease;
-  }
-  .caso-card-disabled:hover .proximamente-overlay-text { transform: translateY(0); }
-  .proximamente-overlay-sub {
-    font-family: "Space Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(240,236,224,0.65);
-    transform: translateY(6px);
-    transition: transform 0.35s ease 0.05s;
-  }
-  .caso-card-disabled:hover .proximamente-overlay-sub { transform: translateY(0); }
-  .proximamente-banner { 
+  .caso-tarea { font-family: "Courier Prime", monospace; font-size: 0.82rem; color: rgba(240,236,224,0.68); margin-bottom: 1rem; font-style: italic; }
+
+.proximamente-banner { 
     margin-top: 2.5rem; overflow: hidden; position: relative;
     border-top: 1px solid rgba(212,160,23,0.2);
     border-bottom: 1px solid rgba(212,160,23,0.2);
@@ -1251,9 +992,9 @@
     white-space: nowrap; width: max-content;
   }
   .proximamente-banner-item {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42); flex-shrink: 0;
+    color: rgba(240,236,224,0.68); flex-shrink: 0;
     display: flex; align-items: center; gap: 0.5rem;
   }
   .proximamente-banner-item .pb-accent { color: var(--amber); }
@@ -1270,107 +1011,10 @@
     margin-bottom: 1.4rem; gap: 1rem; flex-wrap: wrap;
   }
   .novedades-header h2 { margin-bottom: 0; }
-  .novedades-badge {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: #c9828a; border: 1px solid rgba(201,130,138,0.4);
-    padding: 0.4rem 0.85rem; background: rgba(201,130,138,0.08);
-  }
-  .novedades-card {
-    display: grid; grid-template-columns: 1fr 140px;
-    border: 1px solid rgba(201,130,138,0.5);
-    background: rgba(28,12,12,0.95);
-    overflow: hidden; gap: 0; position: relative;
-    box-shadow: 0 8px 48px rgba(192,57,43,0.2), inset 0 0 80px rgba(201,130,138,0.06);
-  }
-  .novedades-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(to right, #c9828a, var(--red), transparent);
-  }
-  .novedades-card-left {
-    padding: 1.6rem 2rem; display: flex; flex-direction: column; gap: 0.75rem;
-  }
-  .novedades-top-row {
-    display: flex; align-items: baseline; gap: 1rem;
-  }
-  .novedades-num {
-    font-family: "Bebas Neue", cursive; font-size: 0.85rem;
-    letter-spacing: 0.25em; color: rgba(201,130,138,0.7);
-    flex-shrink: 0;
-  }
-  .novedades-title {
-    font-family: "Bebas Neue", cursive; font-size: 2.2rem;
-    letter-spacing: 0.04em; line-height: 1; color: var(--paper);
-    margin: 0;
-  }
-  .novedades-desc {
-    font-size: 0.82rem; line-height: 1.75;
-    color: rgba(240,236,224,0.65); max-width: 54ch; margin: 0;
-  }
-  .novedades-meta {
-    display: flex; gap: 1.2rem; flex-wrap: wrap;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(201,130,138,0.92);
-    padding-top: 0.65rem; border-top: 1px solid rgba(201,130,138,0.2);
-  }
-  .novedades-actions {
-    display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
-  }
-  .novedades-btn-comprar { max-width: 180px; background: #c9828a !important; color: var(--ink) !important; }
-  .novedades-btn-comprar:hover { background: #dea8ae !important; }
-  .novedades-btn-ver { max-width: 160px; }
-  .novedades-btn-gatu {
-    width: auto !important; flex-shrink: 0;
-    padding: 0.9rem 1rem !important;
-    align-self: stretch;
-    justify-content: space-between;
-  }
-  .novedades-precio {
-    display: flex; align-items: baseline; justify-content: space-between;
-    border: 1px solid rgba(201,130,138,0.3);
-    background: rgba(201,130,138,0.06);
-    padding: 0.6rem 1rem;
-  }
-  .novedades-precio-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(201,130,138,0.65);
-  }
-  .novedades-precio-valor {
-    font-family: "Bebas Neue", cursive; font-size: 1.7rem;
-    letter-spacing: 0.04em; color: #c9828a; line-height: 1;
-  }
-  .novedades-precio-moneda {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    color: rgba(201,130,138,0.55); letter-spacing: 0.08em;
-  }
-  .novedades-link-gatu {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(201,130,138,0.65); text-decoration: none;
-    border-bottom: 1px solid rgba(201,130,138,0.3); padding-bottom: 1px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .novedades-link-gatu:hover { color: #c9828a; border-color: rgba(201,130,138,0.7); }
-  .novedades-card-right {
-    background: rgba(201,130,138,0.08);
-    border-left: 1px solid rgba(201,130,138,0.25);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
-  }
-  .novedades-visual { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
-  .novedades-visual-num {
-    font-family: "Bebas Neue", cursive; font-size: 1.2rem;
-    letter-spacing: 0.15em; color: rgba(201,130,138,0.45);
-  }
-  .novedades-paw { width: 52px; height: 52px; fill: rgba(201,130,138,0.3); }
-  @media (max-width: 640px) {
-    .novedades-card { grid-template-columns: 1fr; }
-    .novedades-card-right { display: none; }
-    .novedades-card-left { padding: 1.4rem 1.6rem; }
-    .novedades-title { font-size: 1.8rem; }
-    .novedades-section .section { padding-top: 2rem; padding-bottom: 2rem; }
+
+@media (max-width: 640px) {
+
+.novedades-section .section { padding-top: 2rem; padding-bottom: 2rem; }
   }
 
   /* ── FAQ ── */
@@ -1404,14 +1048,14 @@
   .faq-question span { font-family: "Courier Prime", monospace; font-size: 1.02rem; color: var(--paper); line-height: 1.5; }
   .faq-item.open .faq-question > span:first-child { color: var(--amber); }
   .faq-icon {
-    font-family: "Space Mono", monospace; font-size: 1.1rem;
-    color: rgba(240,236,224,0.28); flex-shrink: 0;
+    font-family: "Courier Prime", monospace; font-size: 1.1rem;
+    color: rgba(240,236,224,0.55); flex-shrink: 0;
     transition: transform 0.3s, color 0.3s;
     width: 1.6rem; height: 1.6rem;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid rgba(240,236,224,0.12);
   }
-  .faq-item:hover .faq-icon { color: var(--red); border-color: rgba(192,57,43,0.35); }
+  .faq-item:hover .faq-icon { color: var(--red-text); border-color: rgba(192,57,43,0.35); }
   .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--amber); border-color: rgba(212,160,23,0.45); }
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-item.open .faq-answer { max-height: 500px; }
@@ -1421,22 +1065,22 @@
     border-top: 1px solid rgba(212,160,23,0.12);
   }
   .faq-contacto { margin-top: 4rem; padding: 2.5rem; background: rgba(192,57,43,0.04); border: 1px solid rgba(192,57,43,0.18); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-  .faq-contacto-text p { font-size: 0.86rem; color: rgba(240,236,224,0.42); line-height: 1.65; }
+  .faq-contacto-text p { font-size: 0.86rem; color: rgba(240,236,224,0.68); line-height: 1.65; }
   .faq-contacto-text a { color: var(--amber); text-decoration: none; }
   .faq-contacto-text a:hover { text-decoration: underline; }
 
   /* ── FOOTER ── */
   footer { background: #060504; padding: 2.8rem; border-top: 1px solid rgba(240,236,224,0.06); }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(240,236,224,0.06); }
-  .footer-logo { font-family: "Bebas Neue", cursive; font-size: 1.6rem; letter-spacing: 0.16em; color: rgba(240,236,224,0.28); text-decoration: none; display: block; margin-bottom: 0.5rem; cursor: pointer; transition: color 0.2s; }
-  .footer-logo:hover { color: rgba(240,236,224,0.42); }
+  .footer-logo { font-family: "Bebas Neue", cursive; font-size: 1.6rem; letter-spacing: 0.16em; color: rgba(240,236,224,0.55); text-decoration: none; display: block; margin-bottom: 0.5rem; cursor: pointer; transition: color 0.2s; }
+  .footer-logo:hover { color: rgba(240,236,224,0.68); }
   .footer-logo span { color: rgba(192,57,43,0.45); }
-  .footer-tagline { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,224,0.18); }
+  .footer-tagline { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,236,224,0.55); }
   .footer-contact { text-align: right; }
-  .footer-contact p { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.22); margin-bottom: 0.4rem; }
+  .footer-contact p { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.55); margin-bottom: 0.4rem; }
   .footer-contact a { font-family: "Courier Prime", monospace; font-size: 0.84rem; color: rgba(240,236,224,0.65); text-decoration: none; transition: color 0.2s; }
   .footer-contact a:hover { color: var(--amber); }
-  .footer-bottom { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.28); line-height: 1.9; }
+  .footer-bottom { font-family: "Courier Prime", monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,236,224,0.55); line-height: 1.9; }
 
   /* ── ANIMACIONES ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
@@ -1489,18 +1133,14 @@
   @media (min-width: 960px) {
 
     /* Unificar h2 en las 3 secciones */
-    #view-que-es h2,
-    #view-casos h2,
-    #view-faq h2 {
+    #view-que-es h2, #view-casos h2, #view-faq h2 {
       font-size: clamp(2.4rem, 3.5vw, 3.2rem);
       margin-bottom: 1.8rem;
       line-height: 1;
     }
 
     /* Ancho generoso para todas las secciones — ocupa todo el ancho con padding lateral */
-    #view-que-es .section,
-    #view-casos .section,
-    #view-faq .section {
+    #view-que-es .section, #view-casos .section, #view-faq .section {
       max-width: 100%;
       width: 100%;
       box-sizing: border-box;
@@ -1543,15 +1183,8 @@
     }
 
     /* CASOS — título arriba, intro + badges en fila, acordeones lado a lado */
-    #view-casos .casos-intro-wrap {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: start;
-      margin-bottom: 2rem;
-    }
 
-    /* FAQ — título arriba, lista ocupa todo el ancho */
+/* FAQ — título arriba, lista ocupa todo el ancho */
     #view-faq .faq-list {
       columns: 2;
       column-gap: 2rem;
@@ -1572,15 +1205,12 @@
     .caso0-grid { grid-template-columns: 1fr; gap: 3rem; }
     .caso0-inline-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     .caso0-inline-actions { flex-direction: row; min-width: 0; }
-    .suscripcion-faqs { grid-template-columns: 1fr 1fr; }
-    .sfaq-block:nth-child(2) { border-right: none; }
-    .sfaq-block:nth-child(1), .sfaq-block:nth-child(2) { border-bottom: 1px solid var(--border); }
-    .sobre-banda { grid-template-columns: 1fr; gap: 1.5rem; }
+
+.sobre-banda { grid-template-columns: 1fr; gap: 1.5rem; }
     .sobre-banda-label { writing-mode: horizontal-tb; transform: none; }
     .casos-grid { grid-template-columns: repeat(2, 1fr); }
-    .modal-inner { max-width: 90vw; }
-    .caso-especial-cover { margin: 0 -1.5rem 1.4rem; padding: 1.4rem 1.5rem; }
-    .caso0-card-body, .caso0-card-header, .caso0-card-meta { padding-left: 1.8rem; padding-right: 1.8rem; }
+
+.caso0-card-body, .caso0-card-header, .caso0-card-meta { padding-left: 1.8rem; padding-right: 1.8rem; }
   }
 
   /* ── Tablet portrait (≤768px) ── */
@@ -1609,25 +1239,19 @@
     .nav-dropdown { padding: 5rem 1.25rem 2rem; }
     .nav-item-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
     .faq-contacto { flex-direction: column; align-items: flex-start; }
-    .precio-hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
-    .suscripcion-faqs { grid-template-columns: 1fr; }
-    .sfaq-block { border-right: none !important; border-bottom: 1px solid var(--border); }
-    .sfaq-block:last-child { border-bottom: none; }
-    .suscripcion-caso0 { grid-template-columns: 1fr; gap: 1.5rem; }
-    .caso0-inline-inner { grid-template-columns: 1fr; }
+
+.caso0-inline-inner { grid-template-columns: 1fr; }
     .caso0-inline-actions { flex-direction: column; }
     .casos-grid { grid-template-columns: 1fr; }
     .caso-especial-title-row { flex-direction: column; gap: 0.6rem; }
     .caso-precio-destacado { align-self: flex-start; }
-    .caso-especial-cover { margin: 0 -1.25rem 1.4rem; padding: 1.2rem 1.25rem; }
-    .modal-inner { width: 95vw; max-width: 95vw; padding: 1.8rem; }
-    .val-cierre-body { padding: 1.8rem; }
+
+.val-cierre-body { padding: 1.8rem; }
     .val-password-form { max-width: 100%; }
     .val-casos-grid { grid-template-columns: 1fr 1fr; }
     .sobre-banda { padding: 1.8rem; }
-    .novedades-card { grid-template-columns: 1fr; }
-    .novedades-card-right { display: none; }
-    h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
+
+h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
     .faq-question { padding: 1.2rem 1.4rem; }
     .faq-answer p { padding: 1rem 1.4rem 1.5rem 1.8rem; }
   }
@@ -1657,9 +1281,8 @@
     .faq-question span { font-size: 0.9rem; }
     .faq-question { padding: 1.1rem 1.2rem; }
     .faq-answer p { padding: 0.9rem 1.2rem 1.4rem 1.6rem; }
-    .cta-links { flex-direction: column; }
-    .btn-primary, .btn-secondary { width: 100%; justify-content: space-between; }
-    .dropdown-nav a { padding: 1.1rem 0; }
+
+.dropdown-nav a { padding: 1.1rem 0; }
     .nav-item-title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
     footer { padding: 1.5rem 1rem; }
     .ticker-item { font-size: 0.7rem; }
@@ -1673,25 +1296,23 @@
     .caso0-card-body { padding: 1.4rem; }
     .caso0-card-header { padding: 1.1rem 1.4rem; }
     .caso0-card-meta { padding: 0.7rem 1.4rem; }
-    .caso-especial-cover { margin: 0 -1.4rem 1.2rem; padding: 1rem 1.4rem; }
+
     .caso-especial-title { font-size: 1.8rem !important; }
-    .modal-inner { width: 100vw; max-width: 100vw; padding: 1.5rem 1.2rem; border-left: none; border-right: none; }
-    .modal-step h3 { font-size: 1.8rem; }
-    .val-cierre-body { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+
+.val-cierre-body { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
     .val-cierre-btn { width: 100%; justify-content: center; }
     .val-cierre-sep-texto { font-size: 0.7rem; letter-spacing: 0.12em; }
     .val-casos-grid { grid-template-columns: 1fr; }
     .val-password-form { max-width: 100%; }
     .caso0-inline-inner { grid-template-columns: 1fr; }
     .caso0-inline-actions { flex-direction: column; }
-    .novedades-title { font-size: 1.6rem; }
+
     .caso-especial-actions { gap: 0.5rem; }
     .caso-especial-solidario { font-size: 0.75rem; }
-    .precio-hero { padding: 1.5rem; gap: 1.5rem; }
+
     .cta-banner-inner { padding: 2rem 1.5rem; }
-    .modalidad-item { padding: 1.2rem; }
-    .casos-modalidades { gap: 0.6rem; }
-  }
+
+}
 
   /* ── Mobile chico (≤360px) ── */
   @media (max-width: 360px) {
@@ -1699,13 +1320,13 @@
     h2 { font-size: clamp(2rem, 11vw, 2.8rem); }
     .hero { padding: 5rem 0.85rem 2.5rem; }
     .hero-btn { font-size: 0.7rem; padding: 0.9rem 1rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+
     .section, .como-funciona, .para-quien, .cta-banner { padding: 3rem 0.85rem; }
     .caso0-section { padding: 3rem 0.85rem; }
     footer { padding: 1.2rem 0.85rem; }
-    .modal-inner { padding: 1.2rem 1rem; }
+
     .caso0-card-body, .caso0-card-header, .caso0-card-meta { padding-left: 1.1rem; padding-right: 1.1rem; }
-    .caso-especial-cover { margin: 0 -1.1rem 1rem; padding: 0.9rem 1.1rem; }
+
     .nav-dropdown { padding: 4.5rem 0.85rem 1.5rem; }
     .sobre-banda { padding: 1.2rem; }
     .val-cierre-body { padding: 1.2rem; }
@@ -1717,7 +1338,7 @@
   ══════════════════════════════════ */
   .val-subtitle {
     font-size: 0.88rem; line-height: 1.8;
-    color: rgba(240,236,224,0.42); margin-top: 0.6rem; margin-bottom: 2.4rem;
+    color: rgba(240,236,224,0.68); margin-top: 0.6rem; margin-bottom: 2.4rem;
   }
   .val-password-form { max-width: 480px; }
   .val-input-wrap {
@@ -1728,13 +1349,13 @@
     flex: 1; background: rgba(22,10,10,0.6);
     border: none; outline: none;
     padding: 1rem 1.2rem;
-    font-family: "Space Mono", monospace; font-size: 0.78rem;
+    font-family: "Courier Prime", monospace; font-size: 0.78rem;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--paper);
   }
-  .val-input::placeholder { color: rgba(240,236,224,0.2); }
+  .val-input::placeholder { color: rgba(240,236,224,0.55); }
   .val-hint {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: rgba(212,160,23,0.55);
     margin-top: 0.8rem;
@@ -1743,7 +1364,7 @@
   .val-input:focus { background: rgba(22,10,10,0.9); }
   .val-btn-acceso {
     display: flex; align-items: center; gap: 0.6rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink); background: #c9828a;
     border: none; padding: 1rem 1.4rem; cursor: pointer;
@@ -1752,7 +1373,7 @@
   }
   .val-btn-acceso:hover { background: #dea8ae; }
   .val-error {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: rgba(248,113,113,0.8); margin-top: 0.7rem;
     min-height: 1em;
@@ -1766,7 +1387,7 @@
     padding-bottom: 2rem;
   }
   .val-q-num {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(201,130,138,0.6); display: block; margin-bottom: 0.5rem;
   }
@@ -1803,7 +1424,7 @@
   .val-resultado.error { border-color: rgba(248,113,113,0.3); background: rgba(30,10,10,0.7); }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   .val-result-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 1rem;
   }
   .ok .val-result-label { color: #4ade80; }
@@ -1813,7 +1434,7 @@
     color: rgba(240,236,224,0.65);
   }
   .val-result-code {
-    font-family: "Space Mono", monospace; font-size: 0.78rem;
+    font-family: "Courier Prime", monospace; font-size: 0.78rem;
     letter-spacing: 0.18em; color: #c9828a;
     margin-top: 1.2rem;
   }
@@ -1835,40 +1456,34 @@
   .val-caso-clasico:hover { border-left-color: var(--red) !important; background: rgba(192,57,43,0.04) !important; }
   .val-caso-especial { border-left-color: rgba(201,130,138,0.5); background: rgba(15,8,9,0.5); }
   .val-caso-especial:hover { border-left-color: #c9828a !important; background: rgba(201,130,138,0.04) !important; }
-  .val-caso-interactivo { border-left-color: rgba(0,188,188,0.4); background: rgba(0,15,15,0.5); }
-  .val-caso-interactivo:hover { border-left-color: #00bcbc !important; background: rgba(0,188,188,0.04) !important; }
-  .val-caso-categoria {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+
+.val-caso-categoria {
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.18em; text-transform: uppercase; display: block;
     margin-bottom: 0.2rem;
   }
   .val-caso-num {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42); display: block;
+    color: rgba(240,236,224,0.68); display: block;
   }
   .val-caso-nombre {
     font-family: "Bebas Neue", cursive; font-size: 1.5rem;
     letter-spacing: 0.04em; color: var(--paper); display: block;
     line-height: 1;
   }
-  .val-caso-tag {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(240,236,224,0.28); display: block;
-    margin-top: 0.2rem;
-  }
+
   .val-caso-arrow {
     position: absolute; bottom: 1.4rem; right: 1.4rem;
-    font-family: "Space Mono", monospace; font-size: 0.8rem;
-    color: rgba(240,236,224,0.2);
+    font-family: "Courier Prime", monospace; font-size: 0.8rem;
+    color: rgba(240,236,224,0.55);
     transition: transform 0.2s, color 0.2s;
   }
-  .val-caso-btn:hover .val-caso-arrow { transform: translateX(4px); color: rgba(240,236,224,0.42); }
+  .val-caso-btn:hover .val-caso-arrow { transform: translateX(4px); color: rgba(240,236,224,0.68); }
   .val-back-link {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(240,236,224,0.28); background: none; border: none;
+    color: rgba(240,236,224,0.55); background: none; border: none;
     cursor: pointer; padding: 0; margin-bottom: 1.8rem; display: block;
     transition: color 0.2s;
   }
@@ -1876,57 +1491,8 @@
   @media (max-width: 540px) { .val-casos-grid { grid-template-columns: 1fr; } }
 
   /* ── VALIDACIÓN INLINE (sección casos) ── */
-  .val-inline {
-    margin: 3rem 0 0;
-    border: 1px solid rgba(120,20,14,0.45);
-    border-left: 3px solid var(--red);
-    background: linear-gradient(135deg, rgba(100,15,10,0.45) 0%, rgba(80,10,7,0.55) 100%);
-    padding: 2.2rem 2.5rem;
-    position: relative; overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.3s;
-  }
-  .val-inline::before {
-    content: "VALIDAR"; position: absolute; right: -0.5rem; top: -1rem;
-    font-family: "Bebas Neue", cursive; font-size: 6rem;
-    color: rgba(192,57,43,0.06); letter-spacing: 0.05em;
-    pointer-events: none; user-select: none; line-height: 1;
-  }
-  .val-inline::after {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, var(--red), transparent);
-    pointer-events: none;
-  }
-  .val-inline:hover { border-color: rgba(120,20,14,0.65); background: linear-gradient(135deg, rgba(120,20,14,0.55) 0%, rgba(90,12,8,0.65) 100%); }
-  .val-inline:hover .val-inline-arrow { transform: translateX(5px); }
-  .val-inline-inner {
-    position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr auto;
-    gap: 2rem; align-items: center;
-  }
-  .val-inline-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--amber); margin-bottom: 0.6rem; display: block;
-  }
-  .val-inline h3 {
-    font-family: "Bebas Neue", cursive; font-size: 1.8rem;
-    letter-spacing: 0.03em; margin-bottom: 0.7rem; line-height: 1;
-    color: var(--paper);
-  }
-  .val-inline p {
-    font-size: 0.85rem; line-height: 1.78;
-    color: rgba(240,236,224,0.42); margin: 0; max-width: 48ch;
-  }
-  .val-inline-action {
-    display: flex; align-items: center; gap: 0.8rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42); white-space: nowrap; flex-shrink: 0;
-  }
-  .val-inline-arrow { transition: transform 0.2s; }
 
-  /* ── VAL-CIERRE ── */
+/* ── VAL-CIERRE ── */
   .val-cierre {
     margin: 3.5rem 0 0;
     padding: 2.8rem 0 0;
@@ -1940,7 +1506,7 @@
     background: linear-gradient(to right, transparent, rgba(212,160,23,0.3), transparent);
   }
   .val-cierre-sep-texto {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: rgba(212,160,23,0.5); white-space: nowrap; flex-shrink: 0;
   }
@@ -1966,7 +1532,7 @@
     pointer-events: none; user-select: none; line-height: 1;
   }
   .val-cierre-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--amber); display: block; margin-bottom: 0.5rem;
   }
@@ -1977,14 +1543,14 @@
   }
   .val-cierre-desc {
     font-size: 0.88rem; line-height: 1.7;
-    color: rgba(240,236,224,0.42); margin: 0;
+    color: rgba(240,236,224,0.68); margin: 0;
   }
   .val-cierre-btn {
     flex-shrink: 0;
     display: flex; align-items: center; gap: 0.8rem;
     background: var(--amber); color: var(--ink);
     border: none; cursor: pointer;
-    font-family: "Space Mono", monospace; font-size: 0.72rem;
+    font-family: "Courier Prime", monospace; font-size: 0.72rem;
     letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
     padding: 1rem 1.8rem;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
@@ -2001,16 +1567,12 @@
     .val-cierre-body { flex-direction: column; align-items: flex-start; }
     .val-cierre-btn { width: 100%; justify-content: center; }
   }
-  @media (max-width: 540px) {
-    .val-inline-inner { grid-template-columns: 1fr; }
-    .val-inline-action { display: none; }
-  }
 
-  @media (max-width: 360px) {
+@media (max-width: 360px) {
     h1 { font-size: clamp(2.8rem, 17vw, 4rem); }
     .hero { padding: 5rem 0.85rem 2.5rem; }
     .hero-btn { font-size: 0.7rem; padding: 0.9rem 1rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+
   }
 
   /* ══════════════════════════════════
@@ -2045,11 +1607,11 @@
     border-color: rgba(192,57,43,0.25);
     background: rgba(192,57,43,0.06);
   }
-  .caso-clasico-card .precio-label { color: rgba(192,57,43,0.7); }
+  .caso-clasico-card .precio-label { color: var(--red-text); }
   .caso-clasico-card .precio-valor-grande { color: var(--red); }
   .btn-comprar-interactivo {
     display: flex; align-items: center; gap: 0.8rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink); background: rgba(0,188,188,0.75);
     border: none; padding: 0.9rem 1.2rem;
@@ -2063,7 +1625,7 @@
   }
   .btn-comprar-clasico {
     display: flex; align-items: center; gap: 0.8rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink); background: rgba(192,57,43,0.75);
     border: none; padding: 0.9rem 1.2rem;
@@ -2115,7 +1677,7 @@
     padding: 0.45rem 0.85rem;
   }
   .precio-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(201,130,138,0.6); margin-bottom: 0.1rem;
   }
@@ -2123,45 +1685,13 @@
     font-family: "Bebas Neue", cursive; font-size: 1.4rem;
     letter-spacing: 0.04em; color: #c9828a; line-height: 1;
   }
-  .precio-moneda {
-    font-size: 0.7rem; color: rgba(201,130,138,0.55);
-    font-family: "Space Mono", monospace; letter-spacing: 0.08em;
-  }
+
   .caso-especial-header-badge {
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
   }
-  .caso-especial-collab {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(201,130,138,0.6);
-  }
-  .caso-especial-cover {
-    margin: 0 -2rem 1.4rem; padding: 1.8rem 2rem;
-    background: linear-gradient(135deg, rgba(201,130,138,0.08) 0%, rgba(20,10,11,0.9) 100%);
-    border-top: 1px solid rgba(201,130,138,0.12);
-    border-bottom: 1px solid rgba(201,130,138,0.12);
-    position: relative; overflow: hidden;
-  }
-  .caso-especial-cover::before {
-    content: "RASTRO PERDIDO";
-    position: absolute; right: -1rem; top: 50%; transform: translateY(-50%);
-    font-family: "Bebas Neue", cursive; font-size: 3.5rem;
-    color: rgba(201,130,138,0.06); letter-spacing: 0.04em;
-    pointer-events: none; user-select: none; white-space: nowrap;
-  }
-  .caso-especial-cover-inner {
-    display: flex; align-items: center; gap: 1.2rem;
-  }
-  .cover-numero {
-    font-family: "Bebas Neue", cursive; font-size: 2.8rem;
-    letter-spacing: 0.1em; color: rgba(201,130,138,0.75); line-height: 1;
-  }
-  .cover-linea {
-    flex: 1; height: 1px;
-    background: linear-gradient(to right, rgba(201,130,138,0.4), transparent);
-  }
-  .caso-especial-title {
+
+.caso-especial-title {
     font-family: "Bebas Neue", cursive !important;
     font-size: 2rem !important; letter-spacing: 0.04em !important;
     line-height: 1 !important; margin-bottom: 0.9rem !important;
@@ -2169,11 +1699,11 @@
   }
   .caso-especial-desc {
     font-size: 0.82rem !important; line-height: 1.78 !important;
-    color: rgba(240,236,224,0.42) !important; margin-bottom: 1.2rem !important;
+    color: rgba(240,236,224,0.68) !important; margin-bottom: 1.2rem !important;
   }
   .caso-especial-meta {
     display: flex; gap: 1rem; flex-wrap: wrap;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(201,130,138,0.75);
     margin-bottom: 1.4rem;
@@ -2185,7 +1715,7 @@
   }
   .btn-trailer {
     display: flex; align-items: center; gap: 0.7rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(240,236,224,0.65); text-decoration: none;
     border: 1px solid rgba(240,236,224,0.12);
@@ -2202,7 +1732,7 @@
   .btn-trailer:hover .btn-trailer-arrow { transform: translateX(4px); }
   .btn-comprar-caso {
     display: flex; align-items: center; gap: 0.8rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink); background: #c9828a;
     border: none; padding: 0.9rem 1.2rem;
@@ -2215,12 +1745,7 @@
     transform: translateX(5px);
     box-shadow: 0 4px 24px rgba(201,130,138,0.3);
   }
-  .btn-comprar-precio {
-    margin-left: auto; margin-right: 0;
-    font-size: 0.7rem; opacity: 0.8;
-    background: rgba(0,0,0,0.18); padding: 0.2rem 0.55rem;
-    border-radius: 2px;
-  }
+
   .btn-comprar-caso:last-child { margin-left: auto; }
   .stamp-especial {
     color: rgba(201,130,138,0.55);
@@ -2230,7 +1755,7 @@
   .caso-especial-solidario {
     display: flex; align-items: flex-start; gap: 0.6rem;
     font-size: 0.78rem; line-height: 1.6;
-    color: rgba(240,236,224,0.42);
+    color: rgba(240,236,224,0.68);
     border: 1px solid rgba(201,130,138,0.18);
     background: rgba(201,130,138,0.05);
     padding: 0.75rem 1rem; margin-bottom: 1.1rem;
@@ -2240,7 +1765,7 @@
   .btn-conocer-gatu-standalone {
     display: flex; align-items: center; justify-content: space-between;
     gap: 0.7rem; width: 100%;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(240,236,224,0.65); text-decoration: none;
     border: 1px solid rgba(201,130,138,0.2);
@@ -2256,7 +1781,7 @@
   .btn-conocer-gatu-standalone:hover .btn-conocer-gatu-arrow { transform: translateX(4px); }
   /* Contador */
   .caso-contador {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(201,130,138,0.65);
     border-top: 1px solid rgba(201,130,138,0.12);
@@ -2279,26 +1804,16 @@
   .paw-deco span:nth-child(2) { margin-left: 0.8rem; }
   .paw-deco span:nth-child(3) { margin-left: 0.3rem; }
   /* Huellita en el cover */
-  .cover-paws { font-size: 1rem; opacity: 0.4; flex-shrink: 0; }
 
-  /* ═══════════════════
+/* ═══════════════════
      INTRO SECCIÓN CASOS
   ═══════════════════ */
   /* ── ACORDEÓN CASOS (estilo FAQ) ── */
-  .casos-faq-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-    margin-bottom: 0;
-  }
+
   @media (min-width: 960px) {
-    .casos-faq-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
+
     /* En grid de 2 col los items no necesitan margin-bottom individual */
-    .casos-faq-grid .caso-faq-item { margin-bottom: 0; }
+
   }
   .caso-faq-item {
     border: 1px solid rgba(240,236,224,0.09);
@@ -2329,7 +1844,7 @@
     display: flex; flex-direction: column; gap: 0.35rem;
   }
   .caso-faq-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.18em; text-transform: uppercase;
   }
   .caso-faq-titulo {
@@ -2341,18 +1856,18 @@
   .caso-faq-accent-especial { color: #c9828a; }
   .caso-faq-desc {
     font-family: "Courier Prime", monospace; font-size: 0.8rem;
-    color: rgba(240,236,224,0.42); line-height: 1.6;
+    color: rgba(240,236,224,0.68); line-height: 1.6;
   }
   .caso-faq-right {
     display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0;
   }
   .caso-faq-status {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.14em; text-transform: uppercase;
     padding: 0.25rem 0.6rem; border: 1px solid;
   }
   .caso-faq-item .faq-icon { flex-shrink: 0; }
-  .caso-faq-item:hover .faq-icon { color: var(--red); border-color: rgba(192,57,43,0.35); }
+  .caso-faq-item:hover .faq-icon { color: var(--red-text); border-color: rgba(192,57,43,0.35); }
   .caso-faq-item.open .faq-icon { transform: rotate(45deg); color: var(--amber); border-color: rgba(212,160,23,0.45); }
   .caso-faq-body {
     max-height: 0; overflow: hidden;
@@ -2406,9 +1921,9 @@
   }
   .formato-badge {
     display: inline-flex; align-items: center; gap: 0.4rem;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.42);
+    color: rgba(240,236,224,0.68);
     border: 1px solid rgba(240,236,224,0.1);
     padding: 0.35rem 0.75rem;
     background: rgba(240,236,224,0.03);
@@ -2416,87 +1931,14 @@
   .formato-badge-icon { font-size: 0.75rem; }
 
   /* ── BLOQUES DE CATEGORÍA ── */
-  .casos-bloque {
-    margin-bottom: 4rem;
-  }
-  .casos-bloque-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1.5rem;
-    align-items: start;
-    padding: 1.6rem 2rem;
-    margin-bottom: 1.8rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .casos-bloque-header::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: rgba(240,236,224,0.025);
-    pointer-events: none;
-  }
-  .casos-bloque-header-clasico {
-    border-left: 3px solid var(--red);
-    border-top: 1px solid rgba(192,57,43,0.2);
-    border-right: 1px solid rgba(240,236,224,0.06);
-    border-bottom: 1px solid rgba(240,236,224,0.06);
-  }
-  .casos-bloque-header-clasico::before {
-    background: linear-gradient(135deg, rgba(192,57,43,0.06) 0%, transparent 60%);
-  }
-  .casos-bloque-header-especial {
-    border-left: 3px solid #c9828a;
-    border-top: 1px solid rgba(201,130,138,0.2);
-    border-right: 1px solid rgba(240,236,224,0.06);
-    border-bottom: 1px solid rgba(240,236,224,0.06);
-  }
-  .casos-bloque-header-especial::before {
-    background: linear-gradient(135deg, rgba(201,130,138,0.07) 0%, transparent 60%);
-  }
-  .casos-bloque-header-left {
-    display: flex; flex-direction: column; gap: 0.5rem;
-  }
-  .casos-bloque-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-  }
-  .casos-bloque-titulo {
-    font-family: "Bebas Neue", cursive; font-size: 2rem;
-    letter-spacing: 0.05em; color: var(--paper); line-height: 1;
-    margin: 0;
-  }
-  .casos-bloque-titulo-accent-rojo { color: var(--red); }
-  .casos-bloque-titulo-accent-especial { color: #c9828a; }
-  .casos-bloque-desc {
-    font-size: 0.8rem; line-height: 1.75;
-    color: rgba(240,236,224,0.42);
-    font-family: "Courier Prime", monospace;
-    max-width: 54ch; margin: 0;
-  }
-  .casos-bloque-status {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid;
-    white-space: nowrap; align-self: start;
-  }
-  .status-pronto {
-    color: rgba(240,236,224,0.28);
-    border-color: rgba(240,236,224,0.1);
-    background: rgba(240,236,224,0.02);
-  }
-  .status-disponible {
+
+.status-disponible {
     color: #c9828a;
     border-color: rgba(201,130,138,0.3);
     background: rgba(201,130,138,0.05);
   }
-  @media (max-width: 600px) {
-    .casos-bloque-header { grid-template-columns: 1fr; padding: 1.2rem 1.2rem; }
-    .casos-bloque-titulo { font-size: 1.6rem; }
-    .casos-bloque-status { align-self: auto; width: fit-content; }
-  }
 
-  /* ═══════════════════
+/* ═══════════════════
      CASO ESPECIAL — número en header
   ═══════════════════ */
   .caso-especial-num {
@@ -2505,27 +1947,8 @@
   }
 
   /* Cover rediseñado — texto de fondo que cabe completo */
-  .caso-especial-cover {
-    margin: 0 -2rem 1.4rem; padding: 1.4rem 2rem;
-    background: linear-gradient(135deg, rgba(201,130,138,0.07) 0%, rgba(20,10,11,0.9) 100%);
-    border-top: 1px solid rgba(201,130,138,0.12);
-    border-bottom: 1px solid rgba(201,130,138,0.12);
-    position: relative; overflow: hidden;
-  }
-  .caso-especial-cover-inner {
-    display: flex; align-items: center;
-  }
-  .cover-titulo-bg {
-    font-family: "Bebas Neue", cursive;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    letter-spacing: 0.12em;
-    color: rgba(201,130,138,0.18);
-    white-space: nowrap;
-    line-height: 1;
-    user-select: none;
-  }
 
-  /* Precio destacado */
+/* Precio destacado */
   .caso-precio-destacado {
     display: flex; align-items: baseline; justify-content: space-between;
     border: 1px solid rgba(201,130,138,0.2);
@@ -2533,7 +1956,7 @@
     padding: 0.8rem 1rem; margin-bottom: 1rem;
   }
   .precio-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.18em; text-transform: uppercase;
     color: rgba(201,130,138,0.6);
   }
@@ -2541,12 +1964,8 @@
     font-family: "Bebas Neue", cursive; font-size: 1.9rem;
     letter-spacing: 0.04em; color: #c9828a; line-height: 1;
   }
-  .precio-moneda {
-    font-size: 0.9rem; color: rgba(201,130,138,0.55);
-    font-family: "Space Mono", monospace; letter-spacing: 0.08em;
-  }
 
-  /* Huellitas SVG de fondo */
+/* Huellitas SVG de fondo */
   .paw-deco {
     position: absolute; bottom: 2.5rem; right: 1.2rem;
     display: flex; flex-direction: column; gap: 0.2rem;
@@ -2563,279 +1982,18 @@
   /* ══════════════════════════════════
      MODAL DE COMPRA
   ══════════════════════════════════ */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 9500;
-    background: rgba(6,5,4,0.92);
-    backdrop-filter: blur(18px);
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-  .modal-box {
-    background: rgba(22,13,14,0.98);
-    border: 1px solid rgba(201,130,138,0.25);
-    max-width: 520px; width: 100%;
-    position: relative; overflow: hidden;
-    transform: translateY(20px);
-    transition: transform 0.35s ease;
-    box-shadow: 0 20px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,130,138,0.08), inset 0 0 80px rgba(201,130,138,0.03);
-  }
-  .modal-overlay.open .modal-box { transform: translateY(0); }
-  .modal-box::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, #c9828a, rgba(192,57,43,0.5), transparent);
-  }
-  .modal-close {
-    position: absolute; top: 1.2rem; right: 1.2rem;
-    background: none; border: none; cursor: pointer;
-    font-family: "Space Mono", monospace; font-size: 0.8rem;
-    color: rgba(240,236,224,0.28); transition: color 0.2s;
-    padding: 0.3rem 0.6rem;
-  }
-  .modal-close:hover { color: var(--paper); }
 
-  /* Pasos del modal */
-  .modal-step { display: none; padding: 2.5rem; }
-  .modal-step.active { display: block; }
-  .modal-step-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.28em; text-transform: uppercase;
-    color: #c9828a; margin-bottom: 0.5rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .modal-step-label::before { content: "//"; color: rgba(240,236,224,0.18); }
-  .modal-step h3 {
-    font-family: "Bebas Neue", cursive; font-size: 1.8rem;
-    letter-spacing: 0.04em; color: var(--paper);
-    margin-bottom: 0.5rem; line-height: 1;
-  }
-  .modal-step p {
-    font-size: 0.82rem; line-height: 1.78;
-    color: rgba(240,236,224,0.42); margin-bottom: 1.5rem;
-  }
-  .modal-case-summary {
-    border: 1px solid rgba(201,130,138,0.18);
-    background: rgba(201,130,138,0.04);
-    padding: 1.2rem 1.4rem; margin-bottom: 1.8rem;
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .modal-case-summary-info span:first-child {
-    display: block; font-family: "Bebas Neue", cursive; font-size: 1.1rem;
-    letter-spacing: 0.05em; color: var(--paper); margin-bottom: 0.15rem;
-  }
-  .modal-case-summary-info span:last-child {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(201,130,138,0.9);
-    margin-top: 0.1rem;
-  }
-  .modal-case-price {
-    font-family: "Bebas Neue", cursive; font-size: 1.9rem;
-    letter-spacing: 0.04em; color: #c9828a;
-  }
-  .modal-btn-mp {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; font-family: "Space Mono", monospace; font-size: 0.72rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink); background: #c9828a;
-    border: none; padding: 1.1rem 1.4rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none; margin-bottom: 0.6rem;
-  }
-  .modal-btn-mp:hover { background: #dea8ae; transform: translateX(4px); }
-  .modal-btn-mp-sub {
-    font-size: 0.7rem; opacity: 0.75; display: block; margin-top: 0.2rem;
-    font-weight: normal; letter-spacing: 0.08em;
-  }
-  .modal-note {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.22); line-height: 1.75; text-align: center;
-    margin-top: 1rem;
-  }
-  /* Paso 2: Confirmación de pago simulada */
-  .modal-confirm-icon {
-    width: 48px; height: 48px; border-radius: 50%;
-    border: 2px solid rgba(74,222,128,0.5);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 1.2rem;
-    background: rgba(74,222,128,0.06);
-  }
-  .modal-access-box {
-    border: 1px solid rgba(74,222,128,0.25);
-    background: rgba(74,222,128,0.04);
-    padding: 1.2rem 1.4rem; margin: 1.5rem 0;
-  }
-  .modal-access-box-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: #4ade80; margin-bottom: 0.5rem; display: block;
-  }
-  .modal-access-box p {
-    font-size: 0.82rem; line-height: 1.7;
-    color: rgba(240,236,224,0.65); margin-bottom: 0;
-  }
-  .modal-btn-acceso {
-    display: flex; align-items: center; justify-content: space-between;
-    width: 100%; font-family: "Space Mono", monospace; font-size: 0.72rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink); background: #4ade80;
-    border: none; padding: 1.1rem 1.4rem; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-  }
-  .modal-btn-acceso:hover { background: #86efac; transform: translateX(4px); }
+/* Pasos del modal */
 
-  /* Paso 3: acceso al caso */
-  .modal-caso-acceso {
-    border: 1px solid rgba(201,130,138,0.25);
-    background: rgba(201,130,138,0.04);
-    padding: 1.5rem; margin: 1.5rem 0;
-  }
-  .modal-caso-acceso-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: #c9828a; margin-bottom: 0.8rem; display: block;
-  }
-  .modal-download-link {
-    display: flex; align-items: center; justify-content: space-between;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--paper); text-decoration: none;
-    border: 1px solid rgba(240,236,224,0.15);
-    padding: 0.8rem 1rem; margin-bottom: 0.5rem;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .modal-download-link:hover { border-color: rgba(201,130,138,0.5); background: rgba(201,130,138,0.05); }
+/* Paso 2: Confirmación de pago simulada */
 
-  /* ── MODAL PASO 3 REDISEÑADO ── */
-  .modal-pago-ok {
-    display: flex; align-items: center; gap: 0.6rem;
-    margin-bottom: 1.8rem;
-  }
-  .modal-pago-ok-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 1.8rem; height: 1.8rem;
-    border: 1.5px solid #4caf7d;
-    border-radius: 50%;
-    color: #4caf7d; font-size: 0.85rem; font-weight: 700;
-    flex-shrink: 0;
-  }
-  .modal-pago-ok-texto {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: #4caf7d;
-  }
-  .modal-paso3-caso-id {
-    display: flex; align-items: center; gap: 1.2rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 1px solid rgba(240,236,224,0.08);
-  }
-  .modal-paso3-num {
-    font-family: "Bebas Neue", cursive; font-size: 2.8rem;
-    color: var(--amber); line-height: 1; letter-spacing: 0.05em;
-    opacity: 0.7;
-  }
-  .modal-paso3-eyebrow {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(240,236,224,0.28); display: block; margin-bottom: 0.3rem;
-  }
-  .modal-paso3-titulo {
-    font-family: "Bebas Neue", cursive; font-size: 1.9rem;
-    letter-spacing: 0.06em; color: var(--paper); line-height: 1;
-  }
-  .modal-paso3-desc {
-    font-size: 0.88rem; line-height: 1.7;
-    color: rgba(240,236,224,0.42); margin-bottom: 1.8rem;
-  }
-  .modal-dl-btn {
-    display: flex; align-items: center; gap: 1.2rem;
-    text-decoration: none;
-    background: var(--amber);
-    padding: 1.2rem 1.6rem;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    margin-bottom: 1.4rem;
-  }
-  .modal-dl-btn:hover {
-    background: #e8b800;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212,160,23,0.35);
-  }
-  .modal-dl-btn-icon {
-    font-size: 1.5rem; color: var(--ink); font-weight: 700; flex-shrink: 0;
-    width: 2.2rem; height: 2.2rem;
-    border: 2px solid rgba(11,9,7,0.25);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .modal-dl-btn-label {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(11,9,7,0.6); display: block; margin-bottom: 0.2rem;
-  }
-  .modal-dl-btn-nombre {
-    font-family: "Bebas Neue", cursive; font-size: 1.2rem;
-    letter-spacing: 0.06em; color: var(--ink); display: block;
-  }
-  .modal-paso3-nota {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(240,236,224,0.22); line-height: 1.7; text-align: center;
-  }
+/* Paso 3: acceso al caso */
 
-  /* ── MODAL TIENDA NUBE ── */
-  .modal-tn-overlay {
-    display: none; position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.85);
-    align-items: center; justify-content: center;
-    padding: 1.5rem;
-  }
-  .modal-tn-overlay.open { display: flex; }
-  .modal-tn-box {
-    background: var(--ink);
-    border: 1px solid rgba(240,236,224,0.12);
-    width: 100%; max-width: 860px;
-    max-height: 90vh;
-    display: flex; flex-direction: column;
-    overflow: hidden;
-  }
-  .modal-tn-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid rgba(240,236,224,0.08);
-    flex-shrink: 0;
-  }
-  .modal-tn-titulo {
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(240,236,224,0.65);
-  }
-  .modal-tn-cerrar {
-    background: none; border: none; cursor: pointer;
-    color: rgba(240,236,224,0.45); font-size: 1rem;
-    transition: color 0.2s;
-  }
-  .modal-tn-cerrar:hover { color: var(--paper); }
-  .modal-tn-body {
-    flex: 1; overflow: hidden; position: relative;
-    min-height: 500px;
-  }
-  .modal-tn-body iframe {
-    width: 100%; height: 100%; min-height: 500px;
-    border: none; display: block;
-  }
-  .modal-tn-fallback {
-    display: none; padding: 3rem; text-align: center;
-    font-family: "Courier Prime", monospace;
-    color: rgba(240,236,224,0.55);
-  }
+/* ── MODAL PASO 3 REDISEÑADO ── */
 
-  /* ── CARDS DENTRO DE ACORDEÓN (carrusel centrado) ── */
+/* ── MODAL TIENDA NUBE ── */
+
+/* ── CARDS DENTRO DE ACORDEÓN (carrusel centrado) ── */
   .casos-cards-wrap {
     padding: 1.5rem;
     display: flex;
@@ -2929,7 +2087,7 @@
   .btn-spotify-toggle {
     display: flex; align-items: center; gap: 0.7rem;
     width: 100%; background: none; border: none; cursor: pointer;
-    font-family: "Space Mono", monospace; font-size: 0.7rem;
+    font-family: "Courier Prime", monospace; font-size: 0.7rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: rgba(240,236,224,0.65);
     padding: 0.75rem 1rem;
@@ -2950,6 +2108,39 @@
   .spotify-teaser.open .spotify-embed-wrap { max-height: 160px; }
   .spotify-embed-wrap iframe {
     display: block; width: 100%; border: none;
+  }
+
+  /* ══════════════════════════════════
+     ACCESIBILIDAD
+  ══════════════════════════════════ */
+  /* Foco visible al navegar con teclado */
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+  .val-input:focus-visible, .val-select:focus-visible { outline-offset: 0; }
+
+  /* La intro se muestra una sola vez por sesión */
+  .sin-intro #splash { display: none; }
+  .splash-tap { background: none; border: none; cursor: pointer; }
+
+  /* El menú cerrado no debe recibir foco ni leerse */
+  .nav-dropdown { visibility: hidden; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1), visibility 0s linear 0.55s; }
+  .nav-dropdown.open { visibility: visible; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1), visibility 0s; }
+
+  /* Respeta la preferencia del sistema "reducir movimiento" */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      transition-delay: 0s !important;
+    }
+    .ticker-track, .proximamente-banner-track { animation: none !important; transform: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .page-section { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -3010,7 +2201,7 @@
   /* ── COORDENADAS FLOTANTES EN LAS ESQUINAS ── */
   .splash-coord {
     position: absolute; z-index: 2; pointer-events: none;
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: 0.7rem; letter-spacing: 0.22em;
     text-transform: uppercase; color: rgba(240,236,224,0.18);
     opacity: 0; animation: splashFadeUp 0.6s ease 1.4s both;
@@ -3030,7 +2221,7 @@
 
   /* Status ENCIMA del título */
   .splash-status {
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: clamp(0.58rem, 1.8vw, 0.72rem);
     letter-spacing: 0.32em; text-transform: uppercase;
     display: flex; align-items: center; gap: 0.7rem;
@@ -3053,7 +2244,7 @@
     animation: none;
   }
   .splash-status-text { transition: color 0.5s ease; }
-  .splash-status-text.inactive { color: rgba(192,57,43,0.85); }
+  .splash-status-text.inactive { color: #e2604f; }
   .splash-status-text.active   { color: #4ade80; }
 
   /* Título — un poco más chico que antes */
@@ -3089,7 +2280,7 @@
 
   /* Tap prompt */
   .splash-tap {
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: clamp(0.58rem, 2vw, 0.68rem); letter-spacing: 0.22em; text-transform: uppercase;
     color: rgba(240,236,224,0.65); margin-top: 0.9rem;
     opacity: 0;
@@ -3101,7 +2292,7 @@
   /* Botón ingresar */
   .splash-btn {
     margin-top: 2.2rem;
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
     color: #f0ece0; background: transparent;
     border: 1px solid rgba(240,236,224,0.28);
@@ -3126,9 +2317,9 @@
   .splash-skip {
     position: absolute; z-index: 4;
     bottom: 1.8rem; left: 50%; transform: translateX(-50%);
-    font-family: "Space Mono", monospace;
+    font-family: "Courier Prime", monospace;
     font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(240,236,224,0.32);
+    color: rgba(240,236,224,0.55);
     background: transparent; border: none;
     cursor: pointer; padding: 0.5rem 1rem;
     transition: color 0.2s ease;
@@ -3183,7 +2374,7 @@
     <!-- Texto tipeado en una sola línea (las frases se alternan) -->
     <div class="splash-typed-area" id="splashTypedArea"></div>
 
-    <p class="splash-tap" id="splashTap">Tocá para iniciar</p>
+    <button type="button" class="splash-tap" id="splashTap">Tocá para iniciar</button>
 
     <button class="splash-btn" id="splashBtn" onclick="splashEnter(event)">
       Ingresar &nbsp;→
@@ -3196,7 +2387,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" onclick="showHero()">
+  <a class="nav-logo" href="#" onclick="showHero(); return false;" aria-label="Archivo Cero — volver al inicio">
     <img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg" alt="Archivo Cero" class="nav-logo-img">
     Archivo<span>_</span>Cero
   </a>
@@ -3211,7 +2402,7 @@
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
     </a>
     <a class="nav-cta" href="#" onclick="showSection('validacion'); return false;">✓ Validar caso</a>
-    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú">
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menú" aria-expanded="false" aria-controls="navDropdown">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
   </div>
@@ -3221,7 +2412,7 @@
 <div class="nav-dropdown" id="navDropdown">
   <p class="dropdown-label">Navegación</p>
   <ul class="dropdown-nav">
-    <li><a href="#" onclick="showSection('que-es'); return false;"><span class="nav-item-number">01</span><span class="nav-item-title">¿Qué es Archivo Cero?</span><span class="nav-item-arrow">→</span></a></li>
+    <li><a href="#" onclick="showSection('que-es'); return false;"><span class="nav-item-number">01</span><span class="nav-item-title">¿Qué es Archivo Cero®?</span><span class="nav-item-arrow">→</span></a></li>
     <li>
       <a href="#" onclick="showSection('casos'); return false;"><span class="nav-item-number">02</span><span class="nav-item-title">Casos</span><span class="nav-item-arrow">→</span></a>
     </li>
@@ -3233,6 +2424,7 @@
   </div>
 </div>
 
+<main id="contenido">
 <!-- ═══ HERO ═══ -->
 <div id="view-hero">
   <section class="hero">
@@ -3243,7 +2435,7 @@
     <span class="hero-case-num">ARCHIVO CERO · ACCESO AUTORIZADO</span>
 
     <div class="hero-content">
-      <p class="hero-eyebrow">Misterios para resolver</p>
+      <p class="hero-eyebrow">Juegos de misterio para resolver en casa</p>
       <h1>Investigá.<br><em>Descubrí.</em></h1>
       <div class="hero-divider"></div>
       <p class="hero-body">Archivos recuperados. Documentos clasificados. Pistas ocultas. Experiencias de investigación inmersiva digital para resolver solo o con otros — todo desde tu dispositivo, sin instalar nada.</p>
@@ -3256,17 +2448,17 @@
       <span>La Donante Anónima — $7.000</span><span class="btn-arrow">→</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
-      <span>Experimentá gratis Archivo Cero</span><span class="btn-arrow">→</span>
+      <span>Experimentá gratis Archivo Cero®</span><span class="btn-arrow">→</span>
     </a>
     <a href="#" class="hero-btn hero-btn-ghost" onclick="showSection('que-es'); return false;">
-      <span>¿Qué es Archivo Cero?</span><span class="btn-arrow">→</span>
+      <span>¿Qué es Archivo Cero®?</span><span class="btn-arrow">→</span>
     </a>
   </div>
 
   <!-- STATS BAND -->
   <div class="hero-stats-band">
-    <div class="stat-item"><span class="stat-num">40–60</span><span class="stat-label">Min por caso</span></div>
-    <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Caso nuevo por mes</span></div>
+    <div class="stat-item"><span class="stat-num">40–90</span><span class="stat-label">Min por caso</span></div>
+    <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Casos disponibles</span></div>
     <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Digital · Sin instalación</span></div>
     <div class="stat-item"><span class="stat-num">BsAs</span><span class="stat-label">Desarrollado en Argentina</span></div>
   </div>
@@ -3275,18 +2467,18 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
       <span class="ticker-item"><span>▸</span>Misterios</span>
-      <span class="ticker-item"><span>▸</span>40–60 minutos por caso</span>
+      <span class="ticker-item"><span>▸</span>40–90 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
       <span class="ticker-item"><span>▸</span>Sin instalación</span>
-      <span class="ticker-item"><span>▸</span>Nuevos casos por mes</span>
+      <span class="ticker-item"><span>▸</span>7 casos disponibles</span>
       <span class="ticker-item"><span>▸</span>Desarrollado en Argentina</span>
-      <span class="ticker-item"><span>▸</span>Narrativa digital inmersiva</span>
+      <span class="ticker-item"><span>▸</span>Narrativa digital interactiva</span>
       
       <span class="ticker-item"><span>▸</span>Misterios</span>
-      <span class="ticker-item"><span>▸</span>40–60 minutos por caso</span>
+      <span class="ticker-item"><span>▸</span>40–90 minutos por caso</span>
       <span class="ticker-item"><span>▸</span>Solo o en equipo</span>
       <span class="ticker-item"><span>▸</span>Sin instalación</span>
-      <span class="ticker-item"><span>▸</span>Nuevos casos por mes</span>
+      <span class="ticker-item"><span>▸</span>7 casos disponibles</span>
       <span class="ticker-item"><span>▸</span>Desarrollado en Argentina</span>
       <span class="ticker-item"><span>▸</span>Narrativa digital interactiva</span>
       
@@ -3301,12 +2493,12 @@
         <div class="caso0-left reveal">
           <p class="caso0-eyebrow" style="color: var(--amber);">Acceso gratuito</p>
           <h2 class="caso0-title">2 experiencias<br><span>gratis</span><br>para empezar.</h2>
-          <p class="caso0-desc">Antes de suscribirte o comprar, metete en la historia. Descargá el Caso #00 en PDF y jugá el Caso X en formato interactivo — dos maneras distintas de vivir Archivo Cero, sin costo.</p>
+          <p class="caso0-desc">Antes de comprar, metete en la historia. Descargá el Caso #00 en PDF y jugá el Caso X en formato interactivo — dos maneras distintas de vivir Archivo Cero®, sin costo.</p>
           <div class="caso0-actions">
             <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-primary" style="max-width:340px;">
               <span>Acceder a los casos gratis</span><span class="btn-arrow">→</span>
             </a>
-            <a href="#" class="hero-btn hero-btn-ghost" style="max-width:340px; border: 1px solid rgba(240,236,224,0.28) !important; color: rgba(240,236,224,0.65);" onclick="showSection('casos'); return false;">
+            <a href="#" class="hero-btn hero-btn-ghost" style="max-width:340px; border: 1px solid rgba(240,236,224,0.28) !important; color: rgba(240,236,224,0.65);" onclick="verCaso('interactivos', 1, 'card-ultima-firma'); return false;">
               <span>Ver La Última Firma</span><span class="btn-arrow">→</span>
             </a>
           </div>
@@ -3342,14 +2534,14 @@
                   <span class="spotify-toggle-arrow">▾</span>
                 </button>
                 <div class="spotify-embed-wrap">
-                  <iframe data-src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                  <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 </div>
               </div>
             </div>
             <div class="caso0-card-meta">
               <span>⏱ 30–45 min</span>
               <span>👤 Solo o en grupo</span>
-              <span>📄 PDF</span>
+              <span>📄 PDF</span><span>⚠ Dificultad media</span>
             </div>
 
             <div style="height:1px; background:rgba(0,188,188,0.25); margin:0 2rem;"></div>
@@ -3373,7 +2565,7 @@
                   <span class="spotify-toggle-arrow">▾</span>
                 </button>
                 <div class="spotify-embed-wrap">
-                  <iframe data-src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                  <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 </div>
               </div>
             </div>
@@ -3442,7 +2634,7 @@
             <span>⚠ Dificultad media-alta</span>
           </div>
           <div class="caso-especial-actions">
-            <a href="https://www.instagram.com/archivocero0/" target="_blank" rel="noopener" class="btn-trailer">
+            <a href="https://www.instagram.com/reel/DexD_KOJvLv/" target="_blank" rel="noopener" class="btn-trailer">
               <span class="btn-trailer-icon">▶</span>
               <span>Ver trailer en Instagram</span>
               <span class="btn-trailer-arrow">→</span>
@@ -3459,7 +2651,7 @@
               <span class="spotify-toggle-arrow">▾</span>
             </button>
             <div class="spotify-embed-wrap">
-              <iframe data-src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+              <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
           </div>
           <div class="stamp stamp-interactivo">X·C</div>
@@ -3509,7 +2701,7 @@
         <div class="reveal">
           <p class="section-label">¿Para quién es?</p>
           <h2>Para los que disfrutan pensar</h2>
-          <p class="para-quien-text">Archivo Cero es para quienes disfrutan los <strong>thrillers, los pódcasts de true crime, las historias de ciencia ficción</strong> y los juegos que te hacen usar la cabeza. No necesitás experiencia previa.</p>
+          <p class="para-quien-text">Archivo Cero® es para quienes disfrutan los <strong>thrillers, los pódcasts de true crime, las historias de ciencia ficción</strong> y los juegos que te hacen usar la cabeza. No necesitás experiencia previa.</p>
           <p class="para-quien-text">Podés resolverlo <strong>solo, en pareja o en grupo</strong>. Lo único que necesitás es ganas de investigar.</p>
         </div>
         <div class="reveal reveal-delay-1">
@@ -3540,6 +2732,7 @@
         </div>
 
         <div class="testimonio-card">
+          <div class="testimonio-comillas">"</div>
           <p class="testimonio-texto">Lo imprimimos para el cumpleaños de mi amiga y fue un éxito total. Nos dividimos en equipos, pusimos música y fue como tener una sala de escape en casa. Lo recomiendo para cualquier reunión.</p>
           <div class="testimonio-autor">
             <span class="testimonio-nombre">Josefina</span>
@@ -3570,7 +2763,7 @@
         <p class="pack-precio"><span class="pack-precio-antes">Por separado <s>$30.000</s></span><span class="pack-precio-label">Todo por</span><span class="pack-precio-valor">$17.900</span><span class="pack-ahorro">Ahorrás $12.100 · −40%</span></p>
       </div>
       <div class="pack-right">
-        <p class="pack-desc">Descubrí la colección completa de Archivo Cero. Cuatro experiencias de investigación para resolver solo, en pareja o con amigos.</p>
+        <p class="pack-desc">Descubrí la colección completa de Archivo Cero®. Cuatro experiencias de investigación para resolver solo, en pareja o con amigos.</p>
         <div class="pack-items">
           <div class="pack-grupo">
             <span class="pack-grupo-label">🖥 Casos interactivos — 100% online</span>
@@ -3602,7 +2795,7 @@
         <p class="pack-precio"><span class="pack-precio-antes">Por separado <s>$21.000</s></span><span class="pack-precio-label">Todo por</span><span class="pack-precio-valor">$12.900</span><span class="pack-ahorro">Ahorrás $8.100 · −39%</span></p>
       </div>
       <div class="pack-right">
-        <p class="pack-desc">Descubrí tres casos interactivos online de Archivo Cero. Experiencias de investigación para resolver solo, en pareja o con amigos, directo desde la web.</p>
+        <p class="pack-desc">Descubrí tres casos interactivos online de Archivo Cero®. Experiencias de investigación para resolver solo, en pareja o con amigos, directo desde la web.</p>
         <div class="pack-items">
           <div class="pack-grupo">
             <span class="pack-grupo-label">🖥 Casos interactivos — 100% online</span>
@@ -3627,7 +2820,7 @@
   <section class="cta-banner">
     <div class="cta-banner-inner">
       <div class="cta-banner-text reveal">
-        <h2><span class="cta-title-yellow">Archivo Cero</span><br><span style="color:var(--paper)">te espera.</span></h2>
+        <h2><span class="cta-title-yellow">Archivo Cero®</span><br><span style="color:var(--paper)">te espera.</span></h2>
         <p>Empezá gratis con un caso de cada modalidad disponible: el Caso #00 en PDF y el Caso X — La Cena de los Viernes, en formato interactivo 100% online.</p>
       </div>
       <div class="cta-banner-actions reveal reveal-delay-1">
@@ -3646,7 +2839,7 @@
 
   <footer>
     <div class="footer-top">
-      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
+      <div><a class="footer-logo" href="#" onclick="showHero(); return false;">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
       <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
     <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Prohibida su reproducción o distribución sin autorización expresa.<br>Productos digitales: expedientes en PDF descargables y casos interactivos 100% online. Desarrollado en Buenos Aires, Argentina.</p>
@@ -3660,7 +2853,7 @@
     <div class="section">
       <div class="seccion-header-centrado">
         <p class="section-label">El proyecto</p>
-        <h2>¿Qué es Archivo Cero?</h2>
+        <h2>¿Qué es Archivo Cero®?</h2>
         <p class="que-es-lead">Es una colección de <strong>casos digitales diseñados como experiencias de investigación inmersiva</strong>. Accedés a archivos recuperados y organizados para que reconstruyas lo ocurrido — desde tu navegador, sin instalar nada.</p>
       </div>
 
@@ -3673,7 +2866,7 @@
           </div>
           <div class="feature-row-right">
             <p>Cada caso comienza con un Archivo 0 que introduce el contexto y explica cómo interactuar con el material. A partir de ahí, la experiencia avanza de forma lógica y progresiva.</p>
-            <div class="duracion-badge">⏱ 40 – 60 min por caso</div>
+            <div class="duracion-badge">⏱ 40 – 90 min por caso</div>
           </div>
         </div>
 
@@ -3717,7 +2910,7 @@
           <span class="feature-eyebrow">El punto de partida</span>
           <h3>Archivo 0</h3>
           <p>Cada caso comienza con un Archivo 0 que introduce el contexto y explica cómo interactuar con el material. A partir de ahí, la experiencia avanza de forma lógica y progresiva.</p>
-          <div class="duracion-badge">⏱ 40 – 60 min por caso</div>
+          <div class="duracion-badge">⏱ 40 – 90 min por caso</div>
         </div>
         <div class="feature-col-desk">
           <span class="feature-eyebrow">La experiencia</span>
@@ -3745,13 +2938,13 @@
 
       <div class="sobre-banda">
         <span class="sobre-banda-label">Sobre el proyecto</span>
-        <p>Archivo Cero es un <strong>proyecto independiente de narrativa digital inmersiva</strong> desarrollado en Buenos Aires, Argentina, por <strong>Luciana</strong>. Cada caso está diseñado con enfoque en la creatividad, el suspenso y la ciencia ficción.</p>
+        <p>Archivo Cero® es un <strong>proyecto independiente de narrativa digital inmersiva</strong> desarrollado en Buenos Aires, Argentina, por <strong>Luciana</strong>. Cada caso está diseñado con enfoque en la creatividad, el suspenso y la ciencia ficción.</p>
       </div>
 
       <div class="caso0-inline">
         <div class="caso0-inline-inner">
           <div>
-            <span class="caso0-inline-title">Archivo Cero</span>
+            <span class="caso0-inline-title">Archivo Cero®</span>
             <h3>No se explica, se experimenta</h3>
             <p>Hay dos casos disponibles sin costo, uno de cada modalidad: el Caso #00 en PDF y el Caso X en formato interactivo. Si querés entender de qué se trata, arrancá por acá — la experiencia completa, gratis.</p>
           </div>
@@ -3765,72 +2958,7 @@
   </section>
   <footer>
     <div class="footer-top">
-      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
-      <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
-    </div>
-    <p class="footer-bottom">© 2026 Archivo Cero. Todos los derechos reservados. Desarrollado en Argentina.</p>
-  </footer>
-</div>
-
-<!-- ═══ SUSCRIPCIÓN ═══ -->
-<div id="view-suscripcion" class="page-section">
-  <div class="section-topbar"><button class="back-btn" onclick="showHero()">← Volver al inicio</button></div>
-  <section class="suscripcion-bg" style="margin-top:1rem;">
-    <div class="section">
-      <p class="section-label">Acceso</p>
-      <h2>Suscripción mensual</h2>
-      <p class="suscripcion-lead">Un nuevo caso cada mes. Accedé a investigaciones inéditas antes que nadie, a un precio promocional y formá parte de una colección en expansión.</p>
-
-      <div class="precio-hero">
-        <div class="precio-left">
-          <span class="precio-eyebrow">Suscripción mensual</span>
-          <div class="precio-valor">9500<span>/ ARS</span></div>
-          <span class="precio-sub">Valor promocional · Cancelás cuando querés</span>
-          <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d483824c6ab41589757d03bed00fc95" target="_blank" rel="noopener" class="btn-block"><span>Suscribirme ahora</span><span>→</span></a>
-          <p class="precio-nota">Renovación automática el día 7 de cada mes.<br>Podés cancelar antes de la próxima fecha de cobro.</p>
-        </div>
-        <div class="precio-right">
-          <ul class="precio-features">
-            <li>Un nuevo caso digital cada mes</li>
-            <li>Material adicional exclusivo para miembros activos</li>
-            <li>Acceso anticipado a cada lanzamiento</li>
-            <li>El caso se libera el día 9 · Las instrucciones se envían por mail</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="suscripcion-faqs">
-        <div class="sfaq-block">
-          <h4>¿Cuándo se cobra?</h4>
-          <p>El cobro se realiza el día 7 de cada mes. El caso se libera el día 9 y recibís las instrucciones de acceso por correo.</p>
-        </div>
-        <div class="sfaq-block">
-          <h4>¿Suscripción o caso clásico?</h4>
-          <p>La suscripción da acceso al lanzamiento mensual exclusivo a precio promocional. Los casos clásicos estarán disponibles próximamente.</p>
-        </div>
-        <div class="sfaq-block">
-          <h4>¿Cómo cancelo?</h4>
-          <p>Podés cancelar en cualquier momento antes de la próxima fecha de cobro, sin cargos adicionales ni compromisos.</p>
-        </div>
-      </div>
-
-      <div class="suscripcion-caso0">
-        <div>
-          <span class="suscripcion-caso0-label">¿Querés ver de qué se trata primero?</span>
-          <h3>Probá Archivo Cero gratis</h3>
-          <p>Accedé gratis al Caso #00 (PDF) y al Caso X (interactivo online), viví la experiencia completa, y después decidís si querés suscribirte.</p>
-        </div>
-        <div>
-          <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="btn-block" style="width:auto; min-width:200px;"><span>Descargar gratis</span><span>→</span></a>
-        </div>
-      </div>
-
-      <div><a href="#" onclick="showSection('casos'); return false;" class="btn-secondary">Ver casos clásicos →</a></div>
-    </div>
-  </section>
-  <footer>
-    <div class="footer-top">
-      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
+      <div><a class="footer-logo" href="#" onclick="showHero(); return false;">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
       <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
     <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Desarrollado en Argentina.</p>
@@ -3849,8 +2977,8 @@
         <h2>Casos</h2>
         <p class="casos-intro-lead">Hay dos formatos. Los <strong>casos en PDF</strong> los descargás y los resolvés en pantalla o impresos, como prefieras. Los <strong>casos interactivos</strong> son 100% online — se juegan directo en la web, sin descargas ni instalaciones. Misma intriga, diferente experiencia.</p>
         <div class="casos-formato-badges">
-          <span class="formato-badge"><span class="formato-badge-icon">📄</span> Formato PDF</span>
-          <span class="formato-badge"><span class="formato-badge-icon">💻</span> Digital o imprimible</span>
+          <span class="formato-badge"><span class="formato-badge-icon">📄</span> PDF descargable o imprimible</span>
+          <span class="formato-badge"><span class="formato-badge-icon">💻</span> Interactivo 100% online</span>
           <span class="formato-badge"><span class="formato-badge-icon">👤</span> Solo o en grupo</span>
           <span class="formato-badge"><span class="formato-badge-icon">⏱</span> Sin tiempo límite</span>
         </div>
@@ -3875,7 +3003,7 @@
           <div class="caso-faq-body">
             <div class="casos-cards-wrap">
               <div class="casos-carrusel-inner">
-                <button class="casos-nav-btn" onclick="casoNav('clasicos',-1)">&#8249;</button>
+                <button class="casos-nav-btn" aria-label="Caso anterior" onclick="casoNav('clasicos',-1)">&#8249;</button>
                 <div class="casos-carrusel-viewport">
                   <div class="casos-carrusel-track" id="track-clasicos">
                     <div class="casos-carrusel-slide">
@@ -3893,7 +3021,7 @@
                 </div>
                 <p class="caso-especial-desc">Un escritor recibe por correo un manuscrito firmado con su nombre, su número de matrícula y su dedicatoria... pero él no lo escribió. El objetivo es descubrir quién mandó ese correo, cómo y por qué.</p>
                 <div class="caso-especial-meta">
-                  <span>⏱ 30–45 min</span><span>Solo o en grupo</span><span>📄 PDF</span>
+                  <span>⏱ 30–45 min</span><span>Solo o en grupo</span><span>📄 PDF</span><span>⚠ Dificultad media</span>
                 </div>
                 <div class="caso-especial-actions">
                   <a href="https://www.instagram.com/reel/DY2-7r-Jk0v/" target="_blank" rel="noopener" class="btn-trailer">
@@ -3909,7 +3037,7 @@
                     <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                   </button>
                   <div class="spotify-embed-wrap">
-                    <iframe data-src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/7uSwJecLcnVscD1gW6PtnZ?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                   </div>
                 </div>
                 <div class="stamp stamp-rojo">C·00</div>
@@ -3930,7 +3058,7 @@
                 </div>
                 <p class="caso-especial-desc">Greta desapareció el 11 de noviembre de 2022. Ese día tenían que encontrarse para desayunar, como todos los 11 de cada mes. Pero nunca llegó. Casi una hora después del horario acordado, recibís un audio suyo. Fue la última vez que tuvieron contacto. Antes de desaparecer, Greta dejó una serie de instrucciones: archivos, notas, imágenes, audios y mensajes que, según ella, deben revisarse en un orden específico.</p>
                 <div class="caso-especial-meta">
-                  <span>⏱ 40–60 min</span><span>Solo o en grupo</span><span>📄 PDF</span>
+                  <span>⏱ 40–60 min</span><span>Solo o en grupo</span><span>📄 PDF</span><span>⚠ Dificultad media</span>
                 </div>
                 <div class="caso-especial-actions">
                   <a href="https://www.instagram.com/reel/DaGUNLXpkCU/?igsh=MXByNmt1cWt4OGpnOA==" target="_blank" rel="noopener" class="btn-trailer">
@@ -3946,7 +3074,7 @@
                     <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                   </button>
                   <div class="spotify-embed-wrap">
-                    <iframe data-src="https://open.spotify.com/embed/episode/5fJHza8YkKw6uhoHoZMuPO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/0Irh0BDk0nRy583iRCSbiB?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                   </div>
                 </div>
                 <div class="stamp stamp-rojo">C·01</div>
@@ -3954,7 +3082,7 @@
                     </div><!-- /slide C01 -->
                   </div><!-- /track -->
                 </div><!-- /viewport -->
-                <button class="casos-nav-btn" onclick="casoNav('clasicos',1)">&#8250;</button>
+                <button class="casos-nav-btn" aria-label="Caso siguiente" onclick="casoNav('clasicos',1)">&#8250;</button>
               </div><!-- /carrusel-inner -->
               <div class="casos-carrusel-dots" id="dots-clasicos"></div>
             </div>
@@ -4001,7 +3129,7 @@
                   <span>🐾 Conocé más sobre Gatumanía</span><span class="btn-conocer-gatu-arrow">→</span>
                 </a>
                 <div class="caso-especial-meta">
-                  <span>⏱ 40–60 min</span><span>Solo o en equipo</span><span>📄 PDF</span><span>🐾 Causa real</span>
+                  <span>⏱ 40–60 min</span><span>Solo o en equipo</span><span>📄 PDF</span><span>⚠ Dificultad media</span><span>🐾 Causa real</span>
                 </div>
                 <div class="caso-especial-actions">
                   <a href="https://www.instagram.com/reel/DZLrtLZtiEF/?igsh=MW1sdTN2OHg2dHh6Mw==" target="_blank" rel="noopener" class="btn-trailer">
@@ -4017,7 +3145,7 @@
                     <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                   </button>
                   <div class="spotify-embed-wrap">
-                    <iframe data-src="https://open.spotify.com/embed/episode/1YXeHFta9kfqOhE55qQPaO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/1YXeHFta9kfqOhE55qQPaO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                   </div>
                 </div>
                 <div class="caso-contador" id="contador-rastro"></div>
@@ -4052,7 +3180,7 @@
           <div class="caso-faq-body">
             <div class="casos-cards-wrap">
               <div class="casos-carrusel-inner">
-                <button class="casos-nav-btn" onclick="casoNav('interactivos',-1)">&#8249;</button>
+                <button class="casos-nav-btn" aria-label="Caso anterior" onclick="casoNav('interactivos',-1)">&#8249;</button>
                 <div class="casos-carrusel-viewport">
                   <div class="casos-carrusel-track" id="track-interactivos">
                     <div class="casos-carrusel-slide">
@@ -4088,7 +3216,7 @@
                             <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                           </button>
                           <div class="spotify-embed-wrap">
-                            <iframe data-src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                            <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/1GDXPhLhlPEuzAPGCfHFrp?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                           </div>
                         </div>
                         <div class="stamp stamp-interactivo">X·00</div>
@@ -4133,7 +3261,7 @@
                             <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                           </button>
                           <div class="spotify-embed-wrap">
-                            <iframe data-src="https://open.spotify.com/embed/episode/5fJHza8YkKw6uhoHoZMuPO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                            <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/5fJHza8YkKw6uhoHoZMuPO?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                           </div>
                         </div>
                         <div class="stamp stamp-interactivo">X·A</div>
@@ -4177,7 +3305,7 @@
                             <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                           </button>
                           <div class="spotify-embed-wrap">
-                            <iframe data-src="https://open.spotify.com/embed/episode/0VvL6TpkBqh2RRbVffq4DG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                            <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/0VvL6TpkBqh2RRbVffq4DG?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                           </div>
                         </div>
                         <div class="stamp stamp-interactivo">X·B</div>
@@ -4205,7 +3333,7 @@
                           <span>⚠ Dificultad media-alta</span>
                         </div>
                         <div class="caso-especial-actions">
-                          <a href="https://www.instagram.com/archivocero0/" target="_blank" rel="noopener" class="btn-trailer">
+                          <a href="https://www.instagram.com/reel/DexD_KOJvLv/" target="_blank" rel="noopener" class="btn-trailer">
                             <span class="btn-trailer-icon">▶</span>
                             <span>Ver trailer en Instagram</span>
                             <span class="btn-trailer-arrow">→</span>
@@ -4222,7 +3350,7 @@
                             <span>Escuchá el teaser del caso</span><span class="spotify-toggle-arrow">▾</span>
                           </button>
                           <div class="spotify-embed-wrap">
-                            <iframe data-src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                            <iframe title="Teaser del caso en Spotify" data-src="https://open.spotify.com/embed/episode/2lhLCjx0xlkS0t7aJC63on?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                           </div>
                         </div>
                         <div class="stamp stamp-interactivo">X·C</div>
@@ -4230,7 +3358,7 @@
                     </div><!-- /slide -->
                   </div><!-- /track -->
                 </div><!-- /viewport -->
-                <button class="casos-nav-btn" onclick="casoNav('interactivos',1)">&#8250;</button>
+                <button class="casos-nav-btn" aria-label="Caso siguiente" onclick="casoNav('interactivos',1)">&#8250;</button>
               </div><!-- /carrusel-inner -->
               <div class="casos-carrusel-dots" id="dots-interactivos"></div>
             </div>
@@ -4281,7 +3409,7 @@
   </section>
   <footer>
     <div class="footer-top">
-      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
+      <div><a class="footer-logo" href="#" onclick="showHero(); return false;">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
       <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
     <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Desarrollado en Argentina.</p>
@@ -4300,44 +3428,56 @@
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Qué incluye lo que estoy comprando?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Depende del tipo de caso. Los casos en PDF incluyen documentos digitales, fotografías, archivos protegidos, transcripciones de audios y un sistema de validación. Los casos interactivos se juegan directamente en la web e incluyen carpetas de evidencia, enigmas desbloqueables y una pizarra para conectar pistas. En ambos casos, todo está diseñado para vivirse como una experiencia de investigación real.</p></div>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Es un juego?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Sí: es un juego de investigación. Archivo Cero® te entrega los archivos de un caso —documentos, audios, imágenes— y vos reconstruís lo ocurrido. No es un juego tradicional: no hay puntos, niveles ni tiempo límite. Hay interpretación, análisis y deducción.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Qué diferencia hay entre un caso PDF y un caso interactivo?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Los casos en PDF son archivos descargables que podés resolver en pantalla o imprimir. Tienen diseño editorial y podés jugarlos sin conexión una vez descargados. Los casos interactivos son 100% digitales y online — se juegan directo en la web, sin descargas ni instalaciones. No tienen tanto énfasis en el diseño visual sino en la mecánica de investigación interactiva.</p></div>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Qué incluye cada caso y qué diferencia hay entre PDF e interactivo?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Depende del formato. Los casos en PDF son archivos descargables con diseño editorial: incluyen documentos digitales, fotografías, archivos protegidos, transcripciones de audios y un sistema de validación. Podés resolverlos en pantalla o imprimirlos, y jugarlos sin conexión una vez descargados. Los casos interactivos son 100% online: se juegan directo en la web, sin descargas, e incluyen carpetas de evidencia, enigmas desbloqueables y una pizarra para conectar pistas. Ponen el énfasis en la mecánica de investigación más que en el diseño visual, y no tienen versión imprimible. En ambos formatos, todo está diseñado para vivirse como una experiencia de investigación real.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Es un juego?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Es una experiencia de investigación inmersiva. Más que un juego tradicional, Archivo Cero es una narrativa digital donde vos reconstruís lo ocurrido a partir de archivos reales. No hay puntos, tiempo límite ni niveles — hay interpretación, análisis y deducción.</p></div>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Dónde puedo jugarlo? ¿Necesito instalar algo?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>No hay que instalar nada: todo funciona desde el navegador. Los casos interactivos se juegan desde el celular, la tablet o la computadora. Los casos en PDF se descargan una sola vez y se pueden leer en cualquier dispositivo o imprimirse. Para revisar documentos y comparar pistas con comodidad, recomendamos una pantalla grande.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Puedo jugarlo solo o necesito ser más de uno?</span><span class="faq-icon">+</span></button>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Puedo jugarlo solo o necesito ser más de uno?</span><span class="faq-icon">+</span></button>
           <div class="faq-answer"><p>Depende de lo que prefieras. Los casos están diseñados para jugarse tanto en solitario como en grupo. Solos es una experiencia más intensa y personal. En grupo se arma una dinámica de debate y deducción que tiene su propio encanto.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Necesito instalar algo?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>No. Toda la experiencia funciona desde tu navegador. Los casos en PDF solo necesitás descargarlos una vez. Los casos interactivos funcionan directamente en la web, sin instalar nada.</p></div>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Desde qué edad se recomienda?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Recomendamos los casos a partir de los 16 años. Las historias incluyen muertes, desapariciones y temas adultos propios del género de misterio, sin contenido explícito.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Puedo imprimir el material?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Sí, los casos en PDF pueden imprimirse para una experiencia más física. Los casos interactivos son exclusivamente digitales y no tienen versión imprimible.</p></div>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Por cuál caso me conviene empezar?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Por los dos gratuitos: el Caso #00 — El Manuscrito (PDF) y La Cena de los Viernes (interactivo). Así probás las dos modalidades sin costo y elegís cuál te gusta más. Después podés seguir en el orden que quieras: cada caso es una historia independiente. Los casos en PDF son de dificultad media y los interactivos pagos, de dificultad media-alta.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Se puede jugar más de una vez?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Sí, técnicamente podés volver a jugarlo. Pero al conocer las respuestas y el desarrollo de la historia, la experiencia pierde parte de su encanto. Lo ideal es avanzar con los otros casos disponibles una vez que resolviste uno.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Al adquirir un caso, recibo algo físico?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>No. Archivo Cero es un producto digital. No se envía ningún objeto físico. Todo el acceso y los materiales son digitales y se entregan por correo electrónico.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Cómo accedo al caso después de pagar?</span><span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Una vez confirmado el pago, recibís el enlace de acceso directamente en tu correo de forma inmediata. Si tenés algún problema, podés escribirnos a hola.archivocero@gmail.com.</p></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)"><span>¿Qué son los casos especiales?</span><span class="faq-icon">+</span></button>
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Qué son los casos especiales?</span><span class="faq-icon">+</span></button>
           <div class="faq-answer"><p>Los casos especiales son ediciones únicas y eventuales que nacen de una colaboración con una organización, causa o referente real. Lo que los distingue es que parte del valor de cada compra se dona directamente a esa causa. Son casos inéditos, con su propia numeración (E·01, E·02…), diseñados para combinar narrativa inmersiva con impacto real.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Qué medios de pago hay? ¿Hay devolución?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Las compras se hacen en nuestra tienda online, con los medios de pago que ofrece al finalizar la compra. Al tratarse de productos digitales de acceso inmediato, no hacemos devoluciones. Si tenés cualquier problema para acceder al material, escribinos a hola.archivocero@gmail.com y lo resolvemos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Cómo recibo el caso después de pagar?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Una vez confirmado el pago, recibís el enlace de acceso en tu correo de forma inmediata. Archivo Cero® es un producto digital: no se envía ningún objeto físico. Si el correo no aparece, revisá las carpetas de spam y promociones; si igual no lo encontrás, escribinos a hola.archivocero@gmail.com con el nombre y el correo que usaste en la compra y te lo reenviamos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Puedo regalar un caso?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Sí. Comprás el caso y le reenviás a la otra persona el correo con el acceso. Es un producto digital, así que llega al instante y no hay que coordinar envíos. Si necesitás ayuda para armar el regalo, escribinos.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Hasta cuándo tengo acceso al caso?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>El acceso no vence: el PDF queda descargado en tu dispositivo y el enlace del caso interactivo sigue funcionando sin límite de tiempo. Lo que sí puede vencer es el enlace del correo, así que te recomendamos descargar el PDF y guardar el enlace del caso apenas lo recibís, para acceder cuando quieras.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Qué pasa si me trabo en un caso?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Los casos interactivos online incluyen hasta 3 pistas que podés usar cuando las necesites. Los casos en PDF no tienen pistas porque son de dificultad media. En cualquier caso, si tenés una consulta podés escribirnos a hola.archivocero@gmail.com.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false"><span>¿Se puede jugar más de una vez?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Sí, técnicamente podés volver a jugarlo. Pero al conocer las respuestas y el desarrollo de la historia, la experiencia pierde parte de su encanto. Lo ideal es avanzar con los otros casos disponibles una vez que resolviste uno.</p></div>
         </div>
       </div>
       <div class="faq-contacto">
@@ -4351,10 +3491,10 @@
   </section>
   <footer>
     <div class="footer-top">
-      <div><a class="footer-logo" onclick="showHero()">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
+      <div><a class="footer-logo" href="#" onclick="showHero(); return false;">Archivo<span>_</span>Cero</a><p class="footer-tagline">Misterios para resolver</p></div>
       <div class="footer-contact"><p>Contacto</p><a href="mailto:hola.archivocero@gmail.com">hola.archivocero@gmail.com</a></div>
     </div>
-    <p class="footer-bottom">© 2026 Archivo Cero. Todos los derechos reservados. Desarrollado en Argentina.</p>
+    <p class="footer-bottom">© 2026 Archivo Cero®. Todos los derechos reservados. Desarrollado en Argentina.</p>
   </footer>
 </div>
 
@@ -4366,7 +3506,7 @@
 
       <!-- PASO 1: Selección de caso -->
       <div id="val-selector">
-        <p class="section-label">Archivo Cero · Acceso restringido</p>
+        <p class="section-label">Archivo Cero® · Acceso restringido</p>
         <h2>Verificación de casos</h2>
         <p class="val-subtitle">Seleccioná el caso que querés validar e ingresá el código que descubriste durante la investigación.</p>
 
@@ -4404,10 +3544,10 @@
         <p class="val-subtitle">Ingresá el código que descubriste en el caso para continuar.</p>
         <div class="val-password-form">
           <div class="val-input-wrap">
-            <input type="text" id="val-input" class="val-input" placeholder="código de acceso" autocomplete="off" onkeydown="if(event.key==='Enter') validarAcceso()">
+            <input type="text" id="val-input" class="val-input" placeholder="código de acceso" aria-label="Código de acceso del caso" autocomplete="off" onkeydown="if(event.key==='Enter') validarAcceso()">
             <button class="val-btn-acceso" onclick="validarAcceso()"><span>Ingresar</span><span>→</span></button>
           </div>
-          <p class="val-error" id="val-error"></p>
+          <p class="val-error" id="val-error" role="alert"></p>
           <p class="val-hint" id="val-hint"></p>
         </div>
       </div>
@@ -4427,7 +3567,7 @@
             <span>→</span>
           </button>
         </div>
-        <div id="val-resultado" style="display:none" class="val-resultado">
+        <div id="val-resultado" style="display:none" class="val-resultado" role="status" aria-live="polite">
           <div class="val-result-label" id="val-result-label"></div>
           <div class="val-result-body" id="val-result-body"></div>
           <div class="val-result-code" id="val-result-code"></div>
@@ -4439,103 +3579,12 @@
 </div>
 
 
-<div class="modal-overlay" id="modalCompra">
-  <div class="modal-box">
-    <button class="modal-close" onclick="cerrarModalCompra()">✕ cerrar</button>
-
-    <!-- PASO 1: Detalle y pago -->
-    <div class="modal-step active" id="modal-paso-1">
-      <p class="modal-step-label">Caso Solidario E·01</p>
-      <h3>Rastro Perdido</h3>
-      <p>Tu compra financia directamente a <strong style="color:#c9828a;">Gatumanía</strong> para seguir rescatando gatos en Buenos Aires. El pago se procesa por Mercado Pago de forma segura.</p>
-      <div class="modal-case-summary">
-        <div class="modal-case-summary-info">
-          <span>Rastro Perdido — E·01</span>
-          <span>🐾 75% va a Gatumanía</span>
-        </div>
-        <span class="modal-case-price">$8.000</span>
-      </div>
-      <a href="https://mpago.la/2KMh7s3" target="_blank" rel="noopener" class="modal-btn-mp" onclick="simularPago(event)">
-        <span>
-          Pagar con Mercado Pago
-          <span class="modal-btn-mp-sub">Tarjeta, transferencia o efectivo</span>
-        </span>
-        <span>→</span>
-      </a>
-      <p class="modal-note">Pago 100% seguro · Procesado por Mercado Pago · Acceso inmediato tras confirmación</p>
-    </div>
-
-    <!-- PASO 2: Confirmación de pago -->
-    <div class="modal-step" id="modal-paso-2">
-      <div class="modal-confirm-icon">✓</div>
-      <p class="modal-step-label">Pago confirmado</p>
-      <h3>¡Listo, investigador!</h3>
-      <p>Tu pago fue procesado correctamente. El caso Rastro Perdido E·01 está desbloqueado para vos.</p>
-      <div class="modal-access-box">
-        <span class="modal-access-box-label">Acceso confirmado</span>
-        <p>También vas a recibir el material por correo electrónico. Podés acceder directamente desde acá.</p>
-      </div>
-      <button class="modal-btn-acceso" onclick="irAlAccesoCaso()">
-        <span>Acceder al caso ahora</span>
-        <span>→</span>
-      </button>
-    </div>
-
-    <!-- PASO 3: Acceso al caso -->
-    <div class="modal-step" id="modal-paso-3">
-      <div class="modal-pago-ok">
-        <span class="modal-pago-ok-icon">✓</span>
-        <span class="modal-pago-ok-texto">Pago confirmado</span>
-      </div>
-      <div class="modal-paso3-caso-id">
-        <span class="modal-paso3-num">E·01</span>
-        <div>
-          <span class="modal-paso3-eyebrow">Caso especial · Solidario</span>
-          <h3 class="modal-paso3-titulo">Rastro Perdido</h3>
-        </div>
-      </div>
-      <p class="modal-paso3-desc">¡Gracias por apoyar a Gatumanía! 🐾<br>El material completo del caso está listo para descargar.</p>
-      <a href="https://drive.google.com/file/d/1t-EOID3cM8h4b6oZrd0dMqPHeT4CtfRj/view?usp=sharing" target="_blank" rel="noopener" class="modal-dl-btn">
-        <span class="modal-dl-btn-icon">↓</span>
-        <div>
-          <span class="modal-dl-btn-label">Descargar</span>
-          <span class="modal-dl-btn-nombre">Caso E·01 — Rastro Perdido</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</div>
+</main>
 
 <script>
-  const SECTIONS = ['que-es', 'suscripcion', 'casos', 'faq', 'validacion'];
-
-  function abrirModalCompra() {
-    document.getElementById('modal-paso-1').classList.add('active');
-    document.getElementById('modal-paso-2').classList.remove('active');
-    document.getElementById('modal-paso-3').classList.remove('active');
-    document.getElementById('modalCompra').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function cerrarModalCompra() {
-    document.getElementById('modalCompra').classList.remove('open');
-    document.body.style.overflow = '';
-    // Limpiar el parámetro de la URL sin recargar
-    const url = new URL(window.location.href);
-    url.searchParams.delete('pago');
-    window.history.replaceState({}, '', url);
-  }
-  function simularPago(e) {
-    // Abre MP en nueva pestaña — la redirección real viene desde MP al volver
-    // No hacemos nada más acá
-  }
-  function irAlAccesoCaso() {
-    document.getElementById('modal-paso-2').classList.remove('active');
-    document.getElementById('modal-paso-3').classList.add('active');
-  }
-  document.getElementById('modalCompra').addEventListener('click', function(e) {
-    if (e.target === this) cerrarModalCompra();
-  });
+  const SECTIONS = ['que-es', 'casos', 'faq', 'validacion'];
+  const AC_REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function acScroll() { return AC_REDUCE ? 'auto' : 'smooth'; }
 
   // Contador de colaboradores — se muestra solo si hay 20+
   // Número real: actualizalo manualmente acá cuando tengas ventas
@@ -4550,40 +3599,19 @@
     }
   })();
 
-  // Detectar retorno desde Mercado Pago
-  (function detectarPagoMP() {
-    const params = new URLSearchParams(window.location.search);
-    const pago = params.get('pago');
-    if (pago === 'aprobado') {
-      // Saltear splash directamente
-      const splash = document.getElementById('splash');
-      if (splash) { splash.style.display = 'none'; }
-      document.body.style.overflow = '';
-      // Abrir directo en paso 3
-      setTimeout(() => {
-        document.getElementById('modal-paso-1').classList.remove('active');
-        document.getElementById('modal-paso-2').classList.remove('active');
-        document.getElementById('modal-paso-3').classList.add('active');
-        document.getElementById('modalCompra').classList.add('open');
-        document.body.style.overflow = 'hidden';
-        // Navegar a la sección de casos para que se vea el modal con contexto
-        showSection('casos');
-      }, 600);
-    }
-  })();
-
   function toggleMenu() {
-    document.getElementById('menuToggle').classList.toggle('active');
-    document.getElementById('navDropdown').classList.toggle('open');
+    const abierto = document.getElementById('navDropdown').classList.toggle('open');
+    document.getElementById('menuToggle').classList.toggle('active', abierto);
+    document.getElementById('menuToggle').setAttribute('aria-expanded', String(abierto));
   }
   function closeMenu() {
     document.getElementById('menuToggle').classList.remove('active');
+    document.getElementById('menuToggle').setAttribute('aria-expanded', 'false');
     document.getElementById('navDropdown').classList.remove('open');
   }
   const BASE_TITLE = document.title;
   const ROUTE_TITLES = {
     'que-es': '¿Qué es Archivo Cero? — Archivo Cero',
-    'suscripcion': 'Suscripción — Archivo Cero',
     'casos': 'Casos — Archivo Cero',
     'faq': 'Preguntas frecuentes — Archivo Cero',
     'validacion': 'Validar caso — Archivo Cero'
@@ -4597,7 +3625,7 @@
       el.style.display = 'none';
     });
     document.title = BASE_TITLE;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: acScroll() });
     initReveal();
   }
   function applySection(name) {
@@ -4615,15 +3643,16 @@
       }
     });
     document.title = ROUTE_TITLES[name] || BASE_TITLE;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: acScroll() });
   }
   function showHero() {
-    if (location.hash) history.pushState({}, '', location.pathname + location.search);
+    // Si el navegador no permite cambiar la dirección (archivo abierto localmente o en una vista previa), se navega igual.
+    try { if (location.hash) history.pushState({}, '', location.pathname + location.search); } catch (e) {}
     applyHero();
     if (window.acTrack) acTrack('page_view', { page_title: document.title, page_location: location.href });
   }
   function showSection(name) {
-    if (location.hash !== '#' + name) history.pushState({ s: name }, '', location.pathname + location.search + '#' + name);
+    try { if (location.hash !== '#' + name) history.pushState({ s: name }, '', location.pathname + location.search + '#' + name); } catch (e) {}
     applySection(name);
     if (window.acTrack) acTrack('page_view', { page_title: document.title, page_location: location.href });
   }
@@ -4631,13 +3660,16 @@
     const h = location.hash.replace('#', '');
     if (SECTIONS.includes(h)) applySection(h); else applyHero();
   }
-  window.addEventListener('popstate', routeFromHash);
-  if (SECTIONS.includes(location.hash.replace('#', ''))) applySection(location.hash.replace('#', ''));
+  window.addEventListener('popstate', routeFromHash);  if (SECTIONS.includes(location.hash.replace('#', ''))) applySection(location.hash.replace('#', ''));
   function toggleFaq(btn) {
     const item = btn.parentElement;
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      const b = el.querySelector('.faq-question');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
   }
 
   /* Scroll reveal */
@@ -4663,135 +3695,174 @@
 
   // ═══ VALIDACIÓN DE CASOS ═══
   const CASOS_DATA = {
-    caso00: {
-      password: '23',
-      hint: 'Pista: son dos números.',
-      label: 'Archivo Cero · Caso #00',
-      titulo: 'El Manuscrito',
-      subtitle: '6 preguntas · Reconstrucción del manuscrito',
-      preguntas: [
-        { texto: '¿Quién escribió el manuscrito "EL OTRO YO"?', opciones: ['Un impostor que investigó la vida de Elías durante años','Elías Vane desde una línea temporal alternativa donde no tiró el cuaderno en 1997','Renata Solís, directora de Paradoja Press, usando información filtrada','El propio Elías en un estado de escritura automática que no recuerda'], correcta: 'Elías Vane desde una línea temporal alternativa donde no tiró el cuaderno en 1997' },
-        { texto: '¿Qué número conecta la firma del "otro Elías" con la ficha oficial de autor?', opciones: ['312','1997','2847','09/03'], correcta: '2847' },
-        { texto: '¿Cuál fue el momento exacto de bifurcación entre las dos líneas temporales?', opciones: ['El día que Elías publicó su primera novela (2005)','La noche en que su padre se fue de la casa','El día de 1997 en que Elías tiró el cuaderno azul','El 9 de marzo de 2024, durante el evento de decoherencia'], correcta: 'El día de 1997 en que Elías tiró el cuaderno azul' },
-        { texto: '¿Qué anomalía del log del dispositivo confirma que el archivo NO fue escrito en ese momento?', opciones: ['El archivo fue enviado desde otro correo electrónico','El documento de 114.847 palabras fue guardado en exactamente 1 minuto','El log muestra que Pages fue abierto con una cuenta de usuario diferente','El archivo tenía una fecha de creación anterior al 2024'], correcta: 'El documento de 114.847 palabras fue guardado en exactamente 1 minuto' },
-        { texto: '¿Por qué el vecino Jorge Almada es un testigo clave?', opciones: ['Porque vio a alguien entrar al departamento de Elías esa noche','Porque escuchó la máquina de escribir en el horario del evento de bifurcación','Porque recibió un manuscrito similar en su propio buzón','Porque conocía al "otro Elías" de antes'], correcta: 'Porque escuchó la máquina de escribir en el horario del evento de bifurcación' },
-        { texto: '¿Qué significa el Capítulo 23 en blanco?', opciones: ['Que el "otro Elías" no terminó el libro a tiempo','Es un error de producción del manuscrito','Es deliberado: ese capítulo solo lo puede escribir el Elías de esta línea','Contiene texto invisible — es una pista oculta'], correcta: 'Es deliberado: ese capítulo solo lo puede escribir el Elías de esta línea' }
-      ],
-      resultadoOk: { label: 'Reconstrucción validada', body: 'Lograste conectar correctamente los registros.<br><br>El manuscrito no fue escrito en esta línea temporal.<br>La bifurcación existió. Y alguien consiguió atravesarla.<br><br><em>El capítulo 23 sigue vacío. Ahora entendés por qué.</em>', code: '' },
-      resultadoError: { label: 'Reconstrucción incompleta', body: 'Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar el manuscrito antes de confirmar.', code: '' }
+    "caso00": {
+      "hint": "Pista: son dos números.",
+      "label": "Archivo Cero® · Caso #00",
+      "titulo": "El Manuscrito",
+      "resultadoError": {
+        "label": "Reconstrucción incompleta",
+        "body": "Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar el manuscrito antes de confirmar.",
+        "code": ""
+      },
+      "salt": "hVHECPxk3MEV2uWrFoaduA==",
+      "gate": {
+        "iv": "tswZmw3lWDF4iGwR",
+        "ct": "7vU3+WjnJJ3N5EJ8lkQm8YsD/TCHkLGcIg/BGY4D1wEOzTjmN2ycNloPYYS8qW0yKicLfWJ6A/kxBc7HoSnXnS6fLoHFt1UbF0VGGFfnSBXMdxODoEDe8ObAO4x+NWPkkjkCSBers+qLbmPMSuI5KkgrOG5YufWcvhsbaPPagy46nKrItsZUZnW7HHFHPlttHUk3t/EAbx9x3JUG991HkIi2a6kETu1IY5gpGjiPOB4czn77w2LN/x839agJO1867CiuDnbA9QPaBQcr6kT+7m7cy7MgRUtrDd1K1q7ArBI0Yy7OAyAUxNVaLsuxjpdwN8DERYUWRXa8qZc0NSyEi5BizQKC44oAQLPR/x4FNLs7cmst3bx95TSMifr2KVsER3P/M3VZ7cZcGsWMVoO0IcoZ3/zX16FxMrFv4irtyPsOust+oOmcA9rytqyF8kEgvKRIixsVuEN2fAhvh4H3QqSfZqNYmtH84e7NEr+ruFe3vXxI9PY3cqyeUMXnYRhUsKxNpZLGEgV6BjKzieKr3o6mDWdG57uTaDpPNTO9qj42vv+7Pv/jybx8eSMjsXj8+hMOsa76rX7hivFU6ZGCincyaSFQ2Pc7ZajitGc7obrBWIPxvze72mK+YMT4AzfBi0itf+LcLg7XCB5UQOC+WDopOv3AbGMJ2K1KRn0Ivnfi7k6ydSWYsw4NhtUFh4P2hFt3jBdp3Lu0XoFXaAdfygAZyjEHfZ+SgfGY4YXu6Iv392msjreYIUuzO83ns+Nu62143lqLGqCubtdEmRql1mfOpGQtZiQF9JQPOQEzZKFTlWFbH5O3CeW6iN3tZA1oOae4xTNxHR8HSud/1XzdAkHbsfWbN+t+ftpyImapyQP5tsbwnSKtQfVzJKllI+oMvtiRLKku6WM+WiPR1ibxJnQBEf02j2YSWvhcRLxnEbxEszmMB077/H3NdoeppA8guZERK+xONqUcUYmVzL1/ArDcwOt5ZUTChiHmceYspsMjDTv1yj2T1B5xzWeSt/lkCC0FVGjMpdhogrNc1P4Ad39YpyYtVGRSk6x5rrbD9CpcCgjHTWbRYyfgjsHQyPKF4LuWa9/qcDumXV10TTKk9dU0QbgQrKU0eHA3iy0fIp86GHRllgqkmS5kKMo7tMR/3rJP64OXfX/0Ps5z4NBZ40lhdJaoXsXpT6uAsZicT2I8lmXPuKXAY2B5C4vnstDaAG82DfI7zGzAYh0DQmIl0W8yyI10M3CQq8LZhC++ocL0aIAf+LTvaMJMuuXQOGW8L6RqTWOCsCgHRfLIIZ/BdyjYpux4KwsVMN864sezgn81WKoQAj42DOWxY7CFzHzukSEMpx9spbiE+oIDqrolyyMJHSAKAYDenPikcLbwOIYJEjCGMqPm841Xu+6M2URCYLuQaI+lrW5POVxafEnYjhan/PdNv/OrZSeztRmlKg+NQspXShaJwGpEJBlNQTSWDXhhhs+p6vFoNDG1tZxlqmi/pnvJf5TYdIbGZ/57cSlrLbKDuF94jeEfOKfugebsG4tc5o946enMZ3JVM6nSoIhVcXzuPbvt4iM36AlimxnI77QLjhNwrA1IOy18CoU5dplyK7xVDlg5t6QvuPDcAiMCJQLRfNkps9gVBJzZ5nkJOaEQo5HePmzuK/VmKOXfYrFMFWpbJnRsYHRV+YG8NTQBM44IWACi7XbI0PhUUTKXdppBoD6X/nsGB9XKBFip718FINrg6DkPsC9gzqEOTx1Sgcm02nj2xGwFV9x9JjJoLMCqr9bxqbtYFhLYWTFtEt/LP7GLOwqdHfzLX929XZ0PBl7NWBSZeRUT2wK/AAB93dS1TUFZqUkPsBrhN1VnPnjsxjguk6dMWxVDRh3EbLBjVbZkQvf9i2erYZ6LN/vsD8W63bqMiueGFlioIWQGUKAgZPvT2pA+Q9XdJTrL3lybsj5qzVieM/21jcR8FTmsQatOBlofsQJ7UybyZfSLguLdz8ifiEMwPNV8GA7MHBumskjfm3Y4inmOzsuSB57dsqw4AwHh5Yf80CID2eWoDJ6E29tMUNezAYJNYEdd0xenVraqhpVWxzqjATpjYzyrORwcGSrsWyTy2LoX+ReOXEPJRT3K3GSjdbRTdFiJ/bVZYt+nY68EwjuqrN8GOxVFa9ydYYkgSHYwmQFz8oNqXA6dLcnH/Ze4NRv1Cewc85IvX1Rlt1vBDDzg5gYmmtD61ZORQ+YH0IxmhaNWUE0wMhp11yg9nO7Krq3NhesETrrThfMtbQmCcoS9Reo3R9JLYPFI7a/EYFqslbWYWY/rnlDSwCcAB13dLCNqJEwLz33FSLsgUG2knSqSkzsIJv192lN33Q998b1WsgNDfWvBTLBxunHzcsFuThUNbrifQ/YjL0cfReQf/Bci28OJlKwI2rmrCe29WQwNsQ2Km8oCgE+GxI2roUogNvAU9PMqa9nSrxOkmxejmyBtI6ByOWLRC7GcY5i5xPfax6/WayQHa5S4jalam9cr6nBOlpic3R0t8KvpLb5x3ReeICXZOL6cKIb7zs1amOSwG6beE4PEOzO67dwjvoq5f+Vd"
+      },
+      "ok": {
+        "iv": "mKcYmpR2qmj8SvEE",
+        "ct": "tQf5zR9XIBUW8GxvxECPzQBtDxhJS48bsA+g6qoxVc2uHKRXMHC61iESs54F9O29MErlCFxqBwG7CYjBoyws8F+Al61AIEVTi2W1M9mHm2KW89MCQi2f1poChiGtp8DYjOQd/NHlSacDi9kWCtUqGB25QOijivw11AmMbM8jL1DNXQYLcWmDCA1nTkd74TjV8gNm7rMbKQjNQopKNdtMWWp56myIS6sJWHEq8fsxLY11vCfYQh7Z5pvfXERaoS/OglHCFl37+OoqKwKRRJD/bUkxzq1dIP7QLRpze4QMbal223wtjLpTbt1MZOp456pRPvgM4C1kV0JaqIpd5AYpIsqkSbYX9sYsKmG+zYDEb4OCdPycOBtGdYm5D/Zo3uvlcuksuHNDMkHoTPtC+fNy53Xlya3JjaNXwbo="
+      }
     },
-    casoe01: {
-      password: 'caro',
-      hint: 'Pista: apodo de cuatro letras.',
-      label: 'Archivo Cero · Caso E·01',
-      titulo: 'Rastro Perdido',
-      subtitle: '7 preguntas · Rastro Perdido',
-      preguntas: [
-        { texto: '¿Quién entró al departamento de Natalia la noche del 16 al 17 de abril?', opciones: ['Marcos, el ex voluntario, para "cerrar ciclos" con el refugio','Lucía, la veterinaria, para llevar a Albahaca a una revisión urgente','Caro, la adoptante, con la llave que nunca devolvió','Dante, el vecino, como represalia por las quejas ignoradas'], correcta: 'Caro, la adoptante, con la llave que nunca devolvió' },
-        { texto: '¿Por qué Caro quería ver a Albahaca?', opciones: ['Quería adoptarla ahora que Miel había muerto','Quería hablar con Natalia pero no se animaba a llamarla directamente','Necesitaba estar cerca de Albahaca para procesar el duelo por Miel','Quería demostrarle a Marcos que podía entrar sin ser descubierta'], correcta: 'Necesitaba estar cerca de Albahaca para procesar el duelo por Miel' },
-        { texto: '¿Qué rol tuvo Marcos en lo que pasó?', opciones: ['Podría decirse que ninguno — no sabía que Caro iba a llevarse a Albahaca.','Le prestó su llave a Caro para que pudiera entrar','Entró con Caro esa noche como acompañante','Le avisó a Caro sobre los horarios de Natalia para que no la cruzara'], correcta: 'Podría decirse que ninguno — no sabía que Caro iba a llevarse a Albahaca.' },
-        { texto: '¿Qué dice el mensaje cifrado del dorso de la tarjeta?', opciones: ['"FUE POR MIEL" — Caro explica en tres palabras por qué lo hizo','"FUE POR MIEL" — era un mensaje para Marcos justificando la decisión','"FUE POR MIEL" — Caro culpaba a la muerte de Miel de todo lo ocurrido','"FUE POR MIEL" — indicaba la dirección donde había que buscar a Albahaca'], correcta: '"FUE POR MIEL" — Caro explica en tres palabras por qué lo hizo' },
-        { texto: '¿Cómo escapó Albahaca del departamento de Caro?', opciones: ['Caro la llevó afuera intencionalmente para soltarla','Albahaca encontró una ventana abierta y saltó','Caro abrió la puerta un momento y Albahaca salió corriendo','Marcos entró a buscarla y Albahaca escapó cuando él abrió la puerta'], correcta: 'Caro abrió la puerta un momento y Albahaca salió corriendo' },
-        { texto: '¿En qué orden se reconstruye el recorrido de Albahaca esa noche?', opciones: ['Sale del edificio de Caro → kiosco Galván y Yerbal → florería Avellaneda → edificio de Santi','Sale del edificio de Caro → florería Avellaneda → kiosco Galván y Yerbal → edificio de Santi','Kiosco Galván y Yerbal → sale del edificio de Caro → florería Avellaneda → edificio de Santi','Sale del edificio de Caro → kiosco Galván y Yerbal → edificio de Santi → florería Avellaneda'], correcta: 'Sale del edificio de Caro → kiosco Galván y Yerbal → florería Avellaneda → edificio de Santi' },
-        { texto: '¿Cuáles son los tres datos que forman la respuesta final del caso?', opciones: ['MARCOS + FUE POR MIEL + ACFBEDG','CARO + YERBAL + ACFBDGE','MARCOS + YERBAL + ABCDEFG','CARO + FUE POR MIEL + ACFBEDG'], correcta: 'CARO + FUE POR MIEL + ACFBEDG' }
-      ],
-      resultadoOk: { label: 'Reconstrucción validada', body: 'Lograste conectar correctamente todos los registros.<br><br>La desaparición de Albahaca no fue un secuestro ni un abandono deliberado.<br>Fue el duelo de alguien que no encontró otra forma de transitarlo.<br><br>✓ Se identificó a la responsable del ingreso al departamento.<br>✓ Se verificó que no existió intención de abandono.<br>✓ Albahaca fue localizada sana y salva.', code: 'CARO · FUE POR MIEL · ACFBEDG' },
-      resultadoError: { label: 'Reconstrucción incompleta', body: 'Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar los testimonios y las evidencias antes de confirmar.', code: '' }
+    "casoe01": {
+      "hint": "Pista: apodo de cuatro letras.",
+      "label": "Archivo Cero® · Caso E·01",
+      "titulo": "Rastro Perdido",
+      "resultadoError": {
+        "label": "Reconstrucción incompleta",
+        "body": "Algunos datos no coinciden con los archivos recuperados.<br><br>Volvé a revisar los testimonios y las evidencias antes de confirmar.",
+        "code": ""
+      },
+      "salt": "P5uJjdUO/lU2WBtuSjympg==",
+      "gate": {
+        "iv": "cNd2vq3MTQm3F7iL",
+        "ct": "2xTqe24OrfXMzoYAu2+ucsEBZEwHrd9rtJ6jgoXREs41/8GCp3eJ8tk+TvNc27ciPQhpdoubmr4VNjA2OHP/Wz8XUFfBKGHgnTBE3WWGhXM7zO3Enw4RGAvLjis/Jjs0ZAuEo3ar8stzWzG5fIgocZYgACO3AYEXhHVSOihc34c3f8YKF39/qij5ScpIvfWdxIR/cJ5ksVmMhTjbw+qv6a5Gvw8iZwku2lWv/ihuTzSLk/T70VFi7WADFWUWjVBdp7JQN4DAGkrakgzYy+GIFXfCjB+N6K+qQtKEZ5Vemm+FXg5qbucZJ/4mbaOy4kQOBTl+6jH7P7mBVSdjQV8x+lPu/aSTyoGDCrdPJH+ikUVsmm2/jif4/af+2QOzBWu6HxC6eq63GxutKgaSTK//BCjiu5vOqK7MFEgXQTvb62byUrCHyO3N025Pji+C9aDE7z/VMI9UkR+UDV5B/Khjq7KWTstDIMHXB1phS0HTnL1lsaxy9n78K4inbqztzI37Iq4eHFwarw6vrGo0KoqPgeEZa1traMpXJ547z/9600iqwneUk6r7wJVGeTLWLEHW8zyuQd1KfvlIV3sIqY3zzV/H4nmQzuJLD5jxoouOBJjtdgEeGUO02qcZqbjY7L4DZlJ/SKhQwQdR7yBrkAuhw+iFQlHn/dmK9RWkPGQ/rzo6CDseX9JIX0CWW66rzFARIc6smWb/T8OBzLk/TOLXMhNSKwDRi7BEKQbyETMi/ry4EWjwdeJ5tdVNXD2iLFgnnETdILGdI2ucSDCx1KQFOMrt0KkOybPuCFJHrGQ+vPFRUDSGJhRj9czOJLTEMnM5QDk8iDFpp2eqw2aXq02rqw0HWOVJFD8PHb0cpyaAGEaAeMmIEgib+kRpu4r2/LouyF8mI9HNLgG0N8w+vz5dfUeEUDZBDeODJhuHniITSS92om4o6Jk4arue836lAZ4yOvnHwyzPod55CbcmKcmmszuc1c3B0vkdvA35i5OVVMEyJijjavf1G6seopethOsKH2GdRulyiFUqTJg53msXrTLn9NIUWuNsRyDen4iJpakPMVaF0oNjpFR826+QCLSMgg3uvp0CQsOovvdWu5Ye1Zq+K0fy4qgMAkWKDNZmzwuqSaxb8qgADJ0+O6NPHMs0NoLfAVh3gyieMyWgyNE3eCgQIDrtZXgl6BIK4YGCJzdCydtFuv0SkfactgphQuvunOKWeKwM4L07HchgKyXXqUfY0xIITqNnHwMk1MOPgdD1KduV8czOk4unlbi9c1/zOFpwlXNVNX8oLfiflB5C/uWxiTfAdRSnf9lEHsBU4NykQpc3n/Usxkjq5ChEdUEmVyItXl/ZqKHDL1ThfTKlqEyDF3ArxBqW1x9yoZNHvaaD0/ekM7yM3f4Fwww4ONcelPUvdoXcz5djvofslHkwf7qFQzVI/hzq+douDLkSp/wHaJAG/XgHjLiygFyznyGOVJ5W+/l66c7nDI0qphwff7Wgce5DXY4zldSDgQaBmEoOf7b6n16T//sixLhWpJyH3iTObmIkIOwaD7PJyB04LZOB8lKLWPtUwXhodC8NK0SJn5iznYyFt8T6m4Tp0eD9H4SBWFrU6FTfl8Xg4/AWpVb1+hTw0eXBJ08oX0lyLEIECJmrKZdtsQZX6UP0azDZCEbxlKQrRyTwC8PLsOIY9EBgNtUAw/qT63JmrNibZNPWToGt3VV3yPFBwAOyNVOafBf2hG7c+1nCzOYoXVo3kxmrQzyNzF0WnJbPgB4LQjSwAe7MmXKY0v8/JxESmglncD5UQrkuwGXm367MZZMpj6uSIa4GieR+ISMlSYRBjYFfN+6FtIdDE8RBWymVXW2iOCO7QPoLWtKLfD7+igNiAvJu/dS0coNNinlOK3yf32PYROKBBaA9qjCL6HHJwxsASOEkUwEej1FqoGe0Ca4AoQD93vbYuvcWNOII2cbgfVkVlXOPLwoVMnDmGhjtPvdPpNMMgkX5n15qUzIyPcoKHTKqVCBIYkAfQld8Bj3zttfGDHj7K1DixcuhwTWEVEH/g8y3k7MJ1K1uHRPuAdBHZZzyFRAZI2BQv/xz7+HTn2jcUYV3MbmqPx191Q/5u30x1TfoFVEdy9Fbt/ih2p58Sys+01EJldCpF6lhSq2aYw7lkc1L3tPVhURIDNGQvgZdpwKlEBnR8Z+0rMXi4atrTPZ+leMPVzDVNxe/SS8n4gTwYu2iTRgvNxOnKgAS8PWkOs+bWfvgmbILflQ+3tQUtcAogSYcdWn7HsocEqUlxCFaQLs/uQW4sAubIAbYhvThJDAW3CCtDGpt+R9nX2moK/QiyGbvvaHNOaT1h1kwjJ6JllA8TquCfE28vGdMgiJCs8qtBFXd520/dXm/ReNZ9MHNV6s4Df3XeNrkoE9TdWGdnleBKXssHxdJtXJ9BNXvkFPg/DpXMKOYmZQgrRolfk4Fqj2w0aL0twHF229jkU4iVb3kXtK+sT6QXE2YGRw/KY4xAf02TylwfeBSRy5ePb10oIQK13nC176zo0aZSpB6c0Gw5oK2bRS5Thh+gO3sogL0eErlXz5RzNxe2lOFKOCv+opYR/Ks9OUM8crVpw/fbi7clAHRFbURlZsLfDVVb+hyFTdoK+vbwVwmRDxdN8KCvoLz9NRmtNPhKpReLcW0e072vhOmRO5SWJTu/D/Azp7YagHNT41/3R0D03HQJXhSQxRYjWmMHTYGJuXbxK+7TLr+ZVa093ADLpa0swyz5+EzhYk5ED/Yikbw2tQKDBILCMGzdI//s70LVEb0PH5IpW4wlZCYeF8wxow4oWFgFZO6Lk7BXJjWJmMiJ+0fM5wPnvcsvzhMU4EVZbTVPbanAiTb1JmS7H+s7tcZHdwzhjGpqqRevzdIZ25TP2mIsKLidd3bkZOVZCoDA3E3TbM7pxFTP9IHFhqJbKNAjNQsCwoGEaIIEk1pon5yT3JYo7Zlheqh3n1Y4t35j7gwIrckiA6EyaDjSkAaDVf7EQlT9+Kx7tm/z69ma5xVB5Zb/WxGM5JGoT7bAJ0XwvZ5qqHB1Egs6hvWNlCrMKLN9tky9GC40gb7tFlumLgrGv98uwP5GrmLYwKzjqi45lHuuqBpgHZo5VyQqfjV4CkgXKWZN8leLNKnNuUPyNRjv74esYls5mL2CHBBpXHVJIBAYOT9XgxCd1KMsACbX3nId09NbeG7trwRdtwgJUNsEWjAeIWfixpOebqBRRcYExxHMoeHv9tsOqbnCr+kHvxg65Jx6rjFnsiIe+Y27OmjDIP/ctZRdgf68YO7rnVkr6UJPWQX2i7q0rGSAbQ="
+      },
+      "ok": {
+        "iv": "ELCoNIh6cWBD/kyo",
+        "ct": "2SDsBh35WD0hbMDRbqmzE1zoJsx+M2tyqB6ivBe38UCE7IrDQAZJ+aOYRX+FC0MslL2c7JOCH+m3A9dMxIlXL/G6aqI0bS4DUqvwOIwkRDvmy4gBm1GqE8XqrTeyrNySWP942GTNeGnX4+3atkX2okAHnIyR2mijTFuTnGVkyR9+tkINMfFwtKQnwqeRLcshtvljI5KdyUx0xhEoyHwdjWcTUZ/unAMaqTDLsOlAK4eOEtzcKwMgRcyK9gtb2+48Vle6jbkiqDirwUZY9eMOgljf6+QPPrv1msw0Djl5k8CiQR2SbkJnP5lKIsxdw/o2qRBTtNALJRAHqx7HEV0wViuJa8yssc651UUztrJHmO4Z4Y7RLDozbOquiY7BzK+5+S2tQFscZrbrLqOHMU+/R/a2w3aFnzFBhjl89h0Ey4fAFgrQAvEn49kfbgwV4JQqXGSW3mrRf/s44wNc9jYL9cib1raEsPjkG+o+/B2YSfi+eueuJLTaIpYQ+5mb8p8q/nGHhdFHLI3JOwlgrjtLlOUCqGi86TSdJzFfItDOSbOE34yW3VDlDaEVokZz0qaAFG4i45uTJGbSsVAAw85mamoPvN9I5fRaAhrtzhALZPgBahc3SwA0MPcYVfkTxRnDo+NKp3ex"
+      }
     },
-    casoc01: {
-      password: 'CAPILLADELMONTE',
-      hint: 'Pista: el lugar donde se ancló la coordenada (sin espacios).',
-      label: 'Archivo Cero · Caso C·01',
-      titulo: 'El Último Backup',
-      subtitle: '7 preguntas · Reconstrucción del evento',
-      preguntas: [
-        { texto: '¿Qué pasó con Greta?', opciones: ['Desaparición voluntaria','Episodio psicótico','Secuestro','Desplazamiento lateral'], correcta: 'Desplazamiento lateral' },
-        { texto: '¿A dónde fue?', opciones: ['A otro año','A otra ciudad','A otra línea temporal','A la montaña'], correcta: 'A otra línea temporal' },
-        { texto: '¿Cuándo ocurrió?', opciones: ['15/10','15/11','11/10','11/11'], correcta: '11/11' },
-        { texto: '¿Por qué pudo hacerlo?', opciones: ['Porque dejó la medicación','Porque perdió contacto con la realidad','Porque alguien la ayudó','Porque el experimento falló'], correcta: 'Porque dejó la medicación' },
-        { texto: '¿Dónde se ancló la coordenada?', opciones: ['Villa de Merlo','San Marcos Sierras','Capilla del Monte','El Bolsón'], correcta: 'Capilla del Monte' },
-        { texto: '¿Qué era realmente el "último backup"?', opciones: ['Una despedida','Una prueba psiquiátrica','Un respaldo de datos','Un mensaje para ser entendido solo si funcionaba'], correcta: 'Un mensaje para ser entendido solo si funcionaba' },
-        { texto: '¿Greta está viva?', opciones: ['Sí','No','No en esta línea','No podemos saberlo'], correcta: 'No en esta línea' }
-      ],
-      resultadoOk: { label: 'Reconstrucción validada', body: 'Lograste interpretar correctamente el backup.<br><br>No fue una desaparición, fue un desplazamiento intencional.<br><br>Greta no está perdida.<br>Está donde siempre sintió pertenecer.<br><br><em>Y ahora vos también entendés.<br>Gracias por ayudarla a confirmar que su experimento fue un éxito.</em>', code: '' },
-      resultadoError: { label: 'Secuencia incompleta', body: 'Algunos datos no coinciden.<br><br>Volvé a revisar los registros.', code: '' }
+    "casoc01": {
+      "hint": "Pista: el lugar donde se ancló la coordenada (sin espacios).",
+      "label": "Archivo Cero® · Caso C·01",
+      "titulo": "El Último Backup",
+      "resultadoError": {
+        "label": "Secuencia incompleta",
+        "body": "Algunos datos no coinciden.<br><br>Volvé a revisar los registros.",
+        "code": ""
+      },
+      "salt": "o666L4GSFiRdAzrU+JK7tg==",
+      "gate": {
+        "iv": "CV+WVzBSZuFfg/Oa",
+        "ct": "dzNmiTDp0j/w7/XZwsPYB0jjyN5+E1D5MF4LiFjGAuqOAdO0XAT9YKJ9JRtL7FDPIrrk/7IkfWKv3KUixpJT7HBmiTexsKLnkNvjS5C6B8yZoDl3N/3dInn6QPsjVGv3ionhLz5ubDhVV67JqHBGX6Mc5tEPmk25NsAtAUlMaU+aPd/X+A06cdEucWtlWDRV0UOL9l7kxfy0S0P2wXP5gMfyaUU1BD1HwnWE+ZgiYvFUb2NHTP8KjOza2VH36kHWiLhGZqA2ehHvuWpu5DRS6SDtpD1WY6JH9zlZ5vK9nhchN3RRAwzDL3gGawxE4L3AuPw0DQA+p7TZnwL+nTpJ3wlg+HafKdTWmgPW4VGixv7KOXXn/KldOVQ0LLjk7UsU+9QnjO8A4BZvHzEF1W+sYcR0nlEjWTUJDsFeMtJ3xM17JoUojp32Uj7yEL7pU3+UrwRhaTb4X746tOVpVYQ+BW4RqNgAL4lVL73eI6gIfR56T9zpLHnfUH923bN6YJz+DX8Yol2XomTPUT0RWiwQ4Xr9NZagsuSFiEErtqZWofIae0DOI7hC6jdaoBdw1E2vzQcBaCYe8U9Gd2++q8uFOH1mDmTPhMojyWueJxDxMobj8CqrVTKhVjQbZxmnwgJQrJQY5KMI+BvVStuPcHK0GzpYHW2n7g7HEUsTpJeMSaLX9JDTedYbv1KC8sxD0DZWX63mTACCbQqKSipracnb12703TiX4drZ+7chP886JSdVVhAGzLL03fdU0ei5lvgJd/o9efyrwEUqg6LlB+DqtX+ba0kwp5ynaoQ9BfCh1wsx5MH9iotpdFPiHs80aRjg6K0iPbsPyOPT5f9vtRucSuAvmXBioMaQXL/jpjfx5Q3b/5ySHJhGc+GA+iiXlKlcsnMVsTgbi44ljYXwLhiV64/M76JdCS1mY2t7hX1nMn6p/44YHTs3FjMxVvBjMJFLX2dWD2Md4CrHFkOmPADbAmi/lAadd+LwTbQAnFfHidjIbLwTiuhbFXL6JH/FpnkD12Qw2TTPESpbBcgRWOiUjWBo0jL9xTJ0bxaRV8EymZanq5Jd3ANjzbKnwmEp8kdLOOkqdTTuk1bvjsYbewYUBt9wUTegiFb2Tc1AxX6bCkghipY8aBt36jV9f82YrxLUJeDcCT3/v6zcuIRbGU8Wg3ovdllGx3yfOOZUZsZnC6FzsI+U9k4x6sraTHiaqLtsaOpLOFehyBC02Oq/Ec254s+gesP9GnC85P3zONzRESYJpe/Bz8u5/Q9rg3jCfxIBfAJuNKKlkN9+IyHod0bKaeXI/4C40X3mg/Zzsh/yVC1AT0mwIjmpGQDquw=="
+      },
+      "ok": {
+        "iv": "4n0QHSapcMgb7FM/",
+        "ct": "RHsk9WK6pvBtrYRCwuavXOt+ZCWPOg8N5GRE+OEg4xZRhP45QuckQf9Yrap1+2NuxkTNEUp+jpXzhlD91I6NKQBL1QWkMwp0EtSH40PZoRv4uTG26pi6RcpkuEAGKbn7WJ2bdojC8Pm7nx+1yWNOrIXEmg0iWJuSoKWBS87FU/xo/IdfY3UX5W7hDYw/ubilCmlQdKM9BCBMYzsJRzFkDjosuS35I31tQ1cquFpGyie7foJOIRCRyr/hWlaodBHQBRclrNVpJGujicq1Ajh9LspM0Ix+Cn3b2XSyDsAsTukVoQ+egT4wVnaiP6QOUwN9WTiMYNhErH115IfFcMBOkXYo5bhQ0eEBHyZF5+un0qnu+6YnoVl/RDiUbvc1OSRCo7f2TgkqOXHgAHWYQb0gGdL3oG/fha6End2vM+zoXsRodWxQil6paFHU+QmvDx7GL2zKbsXDft5P5QLNJBM9BSqRTJ3KHcSPYus/ukg5TB/12lfHmd6L21k="
+      }
     }
   };
 
+  // Las preguntas y el resultado de cada caso están cifrados:
+  // las preguntas se abren con el código del caso y el resultado final
+  // solo con la combinación correcta de respuestas. Nada se lee desde el código fuente.
   let casoActivo = null;
+  let casoPreguntas = null;
+
+  function acB64(s) { return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
+  async function acAbrir(secreto, caso, sobre) {
+    // Devuelve el contenido descifrado, o null si el secreto no es el correcto
+    try {
+      const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(secreto), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: acB64(caso.salt), iterations: 60000, hash: 'SHA-256' },
+        km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      const plano = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: acB64(sobre.iv) }, key, acB64(sobre.ct));
+      return JSON.parse(new TextDecoder().decode(plano));
+    } catch (e) { return null; }
+  }
 
   function seleccionarCaso(id) {
     casoActivo = id;
+    casoPreguntas = null;
     const caso = CASOS_DATA[id];
     document.getElementById('val-selector').style.display = 'none';
     document.getElementById('val-gate').style.display = 'block';
     document.getElementById('val-gate-label').textContent = caso.label;
     document.getElementById('val-gate-titulo').textContent = caso.titulo;
     document.getElementById('val-input').value = '';
-    const hint = caso.hint || '';
     const hintEl = document.getElementById('val-hint');
-    if (hintEl) hintEl.textContent = hint;
+    if (hintEl) hintEl.textContent = caso.hint || '';
     document.getElementById('val-error').textContent = '';
     document.getElementById('val-preguntas').style.display = 'none';
     document.getElementById('val-resultado').style.display = 'none';
+    document.getElementById('val-input').focus();
   }
 
   function volverSelector() {
     casoActivo = null;
+    casoPreguntas = null;
     document.getElementById('val-selector').style.display = 'block';
     document.getElementById('val-gate').style.display = 'none';
     document.getElementById('val-preguntas').style.display = 'none';
   }
 
-  function validarAcceso() {
-    const input = document.getElementById('val-input').value.trim().toLowerCase();
-    const password = CASOS_DATA[casoActivo].password.toLowerCase();
-    if (input === password) {
+  async function validarAcceso() {
+    const id = casoActivo;
+    if (!id) return;
+    const inputEl = document.getElementById('val-input');
+    const errorEl = document.getElementById('val-error');
+    if (!window.crypto || !crypto.subtle) {
+      errorEl.textContent = '// No se puede validar desde esta dirección. Entrá por https://archivo0.com.ar';
+      return;
+    }
+    const input = inputEl.value.trim().toLowerCase();
+    const datos = input ? await acAbrir(id + ':' + input, CASOS_DATA[id], CASOS_DATA[id].gate) : null;
+    if (casoActivo !== id) return;
+    if (datos) {
+      casoPreguntas = datos;
+      errorEl.textContent = '';
       document.getElementById('val-gate').style.display = 'none';
       mostrarPreguntas();
     } else {
-      document.getElementById('val-error').textContent = '// Código incorrecto. Revisá el caso.';
-      document.getElementById('val-input').style.borderColor = 'rgba(248,113,113,0.5)';
-      setTimeout(() => { document.getElementById('val-input').style.borderColor = ''; }, 1500);
+      errorEl.textContent = '// Código incorrecto. Revisá el caso.';
+      inputEl.style.borderColor = 'rgba(248,113,113,0.5)';
+      setTimeout(() => { inputEl.style.borderColor = ''; }, 1500);
     }
   }
 
   function mostrarPreguntas() {
     const caso = CASOS_DATA[casoActivo];
     document.getElementById('val-preg-label').textContent = caso.label;
-    document.getElementById('val-preg-subtitle').textContent = caso.subtitle;
+    document.getElementById('val-preg-subtitle').textContent = casoPreguntas.subtitle;
     const container = document.getElementById('val-questions-container');
-    container.innerHTML = caso.preguntas.map((p, i) => `
+    container.innerHTML = casoPreguntas.preguntas.map((p, i) => `
       <div class="val-q">
         <span class="val-q-num">// ${String(i+1).padStart(2,'0')}</span>
-        <p class="val-q-text">${p.texto}</p>
+        <p class="val-q-text" id="vqt${i}">${p.texto}</p>
         <div class="val-select-wrap">
-          <select id="vq${i}" class="val-select">
+          <select id="vq${i}" class="val-select" aria-labelledby="vqt${i}">
             <option value="">Seleccionar</option>
-            ${p.opciones.map(o => `<option value="${o.replace(/"/g, '&quot;')}">${o}</option>`).join('')}
+            ${p.opciones.map((o, j) => `<option value="${j}">${o}</option>`).join('')}
           </select>
         </div>
       </div>
     `).join('');
     document.getElementById('val-resultado').style.display = 'none';
     document.getElementById('val-preguntas').style.display = 'block';
-    document.getElementById('val-preguntas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('val-preguntas').scrollIntoView({ behavior: acScroll(), block: 'start' });
   }
 
-  function validarRespuestas() {
-    const caso = CASOS_DATA[casoActivo];
-    const todas = caso.preguntas.every((p, i) => {
+  async function validarRespuestas() {
+    const id = casoActivo;
+    if (!id || !casoPreguntas) return;
+    const caso = CASOS_DATA[id];
+    const elegidas = casoPreguntas.preguntas.map((p, i) => {
       const sel = document.getElementById('vq' + i);
-      return sel && sel.value === p.correcta;
+      return sel ? sel.value : '';
     });
+    const completas = elegidas.every(v => v !== '');
+    const ok = completas ? await acAbrir(id + ':' + elegidas.join(','), caso, caso.ok) : null;
+    if (casoActivo !== id) return;
     const res = document.getElementById('val-resultado');
-    const data = todas ? caso.resultadoOk : caso.resultadoError;
-    res.className = 'val-resultado ' + (todas ? 'ok' : 'error');
+    const data = ok || caso.resultadoError;
+    res.className = 'val-resultado ' + (ok ? 'ok' : 'error');
     document.getElementById('val-result-label').textContent = data.label;
     document.getElementById('val-result-body').innerHTML = data.body;
     document.getElementById('val-result-code').textContent = data.code;
     res.style.display = 'block';
-    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    res.scrollIntoView({ behavior: acScroll(), block: 'start' });
   }
   // ═══ FIN VALIDACIÓN ═══
 </script>
@@ -4967,6 +4038,14 @@ function splashActivate() {
   }
   splashActivated = true;
 
+  // Con "reducir movimiento" activado: sin animación de tipeo, directo al botón.
+  if (AC_REDUCE) {
+    const tap = document.getElementById('splashTap');
+    if (tap) tap.classList.add('hidden');
+    splashShowEnterBtn();
+    return;
+  }
+
   // Red de seguridad: pase lo que pase (audio bloqueado, tab en segundo plano, error inesperado),
   // a los 5s como máximo mostramos el botón para entrar.
   splashSafetyTimer = setTimeout(splashShowEnterBtn, 5000);
@@ -5033,8 +4112,11 @@ function splashActivate() {
   }
 }
 
+function splashVista() { try { sessionStorage.setItem('acIntroVista', '1'); } catch (e) {} }
+
 function splashEnter(e) {
   e.stopPropagation();
+  splashVista();
   playEnterSound();
   const splash = document.getElementById('splash');
   if (splashSafetyTimer) { clearTimeout(splashSafetyTimer); splashSafetyTimer = null; }
@@ -5051,6 +4133,7 @@ function splashEnter(e) {
 // para que nadie quede trabado si algo falla.
 function splashSkip(e) {
   if (e) e.stopPropagation();
+  splashVista();
   if (splashSafetyTimer) { clearTimeout(splashSafetyTimer); splashSafetyTimer = null; }
   const splash = document.getElementById('splash');
   if (splash) {
@@ -5061,7 +4144,7 @@ function splashSkip(e) {
 }
 
 // Bloquear scroll mientras el splash está activo
-document.body.style.overflow = 'hidden';
+if (!document.documentElement.classList.contains('sin-intro')) document.body.style.overflow = 'hidden';
 // Permitir scroll cuando se cierre
 document.getElementById('splash').addEventListener('transitionend', function() {
   if (this.classList.contains('hiding')) document.body.style.overflow = '';
@@ -5098,6 +4181,7 @@ function casoCarruselInit(id) {
       slides.forEach((_, i) => {
         const d = document.createElement('button');
         d.className = 'casos-carrusel-dot' + (i === prevIndex ? ' active' : '');
+        d.setAttribute('aria-label', 'Ir al caso ' + (i + 1) + ' de ' + total);
         d.onclick = () => casoGoTo(id, i);
         dotsEl.appendChild(d);
       });
@@ -5131,6 +4215,15 @@ function casoUpdateBtns(id) {
     btn.disabled = isNext ? s.index === s.total - 1 : s.index === 0;
   });
 }
+// Abre la sección Casos directamente en la ficha pedida
+function verCaso(carruselId, indice, cardId) {
+  showSection('casos');
+  const card = document.getElementById(cardId);
+  const item = card && card.closest('.caso-faq-item');
+  if (item && !item.classList.contains('open')) toggleCasoFaq(item.querySelector('.caso-faq-question'));
+  casoGoTo(carruselId, indice);
+  setTimeout(() => { if (card) card.scrollIntoView({ behavior: acScroll(), block: 'center' }); }, 350);
+}
 // Touch swipe para carrusel en mobile
 function initSwipe(trackId, casoId) {
   const track = document.getElementById(trackId);
@@ -5150,31 +4243,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Spotify teaser toggle
-// Modal Tienda Nube
-function abrirModalTN() {
-  document.getElementById('modal-tn').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  // Detectar si el iframe fue bloqueado
-  const iframe = document.getElementById('tn-iframe');
-  iframe.onerror = mostrarFallbackTN;
-  setTimeout(() => {
-    try {
-      if (!iframe.contentDocument && !iframe.contentWindow.location.href) mostrarFallbackTN();
-    } catch(e) {
-      // Si tira error de cross-origin, el iframe SÍ cargó (TN lo permite)
-    }
-  }, 3000);
-}
-function cerrarModalTN() {
-  document.getElementById('modal-tn').classList.remove('open');
-  document.body.style.overflow = '';
-  document.getElementById('tn-iframe').src = document.getElementById('tn-iframe').src;
-}
-function mostrarFallbackTN() {
-  document.getElementById('tn-iframe').style.display = 'none';
-  document.getElementById('tn-fallback').style.display = 'block';
-}
-
 function toggleSpotify(id) {
   const el = document.getElementById(id);
   if (!el) return;
