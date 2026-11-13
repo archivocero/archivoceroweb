@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIVO_CERO // CASO INTERACTIVO B — La Donante Anónima</title>
+<meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -925,7 +926,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div class="inf-nota">Conclusión forense: La muerte no puede descartarse como provocada. Se investiga intoxicación por sobredosis crónica de Digoxina. La acumulación del fármaco es consistente con administración sostenida de dosis elevadas en los días previos al fallecimiento.</div>
     </div>
   </div>
-<div class="x2-box"><div>Digoxina · mg por día (fuente: historia clínica)</div><svg viewBox="0 0 300 150" style="width:100%;margin-top:6px" role="img"><title>Dosis de digoxina: habitual, ajuste del 29 de septiembre y dosis compatible con el nivel hallado</title><g font-family="monospace" font-size="10" fill="#8aab90"><rect x="30" y="127" width="60" height="23" fill="#8aab90"/><text x="38" y="122">0,25</text><rect x="120" y="116" width="60" height="34" fill="#e8a830"/><text x="128" y="111">0,375</text><rect x="210" y="82" width="60" height="68" fill="#c82020"/><rect x="210" y="59" width="60" height="23" fill="#c82020" opacity=".45"/><text x="206" y="54">0,75 – 1,0</text><line x1="20" y1="116" x2="285" y2="116" stroke="#e8a830" stroke-dasharray="4 3"/><text x="22" y="143" font-size="9">habitual</text><text x="110" y="143" font-size="9">ajuste 29/9</text><text x="196" y="143" font-size="9">compatible con 3,8 ng/mL</text></g></svg><div style="margin-top:6px">La línea punteada marca lo prescripto el 29 de septiembre. El nivel hallado corresponde a una dosis muy superior.</div></div></div>
+<div class="x2-box"><div>Digoxina · mg por día (fuente: historia clínica)</div><svg viewBox="0 0 300 150" style="width:100%;margin-top:6px" role="img"><title>Dosis de digoxina: habitual, ajuste del 29 de septiembre y dosis compatible con el nivel hallado</title>
+<meta name="robots" content="noindex, nofollow"><g font-family="monospace" font-size="10" fill="#8aab90"><rect x="30" y="127" width="60" height="23" fill="#8aab90"/><text x="38" y="122">0,25</text><rect x="120" y="116" width="60" height="34" fill="#e8a830"/><text x="128" y="111">0,375</text><rect x="210" y="82" width="60" height="68" fill="#c82020"/><rect x="210" y="59" width="60" height="23" fill="#c82020" opacity=".45"/><text x="206" y="54">0,75 – 1,0</text><line x1="20" y1="116" x2="285" y2="116" stroke="#e8a830" stroke-dasharray="4 3"/><text x="22" y="143" font-size="9">habitual</text><text x="110" y="143" font-size="9">ajuste 29/9</text><text x="196" y="143" font-size="9">compatible con 3,8 ng/mL</text></g></svg><div style="margin-top:6px">La línea punteada marca lo prescripto el 29 de septiembre. El nivel hallado corresponde a una dosis muy superior.</div></div></div>
 
 <!-- NOTA NORA -->
 <div class="page" id="page-nota-nora">
@@ -1229,7 +1231,12 @@ function go(id){
 function toggleSB(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('open')}
 
 // ═══ ENIGMAS ═══
-const ENIGMAS={1:'BARNIZ',2:'COPIA'};
+// Las respuestas no se guardan en texto: solo su huella (SHA-256 con sal).
+function acSha(ascii){function rr(v,a){return(v>>>a)|(v<<(32-a))}var mp=Math.pow,mw=mp(2,32),i,j,result='',words=[],bl=ascii.length*8,hash=acSha.h=acSha.h||[],k=acSha.k=acSha.k||[],pc=k.length,comp={};for(var c=2;pc<64;c++){if(!comp[c]){for(i=0;i<313;i+=c){comp[i]=c}hash[pc]=(mp(c,.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0}}ascii+='\x80';while(ascii.length%64-56)ascii+='\x00';for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);if(j>>8)return'';words[i>>2]|=j<<((3-i)%4)*8}words[words.length]=((bl/mw)|0);words[words.length]=(bl);for(j=0;j<words.length;){var w=words.slice(j,j+=16),old=hash;hash=hash.slice(0,8);for(i=0;i<64;i++){var w15=w[i-15],w2=w[i-2],a=hash[0],e=hash[4];var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0}for(i=0;i<8;i++){hash[i]=(hash[i]+old[i])|0}}for(i=0;i<8;i++){for(j=3;j+1;j--){var b=(hash[i]>>j*8)&255;result+=((b<16)?0:'')+b.toString(16)}}return result}
+function acH(s){try{return acSha(unescape(encodeURIComponent(String(s)))).slice(0,20)}catch(e){return''}}
+function acOk(lista,val){var h=acH(AC_S+val);return !!h&&!!lista&&lista.indexOf(h)>-1}
+const AC_S='8a7cb5b070378df2';
+const ENIGMAS={1:['6e181d25f0b199509019'],2:['ea6e73ed9c5f7771aa65']};
 let unlocked={1:false,2:false};
 
 function checkE(n){
@@ -1237,7 +1244,7 @@ function checkE(n){
   let val='';
   for(const id of ids){const el=document.getElementById(id);if(el&&el.value.trim())val=el.value.trim()}
   val=val.toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  const ok=val===ENIGMAS[n];
+  const ok=acOk(ENIGMAS[n],val);
   const msgIds=['e'+n+'sbmsg','e'+n+'pagemsg'];
   msgIds.forEach(id=>{const el=document.getElementById(id);if(el){el.className='enigma-msg '+(ok?'ok':'err');el.textContent=ok?'✓ Correcto — Carpeta '+(n+1)+' desbloqueada.':'✗ Incorrecto. Revisá los documentos.';el.style.display='block'}});
   ids.forEach(id=>{const el=document.getElementById(id);if(el)el.value=val});
@@ -1266,13 +1273,12 @@ function unlock3(){
 }
 
 // ═══ VALIDACIÓN ═══
-const ANSWERS={1:'DRAULT',2:'SUSTITUCION',3:'PERICIA'};
-const ALT={2:['SUSTITUCIONES','SUSTITUIR','SUSTITUIDA','SUSTITUIDAS','COPIA','COPIAS','FALSIFICACION','FALSIFICACIONES','FALSIFICAR','CAMBIO','CAMBIAZO','REEMPLAZO','REEMPLAZAR','SUPLANTACION']};
+const ANSWERS={1:['3fa462667deb9ff2ade4'],2:['970ed162091da5effc35','bd993c3f9bed94b33646','e53cf9035909d64f2190','2056b84a1f54d4c2e2dc','e15cc8f941fac70bdf2f','ea6e73ed9c5f7771aa65','c3c11b36dd8f8df87749','74b5622e1b8bd092ca1a','478b32baf2580e63686e','77670b52134ca1c39be1','d0d1ef6a20ea9c42c934','5b38afb451924f5dbf05','90f0ca38bc9d51ce6a98','3b12a2ba7504b4aa56b2','c93e65504cd5dec1c511'],3:['709cb43f13a9d6761856']};
 const correct={1:false,2:false,3:false};
 function checkV(n){
   const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const fb=document.getElementById('f'+n);
-  if(val===ANSWERS[n]||(ALT[n]||[]).indexOf(val)>-1){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
+  if(acOk(ANSWERS[n],val)){correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';document.getElementById('v'+n).style.borderColor='var(--green-dim)';if(correct[1]&&correct[2]&&correct[3])document.getElementById('submitWrap').classList.add('show')}
   else{fb.className='val-fb err';fb.textContent='✗ No es correcto.'}
 }
 function cerrarCaso(){
@@ -1489,7 +1495,7 @@ function openEnigmaModal(n){
 function closeEnigmaModal(){document.getElementById('enigmaModal').style.display='none'}
 function submitEnigmaModal(){
   const val=document.getElementById('enigmaModalInput').value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=val===ENIGMAS[currentEnigmaN];
+  const ok=acOk(ENIGMAS[currentEnigmaN],val);
   const msg=document.getElementById('enigmaModalMsg');msg.style.display='block';
   if(ok){msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--green);background:var(--green-muted);border:1px solid var(--green-dim);margin-bottom:10px';msg.textContent='✓ Correcto — Carpeta '+(currentEnigmaN+1)+' desbloqueada.';if(!unlocked[currentEnigmaN]){unlocked[currentEnigmaN]=true;currentEnigmaN===1?unlock2():unlock3();saveState()}setTimeout(closeEnigmaModal,1200)}
   else{msg.style.cssText='display:block;font-size:11px;padding:7px 10px;color:var(--red);background:var(--red-muted);border:1px solid #4a1a1a;margin-bottom:10px';msg.textContent='✗ Incorrecto. Revisá los documentos.'}

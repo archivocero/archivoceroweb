@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIVO_CERO // CASO INTERACTIVO A — La Última Firma</title>
+<meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1394,13 +1395,18 @@ function markVisitedInSidebar(id){
 function toggleSB(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('open')}
 
 // ═══ ENIGMAS ═══
-const ENIGMAS={1:'MEDICACION',2:'MENTIRA'};
+// Las respuestas no se guardan en texto: solo su huella (SHA-256 con sal).
+function acSha(ascii){function rr(v,a){return(v>>>a)|(v<<(32-a))}var mp=Math.pow,mw=mp(2,32),i,j,result='',words=[],bl=ascii.length*8,hash=acSha.h=acSha.h||[],k=acSha.k=acSha.k||[],pc=k.length,comp={};for(var c=2;pc<64;c++){if(!comp[c]){for(i=0;i<313;i+=c){comp[i]=c}hash[pc]=(mp(c,.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0}}ascii+='\x80';while(ascii.length%64-56)ascii+='\x00';for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);if(j>>8)return'';words[i>>2]|=j<<((3-i)%4)*8}words[words.length]=((bl/mw)|0);words[words.length]=(bl);for(j=0;j<words.length;){var w=words.slice(j,j+=16),old=hash;hash=hash.slice(0,8);for(i=0;i<64;i++){var w15=w[i-15],w2=w[i-2],a=hash[0],e=hash[4];var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0}for(i=0;i<8;i++){hash[i]=(hash[i]+old[i])|0}}for(i=0;i<8;i++){for(j=3;j+1;j--){var b=(hash[i]>>j*8)&255;result+=((b<16)?0:'')+b.toString(16)}}return result}
+function acH(s){try{return acSha(unescape(encodeURIComponent(String(s)))).slice(0,20)}catch(e){return''}}
+function acOk(lista,val){var h=acH(AC_S+val);return !!h&&!!lista&&lista.indexOf(h)>-1}
+const AC_S='7910a4ea0429b558';
+const ENIGMAS={1:['9e95e94280f650285b58'],2:['a2db04eb9e051c2165f5']};
 let unlocked={1:false,2:false};
 
 function checkE(n){
   const il=document.getElementById('e'+n+'inline');
   const val=(il?il.value:'').trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=val===ENIGMAS[n];
+  const ok=acOk(ENIGMAS[n],val);
   const ilm=document.getElementById('e'+n+'msg');
   if(ilm){ilm.className='enigma-msg '+(ok?'ok':'err');ilm.textContent=ok?'✓ Correcto — usá el menú izquierdo para continuar.':'✗ Incorrecto. Revisá los documentos.'}
   if(ok&&!unlocked[n]){unlocked[n]=true;n===1?unlock2():unlock3();saveState()}
@@ -1429,7 +1435,7 @@ function closeEnigmaModal(){
 }
 function submitEnigmaModal(){
   const val=document.getElementById('enigmaModalInput').value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=val===ENIGMAS[currentEnigmaN];
+  const ok=acOk(ENIGMAS[currentEnigmaN],val);
   const msg=document.getElementById('enigmaModalMsg');
   msg.style.display='block';
   if(ok){
@@ -1476,12 +1482,12 @@ function unlock3(){
 }
 
 // ═══ VALIDACIÓN ═══
-const ANSWERS={1:'CECILIA',2:'MEDICACION',3:'EXCLUSION'};
+const ANSWERS={1:['d592484deecdd4ebe78a'],2:['9e95e94280f650285b58'],3:['5a4b87ee6c78e2cf1c0e']};
 const correct={1:false,2:false,3:false};
 function checkV(n){
   const val=document.getElementById('v'+n).value.trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   const fb=document.getElementById('f'+n);
-  if(val===ANSWERS[n]){
+  if(acOk(ANSWERS[n],val)){
     correct[n]=true;fb.className='val-fb ok';fb.textContent='✓ Correcto.';
     document.getElementById('v'+n).style.borderColor='var(--green-dim)';
     if(correct[1]&&correct[2]&&correct[3]){
