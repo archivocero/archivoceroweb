@@ -849,7 +849,6 @@
   .que-es-lead { font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.55); max-width: 58ch; margin-bottom: 4rem; }
   .que-es-lead strong { color: var(--paper); }
   /* ── FEATURES ROWS (¿Qué es?) ── */
-  .features-cols-desktop { display: none; }
   .features-rows {
     border: 1px solid rgba(192,57,43,0.25);
     margin-bottom: 4rem;
@@ -1148,40 +1147,14 @@
       padding-right: clamp(3rem, 6vw, 8rem);
     }
 
-    /* QUÉ ES — título arriba, features en 3 columnas */
-    #view-que-es .features-rows { display: none; }
-    #view-que-es .features-cols-desktop {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid rgba(192,57,43,0.25);
-      margin-bottom: 4rem;
-      box-shadow: 0 0 0 1px rgba(192,57,43,0.08), 0 4px 32px rgba(0,0,0,0.3);
-    }
-    .feature-col-desk {
-      padding: 2.5rem 2.2rem;
-      border-right: 1px solid rgba(192,57,43,0.15);
-      position: relative; overflow: hidden;
-      transition: background 0.3s;
-    }
-    .feature-col-desk::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(to right, var(--red), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .feature-col-desk:hover { background: rgba(192,57,43,0.04); }
-    .feature-col-desk:hover::before { opacity: 1; }
-    .feature-col-desk:last-child { border-right: none; }
-    .feature-col-desk h3 {
-      font-family: "Bebas Neue", cursive; font-size: 1.55rem;
-      letter-spacing: 0.04em; color: var(--paper);
-      margin: 0.6rem 0 1.1rem; line-height: 1;
-    }
-    .feature-col-desk p {
-      font-size: 0.9rem; line-height: 1.85;
-      color: rgba(240,236,224,0.65); margin-bottom: 1.2rem;
-    }
-
+    /* QUÉ ES — un solo bloque: en escritorio se muestra en 3 columnas */
+    #view-que-es .features-rows { display: grid; grid-template-columns: repeat(3, 1fr); }
+    #view-que-es .feature-row { display: block; border-bottom: none; border-right: 1px solid rgba(192,57,43,0.15); }
+    #view-que-es .feature-row:last-child { border-right: none; }
+    #view-que-es .feature-row::before { top: 0; left: 0; right: 0; bottom: auto; width: auto; height: 2px; background: linear-gradient(to right, var(--red), transparent); }
+    #view-que-es .feature-row-left { border-right: none; padding: 2.5rem 2.2rem 1.1rem; }
+    #view-que-es .feature-row-right { padding: 0 2.2rem 2.5rem; }
+    #view-que-es .feature-row-right p { font-size: 0.9rem; }
     /* CASOS — título arriba, intro + badges en fila, acordeones lado a lado */
 
 /* FAQ — título arriba, lista ocupa todo el ancho */
@@ -2902,38 +2875,6 @@ h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
           </div>
         </div>
 
-      </div>
-
-      <!-- Versión columnas solo para desktop -->
-      <div class="features-cols-desktop">
-        <div class="feature-col-desk">
-          <span class="feature-eyebrow">El punto de partida</span>
-          <h3>Archivo 0</h3>
-          <p>Cada caso comienza con un Archivo 0 que introduce el contexto y explica cómo interactuar con el material. A partir de ahí, la experiencia avanza de forma lógica y progresiva.</p>
-          <div class="duracion-badge">⏱ 40 – 90 min por caso</div>
-        </div>
-        <div class="feature-col-desk">
-          <span class="feature-eyebrow">La experiencia</span>
-          <h3>Investigación real</h3>
-          <p>No hay niveles ni puntajes. Explorás, conectás la información y deducís. La investigación depende de tu interpretación. No hay tiempo límite.</p>
-          <div class="feature-tags">
-            <span class="ftag">Explorás documentos</span>
-            <span class="ftag">Escuchás audios</span>
-            <span class="ftag">Resolvés enigmas</span>
-            <span class="ftag">Desbloqueás info</span>
-          </div>
-        </div>
-        <div class="feature-col-desk">
-          <span class="feature-eyebrow">El contenido</span>
-          <h3>Material incluido</h3>
-          <p>Cada caso puede incluir documentos, fotografías, transcripciones de audios, archivos protegidos y sistemas de validación. Los casos en PDF pueden resolverse en pantalla o imprimirse. Los casos interactivos son 100% online.</p>
-          <div class="feature-tags">
-            <span class="ftag">Documentos</span>
-            <span class="ftag">Fotografías</span>
-            <span class="ftag">Audios</span>
-            <span class="ftag">Validación</span>
-          </div>
-        </div>
       </div>
 
       <div class="sobre-banda">
