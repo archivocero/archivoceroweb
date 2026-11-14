@@ -18,7 +18,7 @@ html.sz-l{font-size:16px}
   --green:#3dff7a;--green-dim:#1a6b38;--green-muted:#0f2a1a;
   --amber:#e8a830;--amber-dim:#5a3f08;--amber-muted:#1e1508;
   --red:#e84444;--red-muted:#2a0f0f;
-  --text:#c8d9cc;--text-dim:#506050;--text-mid:#8aab90;
+  --text:#c8d9cc;--text-dim:#6f8a72;--text-mid:#8aab90;
   --locked-text:#2d4535;--locked:#1a2a1e;
   --font-mono:'IBM Plex Mono',monospace;
   --font-display:'Share Tech Mono',monospace;
@@ -606,9 +606,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <button class="tbtn amber" id="btnHint" onclick="openHintMenu()" title="Pistas disponibles">💡 PISTAS <span id="hintCount">3</span></button>
     <div style="display:flex;align-items:center;gap:5px"><div class="t-dot"></div><span class="t-status">SESIÓN ACTIVA</span></div>
     <div style="display:flex;align-items:center;border:1px solid var(--border2)">
-      <button onclick="setSize('s')" id="sz-s" class="sz-btn" title="Texto pequeño" style="font-size:9px">A</button>
-      <button onclick="setSize('m')" id="sz-m" class="sz-btn sz-active" title="Texto mediano" style="font-size:11px">A</button>
-      <button onclick="setSize('l')" id="sz-l" class="sz-btn" title="Texto grande" style="font-size:13px">A</button>
+      <button onclick="setSize('s')" id="sz-s" class="sz-btn" title="Texto pequeño" style="font-size:11px">A</button>
+      <button onclick="setSize('m')" id="sz-m" class="sz-btn sz-active" title="Texto mediano" style="font-size:13px">A</button>
+      <button onclick="setSize('l')" id="sz-l" class="sz-btn" title="Texto grande" style="font-size:15px">A</button>
     </div>
     <button class="tbtn amber" id="btnPiz" onclick="togglePiz()">📌 PIZARRA</button>
     <button class="tbtn" id="btnMode" onclick="toggleMode()" title="Modo claro/oscuro" style="font-size:14px;padding:4px 8px">☀</button>
@@ -851,7 +851,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
       <div class="sosp-grid">
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-marcos"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/1_isez66.png" alt="Marcos Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-marcos"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/1_isez66.png" alt="Marcos Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Marcos Vidal</div>
             <div class="sosp-rol">HIJO MAYOR · 44 AÑOS · DIR. OPERACIONES</div>
@@ -861,7 +861,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-cecilia"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/2_gyuevn.png" alt="Cecilia Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-cecilia"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/2_gyuevn.png" alt="Cecilia Vidal" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Cecilia Vidal</div>
             <div class="sosp-rol">HIJA MENOR · 39 AÑOS · DISEÑADORA</div>
@@ -871,7 +871,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-rodrigo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/3_t2iphq.png" alt="Rodrigo Ibáñez" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-rodrigo"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/3_t2iphq.png" alt="Rodrigo Ibáñez" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Rodrigo Ibáñez</div>
             <div class="sosp-rol">SOCIO 40% · 55 AÑOS</div>
@@ -881,7 +881,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-graciela"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/4_pibub0.png" alt="Graciela Ríos" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-graciela"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/4_pibub0.png" alt="Graciela Ríos" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Graciela Ríos</div>
             <div class="sosp-rol">SECRETARIA · 58 AÑOS · 22 AÑOS EN LA EMPRESA</div>
@@ -891,7 +891,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-gastón"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/5_b0kyh8.png" alt="Gastón Ferreyra" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-gastón"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/5_b0kyh8.png" alt="Gastón Ferreyra" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Gastón Ferreyra</div>
             <div class="sosp-rol">ABOGADO DE LA FAMILIA · 51 AÑOS</div>
@@ -901,7 +901,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
           </div>
         </div>
         <div class="sosp-card">
-          <div class="sosp-photo" id="photo-valeria"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1782356291/6_eummef.png" alt="Valeria Sandín" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
+          <div class="sosp-photo" id="photo-valeria"><img loading="lazy" src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1782356291/6_eummef.png" alt="Valeria Sandín" style="width:100%;height:100%;object-fit:cover;object-position:top center"></div>
           <div class="sosp-info">
             <div class="sosp-nombre">Valeria Sandín</div>
             <div class="sosp-rol">MÉDICA SUPLENTE · 45 AÑOS</div>
@@ -1266,7 +1266,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <button onclick="submitEnigmaModal()" style="background:var(--green-muted);border:1px solid var(--green-dim);color:var(--green);font-family:var(--font-mono);font-size:11px;padding:0 16px;cursor:pointer;letter-spacing:.08em">DESBLOQUEAR</button>
     </div>
     <div id="enigmaModalMsg" style="font-size:11px;padding:7px 10px;display:none;margin-bottom:10px"></div>
-    <button onclick="closeEnigmaModal()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:10px;padding:6px 14px;cursor:pointer;letter-spacing:.06em">CANCELAR</button>
+    <button onclick="closeEnigmaModal()" style="background:transparent;border:1px solid var(--border2);color:var(--text-dim);font-family:var(--font-mono);font-size:11px;padding:6px 14px;cursor:pointer;letter-spacing:.06em">CANCELAR</button>
   </div>
 </div>
 
@@ -1291,14 +1291,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   <div style="background:var(--bg2);border:1px solid var(--green-dim);max-width:560px;width:95vw;max-height:90vh;overflow-y:auto;position:relative">
     <!-- header -->
     <div style="background:var(--green-muted);border-bottom:1px solid var(--green-dim);padding:22px 28px;text-align:center">
-      <div style="font-size:10px;color:var(--green-dim);letter-spacing:.25em;margin-bottom:8px">ARCHIVO_CERO · CASO INTERACTIVO A · RESOLUCIÓN OFICIAL</div>
+      <div style="font-size:11px;color:var(--green-dim);letter-spacing:.25em;margin-bottom:8px">ARCHIVO_CERO · CASO INTERACTIVO A · RESOLUCIÓN OFICIAL</div>
       <div style="font-family:var(--font-display);font-size:28px;color:var(--green);letter-spacing:.12em;line-height:1.1">FELICITACIONES,<br>INVESTIGADOR/A</div>
       <div style="font-size:11px;color:var(--text-mid);margin-top:10px;letter-spacing:.06em">El caso ha sido cerrado correctamente.</div>
     </div>
     <!-- body -->
     <div style="padding:24px 28px">
 
-      <div style="font-size:9px;color:var(--amber);letter-spacing:.2em;margin-bottom:12px">// INFORME FINAL — RESOLUCIÓN DEL CASO</div>
+      <div style="font-size:11px;color:var(--amber);letter-spacing:.2em;margin-bottom:12px">// INFORME FINAL — RESOLUCIÓN DEL CASO</div>
 
       <div style="font-size:12px;color:var(--text);line-height:1.9;margin-bottom:18px">
         <p style="margin-bottom:12px"><strong style="color:var(--green)">Ernesto Vidal fue asesinado por su hija menor, Cecilia Vidal.</strong> El método fue una sobredosis crónica de Amlodipina. Cecilia llevaba tres meses acercándole la medicación en su domicilio desde que él se operó la rodilla en julio. El 29 de septiembre, cuando fue a cenar y le llevó "las pastillas del mes", entregó un blíster ya manipulado — los comprimidos habían sido reemplazados por otros de mayor concentración antes de llegar a sus manos. Ernesto empezó a tomarlas sin saber y la sobredosis acumulada se volvió letal días después.</p>
@@ -1309,18 +1309,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
 
       <div style="border-top:1px solid var(--border);padding-top:16px;margin-bottom:18px">
-        <div style="font-size:9px;color:var(--text-dim);letter-spacing:.2em;margin-bottom:10px">// RESPUESTAS CORRECTAS</div>
+        <div style="font-size:11px;color:var(--text-dim);letter-spacing:.2em;margin-bottom:10px">// RESPUESTAS CORRECTAS</div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
           <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
-            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿QUIÉN?</div>
+            <div style="font-size:11px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿QUIÉN?</div>
             <div style="font-family:var(--font-display);font-size:14px;color:var(--green);letter-spacing:.15em">CECILIA</div>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
-            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿CÓMO?</div>
+            <div style="font-size:11px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿CÓMO?</div>
             <div style="font-family:var(--font-display);font-size:14px;color:var(--green);letter-spacing:.15em">MEDICACION</div>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px 12px">
-            <div style="font-size:9px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿DETONANTE?</div>
+            <div style="font-size:11px;color:var(--text-dim);letter-spacing:.12em;margin-bottom:4px">¿DETONANTE?</div>
             <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.1em">EXCLUSION</div>
           </div>
         </div>
@@ -1854,11 +1854,12 @@ function iniciarInvestigacion(){
 function startTimer(){
   if(timerStarted)return;
   timerStarted=true;
-  timerSeconds=0; // always start from zero
+  timerSeconds=0;
+  try{timerSeconds=+(localStorage.getItem('ac_xa_t')||0)||0}catch(e){} // sigue desde donde quedó
   timerInterval=setInterval(()=>{
     timerSeconds++;
     updateTimerDisplay();
-    try{sessionStorage.setItem('ac_xa_timer',timerSeconds)}catch(e){}
+    try{localStorage.setItem('ac_xa_t',timerSeconds)}catch(e){}
   },1000);
   updateTimerDisplay();
 }
@@ -1870,7 +1871,6 @@ function updateTimerDisplay(){
   if(el){
     el.textContent=str;
     // turn red after 45 min
-    el.classList.toggle('urgent',timerSeconds>2700);
   }
 }
 
@@ -1884,6 +1884,7 @@ function updateTimerDisplay(){
       document.getElementById('topbar').style.display='flex';
       document.getElementById('mainShell').style.display='flex';
       document.getElementById('mainFooter').style.display='flex';
+      loadState(); // primero recuperar el avance: go() guarda el estado y lo pisaba vacío
       startTimer();
       go('resumen');
     }
@@ -2458,5 +2459,189 @@ dp.addEventListener('click',e=>{const t=e.target;if(t.tagName=='MARK')t.replaceW
 seenUp();
 })();
 </script>
+<style id="ac-mejoras">
+/* Foco visible al navegar con teclado */
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+/* Barra superior en celular: que nada quede cortado y los botones sean cómodos para el dedo */
+@media(max-width:680px){
+  .t-right{flex-wrap:wrap;justify-content:flex-start;gap:6px;row-gap:6px}
+  .t-right>*{flex-shrink:0}
+  .tbtn,.sz-btn,.mobile-menu-btn{min-height:38px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
+  #btnPiz{margin-left:auto}
+}
+/* Respeta la preferencia del sistema "reducir movimiento" */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+<script id="ac-mejoras-js">
+/* Mejoras: guardado de cronómetro, pizarra, resaltados y caso resuelto; teclado; barra en celular. */
+(function(){
+  var K='ac_xa';
+  var lsg=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+  var lss=function(k,v){try{localStorage.setItem(k,v)}catch(e){}};
+  var lsr=function(k){try{localStorage.removeItem(k)}catch(e){}};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(t){var m=Math.floor(t/60),s=t%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s};
+  var pintarReloj=function(){var d=$('timerDisp')||$('timerDisplay');if(d&&typeof timerSeconds==='number')d.textContent=fmt(timerSeconds)};
+  var hecho=null;try{hecho=JSON.parse(lsg(K+'_done')||'null')}catch(e){}
+  var propioReloj=(typeof updateTimerDisplay==='function');   // este caso ya guarda su cronómetro
+  var propiaPizarra=(typeof saveBoard==='function');          // este caso ya guarda su pizarra
+
+  /* ── Cronómetro: sigue desde donde quedó ── */
+  if(!propioReloj&&typeof startTimer==='function'){
+    var _st=startTimer;
+    startTimer=function(){
+      if(!timerStarted){var t=+lsg(K+'_t');if(t>0){timerSeconds=t;pintarReloj()}}
+      _st();
+    };
+    var guardarReloj=function(){if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
+    setInterval(guardarReloj,5000);
+    window.addEventListener('pagehide',guardarReloj);
+    document.addEventListener('visibilitychange',function(){if(document.hidden)guardarReloj()});
+  }
+
+  /* ── Caso resuelto: queda guardado ── */
+  function aplicarResuelto(){
+    if(!hecho)return;
+    try{
+      if(typeof timerInterval!=='undefined')clearInterval(timerInterval);
+      if(typeof hecho.t==='number'){timerSeconds=hecho.t;pintarReloj()}
+      if(typeof correct!=='undefined'){[1,2,3].forEach(function(n){
+        correct[n]=true;
+        var v=$('v'+n),f=$('f'+n);
+        if(v){v.value='';v.placeholder='RESUELTO';v.disabled=true;v.style.borderColor='var(--green-dim)'}
+        if(f){f.className='val-fb ok';f.textContent='✓ Correcto.'}
+      })}
+      var sw=$('submitWrap');if(sw)sw.style.display='none';
+      var st=$('caseStamp');if(st){st.style.display=(propioReloj?'flex':'block');var tt=$('stampTime');if(tt&&typeof hecho.t==='number')tt.textContent=fmt(hecho.t)}
+      setTimeout(function(){var pf=$('progFill'),pp=$('progPct');if(pf)pf.style.width='100%';if(pp)pp.textContent='100%'},50);
+    }catch(e){}
+  }
+  if(typeof cerrarCaso==='function'){
+    var _cc=cerrarCaso;
+    cerrarCaso=function(){_cc.apply(null,arguments);hecho={t:(typeof timerSeconds==='number'?timerSeconds:0)};lss(K+'_done',JSON.stringify(hecho));lss(K+'_t',String(hecho.t))};
+  }
+  if(typeof loadState==='function'){
+    var _ls=loadState;
+    loadState=function(){_ls.apply(null,arguments);aplicarResuelto()};
+  }
+
+  /* Si el caso ya estaba resuelto, el reloj queda detenido en el tiempo final */
+  if(typeof startTimer==='function'){
+    var _st2=startTimer;
+    startTimer=function(){_st2.apply(null,arguments);if(hecho){try{clearInterval(timerInterval);if(typeof hecho.t==='number'){timerSeconds=hecho.t;pintarReloj()}}catch(e){}}};
+  }
+  if(propioReloj)aplicarResuelto();
+  /* Pistas ya pedidas (casos con cupo de pistas) */
+  try{
+    if(typeof hintsUsed!=='undefined'&&typeof requestHint==='function'){
+      var hu=JSON.parse(lsg(K+'_hu')||'null');if(hu){Object.keys(hu).forEach(function(k){hintsUsed[k]=!!hu[k]});if(typeof updateHintsBadge==='function')updateHintsBadge()}
+      var _rq2=requestHint;
+      requestHint=function(){_rq2.apply(null,arguments);lss(K+'_hu',JSON.stringify(hintsUsed))};
+    }
+  }catch(e){}
+  /* ── Pizarra: tarjetas e hilos se conservan ── */
+  if(!propiaPizarra&&typeof addCard==='function'&&$('pizCanvas')){
+    var tSave=null;
+    var guardarPizarra=function(){
+      try{
+        var cs=[].slice.call(document.querySelectorAll('#pizCanvas .cork-card')).map(function(c){
+          var b=c.querySelector('.cork-card-body');
+          return {id:c.id,type:((c.className.match(/card-(\w+)/)||[])[1]||'nota'),x:parseInt(c.style.left,10)||0,y:parseInt(c.style.top,10)||0,text:b?b.innerText:''};
+        });
+        var vivos={};cs.forEach(function(c){vivos[c.id]=1});
+        var ln=(typeof lines!=='undefined'?lines:[]).filter(function(l){return vivos[l.a]&&vivos[l.b]});
+        lss(K+'_pz',JSON.stringify({cards:cs,lines:ln}));
+      }catch(e){}
+    };
+    var pedirGuardado=function(){clearTimeout(tSave);tSave=setTimeout(guardarPizarra,500)};
+    try{
+      var d=JSON.parse(lsg(K+'_pz')||'null');
+      if(d&&d.cards){
+        var mapa={};
+        d.cards.forEach(function(c){var el=addCard(c.type,c.x,c.y,'');var b=el&&el.querySelector('.cork-card-body');if(b)b.innerText=c.text||'';if(el)mapa[c.id]=el.id});
+        if(d.lines&&typeof lines!=='undefined'){lines=d.lines.filter(function(l){return mapa[l.a]&&mapa[l.b]}).map(function(l){return {a:mapa[l.a],b:mapa[l.b]}})}
+      }
+    }catch(e){}
+    ['mouseup','touchend','input','click','keyup'].forEach(function(ev){document.addEventListener(ev,pedirGuardado,true)});
+    window.addEventListener('pagehide',guardarPizarra);
+  }
+
+  /* ── Resaltados: se conservan ── */
+  var dp=$('docsPanel')||document.querySelector('.docs-panel');
+  if(dp){
+    var tHl=null;
+    var guardarResaltados=function(){
+      try{
+        var ms=[].slice.call(dp.querySelectorAll('mark')).map(function(m){var p=m.closest('.page');return p&&m.textContent?{p:p.id,t:m.textContent}:null}).filter(Boolean);
+        lss(K+'_hl',JSON.stringify(ms));
+      }catch(e){}
+    };
+    try{
+      (JSON.parse(lsg(K+'_hl')||'[]')||[]).forEach(function(h){
+        var page=$(h.p);if(!page||!h.t)return;
+        var w=document.createTreeWalker(page,NodeFilter.SHOW_TEXT),n;
+        while((n=w.nextNode())){
+          if(n.parentNode&&n.parentNode.tagName==='MARK')continue;
+          var i=n.data.indexOf(h.t);
+          if(i>-1){var r=document.createRange();r.setStart(n,i);r.setEnd(n,i+h.t.length);try{r.surroundContents(document.createElement('mark'))}catch(e){}break}
+        }
+      });
+    }catch(e){}
+    ['mouseup','touchend','click'].forEach(function(ev){document.addEventListener(ev,function(){clearTimeout(tHl);tHl=setTimeout(guardarResaltados,400)},true)});
+  }
+
+  /* ── Reiniciar el caso borra también lo guardado acá ── */
+  if(typeof doReset==='function'){
+    var _dr=doReset;
+    doReset=function(){['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
+  }
+
+  /* Pistas usadas: tambien se conservan (cuentan para el rango) */
+  try{
+    if(typeof hs!=='undefined'&&hs instanceof Set&&typeof requestHint==='function'){
+      (JSON.parse(lsg(K+'_h')||'[]')||[]).forEach(function(x){hs.add(x)});hintsN=hs.size;
+      var _rq=requestHint;
+      requestHint=function(){_rq.apply(null,arguments);lss(K+'_h',JSON.stringify([].slice.call(hs).filter(function(x){return typeof x==='number'&&x%1===0})))};
+    }
+  }catch(e){}
+  /* ── Teclado y lectores de pantalla ── */
+  var NATIVO=/^(BUTTON|A|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
+  var preparar=function(){
+    [].slice.call(document.querySelectorAll('[onclick]')).forEach(function(el){
+      if(NATIVO.test(el.tagName))return;
+      if(!el.hasAttribute('tabindex'))el.tabIndex=0;
+      if(!el.hasAttribute('role'))el.setAttribute('role','button');
+    });
+    [].slice.call(document.querySelectorAll('.sb-item.locked')).forEach(function(el){el.setAttribute('aria-disabled','true')});
+    [].slice.call(document.querySelectorAll('.sb-item:not(.locked)[aria-disabled]')).forEach(function(el){el.removeAttribute('aria-disabled')});
+    [].slice.call(document.querySelectorAll('input,textarea,select')).forEach(function(el){
+      if(el.type==='hidden'||el.getAttribute('aria-label')||el.closest('label')||(el.id&&document.querySelector('label[for="'+el.id+'"]')))return;
+      var m=(el.id||'').match(/^v(\d)$/),e=(el.id||'').match(/^e(\d)/);
+      el.setAttribute('aria-label',m?('Respuesta final '+m[1]):e?('Clave del enigma '+e[1]):(el.placeholder&&!/^[_\s]+$/.test(el.placeholder)?el.placeholder:'Campo de texto'));
+    });
+    [].slice.call(document.querySelectorAll('iframe:not([title])')).forEach(function(f){f.title='Teaser del caso en Spotify'});
+  };
+  preparar();
+  try{new MutationObserver(function(){clearTimeout(preparar._t);preparar._t=setTimeout(function(){preparar();ajustarBarra()},150)}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['onclick','class']})}catch(e){}
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var el=e.target;
+    if(!el||NATIVO.test(el.tagName)||el.isContentEditable||!el.hasAttribute('onclick'))return;
+    e.preventDefault();el.click();
+  });
+
+  /* ── Barra superior en celular: el menú lateral arranca justo debajo ── */
+  var ajustarBarra=function(){
+    var tb=document.querySelector('.topbar');if(!tb)return;
+    if(window.innerWidth<=680&&tb.offsetHeight>0)document.documentElement.style.setProperty('--top',tb.offsetHeight+'px');
+    else document.documentElement.style.removeProperty('--top');
+  };
+  ajustarBarra();window.addEventListener('resize',ajustarBarra);window.addEventListener('load',ajustarBarra);
+  setTimeout(ajustarBarra,800);setTimeout(ajustarBarra,3000);
+})();
+</script>
+
 </body>
 </html>

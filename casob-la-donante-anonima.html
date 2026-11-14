@@ -16,7 +16,7 @@ html.sz-s{font-size:11px}html.sz-m{font-size:13px}html.sz-l{font-size:16px}
   --green:#3dff7a;--green-dim:#1a6b38;--green-muted:#0f2a1a;
   --amber:#e8a830;--amber-dim:#5a3f08;--amber-muted:#1e1508;
   --red:#e84444;--red-muted:#2a0f0f;
-  --text:#c8d9cc;--text-dim:#506050;--text-mid:#8aab90;
+  --text:#c8d9cc;--text-dim:#6f8a72;--text-mid:#8aab90;
   --locked-text:#2d4535;--locked:#1a2a1e;
   --font-mono:'IBM Plex Mono',monospace;--font-display:'Share Tech Mono',monospace;--font-sans:'IBM Plex Sans',sans-serif;
   --top:48px;--foot:32px;--sb:230px;--piz:33vw;
@@ -26,7 +26,7 @@ html.light{--bg:#e8e0d0;--bg2:#ddd5c4;--bg3:#d2c9b8;--bg4:#c8bfac;--border:#b8ad
 .splash{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-y:auto;padding:24px 16px}
 .splash-backdrop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 90% 70% at 65% 20%,rgba(61,255,122,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 90% at 10% 80%,rgba(232,168,48,.05) 0%,transparent 55%)}
 .splash-bgtext{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:var(--font-display);font-size:clamp(8rem,32vw,26rem);color:rgba(61,255,122,.008);pointer-events:none;user-select:none;line-height:1;white-space:nowrap}
-.splash-casenum{position:absolute;top:7rem;right:2rem;font-family:var(--font-mono);font-size:.65rem;letter-spacing:.3em;color:rgba(61,255,122,.25);writing-mode:vertical-rl;pointer-events:none}
+.splash-casenum{position:absolute;top:7rem;right:2rem;font-family:var(--font-mono);font-size:.69rem;letter-spacing:.3em;color:rgba(61,255,122,.25);writing-mode:vertical-rl;pointer-events:none}
 .splash-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
 .splash.hidden{display:none}
 .splash-pre{font-size:.85rem;color:var(--text-dim);letter-spacing:.25em;margin-bottom:18px}
@@ -66,9 +66,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 .sb-free-label{padding:7px 14px 4px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em}
 .sb-section{border-bottom:1px solid var(--border)}
 .sb-head{padding:8px 14px;font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;display:flex;align-items:center;gap:5px;cursor:pointer;user-select:none}
-.sb-head::before{content:'▸';font-size:.62rem;color:var(--green-dim);transition:transform .15s;flex-shrink:0}
+.sb-head::before{content:'▸';font-size:.69rem;color:var(--green-dim);transition:transform .15s;flex-shrink:0}
 .sb-head.open::before{transform:rotate(90deg)}
-.fb{font-size:.62rem;padding:1px 6px;letter-spacing:.08em;margin-left:auto;flex-shrink:0}
+.fb{font-size:.69rem;padding:1px 6px;letter-spacing:.08em;margin-left:auto;flex-shrink:0}
 .fb-open{background:var(--green-muted);color:var(--green);border:1px solid var(--green-dim)}
 .fb-locked{background:var(--locked);color:var(--locked-text);border:1px solid var(--locked-text)}
 .sb-items{display:none}.sb-items.open{display:block}
@@ -123,7 +123,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 .cork-card:active,.cork-card.dragging{cursor:grabbing;box-shadow:4px 6px 18px rgba(0,0,0,.6);z-index:50}
 .cork-card.selected{box-shadow:0 0 0 2px var(--amber),3px 4px 14px rgba(0,0,0,.55);z-index:40}
 .cork-chinche{width:12px;height:12px;border-radius:50%;position:absolute;top:-6px;left:50%;transform:translateX(-50%);box-shadow:0 2px 4px rgba(0,0,0,.6);z-index:2}
-.cork-card-head{padding:5px 8px 4px;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.12);display:flex;justify-content:space-between;align-items:center;cursor:grab}
+.cork-card-head{padding:5px 8px 4px;font-size:.69rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid rgba(0,0,0,.12);display:flex;justify-content:space-between;align-items:center;cursor:grab}
 .cork-card-body{padding:7px 8px;font-size:.85rem;font-family:var(--font-sans);color:#2a2010;line-height:1.5;min-height:36px;word-break:break-word}
 .cork-card-body[contenteditable="true"]{outline:none;cursor:text}
 .cork-del{font-size:.77rem;color:#999;cursor:pointer;padding:0 1px;line-height:1;flex-shrink:0}
@@ -234,7 +234,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 .spotify-teaser:hover{border-color:var(--green-dim)}
 .btn-spotify-toggle{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;cursor:pointer;font-family:var(--font-mono);font-size:.77rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);padding:12px 14px;transition:color .2s;text-align:left}
 .btn-spotify-toggle:hover{color:var(--green);background:var(--green-muted)}
-.sp-arrow{font-size:.62rem;margin-left:auto;transition:transform .2s}
+.sp-arrow{font-size:.69rem;margin-left:auto;transition:transform .2s}
 .spotify-teaser.open .sp-arrow{transform:rotate(180deg)}
 .sp-wrap{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .spotify-teaser.open .sp-wrap{max-height:160px}
@@ -357,7 +357,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 @media(max-width:680px){.tour-tooltip{width:90vw;max-width:280px}}
 .sp-icon{width:16px;height:16px;fill:var(--green);flex-shrink:0}
 .nota-ms{font-family:'Caveat',cursive!important;font-size:1.3rem!important;line-height:1.5;background:#e4d9b0!important;color:#2a2418!important;padding:16px 18px;box-shadow:0 2px 10px rgba(0,0,0,.45);transform:rotate(-.4deg)}.nota-ms *{color:#2a2418!important}.nota-ms .nota-ms-pre{font:.68rem var(--font-mono)!important;color:#6b5f3a!important;letter-spacing:.1em}
-.x2-box{background:var(--bg2);border:1px solid var(--border2);padding:12px;margin-bottom:14px;font-size:.78rem;color:var(--text-mid)}.x2-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:10px}.x2-cal b{font-weight:400;text-align:center;color:var(--text-dim);font-size:.68rem}.x2-cal button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);padding:7px 0;cursor:pointer;font:inherit}.x2-cal button.e{border-color:var(--amber-dim);color:var(--amber)}.x2-cal button.on{outline:1px solid var(--amber)}.x2-det{min-height:3em;font-family:'Caveat',cursive;font-size:1.4rem;color:#e4d9b0}.x2-row{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:center;margin:5px 0}.x2-tr{position:relative;height:16px;background:var(--bg3)}.x2-tr i{position:absolute;top:3px;height:10px;background:var(--text-dim);min-width:5px}.x2-tr i.d{background:var(--amber)}.x2-tr b.al{display:none;position:absolute;top:0;height:16px;background:repeating-linear-gradient(45deg,rgba(58,154,90,.45) 0 4px,transparent 4px 8px);border:1px dashed #3a9a5a}#x2v.al-on .x2-tr b.al{display:block}@keyframes x2sh{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}.x2-shake{animation:x2sh .3s}.sb-head:has(.fb-locked){cursor:not-allowed;opacity:.75}.x2-tr.hl i.s{outline:2px solid #e84444}.x2-g{display:grid;grid-template-columns:24px repeat(5,1fr);gap:3px;max-width:300px;margin:8px 0}.x2-g span,.x2-g button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);text-align:center;padding:5px 0;font:inherit}.x2-g button{cursor:pointer;color:var(--amber)}
+.x2-box{background:var(--bg2);border:1px solid var(--border2);padding:12px;margin-bottom:14px;font-size:.78rem;color:var(--text-mid)}.x2-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:10px}.x2-cal b{font-weight:400;text-align:center;color:var(--text-dim);font-size:.69rem}.x2-cal button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);padding:7px 0;cursor:pointer;font:inherit}.x2-cal button.e{border-color:var(--amber-dim);color:var(--amber)}.x2-cal button.on{outline:1px solid var(--amber)}.x2-det{min-height:3em;font-family:'Caveat',cursive;font-size:1.4rem;color:#e4d9b0}.x2-row{display:grid;grid-template-columns:84px 1fr;gap:8px;align-items:center;margin:5px 0}.x2-tr{position:relative;height:16px;background:var(--bg3)}.x2-tr i{position:absolute;top:3px;height:10px;background:var(--text-dim);min-width:5px}.x2-tr i.d{background:var(--amber)}.x2-tr b.al{display:none;position:absolute;top:0;height:16px;background:repeating-linear-gradient(45deg,rgba(58,154,90,.45) 0 4px,transparent 4px 8px);border:1px dashed #3a9a5a}#x2v.al-on .x2-tr b.al{display:block}@keyframes x2sh{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}.x2-shake{animation:x2sh .3s}.sb-head:has(.fb-locked){cursor:not-allowed;opacity:.75}.x2-tr.hl i.s{outline:2px solid #e84444}.x2-g{display:grid;grid-template-columns:24px repeat(5,1fr);gap:3px;max-width:300px;margin:8px 0}.x2-g span,.x2-g button{background:var(--bg3);border:1px solid var(--border2);color:var(--text-mid);text-align:center;padding:5px 0;font:inherit}.x2-g button{cursor:pointer;color:var(--amber)}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet"></head>
 <body>
@@ -534,7 +534,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div style="background:var(--bg2);border:1px solid var(--border2)">
       <div style="padding:7px 13px;border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;background:var(--bg4)">
         <span style="font-family:var(--font-display);font-size:.75rem;color:var(--text-mid);letter-spacing:.12em">TRANSCRIPCIÓN · NOTA DE VOZ</span>
-        <span style="font-family:var(--font-mono);font-size:.65rem;color:var(--text-dim)">EV-IB-00 · AUDIO</span>
+        <span style="font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">EV-IB-00 · AUDIO</span>
       </div>
       <div style="padding:8px 13px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">
         <div><span>EMISOR </span><span style="color:var(--text-mid)">Lic. Clara Mendez</span></div>
@@ -546,7 +546,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
         <p style="margin:0 0 10px">Nora murió hace diez días. Muerte natural, dijeron. Pero yo empiezo a pensar que nada de esto es natural.</p>
         <p style="margin:0">Contratamos a un tasador para valorar la colección antes de aceptar la donación. Fue al domicilio de Nora cuatro veces durante septiembre. Es todo lo que sé por ahora. Te mandé todo lo que tenemos.</p>
       </div>
-      <div style="padding:6px 13px 10px;display:flex;justify-content:flex-end"><span style="font-family:var(--font-mono);font-size:.62rem;color:var(--text-dim)">transcripción automática · puede contener errores</span></div>
+      <div style="padding:6px 13px 10px;display:flex;justify-content:flex-end"><span style="font-family:var(--font-mono);font-size:.69rem;color:var(--text-dim)">transcripción automática · puede contener errores</span></div>
     </div>
   </div>
 </div>
@@ -573,7 +573,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
   </div>
   <div class="sosp-grid">
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/8_yza1wg.png" alt="Hernán Drault" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/8_yza1wg.png" alt="Hernán Drault" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Hernán Drault</div>
         <div class="sosp-role">Tasador de arte · 52 años</div>
@@ -584,7 +584,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/9_xspk7j.png" alt="Valentina Acevedo" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/9_xspk7j.png" alt="Valentina Acevedo" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Valentina Acevedo</div>
         <div class="sosp-role">Sobrina de Nora · 43 años</div>
@@ -595,7 +595,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/10_qeugy1.png" alt="Marcos Leal" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/10_qeugy1.png" alt="Marcos Leal" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Marcos Leal</div>
         <div class="sosp-role">Agente de arte · 58 años</div>
@@ -606,7 +606,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/11_wbyan1.png" alt="Inés Varela" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/11_wbyan1.png" alt="Inés Varela" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Inés Varela</div>
         <div class="sosp-role">Restauradora del museo · 38 años</div>
@@ -617,7 +617,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/12_ktm0pq.png" alt="Dr. Osvaldo Pereyra" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/12_ktm0pq.png" alt="Dr. Osvaldo Pereyra" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Dr. Osvaldo Pereyra</div>
         <div class="sosp-role">Médico de cabecera · 67 años</div>
@@ -628,7 +628,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       </div>
     </div>
     <div class="sosp-card">
-      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/v1785339815/13_vh1r5w.png" alt="Guillermo Saez" loading="lazy"></div>
+      <div class="sosp-photo"><img src="https://res.cloudinary.com/drur0y2ga/image/upload/f_auto,q_auto,w_1000/v1785339815/13_vh1r5w.png" alt="Guillermo Saez" loading="lazy"></div>
       <div class="sosp-info">
         <div class="sosp-name">Guillermo Saez</div>
         <div class="sosp-role">Abogado · 55 años</div>
@@ -1035,15 +1035,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
       <div style="font-family:var(--font-display);font-size:2rem;color:var(--amber);letter-spacing:.2em;margin-bottom:16px" id="stampTime">--:--</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
         <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿QUIÉN?</div>
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿QUIÉN?</div>
           <div style="font-family:var(--font-display);font-size:13px;color:var(--green);letter-spacing:.1em">DRAULT</div>
         </div>
         <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿CÓMO?</div>
-          <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">SUSTITUCION</div>
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿CÓMO?</div>
+          <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.08em">SUSTITUCION</div>
         </div>
         <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-          <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿DETONANTE?</div>
+          <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:4px">¿DETONANTE?</div>
           <div style="font-family:var(--font-display);font-size:12px;color:var(--green);letter-spacing:.08em">PERICIA</div>
         </div>
       </div>
@@ -1176,15 +1176,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
     <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.2em;margin-bottom:20px">LA DONANTE ANÓNIMA — ARCHIVO CERO</div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
       <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿QUIÉN?</div>
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿QUIÉN?</div>
         <div style="font-family:var(--font-display);font-size:14px;color:var(--green);letter-spacing:.12em">DRAULT</div>
       </div>
       <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿CÓMO?</div>
-        <div style="font-family:var(--font-display);font-size:10px;color:var(--green);letter-spacing:.08em">SUSTITUCION</div>
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿CÓMO?</div>
+        <div style="font-family:var(--font-display);font-size:11px;color:var(--green);letter-spacing:.08em">SUSTITUCION</div>
       </div>
       <div style="background:var(--bg3);border:1px solid var(--border2);padding:10px;text-align:center">
-        <div style="font-size:.62rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿QUÉ DESCUBRIÓ?</div>
+        <div style="font-size:.69rem;color:var(--text-dim);letter-spacing:.15em;margin-bottom:5px">¿QUÉ DESCUBRIÓ?</div>
         <div style="font-family:var(--font-display);font-size:13px;color:var(--green);letter-spacing:.1em">PERICIA</div>
       </div>
     </div>
@@ -1209,8 +1209,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 <script>
 // ═══ NAV ═══
 const pageNames={'testimonio-brest':'Declaración de Brest','registro-llamadas':'Registro de llamadas','testimonio-carmen':'Declaración de la cuidadora','agenda-nora':'Agenda de Nora','testimonio-saez':'Testimonio Saez','correo-museo':'Correo al museo',resumen:'Resumen',teaser:'Audio disparador',instrucciones:'Cómo investigar',sospechosos:'Perfiles de sospechosos',cronologia:'Cronología','informe-museo':'Informe del museo',inventario:'Inventario colección','registro-visitas':'Registro de visitas',tasacion:'Informe de tasación','email-drault':'Correos de Drault','whatsapp-valentina':'Chat Valentina','testimonio-pereyra':'Testimonio Pereyra','apuntes-nora':'Apuntes de Nora','historial-medico':'Historial médico','nota-nora':'Nota de Nora','carta-saez':'Correo de Saez',contrato:'Contrato donación',validacion:'Resolver el caso'};
-const progMap={resumen:3,teaser:5,instrucciones:7,sospechosos:13,cronologia:20,'informe-museo':27,inventario:34,'registro-visitas':42,tasacion:50,'email-drault':57,'whatsapp-valentina':63,'testimonio-pereyra':69,'apuntes-nora':75,'historial-medico':82,'nota-nora':87,'carta-saez':92,contrato:95,validacion:97};
-const folderMap={resumen:0,teaser:0,instrucciones:0,sospechosos:1,cronologia:1,'informe-museo':1,inventario:1,'registro-visitas':2,tasacion:2,'email-drault':2,'whatsapp-valentina':2,'testimonio-pereyra':2,'apuntes-nora':2,'historial-medico':3,'nota-nora':3,'carta-saez':3,contrato:3,validacion:4};
+const progMap={resumen:3,teaser:5,instrucciones:7,sospechosos:12,cronologia:17,'informe-museo':22,inventario:27,'registro-visitas':32,tasacion:37,'email-drault':42,'whatsapp-valentina':47,'testimonio-pereyra':52,'agenda-nora':56,'testimonio-saez':60,'correo-museo':64,'testimonio-brest':68,'apuntes-nora':72,'historial-medico':77,'nota-nora':81,'carta-saez':85,contrato:89,'registro-llamadas':92,'testimonio-carmen':95,validacion:97};
+const folderMap={resumen:0,teaser:0,instrucciones:0,sospechosos:1,cronologia:1,'informe-museo':1,inventario:1,'registro-visitas':2,tasacion:2,'email-drault':2,'whatsapp-valentina':2,'testimonio-pereyra':2,'agenda-nora':2,'testimonio-saez':2,'correo-museo':2,'testimonio-brest':2,'apuntes-nora':2,'historial-medico':3,'nota-nora':3,'carta-saez':3,contrato:3,'registro-llamadas':3,'testimonio-carmen':3,validacion:4};
 const visited=new Set(['resumen']);
 
 function go(id){
@@ -1305,7 +1305,7 @@ document.getElementById('casoModal').addEventListener('click',function(e){if(e.t
 
 // ═══ TIMER ═══
 let timerSeconds=0,timerInterval=null,timerStarted=false;
-function startTimer(){if(timerStarted)return;timerStarted=true;timerInterval=setInterval(()=>{timerSeconds++;const m=Math.floor(timerSeconds/60),s=timerSeconds%60;const d=document.getElementById('timerDisp');d.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;if(timerSeconds>5400)d.classList.add('urgent')},1000)}
+function startTimer(){if(timerStarted)return;timerStarted=true;timerInterval=setInterval(()=>{timerSeconds++;const m=Math.floor(timerSeconds/60),s=timerSeconds%60;const d=document.getElementById('timerDisp');d.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;},1000)}
 function startCase(){document.getElementById('splash').classList.add('hidden');startTimer();loadState();go('resumen');setTimeout(startTour,600)}
 
 // ═══ STATE ═══
@@ -1585,5 +1585,189 @@ dp.addEventListener('click',e=>{const t=e.target;if(t.tagName=='MARK')t.replaceW
 seenUp();
 })();
 </script>
+<style id="ac-mejoras">
+/* Foco visible al navegar con teclado */
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+/* Barra superior en celular: que nada quede cortado y los botones sean cómodos para el dedo */
+@media(max-width:680px){
+  .t-right{flex-wrap:wrap;justify-content:flex-start;gap:6px;row-gap:6px}
+  .t-right>*{flex-shrink:0}
+  .tbtn,.sz-btn,.mobile-menu-btn{min-height:38px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
+  #btnPiz{margin-left:auto}
+}
+/* Respeta la preferencia del sistema "reducir movimiento" */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+<script id="ac-mejoras-js">
+/* Mejoras: guardado de cronómetro, pizarra, resaltados y caso resuelto; teclado; barra en celular. */
+(function(){
+  var K='ac_ib';
+  var lsg=function(k){try{return localStorage.getItem(k)}catch(e){return null}};
+  var lss=function(k,v){try{localStorage.setItem(k,v)}catch(e){}};
+  var lsr=function(k){try{localStorage.removeItem(k)}catch(e){}};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(t){var m=Math.floor(t/60),s=t%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s};
+  var pintarReloj=function(){var d=$('timerDisp')||$('timerDisplay');if(d&&typeof timerSeconds==='number')d.textContent=fmt(timerSeconds)};
+  var hecho=null;try{hecho=JSON.parse(lsg(K+'_done')||'null')}catch(e){}
+  var propioReloj=(typeof updateTimerDisplay==='function');   // este caso ya guarda su cronómetro
+  var propiaPizarra=(typeof saveBoard==='function');          // este caso ya guarda su pizarra
+
+  /* ── Cronómetro: sigue desde donde quedó ── */
+  if(!propioReloj&&typeof startTimer==='function'){
+    var _st=startTimer;
+    startTimer=function(){
+      if(!timerStarted){var t=+lsg(K+'_t');if(t>0){timerSeconds=t;pintarReloj()}}
+      _st();
+    };
+    var guardarReloj=function(){if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
+    setInterval(guardarReloj,5000);
+    window.addEventListener('pagehide',guardarReloj);
+    document.addEventListener('visibilitychange',function(){if(document.hidden)guardarReloj()});
+  }
+
+  /* ── Caso resuelto: queda guardado ── */
+  function aplicarResuelto(){
+    if(!hecho)return;
+    try{
+      if(typeof timerInterval!=='undefined')clearInterval(timerInterval);
+      if(typeof hecho.t==='number'){timerSeconds=hecho.t;pintarReloj()}
+      if(typeof correct!=='undefined'){[1,2,3].forEach(function(n){
+        correct[n]=true;
+        var v=$('v'+n),f=$('f'+n);
+        if(v){v.value='';v.placeholder='RESUELTO';v.disabled=true;v.style.borderColor='var(--green-dim)'}
+        if(f){f.className='val-fb ok';f.textContent='✓ Correcto.'}
+      })}
+      var sw=$('submitWrap');if(sw)sw.style.display='none';
+      var st=$('caseStamp');if(st){st.style.display=(propioReloj?'flex':'block');var tt=$('stampTime');if(tt&&typeof hecho.t==='number')tt.textContent=fmt(hecho.t)}
+      setTimeout(function(){var pf=$('progFill'),pp=$('progPct');if(pf)pf.style.width='100%';if(pp)pp.textContent='100%'},50);
+    }catch(e){}
+  }
+  if(typeof cerrarCaso==='function'){
+    var _cc=cerrarCaso;
+    cerrarCaso=function(){_cc.apply(null,arguments);hecho={t:(typeof timerSeconds==='number'?timerSeconds:0)};lss(K+'_done',JSON.stringify(hecho));lss(K+'_t',String(hecho.t))};
+  }
+  if(typeof loadState==='function'){
+    var _ls=loadState;
+    loadState=function(){_ls.apply(null,arguments);aplicarResuelto()};
+  }
+
+  /* Si el caso ya estaba resuelto, el reloj queda detenido en el tiempo final */
+  if(typeof startTimer==='function'){
+    var _st2=startTimer;
+    startTimer=function(){_st2.apply(null,arguments);if(hecho){try{clearInterval(timerInterval);if(typeof hecho.t==='number'){timerSeconds=hecho.t;pintarReloj()}}catch(e){}}};
+  }
+  if(propioReloj)aplicarResuelto();
+  /* Pistas ya pedidas (casos con cupo de pistas) */
+  try{
+    if(typeof hintsUsed!=='undefined'&&typeof requestHint==='function'){
+      var hu=JSON.parse(lsg(K+'_hu')||'null');if(hu){Object.keys(hu).forEach(function(k){hintsUsed[k]=!!hu[k]});if(typeof updateHintsBadge==='function')updateHintsBadge()}
+      var _rq2=requestHint;
+      requestHint=function(){_rq2.apply(null,arguments);lss(K+'_hu',JSON.stringify(hintsUsed))};
+    }
+  }catch(e){}
+  /* ── Pizarra: tarjetas e hilos se conservan ── */
+  if(!propiaPizarra&&typeof addCard==='function'&&$('pizCanvas')){
+    var tSave=null;
+    var guardarPizarra=function(){
+      try{
+        var cs=[].slice.call(document.querySelectorAll('#pizCanvas .cork-card')).map(function(c){
+          var b=c.querySelector('.cork-card-body');
+          return {id:c.id,type:((c.className.match(/card-(\w+)/)||[])[1]||'nota'),x:parseInt(c.style.left,10)||0,y:parseInt(c.style.top,10)||0,text:b?b.innerText:''};
+        });
+        var vivos={};cs.forEach(function(c){vivos[c.id]=1});
+        var ln=(typeof lines!=='undefined'?lines:[]).filter(function(l){return vivos[l.a]&&vivos[l.b]});
+        lss(K+'_pz',JSON.stringify({cards:cs,lines:ln}));
+      }catch(e){}
+    };
+    var pedirGuardado=function(){clearTimeout(tSave);tSave=setTimeout(guardarPizarra,500)};
+    try{
+      var d=JSON.parse(lsg(K+'_pz')||'null');
+      if(d&&d.cards){
+        var mapa={};
+        d.cards.forEach(function(c){var el=addCard(c.type,c.x,c.y,'');var b=el&&el.querySelector('.cork-card-body');if(b)b.innerText=c.text||'';if(el)mapa[c.id]=el.id});
+        if(d.lines&&typeof lines!=='undefined'){lines=d.lines.filter(function(l){return mapa[l.a]&&mapa[l.b]}).map(function(l){return {a:mapa[l.a],b:mapa[l.b]}})}
+      }
+    }catch(e){}
+    ['mouseup','touchend','input','click','keyup'].forEach(function(ev){document.addEventListener(ev,pedirGuardado,true)});
+    window.addEventListener('pagehide',guardarPizarra);
+  }
+
+  /* ── Resaltados: se conservan ── */
+  var dp=$('docsPanel')||document.querySelector('.docs-panel');
+  if(dp){
+    var tHl=null;
+    var guardarResaltados=function(){
+      try{
+        var ms=[].slice.call(dp.querySelectorAll('mark')).map(function(m){var p=m.closest('.page');return p&&m.textContent?{p:p.id,t:m.textContent}:null}).filter(Boolean);
+        lss(K+'_hl',JSON.stringify(ms));
+      }catch(e){}
+    };
+    try{
+      (JSON.parse(lsg(K+'_hl')||'[]')||[]).forEach(function(h){
+        var page=$(h.p);if(!page||!h.t)return;
+        var w=document.createTreeWalker(page,NodeFilter.SHOW_TEXT),n;
+        while((n=w.nextNode())){
+          if(n.parentNode&&n.parentNode.tagName==='MARK')continue;
+          var i=n.data.indexOf(h.t);
+          if(i>-1){var r=document.createRange();r.setStart(n,i);r.setEnd(n,i+h.t.length);try{r.surroundContents(document.createElement('mark'))}catch(e){}break}
+        }
+      });
+    }catch(e){}
+    ['mouseup','touchend','click'].forEach(function(ev){document.addEventListener(ev,function(){clearTimeout(tHl);tHl=setTimeout(guardarResaltados,400)},true)});
+  }
+
+  /* ── Reiniciar el caso borra también lo guardado acá ── */
+  if(typeof doReset==='function'){
+    var _dr=doReset;
+    doReset=function(){['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
+  }
+
+  /* Pistas usadas: tambien se conservan (cuentan para el rango) */
+  try{
+    if(typeof hs!=='undefined'&&hs instanceof Set&&typeof requestHint==='function'){
+      (JSON.parse(lsg(K+'_h')||'[]')||[]).forEach(function(x){hs.add(x)});hintsN=hs.size;
+      var _rq=requestHint;
+      requestHint=function(){_rq.apply(null,arguments);lss(K+'_h',JSON.stringify([].slice.call(hs).filter(function(x){return typeof x==='number'&&x%1===0})))};
+    }
+  }catch(e){}
+  /* ── Teclado y lectores de pantalla ── */
+  var NATIVO=/^(BUTTON|A|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
+  var preparar=function(){
+    [].slice.call(document.querySelectorAll('[onclick]')).forEach(function(el){
+      if(NATIVO.test(el.tagName))return;
+      if(!el.hasAttribute('tabindex'))el.tabIndex=0;
+      if(!el.hasAttribute('role'))el.setAttribute('role','button');
+    });
+    [].slice.call(document.querySelectorAll('.sb-item.locked')).forEach(function(el){el.setAttribute('aria-disabled','true')});
+    [].slice.call(document.querySelectorAll('.sb-item:not(.locked)[aria-disabled]')).forEach(function(el){el.removeAttribute('aria-disabled')});
+    [].slice.call(document.querySelectorAll('input,textarea,select')).forEach(function(el){
+      if(el.type==='hidden'||el.getAttribute('aria-label')||el.closest('label')||(el.id&&document.querySelector('label[for="'+el.id+'"]')))return;
+      var m=(el.id||'').match(/^v(\d)$/),e=(el.id||'').match(/^e(\d)/);
+      el.setAttribute('aria-label',m?('Respuesta final '+m[1]):e?('Clave del enigma '+e[1]):(el.placeholder&&!/^[_\s]+$/.test(el.placeholder)?el.placeholder:'Campo de texto'));
+    });
+    [].slice.call(document.querySelectorAll('iframe:not([title])')).forEach(function(f){f.title='Teaser del caso en Spotify'});
+  };
+  preparar();
+  try{new MutationObserver(function(){clearTimeout(preparar._t);preparar._t=setTimeout(function(){preparar();ajustarBarra()},150)}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['onclick','class']})}catch(e){}
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var el=e.target;
+    if(!el||NATIVO.test(el.tagName)||el.isContentEditable||!el.hasAttribute('onclick'))return;
+    e.preventDefault();el.click();
+  });
+
+  /* ── Barra superior en celular: el menú lateral arranca justo debajo ── */
+  var ajustarBarra=function(){
+    var tb=document.querySelector('.topbar');if(!tb)return;
+    if(window.innerWidth<=680&&tb.offsetHeight>0)document.documentElement.style.setProperty('--top',tb.offsetHeight+'px');
+    else document.documentElement.style.removeProperty('--top');
+  };
+  ajustarBarra();window.addEventListener('resize',ajustarBarra);window.addEventListener('load',ajustarBarra);
+  setTimeout(ajustarBarra,800);setTimeout(ajustarBarra,3000);
+})();
+</script>
+
 </body>
 </html>
