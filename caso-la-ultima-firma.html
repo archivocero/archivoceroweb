@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIVO_CERO // CASO INTERACTIVO A — La Última Firma</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="https://res.cloudinary.com/drur0y2ga/image/upload/w_96,q_auto/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/drur0y2ga/image/upload/w_180,q_auto/v1782446862/WhatsApp_Image_2026-05-26_at_22.39.51_knby76.jpg">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-143QZJR0HW"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-143QZJR0HW');</script>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1205,7 +1210,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-si
 
       <!-- PANTALLA SELLO -->
       <div id="caseStamp" style="display:none;margin-top:24px;background:var(--bg);border:1px solid var(--border2);padding:40px 20px;text-align:center;position:relative;overflow:hidden">
-        <svg viewBox="0 0 340 180" width="100%" height="auto" style="opacity:0.85;transform:rotate(-10deg);max-width:520px">
+        <svg viewBox="0 0 340 180" width="100%" style="opacity:0.85;transform:rotate(-10deg);max-width:520px">
           <ellipse cx="170" cy="90" rx="162" ry="82" fill="none" stroke="#c82020" stroke-width="7"/>
           <ellipse cx="170" cy="90" rx="148" ry="68" fill="none" stroke="#c82020" stroke-width="2"/>
           <text x="170" y="68" text-anchor="middle" font-family="Share Tech Mono,monospace" font-size="22" fill="#c82020" letter-spacing="10">CASO</text>
@@ -2468,6 +2473,7 @@ seenUp();
   .t-right>*{flex-shrink:0}
   .tbtn,.sz-btn,.mobile-menu-btn{min-height:38px;min-width:38px;display:inline-flex;align-items:center;justify-content:center}
   #btnPiz{margin-left:auto}
+  .footer{gap:10px}
 }
 /* Respeta la preferencia del sistema "reducir movimiento" */
 @media (prefers-reduced-motion: reduce){
@@ -2606,6 +2612,17 @@ seenUp();
       requestHint=function(){_rq.apply(null,arguments);lss(K+'_h',JSON.stringify([].slice.call(hs).filter(function(x){return typeof x==='number'&&x%1===0})))};
     }
   }catch(e){}
+  /* Medicion (Google Analytics): inicio, enigmas, pistas y cierre de cada caso */
+  var caso=(document.title.split('—').pop()||document.title).trim();
+  var ev=function(n,p){try{if(typeof gtag==='function'){p=p||{};p.caso=caso;gtag('event',n,p)}}catch(e){}};
+  var envolver=function(fn,antes,despues){if(typeof window[fn]!=='function')return;var o=window[fn];window[fn]=function(){var a=antes?antes.apply(this,arguments):null;var r=o.apply(this,arguments);if(despues)despues.call(this,a,arguments);return r}};
+  ['startCase','iniciarInvestigacion'].forEach(function(fn){envolver(fn,function(){ev('caso_inicio')})});
+  var abiertos=function(){try{return Object.keys(unlocked).filter(function(k){return unlocked[k]}).length}catch(e){return 0}};
+  ['checkE','submitEnigmaModal'].forEach(function(fn){envolver(fn,abiertos,function(a){var b=abiertos();if(b>a)ev('enigma_resuelto',{enigma:b})})});
+  envolver('requestHint',null,function(a,args){ev('pista_pedida',{pista:args[0]})});
+  envolver('cerrarCaso',null,function(){ev('caso_resuelto',{minutos:(typeof timerSeconds==='number'?Math.round(timerSeconds/60):0)})});
+  /* Con el caso resuelto, el progreso queda en 100% */
+  envolver('go',null,function(){if(hecho){var pf=$('progFill'),pp=$('progPct');if(pf)pf.style.width='100%';if(pp)pp.textContent='100%'}});
   /* ── Teclado y lectores de pantalla ── */
   var NATIVO=/^(BUTTON|A|INPUT|SELECT|TEXTAREA|SUMMARY)$/;
   var preparar=function(){
