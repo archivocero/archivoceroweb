@@ -1572,7 +1572,7 @@ const FAIL={};function fail(n){if((FAIL[n]=(FAIL[n]||0)+1)>=3){const z=$('nudge'
 const _cE=window.checkE;window.checkE=function(n){_cE(n);const ok=!!unlocked[n];sfx(ok?'ok':'err');if(!ok)fail(n)};
 const _sm=window.submitEnigmaModal;if(_sm)window.submitEnigmaModal=function(){const n=currentEnigmaN;_sm();const ok=$('enigmaModalMsg').textContent.indexOf('✓')>-1;sfx(ok?'ok':'err');if(!ok)fail(n)};
 const _cV=window.checkV;window.checkV=function(n){_cV(n);sfx(correct[n]?'ok':'err')};
-let hintsN=0;const hs=new Set(),hf=window.requestHint?'requestHint':'openHints',_hf=window[hf];window[hf]=function(a){hs.add(a===undefined?Math.random():a);hintsN=hs.size;_hf.apply(null,arguments)};
+let hintsN=0;const hs=new Set(),hf=window.requestHint?'requestHint':'openHints',_hf=window[hf];try{JSON.parse(localStorage.getItem('ac_ib_h')||'[]').forEach(x=>hs.add(x));hintsN=hs.size}catch(e){}window[hf]=function(a){hs.add(a===undefined?Math.random():a);hintsN=hs.size;try{localStorage.setItem('ac_ib_h',JSON.stringify([...hs].filter(x=>Number.isInteger(x))))}catch(e){}_hf.apply(null,arguments)};
 const RK=['Aprendiz','Detective','Inspector'];
 const _cc=window.cerrarCaso;window.cerrarCaso=function(){_cc();sfx('stamp');const sc=timerSeconds/60+5*hintsN,r=sc<=C.rank[0]?2:sc<=C.rank[1]?1:0;const best=Math.max(r,RK.indexOf(ls.g('ac_rank')||'Aprendiz'));ls.s('ac_rank',RK[best]);ls.s('ac_rank_n',(+ls.g('ac_rank_n')||0)+1);const t=$('finalTime'),mm=Math.floor(timerSeconds/60),ss=timerSeconds%60;if(!$('rankLine')){const rl='<div id="rankLine" style="margin:10px 0;text-align:center;color:var(--amber);font-family:var(--font-display);letter-spacing:.1em">RANGO · '+RK[r].toUpperCase()+(t?'':' · '+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss)+' · '+hintsN+' pista(s)</div>';if(t)t.parentElement.insertAdjacentHTML('afterend',rl);else $('casoModal').firstElementChild.insertAdjacentHTML('afterbegin',rl)}};
 const rk=ls.g('ac_rank'),sm=document.querySelector('.splash-meta-item');if(rk&&sm)sm.parentElement.insertAdjacentHTML('beforeend','<div class="splash-meta-item"><div class="splash-meta-label">TU RANGO</div><div class="splash-meta-val">'+rk+'</div></div>');
@@ -1627,7 +1627,7 @@ seenUp();
       if(!timerStarted){var t=+lsg(K+'_t');if(t>0){timerSeconds=t;pintarReloj()}}
       _st();
     };
-    var guardarReloj=function(){if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
+    var guardarReloj=function(){if(window.__acReinicio)return;if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
     setInterval(guardarReloj,5000);
     window.addEventListener('pagehide',guardarReloj);
     document.addEventListener('visibilitychange',function(){if(document.hidden)guardarReloj()});
@@ -1676,7 +1676,7 @@ seenUp();
   /* ── Pizarra: tarjetas e hilos se conservan ── */
   if(!propiaPizarra&&typeof addCard==='function'&&$('pizCanvas')){
     var tSave=null;
-    var guardarPizarra=function(){
+    var guardarPizarra=function(){if(window.__acReinicio)return;
       try{
         var cs=[].slice.call(document.querySelectorAll('#pizCanvas .cork-card')).map(function(c){
           var b=c.querySelector('.cork-card-body');
@@ -1704,7 +1704,7 @@ seenUp();
   var dp=$('docsPanel')||document.querySelector('.docs-panel');
   if(dp){
     var tHl=null;
-    var guardarResaltados=function(){
+    var guardarResaltados=function(){if(window.__acReinicio)return;
       try{
         var ms=[].slice.call(dp.querySelectorAll('mark')).map(function(m){var p=m.closest('.page');return p&&m.textContent?{p:p.id,t:m.textContent}:null}).filter(Boolean);
         lss(K+'_hl',JSON.stringify(ms));
@@ -1727,7 +1727,7 @@ seenUp();
   /* ── Reiniciar el caso borra también lo guardado acá ── */
   if(typeof doReset==='function'){
     var _dr=doReset;
-    doReset=function(){['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
+    doReset=function(){window.__acReinicio=true;try{clearInterval(timerInterval)}catch(e){}['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
   }
 
   /* Pistas usadas: tambien se conservan (cuentan para el rango) */

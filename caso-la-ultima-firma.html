@@ -2501,7 +2501,7 @@ seenUp();
       if(!timerStarted){var t=+lsg(K+'_t');if(t>0){timerSeconds=t;pintarReloj()}}
       _st();
     };
-    var guardarReloj=function(){if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
+    var guardarReloj=function(){if(window.__acReinicio)return;if(typeof timerStarted!=='undefined'&&timerStarted&&!hecho)lss(K+'_t',String(timerSeconds))};
     setInterval(guardarReloj,5000);
     window.addEventListener('pagehide',guardarReloj);
     document.addEventListener('visibilitychange',function(){if(document.hidden)guardarReloj()});
@@ -2550,7 +2550,7 @@ seenUp();
   /* ── Pizarra: tarjetas e hilos se conservan ── */
   if(!propiaPizarra&&typeof addCard==='function'&&$('pizCanvas')){
     var tSave=null;
-    var guardarPizarra=function(){
+    var guardarPizarra=function(){if(window.__acReinicio)return;
       try{
         var cs=[].slice.call(document.querySelectorAll('#pizCanvas .cork-card')).map(function(c){
           var b=c.querySelector('.cork-card-body');
@@ -2578,7 +2578,7 @@ seenUp();
   var dp=$('docsPanel')||document.querySelector('.docs-panel');
   if(dp){
     var tHl=null;
-    var guardarResaltados=function(){
+    var guardarResaltados=function(){if(window.__acReinicio)return;
       try{
         var ms=[].slice.call(dp.querySelectorAll('mark')).map(function(m){var p=m.closest('.page');return p&&m.textContent?{p:p.id,t:m.textContent}:null}).filter(Boolean);
         lss(K+'_hl',JSON.stringify(ms));
@@ -2601,7 +2601,7 @@ seenUp();
   /* ── Reiniciar el caso borra también lo guardado acá ── */
   if(typeof doReset==='function'){
     var _dr=doReset;
-    doReset=function(){['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
+    doReset=function(){window.__acReinicio=true;try{clearInterval(timerInterval)}catch(e){}['_t','_pz','_hl','_done','_h','_hu'].forEach(function(s){lsr(K+s)});_dr.apply(null,arguments)};
   }
 
   /* Pistas usadas: tambien se conservan (cuentan para el rango) */
