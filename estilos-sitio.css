@@ -810,6 +810,8 @@
   .ficha-txt a, .faq-answer a, .que-es-lead a { color: var(--amber); text-decoration: underline; text-decoration-color: rgba(212,160,23,0.5); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
   .ficha-txt a:visited, .faq-answer a:visited, .que-es-lead a:visited { color: var(--amber); }
   .ficha-txt a:hover, .faq-answer a:hover, .que-es-lead a:hover { color: var(--paper); text-decoration-color: var(--paper); }
+  .step-desc a, .step-desc a:visited { color: var(--amber); text-decoration: underline; text-decoration-color: rgba(212,160,23,0.5); text-underline-offset: 3px; }
+  .step-desc a:hover { color: var(--paper); text-decoration-color: var(--paper); }
 
   /* ── QUÉ ES ── */
   .que-es-lead { font-size: 0.92rem; line-height: 1.85; color: rgba(240,236,224,0.55); max-width: 58ch; margin-bottom: 4rem; }
@@ -2100,3 +2102,6 @@ h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
     .reveal { opacity: 1 !important; transform: none !important; }
     .page-section { opacity: 1 !important; transform: none !important; }
   }
+
+  /* Acento de color solo en el título principal de las guías */
+  h1 .h-acento { color: var(--red); }
