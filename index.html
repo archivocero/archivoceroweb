@@ -665,6 +665,12 @@
     box-shadow: 0 0 0 1px rgba(212,160,23,0.25), 0 12px 40px rgba(212,160,23,0.12);
     background: linear-gradient(135deg, rgba(212,160,23,0.10) 0%, transparent 60%);
   }
+  /* Pack 3 casos: mas protagonismo */
+  .pack-destacado { margin-bottom: 2rem; padding: 3.4rem 3rem; border-left-width: 6px; }
+  .pack-destacado .pack-precio-valor { font-size: 3.4rem; }
+  .pack-destacado + .pack-inner { margin-top: 0; }
+  .pack-inner + .pack-inner { margin-top: 2rem; }
+  .pack-destacado .pack-btn { background: var(--amber); color: var(--ink); }
   .pack-recomendado {
     position: absolute; top: 0; right: 0; z-index: 2;
     font-family: "Courier Prime", monospace; font-size: 0.72rem; font-weight: 700;
@@ -2495,8 +2501,8 @@ h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
 
   <!-- BOTONES BANDA -->
   <div class="hero-actions" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <a href="https://archivocero.mitiendanube.com/productos/caso-interactivo-b-la-donante-anonima-16s8a/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
-      <span>La Donante Anónima — <s class="hero-antes">$11.000</s> $7.000</span><span class="btn-arrow">→</span>
+    <a href="https://archivocero.mitiendanube.com/productos/pack-investigador-3-casos-interactivos-100-online-1ljjt/" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">
+      <span>Pack 3 casos online — <s class="hero-antes">$20.000</s> $12.900</span><span class="btn-arrow">→</span>
     </a>
     <a href="https://forms.gle/ybMUwsdgiryVDMwc7" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">
       <span>Experimentá gratis Archivo Cero®</span><span class="btn-arrow">→</span>
@@ -2802,6 +2808,34 @@ h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
   <!-- CTA BANNER -->
   <!-- PACK INVESTIGADOR -->
   <section class="pack-section" id="packs">
+    <div class="pack-inner pack-destacado reveal">
+      <span class="pack-recomendado">★ Mejor precio por caso</span>
+      <div class="pack-left">
+        <p class="section-label">Oferta</p>
+        <h2 class="pack-titulo">Pack<br><span class="pack-titulo-accent">Investigador</span><br><span class="pack-titulo-casos">3 casos</span></h2>
+        <p class="pack-precio"><span class="pack-precio-antes">Antes <s>$20.000</s></span><span class="pack-precio-label">Todo por</span><span class="pack-precio-valor">$12.900</span><span class="pack-ahorro">Ahorrás $7.100 · −36%</span></p>
+      </div>
+      <div class="pack-right">
+        <p class="pack-desc">Descubrí tres casos interactivos online de Archivo Cero®. Experiencias de investigación para resolver solo, en pareja o con amigos, directo desde la web.</p>
+        <div class="pack-items">
+          <div class="pack-grupo">
+            <span class="pack-grupo-label">🖥 Casos interactivos — 100% online</span>
+            <span class="pack-item">· La Última Firma</span>
+            <span class="pack-item">· La Donante Anónima</span>
+            <span class="pack-item">· La Última Señal</span>
+          </div>
+        </div>
+        <div class="pack-meta">
+          <span>👥 Solo o en grupo</span>
+          <span>🕒 +3 horas de investigación</span>
+          <span>📩 Acceso inmediato</span>
+        </div>
+        <a href="https://archivocero.mitiendanube.com/productos/pack-investigador-3-casos-interactivos-100-online-1ljjt/" target="_blank" rel="noopener" class="pack-btn">
+          <span>Quiero el pack online</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
     <div class="pack-inner reveal">
       <div class="pack-left">
         <p class="section-label">Oferta</p>
@@ -2829,34 +2863,6 @@ h2 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
         </div>
         <a href="https://archivocero.mitiendanube.com/productos/pack-investigador-4-casos/" target="_blank" rel="noopener" class="pack-btn">
           <span>Quiero el pack completo</span>
-          <span>→</span>
-        </a>
-      </div>
-    </div>
-    <div class="pack-inner pack-destacado reveal">
-      <span class="pack-recomendado">★ Recomendado</span>
-      <div class="pack-left">
-        <p class="section-label">Oferta</p>
-        <h2 class="pack-titulo">Pack<br><span class="pack-titulo-accent">Investigador</span><br><span class="pack-titulo-casos">3 casos</span></h2>
-        <p class="pack-precio"><span class="pack-precio-antes">Antes <s>$20.000</s></span><span class="pack-precio-label">Todo por</span><span class="pack-precio-valor">$12.900</span><span class="pack-ahorro">Ahorrás $7.100 · −36%</span></p>
-      </div>
-      <div class="pack-right">
-        <p class="pack-desc">Descubrí tres casos interactivos online de Archivo Cero®. Experiencias de investigación para resolver solo, en pareja o con amigos, directo desde la web.</p>
-        <div class="pack-items">
-          <div class="pack-grupo">
-            <span class="pack-grupo-label">🖥 Casos interactivos — 100% online</span>
-            <span class="pack-item">· La Última Firma</span>
-            <span class="pack-item">· La Donante Anónima</span>
-            <span class="pack-item">· La Última Señal</span>
-          </div>
-        </div>
-        <div class="pack-meta">
-          <span>👥 Solo o en grupo</span>
-          <span>🕒 +3 horas de investigación</span>
-          <span>📩 Acceso inmediato</span>
-        </div>
-        <a href="https://archivocero.mitiendanube.com/productos/pack-investigador-3-casos-interactivos-100-online-1ljjt/" target="_blank" rel="noopener" class="pack-btn">
-          <span>Quiero el pack online</span>
           <span>→</span>
         </a>
       </div>
