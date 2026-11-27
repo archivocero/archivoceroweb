@@ -173,7 +173,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()}
 function toggleFaq(btn){var item=btn.parentElement;var abierto=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');var b=el.querySelector('.faq-question');if(b)b.setAttribute('aria-expanded','false')});if(!abierto){item.classList.add('open');btn.setAttribute('aria-expanded','true')}}
 function toggleSpotify(id){var el=document.getElementById(id);if(!el)return;var abierto=el.classList.contains('open');if(!abierto){var fr=el.querySelector('iframe[data-src]');if(fr){fr.src=fr.dataset.src;fr.removeAttribute('data-src')}try{if(typeof gtag==='function')gtag('event','spotify_teaser_open',{teaser_id:id})}catch(e){}}el.classList.toggle('open',!abierto);var b=el.querySelector('.btn-spotify-toggle');if(b)b.setAttribute('aria-expanded',String(!abierto))}
 document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'';var h1=document.querySelector('h1');var n=(h1?h1.textContent:'').replace(/\s+/g,' ').trim();var p={item_name:n,zona:'ficha',link_url:h};
-try{if(h.indexOf('mitiendanube.com')>-1)gtag('event','click_comprar',p);else if(h.indexOf('forms.gle')>-1)gtag('event','click_gratis',p);else if(a.classList.contains('btn-trailer'))gtag('event','click_trailer',p)}catch(err){}});</script>
+try{if(h.indexOf('mitiendanube.com')>-1)gtag('event','click_comprar',p);else if((h.indexOf('forms.gle')>-1||h.indexOf('/caso-gratis')>-1))gtag('event','click_gratis',p);else if(a.classList.contains('btn-trailer'))gtag('event','click_trailer',p)}catch(err){}});</script>
 <script src="/newsletter.js" defer></script>
 </body>
 </html>
